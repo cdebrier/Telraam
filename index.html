@@ -135,8 +135,8 @@ a { color: inherit; }
 /* Carte */
 .map { flex: 1; min-height: 0; border-radius: 10px; border: 1px solid var(--line); background: #0f141b; }
 .leaflet-container { font-family: inherit; background: #0f141b; }
-/* Fond OpenStreetMap assombri (les marqueurs et popups ne sont pas touchés) */
-.map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.5); }
+/* Fond Esri un peu assombri pour se fondre dans la page (marqueurs et popups non touchés) */
+.map .leaflet-tile-pane { filter: brightness(.62) contrast(1.15); }
 .leaflet-control-attribution { background: rgba(11,15,20,.75) !important; color: var(--muted) !important; font-size: 10px; }
 .leaflet-control-attribution a { color: var(--muted) !important; }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--text); box-shadow: 0 4px 16px rgba(0,0,0,.5); }
@@ -832,11 +832,16 @@ scenes.vitesse = {
     body.innerHTML = `<div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div>`;
 
     const map = L.map(body.querySelector('.map'), {
-      scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, attributionControl: true,
+      scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, attributionControl: true, maxZoom: 16,
     });
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© contributeurs OpenStreetMap', maxZoom: 19,
+    // Fond gris sombre Esri (gratuit, sans clé) + couche de noms de lieux ; zoom maximal 16
+    const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+    L.tileLayer(esri + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Fond : Esri, HERE, Garmin, © contributeurs OpenStreetMap', maxZoom: 16,
     }).addTo(map);
+    map.createPane('labels');                       // noms de lieux au-dessus du fond, sans le filtre d'assombrissement
+    map.getPane('labels').style.zIndex = 250; map.getPane('labels').style.pointerEvents = 'none';
+    L.tileLayer(esri + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { pane: 'labels', maxZoom: 16 }).addTo(map);
     const pts = [];
     D.streets.forEach(s => {
       const label = s.v85 ? fmt0(s.v85) : '';

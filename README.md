@@ -60,7 +60,7 @@ python3 -m http.server 8000
 ```
 
 Puis ouvrir `http://localhost:8000` dans un navigateur moderne.
-La page est un fichier HTML unique, sans étape de build. Elle charge Leaflet (carte) et D3 (ridgeplot) depuis un CDN ; si l'un des deux manque, la scène concernée se replie sur un tableau. Le fond de carte vient d'OpenStreetMap.
+La page est un fichier HTML unique, sans étape de build. Elle charge Leaflet (carte) et D3 (ridgeplot) depuis un CDN ; si l'un des deux manque, la scène concernée se replie sur un tableau. Le fond de carte est le « Canvas Dark Gray » d'Esri (gratuit, sans clé, zoom maximal 16, données © OpenStreetMap).
 
 Pour vérifier que les chiffres n'ont pas bougé après une modification des données ou du calcul :
 
