@@ -131,6 +131,20 @@ a { color: inherit; }
 .ridge text { fill: var(--muted); font-size: 10.5px; font-family: inherit; }
 .ridge .val { fill: var(--text); }
 .ridge .grid { stroke: var(--line); stroke-width: 1; }
+/* Ridgeplot et comparatif empilés dans la même case, fondu de l'un à l'autre */
+.jstack { flex: 1; min-height: 0; display: grid; justify-items: center; }
+.jstack > svg { grid-area: 1 / 1; transition: opacity .45s; }
+.jstack > .cmp { flex: 1; min-height: 0; width: 100%; max-width: 640px; opacity: 0; pointer-events: none; }
+.jstack.is-cmp > .cmp { opacity: 1; }
+.jstack.is-cmp > .ridge { opacity: 0; }
+.cmp text { fill: var(--muted); font-size: 10.5px; font-family: inherit; }
+.cmp .grid { stroke: var(--line); stroke-width: 1; }
+.cmp .lbl { font-weight: 600; }
+.cmp-legend { transition: opacity .45s; }
+.cmp-legend b { color: var(--text); font-variant-numeric: tabular-nums; }
+/* Mode empilé : le visuel n'existe qu'une fois, les onglets donnent accès aux autres modes */
+.is-stacked .step[data-scene="journee"]:not([data-focus="cars"]) { display: none; }
+@media (prefers-reduced-motion: reduce) { .jstack > svg, .cmp-legend { transition: none; } }
 
 /* Carte */
 .map { flex: 1; min-height: 0; border-radius: 10px; border: 1px solid var(--line); background: #0f141b; }
@@ -396,16 +410,43 @@ select, .fiche__controls button {
         <p class="step__kicker">Le réseau</p>
         <h2>13 capteurs, 3 localités</h2>
         <p>Des capteurs Telraam S2 comptent voitures, poids lourds, vélos et piétons, et estiment la vitesse, à Rixensart, Genval et Rosières.</p>
-        <p class="src">Période : nov. 2024 – 2026 · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
+        <p class="src">Période : nov. 2024 – 2026 · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
-    <section class="step" data-scene="journee" data-title="Journée type" tabindex="0">
+    <section class="step" data-scene="journee" data-focus="cars" data-title="Journée type" tabindex="0">
       <div class="step__card">
-        <p class="step__kicker">Journée type</p>
+        <p class="step__kicker">Journée type · voitures</p>
         <h2>Deux pics : le matin et le soir</h2>
         <p data-fill="peaks">Profil horaire du trafic par rue, en semaine.</p>
-        <p class="src">Nov. 2024, heures de jour · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
+        <p class="src">Nov. 2024, heures de jour · <a href="#methode">Méthode</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="journee" data-focus="bikes" data-title="Journée type : vélos" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker">Journée type · vélos</p>
+        <h2>Les vélos suivent le même rythme</h2>
+        <p data-fill="bikesDay"></p>
+        <p class="src">Nov. 2024, heures de jour · <a href="#methode">Méthode</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="journee" data-focus="peds" data-title="Journée type : piétons" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker">Journée type · piétons</p>
+        <h2>Les piétons aussi</h2>
+        <p data-fill="pedsDay"></p>
+        <p class="src">Nov. 2024, heures de jour · <a href="#methode">Méthode</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="journee" data-focus="compare" data-title="Journée type : comparaison" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker">Journée type · à la même échelle</p>
+        <h2>Le vrai rapport de forces</h2>
+        <p data-fill="compareDay"></p>
+        <p class="src">Nov. 2024, heures de jour, 12 rues cumulées · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -415,7 +456,7 @@ select, .fiche__controls button {
         <h2>V85 par rue, sur la carte</h2>
         <p>La V85 est la vitesse que 85 % des véhicules ne dépassent pas.</p>
         <p data-fill="speedcount"></p>
-        <p class="src">Nov. 2024, heures de jour · incertitude ±10 % · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
+        <p class="src">Nov. 2024, heures de jour · incertitude ±10 % · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -425,7 +466,7 @@ select, .fiche__controls button {
         <h2>Classement des rues</h2>
         <p>V85 comparée à la limite légale de chaque rue, en nov. 2024 puis en fin d'été 2026.</p>
         <p data-fill="thermo"></p>
-        <p class="src">Nov. 2024 (30 jours) et 21 août – 4 sept. 2026 (14 jours), heures de jour · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
+        <p class="src">Nov. 2024 (30 jours) et 21 août – 4 sept. 2026 (14 jours), heures de jour · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -435,7 +476,7 @@ select, .fiche__controls button {
         <h2>Sur 100 passages</h2>
         <p data-fill="usagers">Répartition par mode, tous capteurs et toutes périodes confondus.</p>
         <p data-fill="active"></p>
-        <p class="src">Toutes périodes de mesure · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
+        <p class="src">Toutes périodes de mesure · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -445,7 +486,7 @@ select, .fiche__controls button {
         <h2>Le vélo au printemps</h2>
         <p data-fill="season">Comparaison mai 2025 / mai 2026 sur un périmètre constant de 9 capteurs.</p>
         <p data-fill="spring"></p>
-        <p class="src">Périmètre constant · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
+        <p class="src">Périmètre constant · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -454,7 +495,7 @@ select, .fiche__controls button {
         <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
         <h2 data-fill="caseh">Rue n°1</h2>
         <p data-fill="case"></p>
-        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+        <p class="src">Mesures nov. 2024 · <a href="#vigilance">Indice de vigilance</a></p>
       </div>
     </section>
 
@@ -463,7 +504,7 @@ select, .fiche__controls button {
         <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
         <h2 data-fill="caseh">Rue n°2</h2>
         <p data-fill="case"></p>
-        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+        <p class="src">Mesures nov. 2024 · <a href="#vigilance">Indice de vigilance</a></p>
       </div>
     </section>
 
@@ -472,7 +513,7 @@ select, .fiche__controls button {
         <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
         <h2 data-fill="caseh">Rue n°3</h2>
         <p data-fill="case"></p>
-        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+        <p class="src">Mesures nov. 2024 · <a href="#vigilance">Indice de vigilance</a></p>
       </div>
     </section>
 
@@ -481,7 +522,7 @@ select, .fiche__controls button {
         <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
         <h2 data-fill="caseh">Cas chantier</h2>
         <p data-fill="case"></p>
-        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+        <p class="src">Mesures nov. 2024 · <a href="#vigilance">Indice de vigilance</a></p>
       </div>
     </section>
 
@@ -557,16 +598,16 @@ select, .fiche__controls button {
       <div><dt>Heures de jour</dt><dd>La classification par mode n'est fiable que de jour. Les profils horaires et les vitesses de nov. 2024 couvrent donc les heures de jour uniquement.</dd></div>
       <div><dt>V85 récente</dt><dd>Elle couvre 14 jours (21 août – 4 sept. 2026, fin d'été), contre un mois entier en nov. 2024, avec plus d'heures de jour en été. Elle se calcule de la même façon (moyenne des V85 horaires) mais à saison et durée différentes : à lire comme un repère, pas comme une tendance.</dd></div>
       <div><dt>Comparaisons</dt><dd>D'une année à l'autre, on compare le même mois sur les seuls capteurs présents aux deux périodes. Un capteur arrêté est exclu, pas compté comme une baisse.</dd></div>
-      <div><dt>Indice de vigilance</dt><dd>(part de mobilités actives ÷ 10) × excès de V85 sur la limite × log₁₀ du trafic de jour. Il classe les rues, il ne mesure pas un risque d'accident.</dd></div>
+      <div id="vigilance"><dt>Indice de vigilance</dt><dd>(part de mobilités actives ÷ 10) × excès de V85 sur la limite × log₁₀ du trafic de jour. Il classe les rues, il ne mesure pas un risque d'accident.</dd></div>
       <div><dt>Limites</dt><dd>Chaque capteur voit une seule rue. Le rapprochement avec les chantiers montre une coïncidence dans le temps, il ne prouve pas une cause.</dd></div>
     </dl>
-    <p><a href="docs/METHODOLOGIE.md">Cadre méthodologique complet</a> · Données : <a href="data/rixensart_summary.csv">synthèse CSV</a>, <a href="data/rixensart_summary.json">JSON</a>, <a href="data/rixensart_history.json">historique</a>, <a href="data/rixensart_travaux.json">chantiers</a></p>
+    <p>Données : <a href="data/rixensart_summary.csv">synthèse CSV</a>, <a href="data/rixensart_summary.json">JSON</a>, <a href="data/rixensart_history.json">historique</a>, <a href="data/rixensart_travaux.json">chantiers</a></p>
     <details id="sources"><summary>Sources</summary><ul id="sources-list"></ul></details>
   </div>
 </section>
 
 <footer class="foot">
-  <p>Données : capteurs citoyens Telraam S2, 2024–2026. <a href="#methode">Méthode et limites</a> · <a href="docs/METHODOLOGIE.md">Cadre méthodologique</a></p>
+  <p>Données : capteurs citoyens Telraam S2, 2024–2026. <a href="#methode">Méthode et limites</a></p>
 </footer>
 
 <script>
@@ -598,11 +639,33 @@ function markerSvg(st, size = 28) {
   return `${open}<circle cx="14" cy="14" r="8" style="fill:none;stroke:#9AA7B6;stroke-width:2.5"/></svg>`;
 }
 
+// Profil horaire cumulé des rues du ridgeplot, pour un mode (24 valeurs) et son total journalier
+function netHourly(D, key) {
+  const out = Array(24).fill(0);
+  D.hourly.rows.forEach(s => ((s.raw.nov2024.hourly[key]) || []).slice(0, 24).forEach((v, i) => { out[i] += v || 0; }));
+  return out;
+}
+const netTotal = (D, key) => netHourly(D, key).reduce((t, v) => t + v, 0);
+function modeDayText(D, key, noun) {
+  const h = netHourly(D, key), tot = h.reduce((t, v) => t + v, 0);
+  if (!tot) return null;
+  const top = h.map((v, i) => [v, i]).sort((a, b) => b[0] - a[0]).slice(0, 2).map(p => p[1]).sort((a, b) => a - b);
+  const span = i => `${i} h–${i + 1} h`;
+  return `Les deux heures les plus chargées : ${span(top[0])} et ${span(top[1])}. Au total, ${fmt0(tot)} ${noun} par jour de semaine sur les ${D.hourly.rows.length} rues. Chaque rue reste à sa propre échelle.`;
+}
+
 // Textes de étapes calculés depuis les données (data-fill="...")
 const fills = {
   peaks: D => D.hourly.am.hour
     ? `Le pic du matin tombe à ${D.hourly.am.hour.replace('-', '–')} dans ${D.hourly.am.n} rues sur ${D.hourly.rows.length} ; celui du soir à ${D.hourly.pm.hour.replace('-', '–')} dans ${D.hourly.pm.n}.`
     : null,
+  bikesDay: D => modeDayText(D, 'bikes_weekday', 'vélos'),
+  pedsDay: D => modeDayText(D, 'peds_weekday', 'piétons'),
+  compareDay: D => {
+    const c = netTotal(D, 'cars_weekday'), b = netTotal(D, 'bikes_weekday'), p = netTotal(D, 'peds_weekday');
+    if (!b || !p) return null;
+    return `Sur la même échelle, les vélos et les piétons disparaissent : pour 1 vélo, ${fmt0(c / b)} voitures ; pour 1 piéton, ${fmt0(c / p)}. Ce sont des passages comptés, pas des personnes : une voiture peut en transporter plusieurs.`;
+  },
   speedcount: D => `${D.speed.high} rues sur ${D.speed.measured.length} dépassent leur limite de plus de 5 km/h, ${D.speed.warn} de 2 à 5 km/h, ${D.speed.ok} de moins de 2 km/h.`,
   usagers: D => {
     const u = D.usagers, n = Object.fromEntries(u.order.map((m, i) => [m, u.per100[i]]));
@@ -860,9 +923,14 @@ scenes.journee = {
     body.innerHTML = `
       <div class="seg" role="group" aria-label="Mode de déplacement">
         ${Object.entries(MODES).map(([k, m]) => `<button type="button" data-mode="${k}" aria-pressed="${k === 'cars'}">${m.label}</button>`).join('')}
+        <button type="button" data-mode="compare" aria-pressed="false">Comparer</button>
       </div>
       <p class="viz-title">Passages par heure, en semaine. Chaque rue à sa propre échelle.</p>
-      <svg class="ridge" role="img" aria-label="Profil horaire du trafic en semaine pour ${rows.length} rues. ${esc(fills.peaks(D) || '')}"></svg>
+      <div class="jstack">
+        <svg class="ridge" role="img" aria-label="Profil horaire du trafic en semaine pour ${rows.length} rues. ${esc(fills.peaks(D) || '')}"></svg>
+        <svg class="cmp" role="img" aria-label="${esc(fills.compareDay(D) || 'Comparaison voitures, vélos et piétons sur une même échelle')}"></svg>
+      </div>
+      <div class="legend cmp-legend" aria-hidden="true" style="opacity:0"></div>
       ${peaksTable(D)}`;
 
     const W = 360, rowH = 17, ridgeH = 27, top = 4, left = 112, right = 46, bottom = 18;
@@ -897,10 +965,49 @@ scenes.journee = {
       totals.text(s => fmt0(hoursSum(s.raw.nov2024.hourly[m.key])) + ' /j');
     }
     draw('cars', false);
-    body.querySelectorAll('.seg button').forEach(btn => btn.addEventListener('click', () => {
-      body.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-      draw(btn.dataset.mode, true);
-    }));
+
+    // Comparatif : trois courbes cumulées sur les 12 rues, une seule échelle verticale
+    const cmp = d3.select(body.querySelector('.cmp')).attr('viewBox', `0 0 ${W} ${H}`).attr('preserveAspectRatio', 'xMidYMid meet');
+    const net = { cars: netHourly(D, 'cars_weekday'), bikes: netHourly(D, 'bikes_weekday'), peds: netHourly(D, 'peds_weekday') };
+    const tot = k => net[k].reduce((t, v) => t + v, 0);
+    const yMax = Math.max(...net.cars, 1), cTop = top + 6, cBase = H - bottom;
+    const y = v => cBase - (v / yMax) * (cBase - cTop);
+    cmp.append('g').selectAll('line').data(ticks).join('line').attr('class', 'grid')
+      .attr('x1', h => x(h)).attr('x2', h => x(h)).attr('y1', top).attr('y2', cBase + 2);
+    cmp.append('g').selectAll('text').data(ticks).join('text').attr('x', h => x(h)).attr('y', H - 6)
+      .attr('text-anchor', 'middle').text(h => h + ' h');
+    const carea = d3.area().curve(d3.curveMonotoneX).x(d => x(d[0])).y0(cBase).y1(d => y(d[1]));
+    Object.entries(MODES).forEach(([k, m]) => {
+      const pts = net[k].map((v, h) => [h + 0.5, v]).filter(p => p[0] >= x0 - 0.5 && p[0] <= x1 + 0.5);
+      cmp.append('path').attr('d', carea(pts)).attr('stroke-width', 1.6).attr('stroke-linejoin', 'round')
+        .style('stroke', m.color).style('fill', `color-mix(in srgb, ${m.color} ${k === 'cars' ? 30 : 55}%, #0B0F14)`);
+    });
+    const legendEl = body.querySelector('.cmp-legend');
+    legendEl.innerHTML = ['cars', 'bikes', 'peds'].map(k =>
+      `<span><i style="background:${MODES[k].color}"></i>${MODES[k].label} <b>${fmt0(tot(k))}</b> /j${k === 'cars' ? '' : ` · 1 pour ${fmt0(tot('cars') / tot(k))} voitures`}</span>`).join('');
+    legendEl.querySelectorAll('i').forEach(i => { i.style.cssText += ';width:10px;height:10px;border-radius:50%;display:inline-block'; });
+
+    const stack = body.querySelector('.jstack'), vt = body.querySelector('.viz-title');
+    const titles = { compare: 'Passages par heure, en semaine, toutes rues cumulées. Une seule échelle pour les trois modes.' };
+    const seg = body.querySelectorAll('.seg button');
+    let shown = 'cars';
+    function show(mode, animate = true) {
+      if (mode === shown) return;
+      shown = mode;
+      seg.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+      const isCmp = mode === 'compare';
+      stack.classList.toggle('is-cmp', isCmp);
+      legendEl.style.opacity = isCmp ? 1 : 0;
+      legendEl.setAttribute('aria-hidden', String(!isCmp));
+      vt.textContent = titles[mode] || 'Passages par heure, en semaine. Chaque rue à sa propre échelle.';
+      if (!isCmp) draw(mode, animate);
+    }
+    seg.forEach(btn => btn.addEventListener('click', () => show(btn.dataset.mode)));
+    el._journee = { show };
+  },
+  // Piloté par le défilement : une étape par mode (data-focus), puis le comparatif
+  focus(el, D, key) {
+    if (el._journee && key) el._journee.show(key);
   },
 };
 
@@ -1227,7 +1334,7 @@ function initStory() {
     el.dataset.scene = id;
     const note = def.note ? def.note(D) : `Comptages Telraam · ${D.sensorCount} capteurs · nov. 2024 – 2026`;
     el.innerHTML = `<div class="scene__body"></div>
-      <div class="scene__foot">${note} · <a href="docs/METHODOLOGIE.md">Méthode</a></div>`;
+      <div class="scene__foot">${note} · <a href="#methode">Méthode</a></div>`;
     try { def.render(el, D); }
     catch (e) { console.error('Scène', id, e); el.querySelector('.scene__body').innerHTML = '<p class="msg">Ce visuel n\'a pas pu être affiché.</p>'; }
     els[id] = el;
