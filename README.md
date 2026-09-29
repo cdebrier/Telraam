@@ -2,7 +2,7 @@
 
 Ce projet est un observatoire citoyen et un outil d'aide à la décision basé sur les données de comptage multimodal et de vitesse des capteurs **Telraam S2** installés chez les riverains de la commune de **Rixensart** (Rixensart, Genval, Rosières).
 
-L'enquête interactive met en perspective plus de **27 millions de détections** enregistrées entre 2024 et 2026 pour évaluer l'apaisement réel du trafic, le respect de la Zone 30, l'essor des mobilités douces et l'impact des chantiers de voirie.
+La page présente près de **27 millions de détections** enregistrées entre 2024 et 2026 sous forme de parcours défilant (scrollytelling) : profils horaires, vitesses V85 par rue, répartition par mode, effet des saisons, études de cas, puis une fiche imprimable par rue.
 
 ---
 
@@ -27,11 +27,11 @@ Ce document détaille :
 ## 🗂️ Structure du Projet
 
 ```text
-├── index.html                           # Application web principale (Récit data-journalisme & outil d'action)
+├── index.html                           # Page unique : parcours scrollytelling, fiche par rue, méthode
 ├── README.md                            # Présentation générale du projet
 ├── docs/
 │   ├── METHODOLOGIE.md                  # Référentiel méthodologique et scientifique complet
-│   └── plans/                           # Spécifications de design et plans d'implémentation
+│   └── plans/                           # Design, journal des décisions et plan d'implémentation de la refonte
 ├── data/
 │   ├── rixensart_data.js                # Données consolidées pour l'interface web (capteurs, historique, travaux)
 │   ├── rixensart_summary.json           # Synthèse JSON des compteurs et métriques clés
@@ -39,6 +39,9 @@ Ce document détaille :
 │   ├── rixensart_history.json           # Séries temporelles pluriannuelles (2024-2026)
 │   ├── rixensart_telraam_full_data.json # Données brutes issues de l'API Telraam
 │   └── rixensart_travaux.json           # Registre des chantiers et arrêtés de police communaux
+├── tools/
+│   ├── check_aggregates.mjs             # Recoupe les chiffres avec la référence (node tools/check_aggregates.mjs --check)
+│   └── reference_aggregates.json        # Chiffres de référence (V85, statuts, comparaisons saisonnières)
 ├── extract_data.py                      # Extraction des métadonnées et segments via l'API Telraam
 ├── extract_history.py                   # Extraction des séries temporelles historiques
 └── analyze.py                           # Traitement statistique et calcul des indicateurs de synthèse
@@ -56,4 +59,10 @@ python3 -m http.server 8000
 ```
 
 Puis ouvrir `http://localhost:8000` dans un navigateur moderne.
-L'application est conçue pour fonctionner de manière autonome (sans bundler lourd) avec Tailwind CSS, Leaflet.js et Chart.js.
+La page est un fichier HTML unique, sans étape de build. Elle charge Leaflet (carte) et D3 (ridgeplot) depuis un CDN ; si l'un des deux manque, la scène concernée se replie sur un tableau. Le fond de carte vient d'OpenStreetMap.
+
+Pour vérifier que les chiffres n'ont pas bougé après une modification des données ou du calcul :
+
+```bash
+node tools/check_aggregates.mjs --check
+```

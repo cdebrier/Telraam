@@ -95,5 +95,5 @@ Chaque scène affiche en pied : période, nombre de capteurs, lien vers `METHODO
 | Régression des chiffres | Script de comparaison des agrégats |
 | Modifications non commitées en cours | Les commiter avant de démarrer |
 
-## 6. Prochaine étape
-Plan d'implémentation détaillé (`docs/plans/2026-09-29-refonte-dashboard-impl.md`), après accord.
+## 6. Statut
+Implémenté en 6 étapes (voir [le plan](2026-09-29-refonte-dashboard-impl.md)). Écarts avec ce design : pas de Tailwind ni de Chart.js (CSS écrit à la main, D3 et Leaflet seuls) ; breakpoint à deux colonnes à 720 px ; scène « rues » à 4 sous-étapes (D14) ; fiche et méthode en sections pleines largeur (D17).

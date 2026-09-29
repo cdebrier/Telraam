@@ -159,6 +159,11 @@ a { color: inherit; }
 .unc::before { left: 0; } .unc::after { right: 0; }
 .lim { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); }
 @media (min-width: 900px) { .thermo { gap: clamp(6px, 1.8vh, 14px); } .tr { grid-template-columns: 140px 1fr 78px; font-size: 13px; } }
+/* Écrans bas (téléphone en paysage) : lignes compactes, légende masquée */
+@media (max-height: 560px) {
+  .thermo { gap: 1px; } .tr { font-size: 11px; } .track { height: 14px; } .bar { height: 9px; top: 2px; } .unc { top: 6px; } .lim { top: -1px; bottom: -1px; }
+  .thermo ~ .viz-title, .scene__body.fill > .viz-title:first-child { display: none; }
+}
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 
 /* Usagers : 100 points */
@@ -210,7 +215,8 @@ a { color: inherit; }
 .counter { position: absolute; left: 16px; top: 14px; }
 
 /* ---------- Bureau : texte à gauche, cadre à droite ---------- */
-@media (min-width: 900px) {
+/* Deux colonnes dès 720 px (tablette portrait) ; les composants larges restent à 900 px */
+@media (min-width: 720px) {
   :root { --stage-h-mobile: 0px; }
   .bar { padding: 0 32px; gap: 16px; }
   .progress a { width: 26px; }
@@ -479,7 +485,7 @@ const fmt0 = n => Math.round(n).toLocaleString('fr-FR');
 const fmt1 = n => n.toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const isDesktop = () => window.matchMedia('(min-width: 900px)').matches;
+const isDesktop = () => window.matchMedia('(min-width: 720px)').matches;
 
 const fmtDelta = d => (d > 0 ? '+' : d < 0 ? '−' : '') + fmt1(Math.abs(d));
 // Noms courts pour les libellés de graphiques
