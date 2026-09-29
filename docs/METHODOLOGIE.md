@@ -170,7 +170,7 @@ $$I_{\text{vigilance}} = \left( \frac{\text{Part Active (\%)}}{10} \right) \time
                                 │   ➔ Intervention physique d'urgence
                                 │
                                 │   [Zone Verte : Apaisement Réel]
-                                │   Ex: Place Communale (V85 21 km/h)
+                                │   Ex: Rue Mahiermont (V85 24 km/h)
                                 │   Cohabitation réussie, trafic ralenti
                                 ┼────────────────────────────────────────►
                                0                               Fréquentation
