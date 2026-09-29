@@ -56,10 +56,11 @@ a { color: inherit; }
   backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
 }
 .bar__title { font-weight: 700; font-size: 14px; white-space: nowrap; }
+.bar__title .sm-hide { display: none; }
 .bar__sub { color: var(--muted); font-size: 13px; white-space: nowrap; display: none; }
 .progress { display: flex; gap: 0; margin-left: auto; }
 .progress a {
-  display: block; width: 24px; height: 28px; position: relative; text-decoration: none;
+  display: block; width: 20px; height: 28px; position: relative; text-decoration: none;
 }
 .progress a::after { /* segment visible, zone de clic de 28 px */
   content: ""; position: absolute; left: 2px; right: 2px; top: 12px; height: 4px;
@@ -97,11 +98,11 @@ a { color: inherit; }
   max-width: 520px; transition: border-color .3s;
 }
 .step.is-active .step__card { border-color: #3a4a5e; }
-.step__kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.step__card .step__kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
 .step h2 { font-size: 22px; line-height: 1.2; margin: 0 0 8px; font-weight: 700; }
-.step p { margin: 0 0 8px; color: var(--text); font-size: 16px; }
-.step .src { color: var(--muted); font-size: 13px; margin-top: 10px; }
-.step .src a { color: var(--muted); }
+.step__card p { margin: 0 0 8px; color: var(--text); font-size: 16px; }
+.step__card .src { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.step__card .src a { color: var(--muted); }
 .big { font-size: clamp(40px, 9vw, 64px); font-weight: 800; line-height: 1; letter-spacing: -.02em; }
 .big small { font-size: .38em; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 6px; }
 
@@ -160,6 +161,49 @@ a { color: inherit; }
 @media (min-width: 900px) { .thermo { gap: clamp(6px, 1.8vh, 14px); } .tr { grid-template-columns: 140px 1fr 78px; font-size: 13px; } }
 @media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
 
+/* Usagers : 100 points */
+.dots { flex: 1; min-height: 0; width: 100%; max-width: 420px; margin: 0 auto; }
+.dots circle { opacity: 0; transition: opacity .25s; }
+.dots.is-in circle { opacity: 1; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
+
+/* Barres horizontales (saisons) */
+.hb { display: grid; grid-template-columns: 100px 1fr 76px; align-items: center; gap: 8px; font-size: 12px; }
+.hb .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hb .val { text-align: right; font-variant-numeric: tabular-nums; }
+.hb .val small { display: none; color: var(--muted); font-size: 11px; }
+.hbtrack { position: relative; height: 16px; }
+.hbbar { position: absolute; top: 2px; height: 12px; border-radius: 2px; }
+.hbtrack.div::before { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--muted); }
+.block { display: flex; flex-direction: column; gap: 5px; }
+.block + .block { margin-top: 10px; }
+.block h3 { font-size: 13px; font-weight: 600; margin: 0 0 2px; }
+.note { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
+@media (min-width: 900px) { .hb { grid-template-columns: 110px 1fr 210px; font-size: 13px; } .hb .val { white-space: nowrap; } .hb .val small { display: inline; margin-left: 8px; } }
+.scene__body.center { justify-content: center; }
+
+/* Études de cas */
+.cases { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr; gap: 10px; align-content: start; }
+.case { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--panel); transition: opacity .3s, border-color .3s; }
+.case.is-focus { border-color: #4a5d75; }
+.case__tag { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.case__name { font-size: 16px; font-weight: 700; margin: 2px 0 0; }
+.case__role { color: var(--muted); font-size: 12px; margin: 0 0 6px; }
+.case__v85 { display: flex; align-items: baseline; gap: 6px; }
+.case__v85 b { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.case__v85 span { color: var(--muted); font-size: 12px; }
+.case__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin: 8px 0 0; font-size: 12px; }
+.case__stats div { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line); padding-top: 4px; }
+.case__stats dt { color: var(--muted); } .case__stats dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.case__ctx { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+@media (max-width: 899px) { .cases[data-focus] .case:not(.is-focus) { display: none; } }
+@media (min-width: 900px) {
+  .cases { grid-template-columns: 1fr 1fr; align-content: center; gap: 14px; }
+  .cases[data-focus] .case:not(.is-focus) { opacity: .35; }
+  .case { padding: 16px 18px; } .case__name { font-size: 18px; } .case__v85 b { font-size: 44px; } .case__stats { font-size: 13px; }
+}
+.is-stacked .scene[data-scene="rues"] { height: auto; }
+
 /* Scène 0 : carte des capteurs */
 .sensors-svg { width: 100%; height: 100%; max-height: 100%; }
 .sensors-svg circle { transition: r .3s; }
@@ -169,7 +213,8 @@ a { color: inherit; }
 @media (min-width: 900px) {
   :root { --stage-h-mobile: 0px; }
   .bar { padding: 0 32px; gap: 16px; }
-  .progress a { width: 28px; }
+  .progress a { width: 26px; }
+  .bar__title .sm-hide { display: inline; }
   .bar__sub { display: block; }
   .story { display: grid; grid-template-columns: minmax(340px, 38%) 1fr; }
   .steps { grid-column: 1; grid-row: 1; padding: 0 32px 40vh 32px; }
@@ -217,7 +262,7 @@ html:not(.js) .step { min-height: 0; display: block; }
 <body>
 
 <header class="bar">
-  <span class="bar__title">Mobilité à Rixensart</span>
+  <span class="bar__title">Mobilité<span class="sm-hide"> à Rixensart</span></span>
   <span class="bar__sub">Comptages Telraam, 2024–2026</span>
   <nav class="progress" id="progress" aria-label="Étapes du parcours"></nav>
 </header>
@@ -273,8 +318,9 @@ html:not(.js) .step { min-height: 0; display: block; }
       <div class="step__card">
         <p class="step__kicker">Usagers</p>
         <h2>Sur 100 passages</h2>
-        <p>Répartition par mode, tous capteurs et toutes périodes confondus.</p>
-        <p class="src">Étape 3 : pictogrammes.</p>
+        <p data-fill="usagers">Répartition par mode, tous capteurs et toutes périodes confondus.</p>
+        <p data-fill="active"></p>
+        <p class="src">Toutes périodes de mesure · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
       </div>
     </section>
 
@@ -282,17 +328,45 @@ html:not(.js) .step { min-height: 0; display: block; }
       <div class="step__card">
         <p class="step__kicker">Saisons</p>
         <h2>Le vélo au printemps</h2>
-        <p>Comparaison mai 2025 / mai 2026 sur un périmètre constant de 9 capteurs.</p>
-        <p class="src">Étape 3 : comparaison annuelle.</p>
+        <p data-fill="season">Comparaison mai 2025 / mai 2026 sur un périmètre constant de 9 capteurs.</p>
+        <p data-fill="spring"></p>
+        <p class="src">Périmètre constant · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
       </div>
     </section>
 
-    <section class="step" data-scene="rues" data-title="Trois rues" tabindex="0">
+    <section class="step" data-scene="rues" data-focus="r1" data-title="Rue n°1" tabindex="0">
       <div class="step__card">
-        <p class="step__kicker">Trois rues</p>
-        <h2>Rue de la Gare, Rue du Tilleul, Av. de Boulogne-Billancourt</h2>
-        <p>Vitesse et part des mobilités actives, rue par rue.</p>
-        <p class="src">Étape 3 : mini-fiches.</p>
+        <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
+        <h2 data-fill="caseh">Rue n°1</h2>
+        <p data-fill="case"></p>
+        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="rues" data-focus="r2" data-title="Rue n°2" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
+        <h2 data-fill="caseh">Rue n°2</h2>
+        <p data-fill="case"></p>
+        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="rues" data-focus="r3" data-title="Rue n°3" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
+        <h2 data-fill="caseh">Rue n°3</h2>
+        <p data-fill="case"></p>
+        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="rues" data-focus="chantier" data-title="Cas chantier" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker" data-fill="casek">Rues à surveiller</p>
+        <h2 data-fill="caseh">Cas chantier</h2>
+        <p data-fill="case"></p>
+        <p class="src">Mesures nov. 2024 · <a href="docs/METHODOLOGIE.md#6-matrice-de-vigilance">Indice de vigilance</a></p>
       </div>
     </section>
 
@@ -348,6 +422,35 @@ const fills = {
     ? `Le pic du matin tombe à ${D.hourly.am.hour.replace('-', '–')} dans ${D.hourly.am.n} rues sur ${D.hourly.rows.length} ; celui du soir à ${D.hourly.pm.hour.replace('-', '–')} dans ${D.hourly.pm.n}.`
     : null,
   speedcount: D => `${D.speed.high} rues sur ${D.speed.measured.length} dépassent leur limite de plus de 5 km/h, ${D.speed.warn} de 2 à 5 km/h, ${D.speed.ok} de moins de 2 km/h.`,
+  usagers: D => {
+    const u = D.usagers, n = Object.fromEntries(u.order.map((m, i) => [m, u.per100[i]]));
+    return `${n.cars} voitures, ${n.heavy} poids lourds, ${n.bikes} vélos et ${n.pedestrians} piétons.`;
+  },
+  active: D => {
+    const c = D.champion, n = c.raw.nov2024;
+    return `${c.street} : ${fmt1(n.bike_pct)} % de vélos et ${fmt1(n.ped_pct)} % de piétons (nov. 2024), soit ${fmt1(c.active)} % de mobilités actives, le plus élevé du réseau.`;
+  },
+  season: D => D.season.pct == null ? null
+    : `Les vélos passent de ${fmt0(D.season.jan)} en janvier 2025 à ${fmt0(D.season.may)} en mai (${fmtDelta(D.season.pct)} %), sur les mêmes ${D.season.n} capteurs.`,
+  spring: D => {
+    if (!D.yoySpring) return null;
+    const t = D.yoySpring.totals;
+    return `D'une année à l'autre (mai 2025 → mai 2026, ${D.yoySpring.n} capteurs constants), les vélos varient de ${fmtDelta(t.bikes.pct)} % et le total des passages de ${fmtDelta(t.total.pct)} %.`;
+  },
+  casek: (D, node) => {
+    const f = node.closest('.step').dataset.focus;
+    return f === 'chantier' ? 'Cas chantier' : `Indice de vigilance n°${f.slice(1)}`;
+  },
+  caseh: (D, node) => { const s = D.cases[node.closest('.step').dataset.focus]; return s ? s.street : null; },
+  case: (D, node) => {
+    const f = node.closest('.step').dataset.focus, s = D.cases[f];
+    if (!s) return null;
+    if (f === 'chantier') {
+      const sp = D.springById[s.id], t = (s.raw.associated_travaux || [])[0];
+      return `${s.raw.role}. ${fmtDelta(sp.pct_total)} % de passages en un an (mai 2025 → mai 2026)${t ? ' : ' + t.title + '.' : '.'}`;
+    }
+    return `${s.raw.role}. V85 à ${fmt1(s.v85)} km/h pour une limite de ${s.limit} (${fmtDelta(s.delta)} km/h), ${fmt1(s.active)} % de mobilités actives.`;
+  },
   thermo: D => { const w = D.speed.measured[0]; return `Écart le plus fort : ${w.street}, ${fmtDelta(w.delta)} km/h.`; },
 };
 
@@ -410,8 +513,58 @@ function derive() {
     scaleMax: Math.ceil(Math.max(...measured.map(s => s.v85 * 1.1)) / 10) * 10,
   };
 
+  // Indice de vigilance (docs/METHODOLOGIE.md §6.1) : (part active / 10) x excès de V85 x log10(trafic jour)
+  measured.forEach(s => {
+    const n = s.raw.nov2024;
+    s.active = n.active_pct || 0; s.dailyTotal = n.daily_total || 0;
+    s.vigilance = s.dailyTotal > 1 ? (s.active / 10) * Math.max(0, s.delta) * Math.log10(s.dailyTotal) : 0;
+  });
+  const ranked = [...measured].sort((a, b) => b.vigilance - a.vigilance);
+  const spring = hist && hist.yoy_analysis && hist.yoy_analysis.spring;
+  const springById = {};
+  if (spring) spring.sensors.forEach(x => { springById[x.id] = x; });
+  const isRoyale = s => (s.raw.associated_travaux || []).some(t => t.chantier_id === 'chantier-avenue-royale');
+  const top3 = ranked.slice(0, 3);
+  const chantier = measured.filter(s => isRoyale(s) && !top3.includes(s) && springById[s.id])
+    .sort((a, b) => springById[b.id].pct_total - springById[a.id].pct_total)[0] || null;
+  const cases = { r1: ranked[0], r2: ranked[1], r3: ranked[2], chantier };
+
+  // Répartition par mode sur toutes les périodes de mesure (décision D12)
+  const modeTotals = { cars: 0, heavy: 0, bikes: 0, pedestrians: 0 };
+  let periodsSeen = new Set(), sensorsWithData = 0;
+  streets.forEach(s => {
+    let any = false;
+    Object.entries(s.raw.history_periods || {}).forEach(([k, v]) => {
+      if (v && v.total > 0) { any = true; periodsSeen.add(k); Object.keys(modeTotals).forEach(m => { modeTotals[m] += v[m] || 0; }); }
+    });
+    if (any) sensorsWithData++;
+  });
+  const modeSum = Object.values(modeTotals).reduce((a, b) => a + b, 0) || 1;
+  // 100 points par la méthode du plus fort reste
+  const order = ['cars', 'heavy', 'bikes', 'pedestrians'];
+  const exact = order.map(m => 100 * modeTotals[m] / modeSum);
+  const per100 = exact.map(Math.floor);
+  let left = 100 - per100.reduce((a, b) => a + b, 0);
+  exact.map((v, i) => [v - Math.floor(v), i]).sort((a, b) => b[0] - a[0]).slice(0, left).forEach(([, i]) => { per100[i]++; });
+  const periodList = ((hist && hist.periods) || []).filter(p => periodsSeen.has(p.key));
+  const usagers = {
+    order, exact, per100, sensors: sensorsWithData, periods: periodList.length,
+    from: periodList[0] && periodList[0].start, to: periodList[periodList.length - 1] && periodList[periodList.length - 1].end,
+  };
+  const champion = [...measured].sort((a, b) => b.active - a.active)[0];
+
+  // Saisons : janvier -> mai 2025 sur les capteurs présents aux deux périodes ; puis mai 2025 -> mai 2026 (périmètre constant)
+  const both = streets.filter(s => ((s.raw.history_periods || {}).jan2025 || {}).total > 0 && ((s.raw.history_periods || {}).may2025 || {}).total > 0);
+  const jan = both.reduce((t, s) => t + s.raw.history_periods.jan2025.bikes, 0);
+  const may = both.reduce((t, s) => t + s.raw.history_periods.may2025.bikes, 0);
+  const season = { jan, may, pct: jan ? 100 * (may - jan) / jan : null, n: both.length };
+  const yoySpring = spring ? {
+    n: spring.constant_sensors_count, totals: spring.totals, excluded: spring.excluded_sensor,
+    rawPct: spring.raw_comparison && spring.raw_comparison.pct,
+  } : null;
+
   return {
-    streets, hourly, speed,
+    streets, hourly, speed, ranked, cases, springById, usagers, champion, season, yoySpring,
     sensorCount: streets.length,
     totalDetections: hist && hist.network_total_cumulative ? hist.network_total_cumulative : null,
     hist,
@@ -631,9 +784,108 @@ scenes.thermometre = {
     requestAnimationFrame(() => requestAnimationFrame(() => bars.forEach(b => { b.style.width = b.dataset.w; })));
   },
 };
-scenes.usagers     = { render: placeholder('Sur 100 passages', 'Répartition par mode : étape 3.') };
-scenes.printemps   = { render: placeholder('Le vélo au printemps', 'Comparaison mai 2025 / mai 2026 : étape 3.') };
-scenes.rues        = { render: placeholder('Trois rues', 'Mini-fiches : étape 3.') };
+
+// Scène 4 : 100 passages, un point chacun
+const MODE_LABEL = { cars: 'Voitures', heavy: 'Poids lourds', bikes: 'Vélos', pedestrians: 'Piétons' };
+const MODE_COLOR = { cars: '#C9D3E0', heavy: '#7D8A9B', bikes: '#5AA9FF', pedestrians: '#6FD3B8' };
+const monthYear = iso => new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
+scenes.usagers = {
+  note: D => `${D.usagers.periods} périodes de mesure, ${monthYear(D.usagers.from)} – ${monthYear(D.usagers.to)} · ${D.usagers.sensors} capteurs · parts sur l'ensemble des passages`,
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill');
+    const u = D.usagers;
+    const modeOf = [];
+    u.order.forEach((m, i) => { for (let k = 0; k < u.per100[i]; k++) modeOf.push(m); });
+    const circles = modeOf.map((m, i) => {
+      const cx = 10 + (i % 10) * 20, cy = 10 + Math.floor(i / 10) * 20;
+      return `<circle cx="${cx}" cy="${cy}" r="7.5" style="fill:${MODE_COLOR[m]};transition-delay:${i * 7}ms"/>`;
+    }).join('');
+    const legend = u.order.map((m, i) => `<span><i style="background:${MODE_COLOR[m]}"></i>${MODE_LABEL[m]} ${fmt1(u.exact[i])} %</span>`).join('');
+    const table = u.order.map((m, i) => `<tr><td>${MODE_LABEL[m]}</td><td>${fmt1(u.exact[i])} %</td></tr>`).join('');
+    body.innerHTML = `<p class="viz-title">1 point = 1 passage sur 100.</p>
+      <svg class="dots" viewBox="0 0 200 200" role="img" aria-label="${esc(fills.usagers(D))}">${circles}</svg>
+      <div class="legend">${legend}</div>
+      <div class="sr-only"><table><caption>Répartition des passages par mode</caption><thead><tr><th>Mode</th><th>Part</th></tr></thead><tbody>${table}</tbody></table></div>`;
+  },
+  enter(el) {
+    const svg = el.querySelector('.dots');
+    if (!svg) return;
+    if (reduceMotion) { svg.classList.add('is-in'); return; }
+    requestAnimationFrame(() => requestAnimationFrame(() => svg.classList.add('is-in')));
+  },
+};
+
+// Scène 5 : saisons (janvier -> mai) puis évolution annuelle (mai 2025 -> mai 2026)
+scenes.printemps = {
+  note: D => `Vélos, ${D.season.n} capteurs présents aux deux périodes · évolution annuelle : ${D.yoySpring ? D.yoySpring.n : '?'} capteurs constants`,
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill', 'center');
+    const S = D.season, Y = D.yoySpring;
+    const maxBike = Math.max(S.jan, S.may);
+    const seasonRows = [['Janv. 2025', S.jan], ['Mai 2025', S.may]].map(([l, v]) => `
+      <div class="hb"><span class="name">${l}</span>
+        <span class="hbtrack"><span class="hbbar" style="left:0;width:${(v / maxBike * 100).toFixed(1)}%;background:${MODE_COLOR.bikes}"></span></span>
+        <span class="val">${fmt0(v)}</span></div>`).join('');
+    let yoy = '<p class="note">Comparaison annuelle indisponible.</p>', table = '';
+    if (Y) {
+      const rowsDef = [['total', 'Total', '#E7ECF2'], ['cars', 'Voitures', MODE_COLOR.cars], ['heavy', 'Poids lourds', MODE_COLOR.heavy],
+                       ['bikes', 'Vélos', MODE_COLOR.bikes], ['pedestrians', 'Piétons', MODE_COLOR.pedestrians]];
+      const lim = Math.ceil(Math.max(...rowsDef.map(([k]) => Math.abs(Y.totals[k].pct))) / 2) * 2 + 2;
+      yoy = rowsDef.map(([k, l, c]) => {
+        const t = Y.totals[k], w = (Math.abs(t.pct) / lim * 50).toFixed(1);
+        const pos = t.pct >= 0 ? `left:50%;width:${w}%` : `right:50%;width:${w}%`;
+        return `<div class="hb"><span class="name">${l}</span>
+          <span class="hbtrack div"><span class="hbbar" style="${pos};background:${c}"></span></span>
+          <span class="val">${fmtDelta(t.pct)} %<small>${fmt0(t.base)} → ${fmt0(t.target)}</small></span></div>`;
+      }).join('');
+      table = rowsDef.map(([k, l]) => `<tr><td>${l}</td><td>${fmt0(Y.totals[k].base)}</td><td>${fmt0(Y.totals[k].target)}</td><td>${fmtDelta(Y.totals[k].pct)} %</td></tr>`).join('');
+    }
+    const excl = Y && Y.excluded
+      ? `<p class="note">${esc(Y.excluded.street)} (${esc(Y.excluded.reason.toLowerCase())}) est exclu${Y.rawPct != null ? ` : sans cette exclusion, le total semblerait baisser de ${fmt1(Math.abs(Y.rawPct))} %` : ''}.</p>` : '';
+    body.innerHTML = `
+      <div class="block"><h3>Vélos par mois, de l'hiver au printemps 2025 (${fmtDelta(S.pct)} %)</h3>${seasonRows}</div>
+      <div class="block"><h3>Un an après : mai 2025 → mai 2026, périmètre constant</h3>${yoy}${excl}</div>
+      <div class="sr-only"><table><caption>Évolution mai 2025 vers mai 2026</caption><thead><tr><th>Mode</th><th>Mai 2025</th><th>Mai 2026</th><th>Évolution</th></tr></thead><tbody>${table}</tbody></table></div>`;
+  },
+};
+
+// Scène 6 : quatre rues (trois par indice de vigilance + le cas chantier), une par sous-étape
+function caseHtml(D, key) {
+  const s = D.cases[key];
+  if (!s) return '';
+  const n = s.raw.nov2024, sp = D.springById[s.id];
+  const tag = key === 'chantier' ? 'Cas chantier' : `Indice de vigilance n°${key.slice(1)} · ${fmt0(s.vigilance)}`;
+  const t = (s.raw.associated_travaux || [])[0];
+  const evo = sp ? `<p class="case__ctx">Mai 2025 → mai 2026 : ${fmtDelta(sp.pct_total)} % de passages${sp.pct_bikes != null ? `, vélos ${fmtDelta(sp.pct_bikes)} %` : ''}.</p>` : '';
+  return `<article class="case" data-case="${key}">
+    <div class="case__tag">${tag}</div>
+    <h3 class="case__name">${esc(s.street)}</h3>
+    <p class="case__role">${esc(s.raw.role || s.locality)}</p>
+    <div class="case__v85"><b style="color:${s.status.color}">${fmt1(s.v85)}</b><span>km/h (V85) · limite ${s.limit} · ${fmtDelta(s.delta)}</span></div>
+    <dl class="case__stats">
+      <div><dt>Mobilités actives</dt><dd>${fmt1(s.active)} %</dd></div>
+      <div><dt>Vélos / jour</dt><dd>${fmt0(n.daily_bikes || 0)}</dd></div>
+      <div><dt>Piétons</dt><dd>${fmt1(n.ped_pct || 0)} %</dd></div>
+      <div><dt>Passages / jour</dt><dd>${fmt0(n.daily_total || 0)}</dd></div>
+    </dl>${evo}${t ? `<p class="case__ctx">${esc(t.title)}</p>` : ''}
+  </article>`;
+}
+scenes.rues = {
+  note: D => 'Mesures nov. 2024, heures de jour · évolution mai 2025 → mai 2026',
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill');
+    body.innerHTML = `<div class="cases">${['r1', 'r2', 'r3', 'chantier'].map(k => caseHtml(D, k)).join('')}</div>`;
+  },
+  focus(el, D, key) {
+    const wrap = el.querySelector('.cases');
+    if (!wrap) return;
+    wrap.dataset.focus = key || '';
+    wrap.querySelectorAll('.case').forEach(c => c.classList.toggle('is-focus', c.dataset.case === key));
+  },
+};
 scenes.fiche       = { render: placeholder('Ma rue', 'Fiche d\'action : étape 4.') };
 
 /* ---------- 4. Moteur ---------- */
@@ -652,7 +904,7 @@ function initStory() {
 
   // Textes d'étape calculés depuis les données
   document.querySelectorAll('[data-fill]').forEach(n => {
-    const f = fills[n.dataset.fill], t = f && f(D);
+    const f = fills[n.dataset.fill], t = f && f(D, n);
     if (t) n.textContent = t;
   });
 
@@ -666,7 +918,7 @@ function initStory() {
   const els = {};
   steps.forEach(step => {
     const id = step.dataset.scene, def = scenes[id];
-    if (!def) return;
+    if (!def || els[id]) return;
     const el = document.createElement('div');
     el.className = 'scene';
     el.dataset.scene = id;
@@ -683,30 +935,38 @@ function initStory() {
   const stacked = reduceMotion || !('IntersectionObserver' in window);
   if (stacked) {
     document.documentElement.classList.add('is-stacked');
+    const placed = new Set();
     steps.forEach(step => {
-      const el = els[step.dataset.scene];
-      if (!el) return;
+      const id = step.dataset.scene, el = els[id];
+      if (!el || placed.has(id)) return;
+      placed.add(id);
       step.querySelector('.step__card').after(el);
       const def = scenes[step.dataset.scene];
       if (def && def.enter) def.enter(el, D);
     });
   }
 
-  // Étape active
+  // Étape active. Plusieurs étapes peuvent partager une scène (data-focus) : enter/leave
+  // ne sont appelés que quand la scène change, focus() à chaque étape.
   let current = -1;
   function activate(i) {
     if (i === current || i < 0) return;
     const prev = steps[current], next = steps[i];
-    if (prev) {
-      prev.classList.remove('is-active');
-      const el = els[prev.dataset.scene], def = scenes[prev.dataset.scene];
-      if (el) el.classList.remove('is-active');
-      if (el && def && def.leave) def.leave(el, D);
-    }
+    const prevId = prev && prev.dataset.scene, nextId = next.dataset.scene;
+    if (prev) prev.classList.remove('is-active');
     next.classList.add('is-active');
-    const el = els[next.dataset.scene], def = scenes[next.dataset.scene];
-    if (el) el.classList.add('is-active');
-    if (el && def && def.enter) def.enter(el, D);
+    if (prevId !== nextId) {
+      if (prevId && els[prevId]) {
+        els[prevId].classList.remove('is-active');
+        const pd = scenes[prevId];
+        if (pd && pd.leave) pd.leave(els[prevId], D);
+      }
+      const el = els[nextId], def = scenes[nextId];
+      if (el) el.classList.add('is-active');
+      if (el && def && def.enter) def.enter(el, D);
+    }
+    const nd = scenes[nextId];
+    if (els[nextId] && nd && nd.focus) nd.focus(els[nextId], D, next.dataset.focus);
     links.forEach((a, j) => {
       if (j === i) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
       a.classList.toggle('is-done', j < i);

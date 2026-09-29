@@ -38,6 +38,9 @@ Date : 2026-09-29 · Statut : validé (brainstorming), implémentation non déma
 | D11 | Vérification par script de comparaison des agrégats plus contrôle visuel manuel | Framework de test | Le projet n'a pas d'outillage de test |
 | D12 | Répartition par mode calculée sur toutes les périodes (≈ 88 % voitures, 3 % piétons, 3 % vélos, 6 % poids lourds) et libellée avec sa période | Garder 85/8/5/2 (sans source dans les données), dernière période seule (biais saisonnier) | Étape 0 : les valeurs 85/8/5/2 de la page actuelle ne correspondent à aucune période des données. Choix de l'utilisateur |
 | D13 | Le +70,7 % de l'avenue de Boulogne-Billancourt est libellé « total des passages » | « Trafic motorisé » (formulation des données de chantier) | Le +70,7 % porte sur le total ; les voitures seules sont à +57,1 % |
+| D14 | Scène « rues » : les 3 rues au meilleur indice de vigilance (Gare, Tilleul, Place Communale) puis Boulogne-Billancourt en « cas chantier », soit 4 sous-étapes | Garder Gare/Tilleul/Boulogne comme l'ancienne page, ou les 3 premières seulement | Étape 3 : l'ancienne page présentait Boulogne comme une priorité calculée, alors qu'elle est 4e selon l'indice de la méthodologie §6.1. Choix de l'utilisateur |
+| D15 | Plusieurs étapes peuvent partager une scène (`data-focus`) ; `enter`/`leave` ne sont appelés qu'au changement de scène | Une scène par étape | Permet les sous-étapes sans recréer le visuel |
+| D16 | Les chiffres des étapes et des fiches sont calculés depuis les données (rang, texte, valeurs), plus aucun chiffre en dur | Reprendre les chiffres écrits dans l'ancien HTML | Cohérence avec les données ; le classement suit les données si elles changent |
 
 ## 4. Design
 
