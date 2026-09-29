@@ -265,6 +265,12 @@ html:not(.js) .step { min-height: 0; display: block; }
 @media (min-width: 900px) { .foot { padding: 32px; } }
 
 /* ---------- Fiche par rue et méthode ---------- */
+.chantiers { border-top: 1px solid var(--line); }
+.chantiers .kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.chantiers h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+.chantiers h3 { font-size: 16px; margin: 22px 0 4px; }
+.chantiers .facts b { font-weight: 800; white-space: nowrap; }
+
 .skip { position: absolute; left: -999px; top: 0; background: var(--focus); color: #000; padding: 8px 12px; z-index: 100; font-weight: 600; }
 .skip:focus { left: 8px; top: 8px; }
 .wrap { max-width: 960px; margin: 0 auto; padding: 56px 16px; }
@@ -313,7 +319,7 @@ select, .fiche__controls button {
 
 /* ---------- Impression : seule la fiche, en clair ---------- */
 @media print {
-  .bar, .stage, .story, .foot, .nojs, .skip, .fiche__controls, .methode, .fiche .kicker, .fiche .lead, .fiche h2 { display: none !important; }
+  .bar, .stage, .story, .foot, .nojs, .skip, .fiche__controls, .methode, .chantiers, .fiche .kicker, .fiche .lead, .fiche h2 { display: none !important; }
   html, body { background: #fff !important; color: #000 !important; }
   .wrap { padding: 0; max-width: none; }
   .fiche { border: 0; }
@@ -441,6 +447,29 @@ select, .fiche__controls button {
 
   </div>
 </main>
+
+<section class="chantiers" id="chantiers" aria-labelledby="chantiers-h">
+  <div class="wrap">
+    <p class="kicker">Chantiers</p>
+    <h2 id="chantiers-h">Chantiers à garder en tête</h2>
+    <p class="lead">Parmi les dix chantiers du registre communal, seuls quelques-uns coïncident avec un écart net. Il s'agit d'une coïncidence dans le temps, pas d'une preuve de cause.</p>
+    <h3>Effet crédible (écart fort, calendrier cohérent)</h3>
+    <dl class="facts">
+      <div><dt>Av. de Boulogne-Billancourt <b>+71 %</b></dt><dd>Mai 2025 → mai 2026. Axe central de la déviation officielle de l'Avenue Royale, fermée depuis le 16 février 2026. La hausse de nov. 2025 (+38 %) précède la fermeture et reste inexpliquée.</dd></div>
+      <div><dt>Place Communale <b>−67 %</b></dt><dd>Mai 2025 → mai 2026. Zone 20 et réaménagement (sept. 2025 – mars 2026), terminés avant la mesure. Baisse bien supérieure à la tendance communale.</dd></div>
+      <div><dt>Rue de la Gare <b>+59 %</b></dt><dd>Mai 2025 → mai 2026. Deux causes superposées, impossibles à séparer : base 2025 en creux de chantier de gare, et déviation de l'Avenue Royale par la rue Boisacq.</dd></div>
+      <div><dt>Chaussée de La Hulpe <b>−22 %</b></dt><dd>Nov. 2024 → nov. 2025. Cohérent avec les fermetures répétées de la sortie n°4 de l'E411. Le capteur s'est arrêté en déc. 2025 : aucune suite mesurable.</dd></div>
+      <div><dt>Rue de Genval <b>−40 % puis +29 %</b></dt><dd>Nov. 2024 → nov. 2025, puis mai 2025 → mai 2026. Rue de substitution pour l'E411, mais deux variations opposées montrent une base de comparaison instable.</dd></div>
+    </dl>
+    <h3>À lire avec prudence</h3>
+    <dl class="facts">
+      <div><dt>Rue de la Tasnière <b>−26 %</b></dt><dd>Feux alternés de la rue du Cerf du 10 janvier au 15 mars 2026, mais mesure de mai postérieure à leur fin. La baisse de nov. 2025 (−20 %) les précède.</dd></div>
+      <div><dt>Avenue Albert 1er <b>−6 %</b></dt><dd>Sens unique limité Peyo-Gare : effet plausible mais modeste, proche de la tendance communale.</dd></div>
+      <div><dt>Rue de l'Institut <b>+13 %</b></dt><dd>Déviation de la rue de Rosières terminée en juin 2025 : lien faible avec la hausse de mai 2026.</dd></div>
+    </dl>
+    <p class="lead">Sans effet net attribuable : rue Haute, avenue Roosevelt (variations proches de la tendance communale) et les chantiers du Vallon, des Papeteries et de Cardinal Mercier. Détail : <a href="data/rixensart_travaux.json">registre des chantiers</a>.</p>
+  </div>
+</section>
 
 <section class="fiche" id="fiche" aria-labelledby="fiche-h">
   <div class="wrap">

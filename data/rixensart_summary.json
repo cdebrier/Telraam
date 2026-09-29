@@ -1635,7 +1635,7 @@
         "duration": "2 mois",
         "impact_type": "Forte dissuasion du transit d'évitement",
         "observed_variation": "-26.0% au printemps 2026 (de 832 à 616 véh/j) ; -20.1% en automne 2025",
-        "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont détourné durablement les navetteurs de transit qui utilisaient la rue de la Tasnière comme raccourci vers Overijse."
+        "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont pu détourner des navetteurs de transit. Réserve : les feux ont pris fin le 15 mars 2026 avant la mesure de mai, et la baisse de nov. 2025 les précède."
       }
     ]
   },
@@ -1983,7 +1983,7 @@
         "duration": "4 mois",
         "impact_type": "Sécurisation et réduction des transits parasites",
         "observed_variation": "-16.9% au printemps 2026 (-8.0% en automne 2025)",
-        "correlation_note": "L'apaisement du secteur du Vallon contribue à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
+        "correlation_note": "Le secteur du Vallon a pu contribuer (effet faible) à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
       },
       {
         "chantier_id": "chantier-cardinal-mercier",
@@ -2322,7 +2322,7 @@
         "duration": "7 mois",
         "impact_type": "Évaporation massive du trafic de transit",
         "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
-        "correlation_note": "La chute de deux tiers du trafic motorisé illustre parfaitement l'effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+        "correlation_note": "La chute de deux tiers du trafic motorisé est cohérente avec un effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
       },
       {
         "chantier_id": "chantier-papeteries-genval",
@@ -2661,7 +2661,7 @@
         "duration": "13 mois à l'essai",
         "impact_type": "Désengorgement des carrefours à feux",
         "observed_variation": "Baisse continue de -5.8% au printemps 2026 (-10.4% en automne 2025) ; cyclistes en hausse structurelle",
-        "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont efficacement apaisé l'Avenue Albert 1er."
+        "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont probablement contribué à la baisse de l'Avenue Albert 1er, dans un ordre de grandeur proche de la tendance communale."
       }
     ]
   },
@@ -2997,7 +2997,7 @@
         "duration": "200 jours ouvrables",
         "impact_type": "Report massif officiel de transit",
         "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
-        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. L'explosion observée est 100% corrélée au chantier et disparaîtra à la réouverture de l'Avenue Royale."
+        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
       }
     ]
   },

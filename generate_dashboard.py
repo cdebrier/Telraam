@@ -42,41 +42,41 @@ def compute_yoy_analysis(full_history_obj):
         9000007497: {
             "autumn": "Décrue modérée continue (-10%)",
             "spring": "Décrue modérée continue (-7%) / Axe structurant apaisé",
-            "travaux_impact": "Avenue Franklin Roosevelt : axe de déviation centrale lors du réaménagement de la Rue de Rosières en 2024-2025, retour à un régime plus apaisé après fin du chantier."
+            "travaux_impact": "Avenue Franklin Roosevelt : axe de déviation centrale lors du réaménagement de la Rue de Rosières en 2024-2025, baisse proche de la tendance communale, sans effet propre identifiable."
         },
         9000007509: {
             "autumn": "Baisse d'automne (-23%)",
             "spring": "Hausse printanière modérée (+13%)",
-            "travaux_impact": "Rue de l'Institut : canal officiel de déviation par le centre communal lors des travaux de réaménagement lourd et de passage en zone 30 de la Rue de Rosières."
+            "travaux_impact": "Rue de l'Institut : canal de déviation par le centre lors du réaménagement de la Rue de Rosières (terminé en juin 2025 : lien faible avec la hausse de mai 2026)."
         },
         9000007512: {
             "autumn": "Décrue confirmée (-20%)",
             "spring": "Décrue confirmée (-26%) / Forte baisse de transit",
-            "travaux_impact": "Rue de la Tasnière : transit de raccourci fortement dissuadé par les travaux de soutènement et feux alternés rue du Cerf en amont début 2026, sécurisation carrefour Desmet."
+            "travaux_impact": "Rue de la Tasnière : baisse cohérente avec les feux alternés de la rue du Cerf (10 janv. – 15 mars 2026), mais la mesure de mai est postérieure à leur fin (effet différé) et la baisse de nov. 2025 les précède."
         },
         9000007523: {
             "autumn": "Décrue continue (-8%)",
             "spring": "Décrue accentuée (-17%) / Apaisement centre",
-            "travaux_impact": "Rue Haute : suppression du stationnement alterné (nouveau Code de la route), travaux du Vallon et des Papeteries incitant au contournement."
+            "travaux_impact": "Rue Haute : suppression du stationnement alterné (nouveau Code de la route), travaux du Vallon et des Papeteries : effet incertain (chantiers mineurs et éloignés du capteur)."
         },
         9000007530: {
             "autumn": "Baisse modérée (-21%)",
-            "spring": "Chute spectaculaire (-67%) : Extension Zone 20 résidentielle & plantations",
-            "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation réussie du trafic de transit."
+            "spring": "Chute très forte (-67%), cohérente avec l'extension de la Zone 20 résidentielle",
+            "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation probable du trafic de transit (chantier terminé en mars 2026)."
         },
         9000007533: {
             "autumn": "Décrue modérée (-10%) / Vélos en forte hausse",
             "spring": "Décrue modérée continue (-6%) / Stabilisation",
-            "travaux_impact": "Avenue Albert 1er : création du Sens Unique Limité (SUL) Peyo-Gare évitant les feux de Maubroux et désengorgeant le carrefour Albert 1er / Rosières."
+            "travaux_impact": "Avenue Albert 1er : création du Sens Unique Limité (SUL) Peyo-Gare évitant les feux de Maubroux : effet plausible mais modeste, proche de la tendance communale."
         },
         9000007534: {
-            "autumn": "Forte hausse (+38%) / Premiers reports",
-            "spring": "Explosion du trafic (+71%) / Déviation officielle Avenue Royale & vélos (+184%)",
+            "autumn": "Forte hausse (+38%) / Cause non identifiée (antérieure à la fermeture de l'Avenue Royale)",
+            "spring": "Forte hausse (+71%) / Cohérent avec la déviation officielle de l'Avenue Royale, vélos +184%",
             "travaux_impact": "Avenue de Boulogne-Billancourt : itinéraire officiel obligatoire de déviation du grand chantier Avenue Royale (fermeture totale fév-nov 2026 pour 200 jours). Les avenues secondaires (Léopold, Beau Champ) ont été mises en sens unique pour concentrer le transit sur cet axe."
         },
         9000007578: {
             "autumn": "Creux fin de chantier (-31%)",
-            "spring": "Forte reprise (+59%) : Nouvelle gare RER inaugurée & report déviation via r. Boisacq",
+            "spring": "Forte hausse (+59%) : base 2025 en creux de chantier de gare, et déviation probable de l'Avenue Royale via r. Boisacq",
             "travaux_impact": "Rue de la Gare : nouvelle gare RER et gare des bus inaugurées fin nov 2024 après 2 ans de travaux, complétée par la déviation de l'Avenue Royale transitant par la rue Robert Boisacq."
         }
     }
@@ -260,8 +260,8 @@ def compute_yoy_analysis(full_history_obj):
         },
         "synthesis": {
             "traffic_increasing": False,
-            "summary_statement": "À l'échelle communale globale, le trafic motorisé n'augmente pas : il enregistre une baisse modérée à sensible de -3.8% au printemps et de -13.6% en automne sur périmètre constant. Les fortes variations locales (+70.7% sur l'Avenue de Boulogne-Billancourt, +58.9% sur la Rue de la Gare, -66.9% sur la Place Communale) sont directement et factuellement expliquées par les grands chantiers communaux et régionaux (déviation officielle de l'Avenue Royale fermée pour 200 jours, aménagement de la Zone 20 résidentielle de la Place Communale, mise en service de la nouvelle gare RER). La mobilité active vélo est en nette progression structurelle (+2.8% à +8.0%).",
-            "travaux_summary": "La confrontation des flux Telraam aux arrêtés de police et chantiers de la commune de Rixensart démontre qu'aucune artère ne subit de hausse structurelle incontrôlée : les reports observés correspondent fidèlement aux itinéraires de déviation obligatoires ou aux effets d'apaisement volontaire par zone 20/30."
+            "summary_statement": "À l'échelle communale globale, le trafic motorisé n'augmente pas : il enregistre une baisse modérée à sensible de -3.8% au printemps et de -13.6% en automne sur périmètre constant. Les fortes variations locales (+70.7% sur l'Avenue de Boulogne-Billancourt, +58.9% sur la Rue de la Gare, -66.9% sur la Place Communale) sont cohérentes avec les grands chantiers communaux et régionaux (déviation officielle de l'Avenue Royale fermée pour 200 jours, aménagement de la Zone 20 résidentielle de la Place Communale, mise en service de la nouvelle gare RER) ; il s'agit d'une coïncidence dans le temps, non d'une preuve de causalité. La mobilité active vélo est en nette progression structurelle (+2.8% à +8.0%).",
+            "travaux_summary": "La confrontation des flux Telraam aux arrêtés de police et chantiers de la commune de Rixensart suggère que les fortes hausses se concentrent sur des axes de déviation officiels et que les fortes baisses coïncident avec des apaisements volontaires (zone 20/30) ; seuls quelques chantiers ont un effet net crédible (Avenue Royale, Place Communale, gare, E411), les autres rapprochements restent faibles ou mal datés."
         },
         "regional_context": {
             "title": "Mise en perspective régionale : Brabant wallon et Wallonie",
@@ -270,7 +270,7 @@ def compute_yoy_analysis(full_history_obj):
                 "points": [
                     {
                         "category": "Hyper-visibilité des goulets d'étranglement",
-                        "description": "Les chantiers majeurs (Avenue Royale fermée 200 jours, travaux SOFICO E411, gare RER) ont canalisé les véhicules sur 2 ou 3 axes névralgiques de déviation où le trafic a explosé (+70.7% sur Boulogne-Billancourt, +58.9% sur la Rue de la Gare, +29.0% sur Rue de Genval). Ces ralentissements concentrés créent un ressenti aigu d'engorgement pour tout automobiliste qui y transite."
+                        "description": "Les chantiers majeurs (Avenue Royale fermée 200 jours, travaux SOFICO E411, gare RER) ont canalisé les véhicules sur 2 ou 3 axes névralgiques de déviation où le trafic a fortement augmenté (+70.7% sur Boulogne-Billancourt, +58.9% sur la Rue de la Gare, +29.0% sur Rue de Genval). Ces ralentissements concentrés créent un ressenti aigu d'engorgement pour tout automobiliste qui y transite."
                     },
                     {
                         "category": "Apaisement silencieux et diffus",

@@ -1635,7 +1635,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "2 mois",
         "impact_type": "Forte dissuasion du transit d'évitement",
         "observed_variation": "-26.0% au printemps 2026 (de 832 à 616 véh/j) ; -20.1% en automne 2025",
-        "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont détourné durablement les navetteurs de transit qui utilisaient la rue de la Tasnière comme raccourci vers Overijse."
+        "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont pu détourner des navetteurs de transit. Réserve : les feux ont pris fin le 15 mars 2026 avant la mesure de mai, et la baisse de nov. 2025 les précède."
       }
     ]
   },
@@ -1983,7 +1983,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "4 mois",
         "impact_type": "Sécurisation et réduction des transits parasites",
         "observed_variation": "-16.9% au printemps 2026 (-8.0% en automne 2025)",
-        "correlation_note": "L'apaisement du secteur du Vallon contribue à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
+        "correlation_note": "Le secteur du Vallon a pu contribuer (effet faible) à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
       },
       {
         "chantier_id": "chantier-cardinal-mercier",
@@ -2322,7 +2322,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "7 mois",
         "impact_type": "Évaporation massive du trafic de transit",
         "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
-        "correlation_note": "La chute de deux tiers du trafic motorisé illustre parfaitement l'effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+        "correlation_note": "La chute de deux tiers du trafic motorisé est cohérente avec un effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
       },
       {
         "chantier_id": "chantier-papeteries-genval",
@@ -2661,7 +2661,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "13 mois à l'essai",
         "impact_type": "Désengorgement des carrefours à feux",
         "observed_variation": "Baisse continue de -5.8% au printemps 2026 (-10.4% en automne 2025) ; cyclistes en hausse structurelle",
-        "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont efficacement apaisé l'Avenue Albert 1er."
+        "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont probablement contribué à la baisse de l'Avenue Albert 1er, dans un ordre de grandeur proche de la tendance communale."
       }
     ]
   },
@@ -2997,7 +2997,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "200 jours ouvrables",
         "impact_type": "Report massif officiel de transit",
         "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
-        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. L'explosion observée est 100% corrélée au chantier et disparaîtra à la réouverture de l'Avenue Royale."
+        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
       }
     ]
   },
@@ -4964,7 +4964,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 1773,
           "is_constant_perimeter": true,
           "diagnostic": "Décrue modérée continue (-10%)",
-          "travaux_impact": "Avenue Franklin Roosevelt : axe de déviation centrale lors du réaménagement de la Rue de Rosières en 2024-2025, retour à un régime plus apaisé après fin du chantier."
+          "travaux_impact": "Avenue Franklin Roosevelt : axe de déviation centrale lors du réaménagement de la Rue de Rosières en 2024-2025, baisse proche de la tendance communale, sans effet propre identifiable."
         },
         {
           "id": 9000007509,
@@ -4988,7 +4988,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 894,
           "is_constant_perimeter": true,
           "diagnostic": "Baisse d'automne (-23%)",
-          "travaux_impact": "Rue de l'Institut : canal officiel de déviation par le centre communal lors des travaux de réaménagement lourd et de passage en zone 30 de la Rue de Rosières."
+          "travaux_impact": "Rue de l'Institut : canal de déviation par le centre lors du réaménagement de la Rue de Rosières (terminé en juin 2025 : lien faible avec la hausse de mai 2026)."
         },
         {
           "id": 9000007512,
@@ -5012,7 +5012,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 1429,
           "is_constant_perimeter": true,
           "diagnostic": "Décrue confirmée (-20%)",
-          "travaux_impact": "Rue de la Tasnière : transit de raccourci fortement dissuadé par les travaux de soutènement et feux alternés rue du Cerf en amont début 2026, sécurisation carrefour Desmet."
+          "travaux_impact": "Rue de la Tasnière : baisse cohérente avec les feux alternés de la rue du Cerf (10 janv. – 15 mars 2026), mais la mesure de mai est postérieure à leur fin (effet différé) et la baisse de nov. 2025 les précède."
         },
         {
           "id": 9000007523,
@@ -5036,7 +5036,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 2136,
           "is_constant_perimeter": true,
           "diagnostic": "Décrue continue (-8%)",
-          "travaux_impact": "Rue Haute : suppression du stationnement alterné (nouveau Code de la route), travaux du Vallon et des Papeteries incitant au contournement."
+          "travaux_impact": "Rue Haute : suppression du stationnement alterné (nouveau Code de la route), travaux du Vallon et des Papeteries : effet incertain (chantiers mineurs et éloignés du capteur)."
         },
         {
           "id": 9000007530,
@@ -5060,7 +5060,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 2505,
           "is_constant_perimeter": true,
           "diagnostic": "Baisse modérée (-21%)",
-          "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation réussie du trafic de transit."
+          "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation probable du trafic de transit (chantier terminé en mars 2026)."
         },
         {
           "id": 9000007533,
@@ -5084,7 +5084,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 2544,
           "is_constant_perimeter": true,
           "diagnostic": "Décrue modérée (-10%) / Vélos en forte hausse",
-          "travaux_impact": "Avenue Albert 1er : création du Sens Unique Limité (SUL) Peyo-Gare évitant les feux de Maubroux et désengorgeant le carrefour Albert 1er / Rosières."
+          "travaux_impact": "Avenue Albert 1er : création du Sens Unique Limité (SUL) Peyo-Gare évitant les feux de Maubroux : effet plausible mais modeste, proche de la tendance communale."
         },
         {
           "id": 9000007534,
@@ -5107,7 +5107,7 @@ window.TELRAAM_HISTORY = {
           "base_pedestrians": 1879,
           "target_pedestrians": 1860,
           "is_constant_perimeter": true,
-          "diagnostic": "Forte hausse (+38%) / Premiers reports",
+          "diagnostic": "Forte hausse (+38%) / Cause non identifiée (antérieure à la fermeture de l'Avenue Royale)",
           "travaux_impact": "Avenue de Boulogne-Billancourt : itinéraire officiel obligatoire de déviation du grand chantier Avenue Royale (fermeture totale fév-nov 2026 pour 200 jours). Les avenues secondaires (Léopold, Beau Champ) ont été mises en sens unique pour concentrer le transit sur cet axe."
         },
         {
@@ -5261,7 +5261,7 @@ window.TELRAAM_HISTORY = {
           "is_constant_perimeter": true,
           "status": "Actif",
           "diagnostic": "Décrue modérée continue (-7%) / Axe structurant apaisé",
-          "travaux_impact": "Avenue Franklin Roosevelt : axe de déviation centrale lors du réaménagement de la Rue de Rosières en 2024-2025, retour à un régime plus apaisé après fin du chantier."
+          "travaux_impact": "Avenue Franklin Roosevelt : axe de déviation centrale lors du réaménagement de la Rue de Rosières en 2024-2025, baisse proche de la tendance communale, sans effet propre identifiable."
         },
         {
           "id": 9000007509,
@@ -5286,7 +5286,7 @@ window.TELRAAM_HISTORY = {
           "is_constant_perimeter": true,
           "status": "Actif",
           "diagnostic": "Hausse printanière modérée (+13%)",
-          "travaux_impact": "Rue de l'Institut : canal officiel de déviation par le centre communal lors des travaux de réaménagement lourd et de passage en zone 30 de la Rue de Rosières."
+          "travaux_impact": "Rue de l'Institut : canal de déviation par le centre lors du réaménagement de la Rue de Rosières (terminé en juin 2025 : lien faible avec la hausse de mai 2026)."
         },
         {
           "id": 9000007512,
@@ -5311,7 +5311,7 @@ window.TELRAAM_HISTORY = {
           "is_constant_perimeter": true,
           "status": "Actif",
           "diagnostic": "Décrue confirmée (-26%) / Forte baisse de transit",
-          "travaux_impact": "Rue de la Tasnière : transit de raccourci fortement dissuadé par les travaux de soutènement et feux alternés rue du Cerf en amont début 2026, sécurisation carrefour Desmet."
+          "travaux_impact": "Rue de la Tasnière : baisse cohérente avec les feux alternés de la rue du Cerf (10 janv. – 15 mars 2026), mais la mesure de mai est postérieure à leur fin (effet différé) et la baisse de nov. 2025 les précède."
         },
         {
           "id": 9000007523,
@@ -5336,7 +5336,7 @@ window.TELRAAM_HISTORY = {
           "is_constant_perimeter": true,
           "status": "Actif",
           "diagnostic": "Décrue accentuée (-17%) / Apaisement centre",
-          "travaux_impact": "Rue Haute : suppression du stationnement alterné (nouveau Code de la route), travaux du Vallon et des Papeteries incitant au contournement."
+          "travaux_impact": "Rue Haute : suppression du stationnement alterné (nouveau Code de la route), travaux du Vallon et des Papeteries : effet incertain (chantiers mineurs et éloignés du capteur)."
         },
         {
           "id": 9000007530,
@@ -5360,8 +5360,8 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 3521,
           "is_constant_perimeter": true,
           "status": "Actif",
-          "diagnostic": "Chute spectaculaire (-67%) : Extension Zone 20 résidentielle & plantations",
-          "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation réussie du trafic de transit."
+          "diagnostic": "Chute très forte (-67%), cohérente avec l'extension de la Zone 20 résidentielle",
+          "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation probable du trafic de transit (chantier terminé en mars 2026)."
         },
         {
           "id": 9000007533,
@@ -5386,7 +5386,7 @@ window.TELRAAM_HISTORY = {
           "is_constant_perimeter": true,
           "status": "Actif",
           "diagnostic": "Décrue modérée continue (-6%) / Stabilisation",
-          "travaux_impact": "Avenue Albert 1er : création du Sens Unique Limité (SUL) Peyo-Gare évitant les feux de Maubroux et désengorgeant le carrefour Albert 1er / Rosières."
+          "travaux_impact": "Avenue Albert 1er : création du Sens Unique Limité (SUL) Peyo-Gare évitant les feux de Maubroux : effet plausible mais modeste, proche de la tendance communale."
         },
         {
           "id": 9000007534,
@@ -5410,7 +5410,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 11144,
           "is_constant_perimeter": true,
           "status": "Actif",
-          "diagnostic": "Explosion du trafic (+71%) / Déviation officielle Avenue Royale & vélos (+184%)",
+          "diagnostic": "Forte hausse (+71%) / Cohérent avec la déviation officielle de l'Avenue Royale, vélos +184%",
           "travaux_impact": "Avenue de Boulogne-Billancourt : itinéraire officiel obligatoire de déviation du grand chantier Avenue Royale (fermeture totale fév-nov 2026 pour 200 jours). Les avenues secondaires (Léopold, Beau Champ) ont été mises en sens unique pour concentrer le transit sur cet axe."
         },
         {
@@ -5435,15 +5435,15 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 7627,
           "is_constant_perimeter": true,
           "status": "Actif",
-          "diagnostic": "Forte reprise (+59%) : Nouvelle gare RER inaugurée & report déviation via r. Boisacq",
+          "diagnostic": "Forte hausse (+59%) : base 2025 en creux de chantier de gare, et déviation probable de l'Avenue Royale via r. Boisacq",
           "travaux_impact": "Rue de la Gare : nouvelle gare RER et gare des bus inaugurées fin nov 2024 après 2 ans de travaux, complétée par la déviation de l'Avenue Royale transitant par la rue Robert Boisacq."
         }
       ]
     },
     "synthesis": {
       "traffic_increasing": false,
-      "summary_statement": "À l'échelle communale globale, le trafic motorisé n'augmente pas : il enregistre une baisse modérée à sensible de -3.8% au printemps et de -13.6% en automne sur périmètre constant. Les fortes variations locales (+70.7% sur l'Avenue de Boulogne-Billancourt, +58.9% sur la Rue de la Gare, -66.9% sur la Place Communale) sont directement et factuellement expliquées par les grands chantiers communaux et régionaux (déviation officielle de l'Avenue Royale fermée pour 200 jours, aménagement de la Zone 20 résidentielle de la Place Communale, mise en service de la nouvelle gare RER). La mobilité active vélo est en nette progression structurelle (+2.8% à +8.0%).",
-      "travaux_summary": "La confrontation des flux Telraam aux arrêtés de police et chantiers de la commune de Rixensart démontre qu'aucune artère ne subit de hausse structurelle incontrôlée : les reports observés correspondent fidèlement aux itinéraires de déviation obligatoires ou aux effets d'apaisement volontaire par zone 20/30."
+      "summary_statement": "À l'échelle communale globale, le trafic motorisé n'augmente pas : il enregistre une baisse modérée à sensible de -3.8% au printemps et de -13.6% en automne sur périmètre constant. Les fortes variations locales (+70.7% sur l'Avenue de Boulogne-Billancourt, +58.9% sur la Rue de la Gare, -66.9% sur la Place Communale) sont cohérentes avec les grands chantiers communaux et régionaux (déviation officielle de l'Avenue Royale fermée pour 200 jours, aménagement de la Zone 20 résidentielle de la Place Communale, mise en service de la nouvelle gare RER) ; il s'agit d'une coïncidence dans le temps, non d'une preuve de causalité. La mobilité active vélo est en nette progression structurelle (+2.8% à +8.0%).",
+      "travaux_summary": "La confrontation des flux Telraam aux arrêtés de police et chantiers de la commune de Rixensart suggère que les fortes hausses se concentrent sur des axes de déviation officiels et que les fortes baisses coïncident avec des apaisements volontaires (zone 20/30) ; seuls quelques chantiers ont un effet net crédible (Avenue Royale, Place Communale, gare, E411), les autres rapprochements restent faibles ou mal datés."
     },
     "regional_context": {
       "title": "Mise en perspective régionale : Brabant wallon et Wallonie",
@@ -5452,7 +5452,7 @@ window.TELRAAM_HISTORY = {
         "points": [
           {
             "category": "Hyper-visibilité des goulets d'étranglement",
-            "description": "Les chantiers majeurs (Avenue Royale fermée 200 jours, travaux SOFICO E411, gare RER) ont canalisé les véhicules sur 2 ou 3 axes névralgiques de déviation où le trafic a explosé (+70.7% sur Boulogne-Billancourt, +58.9% sur la Rue de la Gare, +29.0% sur Rue de Genval). Ces ralentissements concentrés créent un ressenti aigu d'engorgement pour tout automobiliste qui y transite."
+            "description": "Les chantiers majeurs (Avenue Royale fermée 200 jours, travaux SOFICO E411, gare RER) ont canalisé les véhicules sur 2 ou 3 axes névralgiques de déviation où le trafic a fortement augmenté (+70.7% sur Boulogne-Billancourt, +58.9% sur la Rue de la Gare, +29.0% sur Rue de Genval). Ces ralentissements concentrés créent un ressenti aigu d'engorgement pour tout automobiliste qui y transite."
           },
           {
             "category": "Apaisement silencieux et diffus",
@@ -6563,7 +6563,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Avenue de Boulogne-Billancourt",
         "impact_type": "Report massif officiel de transit",
         "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
-        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. L'explosion observée est 100% corrélée au chantier et disparaîtra à la réouverture de l'Avenue Royale."
+        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
       },
       {
         "sensor_id": 9000007578,
@@ -6794,7 +6794,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Place Communale",
         "impact_type": "Évaporation massive du trafic de transit",
         "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
-        "correlation_note": "La chute de deux tiers du trafic motorisé illustre parfaitement l'effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+        "correlation_note": "La chute de deux tiers du trafic motorisé est cohérente avec un effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
       }
     ],
     "source_url": "https://www.rixensart.be/actualites/travaux-en-cours-et-a-venir",
@@ -7286,7 +7286,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Avenue Albert 1er",
         "impact_type": "Désengorgement des carrefours à feux",
         "observed_variation": "Baisse continue de -5.8% au printemps 2026 (-10.4% en automne 2025) ; cyclistes en hausse structurelle",
-        "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont efficacement apaisé l'Avenue Albert 1er."
+        "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont probablement contribué à la baisse de l'Avenue Albert 1er, dans un ordre de grandeur proche de la tendance communale."
       }
     ],
     "source_url": "https://www.rixensart.be/actualites/nouvelle-voirie-en-sens-unique-limite-a-genval",
@@ -7371,7 +7371,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Rue Haute",
         "impact_type": "Sécurisation et réduction des transits parasites",
         "observed_variation": "-16.9% au printemps 2026 (-8.0% en automne 2025)",
-        "correlation_note": "L'apaisement du secteur du Vallon contribue à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
+        "correlation_note": "Le secteur du Vallon a pu contribuer (effet faible) à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
       }
     ],
     "source_url": "https://www.rixensart.be/actualites/fin-des-travaux-de-la-rue-du-vallon",
@@ -7615,7 +7615,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Rue de la Tasnière",
         "impact_type": "Forte dissuasion du transit d'évitement",
         "observed_variation": "-26.0% au printemps 2026 (de 832 à 616 véh/j) ; -20.1% en automne 2025",
-        "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont détourné durablement les navetteurs de transit qui utilisaient la rue de la Tasnière comme raccourci vers Overijse."
+        "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont pu détourner des navetteurs de transit. Réserve : les feux ont pris fin le 15 mars 2026 avant la mesure de mai, et la baisse de nov. 2025 les précède."
       }
     ],
     "source_url": "https://www.rixensart.be/actualites/travaux-en-cours-et-a-venir",
