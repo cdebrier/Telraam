@@ -11,7 +11,10 @@
       "dailyBikes": 52,
       "bikePct": 3.64,
       "pedPct": 2.29,
-      "activePct": 5.9
+      "activePct": 5.9,
+      "recentV85": 53.6,
+      "recentDelta": 3.6,
+      "recentStatus": "warn"
     },
     {
       "id": 9000007492,
@@ -24,7 +27,10 @@
       "dailyBikes": 53,
       "bikePct": 0.93,
       "pedPct": 4.79,
-      "activePct": 5.7
+      "activePct": 5.7,
+      "recentV85": null,
+      "recentDelta": null,
+      "recentStatus": "none"
     },
     {
       "id": 9000007497,
@@ -37,7 +43,10 @@
       "dailyBikes": 99,
       "bikePct": 1.31,
       "pedPct": 0.72,
-      "activePct": 2
+      "activePct": 2,
+      "recentV85": 50,
+      "recentDelta": 0,
+      "recentStatus": "ok"
     },
     {
       "id": 9000007509,
@@ -50,7 +59,10 @@
       "dailyBikes": 36,
       "bikePct": 1.34,
       "pedPct": 1.15,
-      "activePct": 2.5
+      "activePct": 2.5,
+      "recentV85": 54.1,
+      "recentDelta": 4.1,
+      "recentStatus": "warn"
     },
     {
       "id": 9000007512,
@@ -63,7 +75,10 @@
       "dailyBikes": 64,
       "bikePct": 3.29,
       "pedPct": 1.92,
-      "activePct": 5.2
+      "activePct": 5.2,
+      "recentV85": 58.3,
+      "recentDelta": 28.3,
+      "recentStatus": "high"
     },
     {
       "id": 9000007523,
@@ -76,7 +91,10 @@
       "dailyBikes": 151,
       "bikePct": 3.06,
       "pedPct": 1.5,
-      "activePct": 4.6
+      "activePct": 4.6,
+      "recentV85": 52.5,
+      "recentDelta": 2.5,
+      "recentStatus": "warn"
     },
     {
       "id": 9000007530,
@@ -89,7 +107,10 @@
       "dailyBikes": 32,
       "bikePct": 2.28,
       "pedPct": 8.1,
-      "activePct": 10.4
+      "activePct": 10.4,
+      "recentV85": 43.4,
+      "recentDelta": 13.4,
+      "recentStatus": "high"
     },
     {
       "id": 9000007533,
@@ -102,7 +123,10 @@
       "dailyBikes": 66,
       "bikePct": 1.03,
       "pedPct": 1.61,
-      "activePct": 2.6
+      "activePct": 2.6,
+      "recentV85": 51.1,
+      "recentDelta": 1.1,
+      "recentStatus": "ok"
     },
     {
       "id": 9000007534,
@@ -115,7 +139,10 @@
       "dailyBikes": 44,
       "bikePct": 3.3,
       "pedPct": 4.73,
-      "activePct": 8
+      "activePct": 8,
+      "recentV85": 60.2,
+      "recentDelta": 10.2,
+      "recentStatus": "high"
     },
     {
       "id": 9000007578,
@@ -128,7 +155,10 @@
       "dailyBikes": 154,
       "bikePct": 7.09,
       "pedPct": 10.01,
-      "activePct": 17.1
+      "activePct": 17.1,
+      "recentV85": 44.3,
+      "recentDelta": 14.3,
+      "recentStatus": "high"
     },
     {
       "id": 9000007261,
@@ -141,7 +171,10 @@
       "dailyBikes": 15,
       "bikePct": 2.24,
       "pedPct": 5.29,
-      "activePct": 7.5
+      "activePct": 7.5,
+      "recentV85": 25.2,
+      "recentDelta": -24.8,
+      "recentStatus": "ok"
     },
     {
       "id": 9000006402,
@@ -154,7 +187,10 @@
       "dailyBikes": 77,
       "bikePct": 11.39,
       "pedPct": 10.88,
-      "activePct": 22.3
+      "activePct": 22.3,
+      "recentV85": 42,
+      "recentDelta": 12,
+      "recentStatus": "high"
     },
     {
       "id": 9000009405,
@@ -167,7 +203,10 @@
       "dailyBikes": 0,
       "bikePct": 0,
       "pedPct": 0,
-      "activePct": 0
+      "activePct": 0,
+      "recentV85": 31.1,
+      "recentDelta": 1.1,
+      "recentStatus": "ok"
     }
   ],
   "hero": {

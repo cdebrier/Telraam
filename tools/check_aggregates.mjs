@@ -36,6 +36,10 @@ const streets = data.map(s => {
     bikePct: nov.bike_pct || 0,
     pedPct: nov.ped_pct || 0,
     activePct: nov.active_pct ?? null,
+    // V85 récente (21 août – 4 sept. 2026) : null si le capteur n'a rien mesuré
+    recentV85: (s.recent2026 || {}).avg_v85 ?? null,
+    recentDelta: (s.recent2026 || {}).avg_v85 ? r1(s.recent2026.avg_v85 - limit) : null,
+    recentStatus: speedStatus((s.recent2026 || {}).avg_v85 || null, limit),
   };
 });
 const zone30 = streets.filter(s => s.limit === 30 && s.v85);
