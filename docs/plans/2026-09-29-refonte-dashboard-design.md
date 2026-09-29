@@ -41,6 +41,9 @@ Date : 2026-09-29 · Statut : validé (brainstorming), implémentation non déma
 | D14 | Scène « rues » : les 3 rues au meilleur indice de vigilance (Gare, Tilleul, Place Communale) puis Boulogne-Billancourt en « cas chantier », soit 4 sous-étapes | Garder Gare/Tilleul/Boulogne comme l'ancienne page, ou les 3 premières seulement | Étape 3 : l'ancienne page présentait Boulogne comme une priorité calculée, alors qu'elle est 4e selon l'indice de la méthodologie §6.1. Choix de l'utilisateur |
 | D15 | Plusieurs étapes peuvent partager une scène (`data-focus`) ; `enter`/`leave` ne sont appelés qu'au changement de scène | Une scène par étape | Permet les sous-étapes sans recréer le visuel |
 | D16 | Les chiffres des étapes et des fiches sont calculés depuis les données (rang, texte, valeurs), plus aucun chiffre en dur | Reprendre les chiffres écrits dans l'ancien HTML | Cohérence avec les données ; le classement suit les données si elles changent |
+| D17 | Fiche par rue et bloc « Méthode et limites » en sections pleine largeur après le parcours, avec un segment de navigation dédié ; impression en clair (seule la fiche) | Fiche dans le cadre épinglé | L'impression et la lecture d'un formulaire exigent une page normale (D10) |
+| D18 | Fiche : « passages par jour » (et non « véhicules ») ; « Pistes à étudier » avec mention « à valider par une étude locale » ; formulations adoucies (« plus exposées » au lieu de « périlleuses ») | Reprendre les textes de l'ancienne page tels quels | Ton factuel demandé ; le trafic compte aussi vélos et piétons ; les pistes sont générales, pas issues des données |
+| D19 | Méthode : les seuils de couleur (2 et 5 km/h) sont présentés comme des repères de lecture, l'incertitude de ±10 % valant environ ±5 km/h à 50 km/h | Laisser entendre que les écarts sous 2 km/h sont dans la marge | Cohérence avec l'incertitude réelle |
 
 ## 4. Design
 

@@ -255,11 +255,70 @@ html:not(.js) .step { min-height: 0; display: block; }
 .foot p { max-width: 720px; margin: 0 0 8px; }
 @media (min-width: 900px) { .foot { padding: 32px; } }
 
-@media print { .bar, .stage { display: none !important; } body { background: #fff; color: #000; } }
+/* ---------- Fiche par rue et méthode ---------- */
+.skip { position: absolute; left: -999px; top: 0; background: var(--focus); color: #000; padding: 8px 12px; z-index: 100; font-weight: 600; }
+.skip:focus { left: 8px; top: 8px; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 56px 16px; }
+.fiche, .methode { border-top: 1px solid var(--line); }
+.fiche .kicker, .methode .kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.fiche h2, .methode h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+.lead { color: var(--muted); margin: 0 0 20px; }
+.fiche__controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+.fiche__controls label { font-weight: 600; }
+select, .fiche__controls button {
+  min-height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line);
+  background: var(--panel); color: var(--text); font: 500 15px 'Inter', system-ui, sans-serif;
+}
+.fiche__controls button { cursor: pointer; font-weight: 600; background: var(--panel-2); }
+.fiche__controls select { min-width: 240px; max-width: 100%; }
+.fiche-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+.fiche-head { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 16px; }
+.fiche-head .loc { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin: 0; }
+.fiche-head h3 { font-size: 24px; margin: 2px 0; }
+.fiche-head .role { color: var(--muted); margin: 0; font-size: 14px; }
+.badge { border: 1.5px solid currentColor; border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
+.tone-high { color: var(--high); } .tone-warn { color: var(--warn); } .tone-ok { color: var(--ok); } .tone-none { color: var(--muted); }
+.metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+.metric { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--panel-2); }
+.metric span { display: block; font-size: 12px; color: var(--muted); }
+.metric b { display: block; font-size: 24px; font-weight: 800; line-height: 1.2; margin: 2px 0; }
+.two { display: grid; gap: 12px; }
+.panel { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.panel h4 { font-size: 14px; margin: 0 0 6px; }
+.panel p, .panel li { font-size: 14px; line-height: 1.55; margin: 0 0 6px; }
+.panel ul { margin: 0; padding-left: 18px; }
+.panel .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.fiche-foot { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; }
+.facts { display: grid; gap: 0; margin: 12px 0 18px; }
+.facts div { border-top: 1px solid var(--line); padding: 10px 0; display: grid; gap: 4px; }
+.facts dt { font-weight: 700; } .facts dd { margin: 0; color: var(--muted); }
+.methode a, .methode summary { color: var(--text); }
+.methode details { margin-top: 12px; } .methode summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+.methode ul { padding-left: 18px; color: var(--muted); font-size: 14px; }
+@media (min-width: 900px) {
+  .wrap { padding: 72px 32px; }
+  .metrics { grid-template-columns: repeat(4, 1fr); } .two { grid-template-columns: 1fr 1fr; }
+  .facts div { grid-template-columns: 180px 1fr; gap: 20px; }
+}
+
+/* ---------- Impression : seule la fiche, en clair ---------- */
+@media print {
+  .bar, .stage, .story, .foot, .nojs, .skip, .fiche__controls, .methode, .fiche .kicker, .fiche .lead, .fiche h2 { display: none !important; }
+  html, body { background: #fff !important; color: #000 !important; }
+  .wrap { padding: 0; max-width: none; }
+  .fiche { border: 0; }
+  .fiche-card { background: #fff !important; color: #000 !important; border: 1px solid #000; box-shadow: none; break-inside: avoid; }
+  .fiche-card *, .fiche-card .metric, .fiche-card .panel { color: #000 !important; background: transparent !important; border-color: #666 !important; }
+  .fiche-card .badge { border-color: #000 !important; }
+  .fiche-card .loc, .fiche-card .role, .fiche-card .metric span, .fiche-card .hint, .fiche-card .fiche-foot { color: #333 !important; }
+  .metrics { grid-template-columns: repeat(4, 1fr); } .two { grid-template-columns: 1fr 1fr; }
+}
 </style>
 <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<a class="skip" href="#story">Aller au parcours</a> <a class="skip" href="#fiche">Aller à la fiche par rue</a>
+<div id="live" class="sr-only" aria-live="polite"></div>
 
 <header class="bar">
   <span class="bar__title">Mobilité<span class="sm-hide"> à Rixensart</span></span>
@@ -270,7 +329,7 @@ html:not(.js) .step { min-height: 0; display: block; }
 <p class="nojs">JavaScript est nécessaire pour afficher les visuels. Le texte de chaque étape reste lisible ci-dessous.</p>
 
 <main class="story" id="story">
-  <div class="stage" id="stage" aria-live="polite">
+  <div class="stage" id="stage">
     <div class="stage__inner" id="stage-inner"></div>
   </div>
 
@@ -370,21 +429,42 @@ html:not(.js) .step { min-height: 0; display: block; }
       </div>
     </section>
 
-    <section class="step" data-scene="fiche" data-title="Ma rue" tabindex="0">
-      <div class="step__card">
-        <p class="step__kicker">Ma rue</p>
-        <h2>Fiche par rue</h2>
-        <p>Choisir une rue, lire son diagnostic, l'imprimer.</p>
-        <p class="src">Étape 4 : fiche d'action.</p>
-      </div>
-    </section>
-
   </div>
 </main>
 
+<section class="fiche" id="fiche" aria-labelledby="fiche-h">
+  <div class="wrap">
+    <p class="kicker">Ma rue</p>
+    <h2 id="fiche-h">Fiche par rue</h2>
+    <p class="lead">Choisir une rue, lire son diagnostic, l'imprimer.</p>
+    <div class="fiche__controls">
+      <label for="street-select">Rue</label>
+      <select id="street-select"></select>
+      <button type="button" id="print-btn">Imprimer la fiche</button>
+    </div>
+    <article class="fiche-card" id="fiche-card" aria-live="polite"><p class="msg">Chargement de la fiche…</p></article>
+  </div>
+</section>
+
+<section class="methode" id="methode" aria-labelledby="methode-h">
+  <div class="wrap">
+    <p class="kicker">Méthode et limites</p>
+    <h2 id="methode-h">Comment lire ces chiffres</h2>
+    <dl class="facts">
+      <div><dt>Mesure</dt><dd>Capteurs Telraam S2 posés aux fenêtres. Le comptage se fait par vision embarquée, aucune image n'est conservée. Précision indicative : 90–95 % pour le trafic motorisé, 80–85 % pour les vélos et les piétons.</dd></div>
+      <div><dt>V85</dt><dd>Vitesse que 85 % des véhicules ne dépassent pas. Incertitude de ±10 %, soit environ ±5 km/h pour une V85 de 50 km/h. Les seuils de couleur (2 et 5 km/h au-dessus de la limite) sont des repères de lecture, pas des seuils réglementaires.</dd></div>
+      <div><dt>Heures de jour</dt><dd>La classification par mode n'est fiable que de jour. Les profils horaires et les vitesses de nov. 2024 couvrent donc les heures de jour uniquement.</dd></div>
+      <div><dt>Comparaisons</dt><dd>D'une année à l'autre, on compare le même mois sur les seuls capteurs présents aux deux périodes. Un capteur arrêté est exclu, pas compté comme une baisse.</dd></div>
+      <div><dt>Indice de vigilance</dt><dd>(part de mobilités actives ÷ 10) × excès de V85 sur la limite × log₁₀ du trafic de jour. Il classe les rues, il ne mesure pas un risque d'accident.</dd></div>
+      <div><dt>Limites</dt><dd>Chaque capteur voit une seule rue. Le rapprochement avec les chantiers montre une coïncidence dans le temps, il ne prouve pas une cause.</dd></div>
+    </dl>
+    <p><a href="docs/METHODOLOGIE.md">Cadre méthodologique complet</a> · Données : <a href="data/rixensart_summary.csv">synthèse CSV</a>, <a href="data/rixensart_summary.json">JSON</a>, <a href="data/rixensart_history.json">historique</a>, <a href="data/rixensart_travaux.json">chantiers</a></p>
+    <details id="sources"><summary>Sources</summary><ul id="sources-list"></ul></details>
+  </div>
+</section>
+
 <footer class="foot">
-  <p>Données : capteurs Telraam S2 (comptage par vision embarquée, aucune image conservée). Précision indicative : 90–95 % pour le trafic motorisé, 80–85 % pour les vélos et piétons.</p>
-  <p><a href="docs/METHODOLOGIE.md">Cadre méthodologique</a></p>
+  <p>Données : capteurs citoyens Telraam S2, 2024–2026. <a href="#methode">Méthode et limites</a> · <a href="docs/METHODOLOGIE.md">Cadre méthodologique</a></p>
 </footer>
 
 <script>
@@ -886,11 +966,82 @@ scenes.rues = {
     wrap.querySelectorAll('.case').forEach(c => c.classList.toggle('is-focus', c.dataset.case === key));
   },
 };
-scenes.fiche       = { render: placeholder('Ma rue', 'Fiche d\'action : étape 4.') };
+
+/* ---------- Fiche par rue ---------- */
+// Diagnostic et pistes : la vitesse prime sur le profil cyclable (règle de l'ancienne page)
+function ficheContent(s) {
+  const n = s.raw.nov2024 || {}, v85 = s.v85, limit = s.limit, d = s.delta;
+  const bike = n.bike_pct || 0, ped = n.ped_pct || 0, bikesDay = n.daily_bikes || 0, key = s.status.key;
+  const b = x => `<strong>${x}</strong>`;
+  if (key === 'high' && limit === 30) return { tone: 'high', badge: 'Action prioritaire',
+    diag: `Limite formelle de 30 km/h, mais V85 à ${b(fmt1(v85) + ' km/h')} (${fmtDelta(d)} km/h). Avec ${fmt1(bike)} % de vélos et ${fmt1(ped)} % de piétons, les modes actifs partagent la voie avec des vitesses nettement supérieures à la limite.`,
+    recos: [['Modération physique', "coussins berlinois ou chicane végétale avant les passages piétons."], ['Contrôle de vitesse', "radar pédagogique affichant la vitesse."], ['Sécurisation vélo', "chevrons cyclables au sol pour légitimer la présence des cyclistes sur la voie."]] };
+  if (key === 'high') return { tone: 'high', badge: 'Vigilance vitesse élevée',
+    diag: `Dépassement marqué : V85 à ${b(fmt1(v85) + ' km/h')} pour une limite de ${limit} km/h (${fmtDelta(d)} km/h). La traversée piétonne et l'insertion des riverains y sont plus exposées${bike >= 8 ? `, d'autant que la rue compte ${fmt1(bike)} % de vélos` : ''}.`,
+    recos: [['Largeur perçue', "îlots refuges centraux ou bordures végétalisées pour inciter à ralentir."], ['Contrôles', "contrôles mobiles par la police locale aux heures de pointe."], ['Traversées', "passages piétons surélevés avec éclairage renforcé."]] };
+  if (bike >= 8) return { tone: key === 'warn' ? 'warn' : 'ok', badge: key === 'warn' ? 'Corridor vélo, vitesse à surveiller' : 'Corridor vélo majeur',
+    diag: `Avec ${b(fmt1(bike) + ' %')} de vélos (${fmt0(bikesDay)} passages par jour), cette rue est l'un des axes cyclables du réseau.${key === 'warn' ? ` La vitesse dépasse la limite (V85 à ${b(fmt1(v85) + ' km/h')} pour ${limit} km/h).` : ''}`,
+    recos: [['Statut de rue cyclable', "classement possible en « Rue cyclable » (vélos prioritaires, dépassement interdit)."], ['Revêtement', "réfection du bord de chaussée pour supprimer nids-de-poule et bordures saillantes."]] };
+  if (key === 'ok') return { tone: 'ok', badge: v85 <= 30 ? 'Voirie apaisée' : 'Limite respectée',
+    diag: v85 <= 30 ? `V85 à ${b(fmt1(v85) + ' km/h')} : la vitesse correspond à l'objectif d'une rue apaisée.`
+      : `La limite de ${limit} km/h est globalement respectée (V85 à ${b(fmt1(v85) + ' km/h')}, ${fmtDelta(d)} km/h). Cette vitesse reste supérieure à celle d'une rue à 30 km/h.`,
+    recos: [['Maintien', "conserver le schéma de circulation actuel."], ['Cadre de vie', "végétalisation des trottoirs, bancs publics."]] };
+  if (key === 'warn') return { tone: 'warn', badge: 'Vigilance modérée',
+    diag: `Dépassement modéré de la limite (V85 à ${b(fmt1(v85) + ' km/h')} pour ${limit} km/h, ${fmtDelta(d)} km/h). À surveiller, notamment lors des fermetures d'axes voisins.`,
+    recos: [['Suivi', "analyse des variations mensuelles de vitesse lors des fermetures d'axes secondaires."], ['Signalétique', "rappel de la limite par marquage au sol."]] };
+  return { tone: 'none', badge: 'Vitesse non mesurée',
+    diag: `Aucune mesure de vitesse (V85) n'est disponible pour cette rue. Limite affichée : ${limit} km/h.`,
+    recos: [['Suivi', "attendre les premières mesures avant de proposer un aménagement."]] };
+}
+
+function renderFiche(s) {
+  const card = document.getElementById('fiche-card');
+  if (!card) return;
+  const n = s.raw.nov2024 || {}, c = ficheContent(s);
+  const vLine = s.v85 ? `${fmtDelta(s.delta)} km/h par rapport à la limite de ${s.limit}` : `Limite : ${s.limit} km/h`;
+  card.innerHTML = `
+    <div class="fiche-head">
+      <div><p class="loc">${esc(s.locality)} · capteur Telraam n°${esc(s.id)}</p><h3>${esc(s.street)}</h3><p class="role">${esc(s.raw.role || '')}</p></div>
+      <span class="badge tone-${c.tone}">${esc(c.badge)}</span>
+    </div>
+    <div class="metrics">
+      <div class="metric"><span>Vitesse V85 (nov. 2024)</span><b>${s.v85 ? fmt1(s.v85) + ' km/h' : 'N/D'}</b><span>${esc(vLine)}</span></div>
+      <div class="metric"><span>Passages par jour</span><b>${n.daily_total ? fmt0(n.daily_total) : 'N/D'}</b><span>heures de jour</span></div>
+      <div class="metric"><span>Part des vélos</span><b>${fmt1(n.bike_pct || 0)} %</b><span>${fmt0(n.daily_bikes || 0)} par jour</span></div>
+      <div class="metric"><span>Part des piétons</span><b>${fmt1(n.ped_pct || 0)} %</b><span>${fmt0(n.daily_peds || 0)} par jour</span></div>
+    </div>
+    <div class="two">
+      <div class="panel"><h4>Diagnostic</h4><p>${c.diag}</p></div>
+      <div class="panel"><h4>Pistes à étudier</h4><ul>${c.recos.map(([t, x]) => `<li><strong>${esc(t)} :</strong> ${esc(x)}</li>`).join('')}</ul>
+        <p class="hint">Pistes générales selon le profil de la rue, à valider par une étude locale.</p></div>
+    </div>
+    <div class="fiche-foot"><span>Mobilité à Rixensart · comptages Telraam S2, nov. 2024, heures de jour</span><span>V85 : incertitude ±10 %</span></div>`;
+}
+
+function initFiche(D) {
+  const select = document.getElementById('street-select');
+  if (!select) return;
+  if (!D) { document.getElementById('fiche-card').innerHTML = '<p class="msg">Données indisponibles.</p>'; return; }
+  select.innerHTML = D.streets.map(s => `<option value="${esc(s.id)}">${esc(s.street)} (${esc(s.locality)})</option>`).join('');
+  const start = D.streets.find(s => s.street === 'Rue de la Gare') || D.streets[0];
+  select.value = start.id; renderFiche(start);
+  select.addEventListener('change', e => { const s = D.streets.find(x => String(x.id) === e.target.value); if (s) renderFiche(s); });
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+}
+
+function initSources() {
+  const ul = document.getElementById('sources-list'), src = window.TELRAAM_SOURCES;
+  if (!ul || !Array.isArray(src)) return;
+  ul.innerHTML = src.flatMap(cat => cat.items || []).map(it =>
+    `<li>${it.url ? `<a href="${esc(it.url)}" rel="noopener">${esc(it.name)}</a>` : esc(it.name)}${it.type ? ` : ${esc(it.type)}` : ''}</li>`).join('');
+}
 
 /* ---------- 4. Moteur ---------- */
 function initStory() {
   const D = derive();
+  initFiche(D);
+  initSources();
+  const live = document.getElementById('live');
   const stageInner = document.getElementById('stage-inner');
   const steps = [...document.querySelectorAll('.step')];
   const progress = document.getElementById('progress');
@@ -908,10 +1059,12 @@ function initStory() {
     if (t) n.textContent = t;
   });
 
-  // Navigation : un segment par étape
+  // Navigation : un segment par étape, puis un segment pour la fiche par rue
   progress.innerHTML = steps.map((s, i) =>
-    `<a href="#step-${i}" data-i="${i}" aria-label="Étape ${i + 1} : ${esc(s.dataset.title)}"></a>`).join('');
-  const links = [...progress.children];
+    `<a href="#step-${i}" data-i="${i}" aria-label="Étape ${i + 1} : ${esc(s.dataset.title)}"></a>`).join('')
+    + `<a href="#fiche" data-i="fiche" aria-label="Fiche par rue"></a>`;
+  const links = [...progress.children], ficheLink = links[links.length - 1];
+  let inFiche = false;
   steps.forEach((s, i) => { s.id = 'step-' + i; });
 
   // Construit une scène par étape (DOM créé une fois)
@@ -948,7 +1101,7 @@ function initStory() {
 
   // Étape active. Plusieurs étapes peuvent partager une scène (data-focus) : enter/leave
   // ne sont appelés que quand la scène change, focus() à chaque étape.
-  let current = -1;
+  let current = -1, liveTimer;
   function activate(i) {
     if (i === current || i < 0) return;
     const prev = steps[current], next = steps[i];
@@ -967,11 +1120,23 @@ function initStory() {
     }
     const nd = scenes[nextId];
     if (els[nextId] && nd && nd.focus) nd.focus(els[nextId], D, next.dataset.focus);
-    links.forEach((a, j) => {
-      if (j === i) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
-      a.classList.toggle('is-done', j < i);
-    });
+    updateLinks(i);
+    // Annonce différée : pendant un défilement rapide, seule l'étape d'arrivée est lue
+    if (live) { clearTimeout(liveTimer); liveTimer = setTimeout(() => { live.textContent = `Étape ${i + 1} sur ${steps.length} : ${next.dataset.title}`; }, 500); }
     current = i;
+  }
+  // Segment courant ; en fiche, toutes les étapes sont « faites »
+  function updateLinks(i) {
+    links.forEach((a, j) => {
+      const isFiche = a === ficheLink, on = isFiche ? inFiche : (!inFiche && j === i);
+      if (on) a.setAttribute('aria-current', 'step'); else a.removeAttribute('aria-current');
+      a.classList.toggle('is-done', isFiche ? false : (inFiche || j < i));
+    });
+  }
+  const ficheEl = document.getElementById('fiche');
+  if (ficheEl && 'IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(e => { inFiche = e.isIntersecting; updateLinks(current); }),
+      { rootMargin: '-35% 0px -35% 0px' }).observe(ficheEl);
   }
 
   if (!stacked) {
