@@ -2321,8 +2321,8 @@ window.TELRAAM_RIXENSART = [
         "year": 2025,
         "duration": "7 mois",
         "impact_type": "Évaporation massive du trafic de transit",
-        "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
-        "correlation_note": "La chute de deux tiers du trafic motorisé est cohérente avec un effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+        "observed_variation": "-66.9% au printemps 2026 (de 1 200 à 397 véh/j, base de mai 2025 anormale) ; -20.6% en automne 2025",
+        "correlation_note": "La chute de deux tiers du trafic motorisé est en grande partie due à un mois de mai 2025 anormal (plus de trois fois nov. 2024). Par rapport à la tendance communale, l'écart n'est que de -15% en mai 2026 et -26% en août 2026 : une baisse modérée, cohérente avec la zone 20."
       },
       {
         "chantier_id": "chantier-papeteries-genval",
@@ -2997,7 +2997,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "200 jours ouvrables",
         "impact_type": "Report massif officiel de transit",
         "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
-        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
+        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse était déjà engagée avant la fermeture (écart à la tendance communale de +43% en mai 2025 et +73% en nov. 2025, puis +172% en mai 2026). La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
       }
     ]
   },
@@ -3344,7 +3344,7 @@ window.TELRAAM_RIXENSART = [
         "duration": "2 ans de chantier global",
         "impact_type": "Reprise d'attractivité post-chantier et flux dépose-minute",
         "observed_variation": "+58.9% au printemps 2026 (1 435 véh/j contre 903 en 2025 lors du creux de chantier)",
-        "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. Dès 2025-2026, l'ouverture de la nouvelle gare et de la gare des bus a restauré et amplifié le flux naturel d'accès à la gare."
+        "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. L'ouverture de la nouvelle gare a pu restaurer le flux d'accès, mais l'écart à la tendance communale (+41% en mai 2026) retombe à 0 en août 2026 alors que l'Avenue Royale reste fermée : le lien reste fragile."
       }
     ]
   },
@@ -5360,7 +5360,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 3521,
           "is_constant_perimeter": true,
           "status": "Actif",
-          "diagnostic": "Chute très forte (-67%), cohérente avec l'extension de la Zone 20 résidentielle",
+          "diagnostic": "Baisse mai à mai de -67%, en grande partie due à un mai 2025 anormal ; écart à la tendance communale de -15% en mai 2026, cohérent avec la Zone 20",
           "travaux_impact": "Place Communale (Genval) : extension de la zone résidentielle 20 km/h (priorité absolue piétons), réfection des trottoirs, zone bleue et plantations d'arbres. Évaporation probable du trafic de transit (chantier terminé en mars 2026)."
         },
         {
@@ -5410,7 +5410,7 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 11144,
           "is_constant_perimeter": true,
           "status": "Actif",
-          "diagnostic": "Forte hausse (+71%) / Cohérent avec la déviation officielle de l'Avenue Royale, vélos +184%",
+          "diagnostic": "Forte hausse (+71%) / Cohérent avec la déviation officielle de l'Avenue Royale, mais hausse déjà engagée avant la fermeture ; vélos +184%",
           "travaux_impact": "Avenue de Boulogne-Billancourt : itinéraire officiel obligatoire de déviation du grand chantier Avenue Royale (fermeture totale fév-nov 2026 pour 200 jours). Les avenues secondaires (Léopold, Beau Champ) ont été mises en sens unique pour concentrer le transit sur cet axe."
         },
         {
@@ -5435,15 +5435,15 @@ window.TELRAAM_HISTORY = {
           "target_pedestrians": 7627,
           "is_constant_perimeter": true,
           "status": "Actif",
-          "diagnostic": "Forte hausse (+59%) : base 2025 en creux de chantier de gare, et déviation probable de l'Avenue Royale via r. Boisacq",
+          "diagnostic": "Forte hausse (+59%) : base 2025 en creux de chantier de gare, déviation possible de l'Avenue Royale via r. Boisacq (écart à la commune retombé à 0 en août 2026)",
           "travaux_impact": "Rue de la Gare : nouvelle gare RER et gare des bus inaugurées fin nov 2024 après 2 ans de travaux, complétée par la déviation de l'Avenue Royale transitant par la rue Robert Boisacq."
         }
       ]
     },
     "synthesis": {
       "traffic_increasing": false,
-      "summary_statement": "À l'échelle communale globale, le trafic motorisé n'augmente pas : il enregistre une baisse modérée à sensible de -3.8% au printemps et de -13.6% en automne sur périmètre constant. Les fortes variations locales (+70.7% sur l'Avenue de Boulogne-Billancourt, +58.9% sur la Rue de la Gare, -66.9% sur la Place Communale) sont cohérentes avec les grands chantiers communaux et régionaux (déviation officielle de l'Avenue Royale fermée pour 200 jours, aménagement de la Zone 20 résidentielle de la Place Communale, mise en service de la nouvelle gare RER) ; il s'agit d'une coïncidence dans le temps, non d'une preuve de causalité. La mobilité active vélo est en nette progression structurelle (+2.8% à +8.0%).",
-      "travaux_summary": "La confrontation des flux Telraam aux arrêtés de police et chantiers de la commune de Rixensart suggère que les fortes hausses se concentrent sur des axes de déviation officiels et que les fortes baisses coïncident avec des apaisements volontaires (zone 20/30) ; seuls quelques chantiers ont un effet net crédible (Avenue Royale, Place Communale, gare, E411), les autres rapprochements restent faibles ou mal datés."
+      "summary_statement": "À l'échelle communale globale, le trafic motorisé n'augmente pas : il enregistre une baisse modérée à sensible de -3.8% au printemps et de -13.6% en automne sur périmètre constant. Les fortes variations locales (+70.7% sur l'Avenue de Boulogne-Billancourt, +58.9% sur la Rue de la Gare, -66.9% sur la Place Communale, dont l'essentiel tient à un mai 2025 anormal) sont cohérentes avec les grands chantiers communaux et régionaux (déviation officielle de l'Avenue Royale fermée pour 200 jours, aménagement de la Zone 20 résidentielle de la Place Communale, mise en service de la nouvelle gare RER) ; il s'agit d'une coïncidence dans le temps, non d'une preuve de causalité. La mobilité active vélo est en nette progression structurelle (+2.8% à +8.0%).",
+      "travaux_summary": "La confrontation des flux Telraam aux arrêtés de police et chantiers de la commune de Rixensart suggère que les fortes hausses se concentrent sur des axes de déviation officiels et que les fortes baisses coïncident avec des apaisements volontaires (zone 20/30) ; seul le report vers l'Avenue de Boulogne-Billancourt (déviation de l'Avenue Royale) paraît plausible, et la hausse y précédait déjà la fermeture ; les autres rapprochements restent fragiles ou mal datés."
     },
     "regional_context": {
       "title": "Mise en perspective régionale : Brabant wallon et Wallonie",
@@ -5456,7 +5456,7 @@ window.TELRAAM_HISTORY = {
           },
           {
             "category": "Apaisement silencieux et diffus",
-            "description": "À l'inverse, les voiries de quartier et le centre de Genval bénéficient d'un apaisement spectaculaire (-66.9% Place Communale grâce à la Zone 20 résidentielle, -25.6% Rue de la Tasnière, -17.3% Rue Haute, -7.2% Av. Roosevelt). Cet apaisement est moins remarqué au quotidien que les bouchons, mais il tire fortement la moyenne arithmétique communale vers le bas."
+            "description": "À l'inverse, les voiries de quartier et le centre de Genval bénéficient d'un apaisement (Place Communale : -66.9% mai à mai, mais en grande partie due à un mai 2025 anormal, -15% par rapport à la tendance communale ; -25.6% Rue de la Tasnière, -17.3% Rue Haute, -7.2% Av. Roosevelt). Cet apaisement est moins remarqué au quotidien que les bouchons, mais il tire fortement la moyenne arithmétique communale vers le bas."
           }
         ]
       },
@@ -6563,7 +6563,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Avenue de Boulogne-Billancourt",
         "impact_type": "Report massif officiel de transit",
         "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
-        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
+        "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse était déjà engagée avant la fermeture (écart à la tendance communale de +43% en mai 2025 et +73% en nov. 2025, puis +172% en mai 2026). La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
       },
       {
         "sensor_id": 9000007578,
@@ -6793,8 +6793,8 @@ window.TELRAAM_TRAVAUX = [
         "sensor_id": 9000007530,
         "street": "Place Communale",
         "impact_type": "Évaporation massive du trafic de transit",
-        "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
-        "correlation_note": "La chute de deux tiers du trafic motorisé est cohérente avec un effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+        "observed_variation": "-66.9% au printemps 2026 (de 1 200 à 397 véh/j, base de mai 2025 anormale) ; -20.6% en automne 2025",
+        "correlation_note": "La chute de deux tiers du trafic motorisé est en grande partie due à un mois de mai 2025 anormal (plus de trois fois nov. 2024). Par rapport à la tendance communale, l'écart n'est que de -15% en mai 2026 et -26% en août 2026 : une baisse modérée, cohérente avec la zone 20."
       }
     ],
     "source_url": "https://www.rixensart.be/actualites/travaux-en-cours-et-a-venir",
@@ -6948,7 +6948,7 @@ window.TELRAAM_TRAVAUX = [
         "street": "Rue de la Gare",
         "impact_type": "Reprise d'attractivité post-chantier et flux dépose-minute",
         "observed_variation": "+58.9% au printemps 2026 (1 435 véh/j contre 903 en 2025 lors du creux de chantier)",
-        "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. Dès 2025-2026, l'ouverture de la nouvelle gare et de la gare des bus a restauré et amplifié le flux naturel d'accès à la gare."
+        "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. L'ouverture de la nouvelle gare a pu restaurer le flux d'accès, mais l'écart à la tendance communale (+41% en mai 2026) retombe à 0 en août 2026 alors que l'Avenue Royale reste fermée : le lien reste fragile."
       }
     ],
     "source_url": "https://www.rixensart.be/actualites/la-nouvelle-gare-de-rixensart-est-en-service",

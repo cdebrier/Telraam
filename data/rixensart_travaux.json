@@ -946,7 +946,7 @@
           "street": "Avenue de Boulogne-Billancourt",
           "impact_type": "Report massif officiel de transit",
           "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
-          "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
+          "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. La hausse observée (mai 2026, après la fermeture du 16 fév.) est cohérente avec ce report ; à confirmer par une nouvelle mesure à la réouverture. La hausse était déjà engagée avant la fermeture (écart à la tendance communale de +43% en mai 2025 et +73% en nov. 2025, puis +172% en mai 2026). La hausse de nov. 2025 (+38%) précède la fermeture et n'est pas expliquée par ce chantier."
         },
         {
           "sensor_id": 9000007578,
@@ -1176,8 +1176,8 @@
           "sensor_id": 9000007530,
           "street": "Place Communale",
           "impact_type": "Évaporation massive du trafic de transit",
-          "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
-          "correlation_note": "La chute de deux tiers du trafic motorisé est cohérente avec un effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+          "observed_variation": "-66.9% au printemps 2026 (de 1 200 à 397 véh/j, base de mai 2025 anormale) ; -20.6% en automne 2025",
+          "correlation_note": "La chute de deux tiers du trafic motorisé est en grande partie due à un mois de mai 2025 anormal (plus de trois fois nov. 2024). Par rapport à la tendance communale, l'écart n'est que de -15% en mai 2026 et -26% en août 2026 : une baisse modérée, cohérente avec la zone 20."
         }
       ],
       "source_url": "https://www.rixensart.be/actualites/travaux-en-cours-et-a-venir",
@@ -1331,7 +1331,7 @@
           "street": "Rue de la Gare",
           "impact_type": "Reprise d'attractivité post-chantier et flux dépose-minute",
           "observed_variation": "+58.9% au printemps 2026 (1 435 véh/j contre 903 en 2025 lors du creux de chantier)",
-          "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. Dès 2025-2026, l'ouverture de la nouvelle gare et de la gare des bus a restauré et amplifié le flux naturel d'accès à la gare."
+          "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. L'ouverture de la nouvelle gare a pu restaurer le flux d'accès, mais l'écart à la tendance communale (+41% en mai 2026) retombe à 0 en août 2026 alors que l'Avenue Royale reste fermée : le lien reste fragile."
         }
       ],
       "source_url": "https://www.rixensart.be/actualites/la-nouvelle-gare-de-rixensart-est-en-service",
