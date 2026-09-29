@@ -36,6 +36,8 @@ Date : 2026-09-29 · Statut : validé (brainstorming), implémentation non déma
 | D9 | Calcul unique via `derive()`, logique reprise de l'`index.html` actuel | Recalcul par scène, réécriture | Zéro écart de chiffres, moins de bugs |
 | D10 | Fiche d'action hors du cadre épinglé, en pleine largeur, imprimable en clair | Fiche dans le cadre épinglé | L'impression doit fonctionner |
 | D11 | Vérification par script de comparaison des agrégats plus contrôle visuel manuel | Framework de test | Le projet n'a pas d'outillage de test |
+| D12 | Répartition par mode calculée sur toutes les périodes (≈ 88 % voitures, 3 % piétons, 3 % vélos, 6 % poids lourds) et libellée avec sa période | Garder 85/8/5/2 (sans source dans les données), dernière période seule (biais saisonnier) | Étape 0 : les valeurs 85/8/5/2 de la page actuelle ne correspondent à aucune période des données. Choix de l'utilisateur |
+| D13 | Le +70,7 % de l'avenue de Boulogne-Billancourt est libellé « total des passages » | « Trafic motorisé » (formulation des données de chantier) | Le +70,7 % porte sur le total ; les voitures seules sont à +57,1 % |
 
 ## 4. Design
 
