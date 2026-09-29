@@ -15,6 +15,32 @@ const data = ctx.window.TELRAAM_RIXENSART;
 const hist = ctx.window.TELRAAM_HISTORY;
 
 // --- Même logique que l'index.html actuel (speedStatus) ---
+// --- Écarts à la tendance communale : le code est lu dans index.html (entre les repères <timeline>) ---
+const html = readFileSync(path.join(root, 'index.html'), 'utf8');
+const tl = html.match(/\/\/ <timeline>([\s\S]*?)\/\/ <\/timeline>/);
+const tlCtx = {};
+vm.createContext(tlCtx);
+if (tl) vm.runInContext(tl[1] + '\nthis.buildTimeline = buildTimeline;', tlCtx);
+const refTl = JSON.parse(readFileSync(path.join(root, 'tools/reference_timeline.json'), 'utf8'));
+function checkTimeline() {
+  if (!tlCtx.buildTimeline) return ['buildTimeline introuvable dans index.html'];
+  const T = JSON.parse(JSON.stringify(tlCtx.buildTimeline(hist)));
+  const errs = [];
+  refTl.trend.forEach((t, j) => { if (Math.abs(T.trend[j] - t) > 1) errs.push(`tendance ${refTl.dates[j]} : ${T.trend[j]} au lieu de ${t}`); });
+  for (const r of refTl.streets) {
+    const g = T.streets.find(x => x.id === r.id);
+    if (!g) { errs.push(`rue absente : ${r.street}`); continue; }
+    r.values.forEach((v, j) => {
+      const w = g.values[j];
+      if (v == null || w == null) { if (v !== w) errs.push(`${r.street} ${refTl.dates[j]} : ${w} au lieu de ${v}`); }
+      else if (Math.abs(w - v) > 1) errs.push(`${r.street} ${refTl.dates[j]} : ${w.toFixed(1)} au lieu de ${v}`);
+    });
+    const sus = (refTl.suspect[r.street] || []);
+    g.suspect.forEach((f, j) => { if (f !== sus.includes(j)) errs.push(`${r.street} ${refTl.dates[j]} : drapeau « suspect » ${f}`); });
+  }
+  return errs;
+}
+
 const speedStatus = (v85, limit) => {
   if (!v85) return 'none';
   const d = v85 - limit;
@@ -61,6 +87,8 @@ if (arg === '--write') {
   process.exit(0);
 }
 if (arg === '--check') {
+  const tlErrs = checkTimeline();
+  if (tlErrs.length) { console.log('ÉCART écarts à la tendance :\n - ' + tlErrs.join('\n - ')); process.exit(1); }
   const expected = JSON.parse(readFileSync(refPath, 'utf8'));
   const same = JSON.stringify(expected) === JSON.stringify(JSON.parse(JSON.stringify(reference)));
   console.log(same ? 'OK : aucun écart avec la référence.' : 'ÉCART avec tools/reference_aggregates.json');

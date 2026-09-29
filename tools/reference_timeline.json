@@ -1,0 +1,146 @@
+{
+  "note": "Référence indépendante (Python, statistics.median) des écarts à la médiane communale, en %. null = capteur absent. Tolérance de contrôle : 1 point.",
+  "dates": [
+    "nov2024",
+    "jan2025",
+    "may2025",
+    "nov2025",
+    "may2026",
+    "aug2026"
+  ],
+  "trend": [
+    100.0,
+    104.4,
+    143.4,
+    79.4,
+    128.6,
+    119.7
+  ],
+  "streets": [
+    {
+      "id": 9000007490,
+      "street": "Rue de Genval",
+      "values": [
+        0.0,
+        59.2,
+        16.4,
+        -24.5,
+        67.1,
+        33.3
+      ]
+    },
+    {
+      "id": 9000007492,
+      "street": "Chaussée de La Hulpe",
+      "values": [
+        0.0,
+        26.1,
+        7.5,
+        -2.3,
+        null,
+        null
+      ]
+    },
+    {
+      "id": 9000007497,
+      "street": "Avenue Franklin Roosevelt",
+      "values": [
+        0.0,
+        -5.1,
+        -3.9,
+        13.2,
+        0.0,
+        2.2
+      ]
+    },
+    {
+      "id": 9000007509,
+      "street": "Rue de l'Institut",
+      "values": [
+        0.0,
+        -7.8,
+        -5.9,
+        -3.6,
+        18.5,
+        10.6
+      ]
+    },
+    {
+      "id": 9000007512,
+      "street": "Rue de la Tasnière",
+      "values": [
+        0.0,
+        -25.1,
+        2.0,
+        0.7,
+        -15.5,
+        -26.6
+      ]
+    },
+    {
+      "id": 9000007523,
+      "street": "Rue Haute",
+      "values": [
+        0.0,
+        4.4,
+        -2.0,
+        15.9,
+        -9.4,
+        -14.7
+      ]
+    },
+    {
+      "id": 9000007530,
+      "street": "Place Communale",
+      "values": [
+        0.0,
+        -0.2,
+        133.7,
+        -0.7,
+        -15.0,
+        -26.2
+      ]
+    },
+    {
+      "id": 9000007533,
+      "street": "Avenue Albert 1er",
+      "values": [
+        0.0,
+        0.2,
+        -8.6,
+        12.9,
+        -4.0,
+        -8.5
+      ]
+    },
+    {
+      "id": 9000007534,
+      "street": "Avenue de Boulogne-Billancourt",
+      "values": [
+        0.0,
+        6.0,
+        42.6,
+        73.3,
+        171.5,
+        127.4
+      ]
+    },
+    {
+      "id": 9000007578,
+      "street": "Rue de la Gare",
+      "values": [
+        0.0,
+        -18.5,
+        -20.4,
+        -13.2,
+        41.0,
+        0.0
+      ]
+    }
+  ],
+  "suspect": {
+    "Place Communale": [
+      2
+    ]
+  }
+}

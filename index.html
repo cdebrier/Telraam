@@ -317,9 +317,49 @@ select, .fiche__controls button {
   .facts div { grid-template-columns: 180px 1fr; gap: 20px; }
 }
 
+/* ---------- Évolution dans le temps ---------- */
+.evolution { border-top: 1px solid var(--line); }
+.evolution .kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.evolution h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+.evo-ctl { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 4px 0 6px; }
+.evo-ctl button { min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); font: 600 14px 'Inter', system-ui, sans-serif; cursor: pointer; }
+.evo-ctl input[type=range] { flex: 1 1 240px; min-width: 200px; min-height: 44px; accent-color: var(--focus); }
+.evo-ticks { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin: 0 4px 10px; gap: 4px; }
+.evo-ticks span { flex: 1; text-align: center; } .evo-ticks .is-cur { color: var(--text); font-weight: 700; }
+.evo-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin: 6px 0; }
+.evo-head h3 { font-size: 22px; margin: 0; } .evo-head p { margin: 0; color: var(--muted); font-size: 13px; }
+.evo-works { margin: 0 0 10px; padding: 0; list-style: none; font-size: 13px; color: var(--muted); min-height: 20px; }
+.evo-works li { margin: 2px 0; } .evo-works li::before { content: ""; display: inline-block; width: 18px; height: 0; border-top: 2px dashed #F0A030; vertical-align: middle; margin-right: 8px; }
+.evo-works b { color: var(--text); font-weight: 600; }
+.evolution .map.evo-map { height: 560px; flex: none; }
+.evo-icon { background: none; border: 0; }
+.evo-mk { position: relative; width: 0; height: 0; }
+.evo-dot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; border: 2px solid #0B0F14; box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
+.evo-dot.is-suspect { border: 2px dashed #fff; }
+.evo-dot.is-off { background: transparent; border: 2px solid #78716C; box-shadow: none; }
+.evo-spark { position: absolute; display: flex; align-items: center; gap: 4px; padding: 2px 5px; border-radius: 6px; background: rgba(11,15,20,.82); border: 1px solid var(--line); white-space: nowrap; pointer-events: none; }
+.evo-spark svg { display: block; } .evo-spark b { font: 700 12px/1 'Inter', sans-serif; color: #fff; min-width: 34px; }
+.pos-r .evo-spark { left: 14px; top: -16px; } .pos-l .evo-spark { right: 14px; top: -16px; flex-direction: row-reverse; }
+.evo-icon.sel { z-index: 1000 !important; } .evo-icon.sel .evo-dot { box-shadow: 0 0 0 3px var(--focus); }
+.evo-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; margin: 10px 0 4px; font-size: 12px; color: var(--muted); }
+.evo-legend .ramp { display: inline-block; width: 140px; height: 10px; border-radius: 5px; background: linear-gradient(90deg, rgb(59,130,246), rgb(203,213,225), rgb(249,115,22)); vertical-align: middle; margin: 0 6px; }
+.evo-legend .ring { display: inline-block; width: 12px; height: 12px; border-radius: 50%; border: 2px dashed #fff; vertical-align: middle; margin-right: 6px; }
+.evo-hint { display: none; color: var(--muted); font-size: 13px; margin: 6px 0 0; }
+.evo-note { color: var(--muted); font-size: 13px; margin: 8px 0; }
+.evo-table { margin-top: 14px; } .evo-table summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+.evo-table table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+.evo-table th, .evo-table td { padding: 6px 8px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.evo-table th:first-child, .evo-table td:first-child { text-align: left; white-space: normal; }
+.evo-table .is-cur { background: var(--panel-2); }
+.evo-table .scroll { overflow-x: auto; }
+@media (max-width: 719px) {
+  .evolution .map.evo-map { height: 440px; }
+  .evo-spark { display: none; } .evo-icon.sel .evo-spark { display: flex; } .evo-hint { display: block; }
+}
+
 /* ---------- Impression : seule la fiche, en clair ---------- */
 @media print {
-  .bar, .stage, .story, .foot, .nojs, .skip, .fiche__controls, .methode, .chantiers, .fiche .kicker, .fiche .lead, .fiche h2 { display: none !important; }
+  .bar, .stage, .story, .foot, .nojs, .skip, .fiche__controls, .methode, .chantiers, .evolution, .fiche .kicker, .fiche .lead, .fiche h2 { display: none !important; }
   html, body { background: #fff !important; color: #000 !important; }
   .wrap { padding: 0; max-width: none; }
   .fiche { border: 0; }
@@ -452,7 +492,7 @@ select, .fiche__controls button {
   <div class="wrap">
     <p class="kicker">Chantiers</p>
     <h2 id="chantiers-h">Chantiers à garder en tête</h2>
-    <p class="lead">Parmi les dix chantiers du registre communal, un seul coïncide avec un écart net et durable. Les autres rapprochements sont fragiles : mesures isolées, calendrier décalé ou écart proche de la tendance communale. Il s'agit d'une coïncidence dans le temps, pas d'une preuve de cause.</p>
+    <p class="lead">Parmi les dix chantiers du registre communal, un seul coïncide avec un écart net et durable. Les autres rapprochements sont fragiles : mesures isolées, calendrier décalé ou écart proche de la tendance communale. Il s'agit d'une coïncidence dans le temps, pas d'une preuve de cause. <a href="#evolution">Voir l'évolution date par date sur la carte.</a></p>
     <h3>Effet plausible</h3>
     <dl class="facts">
       <div><dt>Av. de Boulogne-Billancourt <b>+71 %</b></dt><dd>Mai 2025 → mai 2026. Axe central de la déviation officielle de l'Avenue Royale, fermée depuis le 16 février 2026. La hausse était déjà engagée avant : par rapport à la tendance communale, +43 % en mai 2025 et +73 % en nov. 2025, puis +172 % en mai 2026. La fermeture accentue une hausse existante, elle ne la crée pas.</dd></div>
@@ -468,6 +508,28 @@ select, .fiche__controls button {
       <div><dt>Rue de l'Institut <b>+13 %</b></dt><dd>Déviation de la rue de Rosières terminée en juin 2025 : lien faible avec la hausse de mai 2026.</dd></div>
     </dl>
     <p class="lead">Sans effet net attribuable : rue Haute, avenue Roosevelt (variations proches de la tendance communale) et les chantiers du Vallon, des Papeteries et de Cardinal Mercier. Détail : <a href="data/rixensart_travaux.json">registre des chantiers</a>.</p>
+  </div>
+</section>
+
+<section class="evolution" id="evolution" aria-labelledby="evolution-h">
+  <div class="wrap">
+    <p class="kicker">Évolution</p>
+    <h2 id="evolution-h">Rue par rue, date par date</h2>
+    <p class="lead">Chaque point compare une rue à l'évolution du reste de la commune. Bleu : elle baisse plus que les autres. Orange : elle monte plus que les autres. Gris : comme la commune. Cela neutralise la saison, mais ne prouve pas de cause.</p>
+    <div class="evo-head"><h3 id="evo-date" aria-live="polite">Mai 2026</h3><p id="evo-trend"></p></div>
+    <div class="evo-ctl">
+      <button type="button" id="evo-prev" aria-label="Date précédente">◀</button>
+      <button type="button" id="evo-play">Lecture</button>
+      <button type="button" id="evo-next" aria-label="Date suivante">▶</button>
+      <input type="range" id="evo-range" min="0" max="5" step="1" value="4" aria-label="Date de mesure">
+    </div>
+    <div class="evo-ticks" id="evo-ticks" aria-hidden="true"></div>
+    <ul class="evo-works" id="evo-works" aria-label="Chantiers actifs à cette date"></ul>
+    <div class="map evo-map" id="evo-map" role="application" aria-label="Carte de l'écart de chaque rue à la tendance communale"></div>
+    <div class="evo-legend"><span>−50 %<i class="ramp"></i>+50 % ou plus</span><span>0 = comme la commune</span><span><i class="ring"></i>mesure isolée à prendre avec prudence</span></div>
+    <p class="evo-hint">Touchez un point pour voir sa courbe.</p>
+    <p class="evo-note">Référence : nov. 2024 (indice 100 pour chaque rue). La tendance communale est la médiane des rues mesurées à chaque date. Un capteur arrêté n'est pas compté comme une baisse. Le trait orange en pointillé marque un chantier actif ayant un capteur associé.</p>
+    <details class="evo-table" id="evo-table"><summary>Voir toutes les valeurs</summary><div class="scroll" id="evo-table-body"></div></details>
   </div>
 </section>
 
@@ -842,6 +904,17 @@ scenes.journee = {
   },
 };
 
+// Fond gris sombre Esri (gratuit, sans clé) + couche de noms de lieux ; zoom maximal 16
+function addBaseLayers(map) {
+  const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+  L.tileLayer(esri + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Fond : Esri, HERE, Garmin, © contributeurs OpenStreetMap', maxZoom: 16,
+  }).addTo(map);
+  map.createPane('labels');                       // noms de lieux au-dessus du fond, sans le filtre d'assombrissement
+  map.getPane('labels').style.zIndex = 250; map.getPane('labels').style.pointerEvents = 'none';
+  L.tileLayer(esri + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { pane: 'labels', maxZoom: 16 }).addTo(map);
+}
+
 // Scène 2 : carte des V85 (Leaflet, fond sombre)
 scenes.vitesse = {
   note: D => `V85 nov. 2024, heures de jour · ${D.speed.measured.length} capteurs avec mesure · incertitude ±10 %`,
@@ -863,14 +936,7 @@ scenes.vitesse = {
     const map = L.map(body.querySelector('.map'), {
       scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, attributionControl: true, maxZoom: 16,
     });
-    // Fond gris sombre Esri (gratuit, sans clé) + couche de noms de lieux ; zoom maximal 16
-    const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
-    L.tileLayer(esri + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Fond : Esri, HERE, Garmin, © contributeurs OpenStreetMap', maxZoom: 16,
-    }).addTo(map);
-    map.createPane('labels');                       // noms de lieux au-dessus du fond, sans le filtre d'assombrissement
-    map.getPane('labels').style.zIndex = 250; map.getPane('labels').style.pointerEvents = 'none';
-    L.tileLayer(esri + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { pane: 'labels', maxZoom: 16 }).addTo(map);
+    addBaseLayers(map);
     const pts = [];
     D.streets.forEach(s => {
       const label = s.v85 ? fmt0(s.v85) : '';
@@ -1014,7 +1080,7 @@ function caseHtml(D, key) {
   const n = s.raw.nov2024, sp = D.springById[s.id];
   const tag = key === 'chantier' ? 'Cas chantier' : `Indice de vigilance n°${key.slice(1)} · ${fmt0(s.vigilance)}`;
   const t = (s.raw.associated_travaux || [])[0];
-  const evo = sp ? `<p class="case__ctx">Mai 2025 → mai 2026 : ${fmtDelta(sp.pct_total)} % de passages${sp.pct_bikes != null ? `, vélos ${fmtDelta(sp.pct_bikes)} %` : ''}.</p>` : '';
+  const evo = sp ? `<p class="case__ctx">Mai 2025 → mai 2026 : ${fmtDelta(sp.pct_total)} % de passages${sp.pct_bikes != null ? `, vélos ${fmtDelta(sp.pct_bikes)} %` : ''}.${Math.abs(sp.pct_total) >= 50 ? ' Le mois de départ peut être atypique : <a href="#evolution">voir l\'écart à la tendance communale</a>.' : ''}</p>` : '';
   return `<article class="case" data-case="${key}">
     <div class="case__tag">${tag}</div>
     <h3 class="case__name">${esc(s.street)}</h3>
@@ -1250,6 +1316,154 @@ function initStory() {
     if ('IntersectionObserver' in window) steps.forEach(s => io.observe(s));
   }
 }
+
+/* ---------- 5. Évolution dans le temps : écart de chaque rue à la tendance communale ---------- */
+// <timeline>
+function buildTimeline(H) {
+  const dates = H.periods, keys = dates.map(p => p.key);
+  const median = a => { const b = [...a].sort((x, y) => x - y), m = b.length >> 1; return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2; };
+  // Indice de chaque rue : total du mois / total de la première date (nov. 2024). Capteur absent ou arrêté : null.
+  const idx = H.sensors_history.map(s => {
+    const base = (s.periods[keys[0]] || {}).total;
+    return keys.map(k => { const t = (s.periods[k] || {}).total; return t && base ? t / base : null; });
+  });
+  // Tendance communale = médiane des indices des rues mesurées à cette date (neutralise la saison)
+  const trend = keys.map((_, j) => { const v = idx.map(r => r[j]).filter(x => x != null); return v.length ? median(v) : null; });
+  const streets = H.sensors_history.map((s, i) => {
+    const values = idx[i].map((v, j) => (v == null || !trend[j] ? null : (v / trend[j] - 1) * 100));
+    // Mesure isolée : plus de +100 % à une date alors que les dates voisines ne dépassent pas +100 %
+    const suspect = values.map((v, j) => v != null && v > 100 && [values[j - 1], values[j + 1]].every(n => n == null || n <= 100));
+    return { id: s.id, street: s.street, values, suspect };
+  });
+  return { dates, trend: trend.map(t => (t == null ? null : t * 100)), streets };
+}
+// </timeline>
+
+const EVO_SPARK = { lo: -50, hi: 100 };            // échelle verticale commune aux sparklines
+const EVO_POS = { 'Avenue Franklin Roosevelt': 'l', 'Rue de la Tasnière': 'l' }; // côté de la sparkline
+const evoFmt = v => (v == null ? 'arrêté' : (v > 0 ? '+' : v < 0 ? '−' : '') + Math.round(Math.abs(v)) + ' %');
+// Bleu (baisse) -> gris (comme la commune) -> orange (hausse), borné à ±50 %
+function evoColor(v) {
+  const t = Math.max(-1, Math.min(1, v / 50)), k = Math.abs(t);
+  const to = t < 0 ? [59, 130, 246] : [249, 115, 22], mid = [203, 213, 225];
+  return `rgb(${mid.map((c, i) => Math.round(c + (to[i] - c) * k)).join(',')})`;
+}
+// Sparkline SVG tracée jusqu'à la date upTo ; les dates suivantes restent de simples repères gris
+function sparkSvg(values, upTo, suspect = []) {
+  const W = 64, H = 26, px = j => 3 + j * (W - 6) / (values.length - 1);
+  const py = v => H - 2 - (Math.max(EVO_SPARK.lo, Math.min(EVO_SPARK.hi, v)) - EVO_SPARK.lo) / (EVO_SPARK.hi - EVO_SPARK.lo) * (H - 4);
+  const zero = py(0).toFixed(1);
+  let d = '', pen = false;
+  values.forEach((v, j) => {
+    if (j > upTo) return;
+    if (v == null) { pen = false; return; }
+    d += (pen ? 'L' : 'M') + px(j).toFixed(1) + ' ' + py(v).toFixed(1); pen = true;
+  });
+  const future = values.map((_, j) => j > upTo ? `<circle cx="${px(j).toFixed(1)}" cy="${zero}" r="1.4" fill="#4a5666"/>` : '').join('');
+  const past = values.map((v, j) => j < upTo && v != null && suspect[j]
+    ? `<circle cx="${px(j).toFixed(1)}" cy="${py(v).toFixed(1)}" r="2.2" fill="none" stroke="#fff" stroke-width="1"/>` : '').join('');
+  const cur = values[upTo] != null
+    ? `<circle cx="${px(upTo).toFixed(1)}" cy="${py(values[upTo]).toFixed(1)}" r="3.2" fill="${evoColor(values[upTo])}" stroke="#0B0F14" stroke-width="1.2"/>` : '';
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${zero}" y2="${zero}" stroke="#52606f" stroke-width="1" stroke-dasharray="2 2"/>`
+    + `<path d="${d}" fill="none" stroke="#E7ECF2" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>${future}${past}${cur}</svg>`;
+}
+
+function initEvolution() {
+  const root = document.getElementById('evolution'), H = window.TELRAAM_HISTORY, raw = window.TELRAAM_RIXENSART;
+  if (!root || !H || !Array.isArray(H.sensors_history) || !Array.isArray(raw)) { if (root) root.hidden = true; return; }
+  const T = buildTimeline(H), n = T.dates.length;
+  const $ = id => document.getElementById(id);
+  const range = $('evo-range'), playBtn = $('evo-play');
+  const label = p => new Date(p.start).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
+  const longLabel = p => { const t = new Date(p.start).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }); return t[0].toUpperCase() + t.slice(1); };
+  const day = s => new Date(s).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+  const works = (window.TELRAAM_TRAVAUX || []).filter(c => (c.impacted_sensors || []).length && (c.detour_polyline || c.work_zone_polyline));
+  const active = j => works.filter(c => c.period.start <= T.dates[j].end && c.period.end >= T.dates[j].start);
+  range.max = n - 1;
+  let cur = Math.min(4, n - 1), timer = null;
+
+  $('evo-ticks').innerHTML = T.dates.map(p => `<span>${label(p)}</span>`).join('');
+  // Tableau de toutes les valeurs (aussi le repli quand la carte n'est pas disponible)
+  $('evo-table-body').innerHTML = `<table><caption class="sr-only">Écart à la tendance communale, par rue et par date (nov. 2024 = 0)</caption><thead><tr><th scope="col">Rue</th>${
+    T.dates.map((p, j) => `<th scope="col" data-j="${j}">${label(p)}</th>`).join('')}</tr></thead><tbody>${
+    T.streets.map(st => `<tr><th scope="row">${esc(st.street)}</th>${st.values.map((v, j) =>
+      `<td data-j="${j}">${v == null ? '–' : evoFmt(v) + (st.suspect[j] ? ' *' : '')}</td>`).join('')}</tr>`).join('')
+  }</tbody></table><p class="evo-note">* mesure isolée à prendre avec prudence. – : capteur arrêté.</p>`;
+
+  const hasMap = typeof L !== 'undefined';
+  let markers = [], layer = null, map = null;
+  if (hasMap) {
+    map = L.map($('evo-map'), { scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, maxZoom: 16 });
+    addBaseLayers(map);
+    layer = L.layerGroup().addTo(map);
+    const pts = [];
+    T.streets.forEach(st => {
+      const r = raw.find(x => x.id === st.id);
+      if (!r || r.lat == null) return;
+      const pos = EVO_POS[st.street] || 'r';
+      const icon = L.divIcon({ className: 'evo-icon', iconSize: [0, 0], html: '<div class="evo-mk pos-' + pos + '"></div>' });
+      const m = L.marker([r.lat, r.lon], { icon, title: st.street, alt: st.street, keyboard: true }).addTo(map);
+      m.bindPopup(() => {
+        const v = st.values[cur], w = T.dates[cur];
+        return `<strong>${esc(st.street)}</strong><br>${esc(longLabel(w))} : ` + (v == null ? 'capteur arrêté.'
+          : `<strong>${evoFmt(v)}</strong> par rapport à la tendance communale.` + (st.suspect[cur] ? '<br><em>Mesure isolée, à prendre avec prudence.</em>' : ''));
+      });
+      m.on('popupopen', () => markers.forEach(o => o.el().classList.toggle('sel', o.m === m)));
+      m.on('popupclose', () => markers.forEach(o => o.el().classList.remove('sel')));
+      markers.push({ m, st, pos, el: () => m.getElement() });
+      pts.push([r.lat, r.lon]);
+    });
+    map.fitBounds(L.latLngBounds(pts), isDesktop() ? { paddingTopLeft: [70, 50], paddingBottomRight: [120, 50] } : { padding: [30, 30] });
+  } else {
+    $('evo-map').hidden = true; $('evo-table').open = true;
+    root.querySelector('.evo-legend').hidden = true;
+  }
+
+  function render() {
+    const w = T.dates[cur];
+    $('evo-date').textContent = longLabel(w) + ' · ' + (w.season || '').toLowerCase();
+    $('evo-trend').textContent = `Tendance communale : indice ${Math.round(T.trend[cur])} (nov. 2024 = 100)`;
+    range.value = cur; range.setAttribute('aria-valuetext', longLabel(w));
+    [...$('evo-ticks').children].forEach((s, j) => s.classList.toggle('is-cur', j === cur));
+    root.querySelectorAll('.evo-table [data-j]').forEach(c => c.classList.toggle('is-cur', +c.dataset.j === cur));
+    const act = active(cur);
+    $('evo-works').innerHTML = act.length
+      ? act.map(c => `<li><b>${esc(c.title)}</b> · ${esc(day(c.period.start))} – ${esc(day(c.period.end))}</li>`).join('')
+      : '<li>Aucun chantier du registre actif à cette date.</li>';
+    if (!hasMap) return;
+    markers.forEach(({ m, st, pos, el }) => {
+      const e = el(), v = st.values[cur];
+      if (!e) return;
+      e.firstChild.innerHTML = `<span class="evo-dot${v == null ? ' is-off' : st.suspect[cur] ? ' is-suspect' : ''}"${v == null ? '' : ` style="background:${evoColor(v)}"`}></span>`
+        + `<span class="evo-spark">${sparkSvg(st.values, cur, st.suspect)}<b>${evoFmt(v)}</b></span>`;
+      e.setAttribute('aria-label', v == null ? `${st.street} : capteur arrêté` : `${st.street}, ${longLabel(w)} : ${evoFmt(v)} par rapport à la tendance communale`);
+    });
+    layer.clearLayers();
+    act.forEach(c => L.polyline(c.detour_polyline || c.work_zone_polyline, { color: '#F0A030', weight: 2.5, opacity: .8, dashArray: '6 5', interactive: false }).addTo(layer));
+  }
+  const go = j => { cur = Math.max(0, Math.min(n - 1, j)); render(); };
+  const stop = () => { clearInterval(timer); timer = null; playBtn.textContent = 'Lecture'; };
+  $('evo-prev').addEventListener('click', () => { stop(); go(cur - 1); });
+  $('evo-next').addEventListener('click', () => { stop(); go(cur + 1); });
+  range.addEventListener('input', () => { stop(); go(+range.value); });
+  if (reduceMotion) playBtn.hidden = true;
+  playBtn.addEventListener('click', () => {
+    if (timer) { stop(); return; }
+    if (cur >= n - 1) go(0);
+    playBtn.textContent = 'Pause';
+    timer = setInterval(() => { if (cur >= n - 1) { stop(); return; } go(cur + 1); }, 1800);
+  });
+  if (hasMap) {
+    // L'affichage de la carte est différé tant que la section est loin de l'écran
+    const show = () => { map.invalidateSize(); render(); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); show(); } }, { rootMargin: '300px 0px' });
+      io.observe(root);
+    } else show();
+  }
+  render();
+}
+document.addEventListener('DOMContentLoaded', () => { try { initEvolution(); } catch (e) { console.error('Évolution', e); } });
 
 document.addEventListener('DOMContentLoaded', initStory);
 </script>
