@@ -42,6 +42,7 @@ Ce document détaille :
 ├── tools/
 │   ├── check_aggregates.mjs             # Recoupe les chiffres avec la référence (node tools/check_aggregates.mjs --check)
 │   └── reference_aggregates.json        # Chiffres de référence (V85, statuts, comparaisons saisonnières)
+├── generate_dashboard.py                # Consolide les données brutes en data/rixensart_data.js, rixensart_summary.json et l'historique
 ├── extract_data.py                      # Extraction des métadonnées et segments via l'API Telraam
 ├── extract_history.py                   # Extraction des séries temporelles historiques
 └── analyze.py                           # Traitement statistique et calcul des indicateurs de synthèse
