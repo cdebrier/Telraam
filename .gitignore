@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Chrome / Browser testing artifacts
+.chrome_user_data/
+.chrome_user_data_test/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.venv
+env/
+venv/
+
+# Backup & scratch test files
+*.bak
+*.bak.*
+debug_overflow.html
+temp_inspect.html
+index_test.html
+index.html.v2-backup.html

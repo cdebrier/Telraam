@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth bg-stone-100 text-stone-900 antialiased selection:bg-amber-200 selection:text-stone-900">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Rixensart : La promesse d'une commune apaisée à l'épreuve de la vitesse | Enquête Data Journalisme</title>
+    
+    <!-- Polices éditoriales : Newsreader (Titres presse & citations) et Inter (Chiffres & interfaces) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        editorial: ['Newsreader', 'Georgia', 'serif'],
+                    },
+                    colors: {
+                        paper: {
+                            50: '#FBFBFA',
+                            100: '#F5F5F3',
+                            200: '#E7E5E0',
+                        },
+                        journal: {
+                            black: '#1C1917',
+                            gray: '#57534E',
+                            light: '#A8A29E',
+                            accent: '#854D0E',
+                        },
+                        semantic: {
+                            green: '#2E7D5B',
+                            amber: '#D97706',
+                            red: '#C0392B',
+                            blue: '#1E3A8A'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome (Icônes épurées) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet CSS & JS (Cartographie épurée) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Chart.js (Graphiques vectoriels directs) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Données officielles Telraam Rixensart -->
+    <script src="data/rixensart_data.js"></script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #F7F6F2; color: #1C1917; }
+        .font-serif { font-family: 'Newsreader', Georgia, serif; }
+        
+        /* Styles d'impression pour la fiche d'action */
+        @media print {
+            header, nav, #tableau-1, #tableau-2, #tableau-3, footer, .no-print {
+                display: none !important;
+            }
+            #diagnostic-action-card {
+                box-shadow: none !important;
+                border: 1px solid #1c1917 !important;
+                margin: 0 !important;
+                padding: 1.5rem !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            body { background: white !important; color: black !important; font-size: 12pt; }
+        }
+
+        .leaflet-container { font-family: inherit; }
+        .tab-btn.active {
+            border-bottom: 2px solid #1C1917;
+            font-weight: 600;
+            color: #1C1917;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#F7F6F2] text-stone-900">
+
+    <!-- En-tête de Grand Quotidien d'Information -->
+    <header class="border-b border-stone-300 bg-[#FBFBFA] pt-8 pb-6 px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Surtitre institutionnel & date -->
+            <div class="flex flex-wrap items-center justify-between border-b border-stone-200 pb-3 mb-6 text-xs uppercase tracking-widest text-stone-500 font-medium">
+                <span>Observatoire Citoyen de la Mobilité • Rixensart</span>
+                <span>Enquête exclusive • Données 2024–2026</span>
+            </div>
+            
+            <!-- Grand Titre Presse -->
+            <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight text-stone-950 mb-4">
+                La promesse d'une commune apaisée à l'épreuve de la vitesse réelle
+            </h1>
+            
+            <!-- Chapeau journalistique -->
+            <p class="font-serif text-lg sm:text-xl text-stone-700 leading-relaxed italic max-w-3xl mb-6">
+                Alors que les habitants de Rixensart se tournent massivement vers le vélo dès les premiers rayons du soleil, le pacte de sécurité de la Zone 30 vacille sous la pression du trafic de transit. Décryptage à travers 27 millions de détections citoyennes.
+            </p>
+            
+            <!-- Signature & repères méthodologiques -->
+            <div class="flex flex-wrap items-center justify-between gap-y-2 gap-x-6 text-xs text-stone-600 pt-2 border-t border-stone-200">
+                <div class="flex flex-wrap items-center gap-y-2 gap-x-6">
+                    <span class="font-medium text-stone-900"><i class="fa-solid fa-satellite-dish text-stone-400 mr-1.5"></i>13 capteurs citoyens Telraam S2</span>
+                    <span><i class="fa-solid fa-car text-stone-400 mr-1.5"></i>27,2 millions de passages analysés</span>
+                    <span><i class="fa-solid fa-shield-halved text-stone-400 mr-1.5"></i>Mesures continues 24h/24 sur 2 ans</span>
+                </div>
+                <a href="docs/METHODOLOGIE.md" target="_blank" class="text-stone-800 hover:text-stone-950 font-semibold underline flex items-center gap-1.5">
+                    <i class="fa-solid fa-book-open text-stone-500"></i>
+                    <span>Méthodologie (.md)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation fluide d'enquête -->
+    <nav class="sticky top-0 z-30 bg-[#FBFBFA]/95 backdrop-blur-md border-b border-stone-200 px-4 py-2.5 text-xs sm:text-sm font-medium">
+        <div class="max-w-4xl mx-auto flex items-center justify-between overflow-x-auto gap-4 no-scrollbar">
+            <div class="flex items-center gap-6 whitespace-nowrap">
+                <a href="#tableau-1" class="text-stone-700 hover:text-stone-950 transition-colors">1. Le pacte de la Zone 30</a>
+                <a href="#tableau-2" class="text-stone-700 hover:text-stone-950 transition-colors">2. L'essor du vélo</a>
+                <a href="#tableau-3" class="text-stone-700 hover:text-stone-950 transition-colors">3. La zone de danger</a>
+                <a href="#tableau-4" class="text-stone-900 font-semibold hover:text-amber-800 transition-colors">4. Diagnostic de ma rue</a>
+            </div>
+            <a href="#tableau-4" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 bg-stone-900 text-stone-100 rounded-full text-xs hover:bg-stone-800 transition">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Vérifier ma rue</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Corps du Récit Journalistique -->
+    <main class="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-8 py-10 space-y-16">
+
+        <!-- ========================================================== -->
+        <!-- TABLEAU 1 : Le Pacte de la Zone 30                        -->
+        <!-- ========================================================== -->
+        <section id="tableau-1" class="scroll-mt-16 border-b border-stone-300 pb-14">
+            <div class="mb-6">
+                <span class="text-xs uppercase tracking-widest font-semibold text-amber-800">Chapitre 1</span>
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-950 mt-1 mb-3">
+                    Zone 30 : illusion ou réalité dans nos rues ?
+                </h2>
+                <p class="text-stone-700 leading-relaxed max-w-3xl">
+                    Afficher un panneau de limitation est une chose, faire ralentir les véhicules en est une autre. Pour mesurer la vitesse réelle sans biais statistique, les ingénieurs et la police s'appuient sur le <strong>V85</strong> : la vitesse sous laquelle roulent 85 % des conducteurs. Autrement dit, la vitesse représentative adoptée par le flot de circulation.
+                </p>
+            </div>
+
+            <!-- Carte + Barres comparatives -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 my-8 items-start">
+                
+                <!-- Carte communale simplifiée -->
+                <div class="lg:col-span-6 bg-[#FBFBFA] border border-stone-300 rounded-lg p-4 shadow-sm">
+                    <div class="flex items-center justify-between mb-3 border-b border-stone-200 pb-2">
+                        <h3 class="font-serif text-lg font-bold text-stone-900">Carte des vitesses réelles constatées</h3>
+                        <span class="text-xs text-stone-500">Rixensart & Genval</span>
+                    </div>
+                    <div id="vitesse-map" class="h-80 sm:h-96 w-full rounded border border-stone-200"></div>
+                    <div class="flex flex-wrap items-center justify-between gap-2 mt-3 text-xs text-stone-600">
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#2E7D5B]"></span> Apaisé (&lt; 30 km/h)</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#D97706]"></span> Zone 30-40 km/h</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-[#C0392B]"></span> Excès critique (&gt; 40 km/h)</span>
+                    </div>
+                </div>
+
+                <!-- Classement direct en barres (V85 vs Limite 30) -->
+                <div class="lg:col-span-6 bg-[#FBFBFA] border border-stone-300 rounded-lg p-5 shadow-sm">
+                    <div class="flex items-center justify-between mb-2 border-b border-stone-200 pb-2">
+                        <h3 class="font-serif text-lg font-bold text-stone-900">Le thermomètre des voiries</h3>
+                        <span class="text-xs font-semibold text-red-700"><i class="fa-solid fa-arrows-left-right mr-1"></i>Repère 30 km/h</span>
+                    </div>
+                    <p class="text-xs text-stone-500 mb-4">Vitesse V85 constatée. Les barres dépassant la ligne rouge traduisent une vitesse supérieure à la norme d'apaisement.</p>
+
+                    <div id="speed-bars-container" class="space-y-3 max-h-[380px] overflow-y-auto pr-1">
+                        <!-- Généré dynamiquement en JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Synthèse du chapitre 1 -->
+            <div class="bg-amber-50/70 border-l-4 border-amber-600 p-4 rounded-r text-stone-800 text-sm leading-relaxed">
+                <p>
+                    <strong>Le constat chiffré :</strong> Sur les axes limités à 30 km/h, le respect est très inégal. Alors que la <strong>Place Communale</strong> s'est stabilisée à 21 km/h dans sa zone de rencontre, la <strong>Rue de la Gare</strong> affiche un V85 à <strong>44,5 km/h</strong> (+14,5 km/h au-dessus de la limitation légale). Sur les axes à 50 km/h, l'<strong>Avenue Albert 1er</strong> enregistre des pointes de V85 à <strong>62 km/h</strong>.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- ========================================================== -->
+        <!-- TABLEAU 2 : Le Partage de la Chaussée                     -->
+        <!-- ========================================================== -->
+        <section id="tableau-2" class="scroll-mt-16 border-b border-stone-300 pb-14">
+            <div class="mb-6">
+                <span class="text-xs uppercase tracking-widest font-semibold text-emerald-800">Chapitre 2</span>
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-950 mt-1 mb-3">
+                    Qui a droit de cité ? Le bond spectaculaire du vélo
+                </h2>
+                <p class="text-stone-700 leading-relaxed max-w-3xl">
+                    À quoi ressemble le trafic moyen d'une rue rixensartoise au quotidien ? Si la voiture individuelle reste ultradominante, l'analyse sur 24 mois met en évidence une transformation majeure : la population est prête à adopter le vélo dès que la météo le permet.
+                </p>
+            </div>
+
+            <!-- Proportions concrètes sur 100 usagers & Saisons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-8">
+                
+                <!-- La répartition moyenne sur 100 usagers -->
+                <div class="bg-[#FBFBFA] border border-stone-300 rounded-lg p-5 shadow-sm">
+                    <h3 class="font-serif text-lg font-bold text-stone-900 mb-1">Sur 100 personnes qui passent dans nos rues</h3>
+                    <p class="text-xs text-stone-500 mb-4">Répartition modale moyenne annuelle tous capteurs confondus.</p>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-car text-stone-600"></i> Voitures & camionnettes</span>
+                                <span>85 % (la part du lion)</span>
+                            </div>
+                            <div class="w-full bg-stone-200 h-3 rounded-full overflow-hidden">
+                                <div class="bg-stone-700 h-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-person-walking text-amber-700"></i> Piétons</span>
+                                <span>8 %</span>
+                            </div>
+                            <div class="w-full bg-stone-200 h-3 rounded-full overflow-hidden">
+                                <div class="bg-amber-600 h-full" style="width: 8%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-bicycle text-emerald-700"></i> Vélos & trottinettes</span>
+                                <span class="text-emerald-700 font-bold">5 % (en plein essor)</span>
+                            </div>
+                            <div class="w-full bg-stone-200 h-3 rounded-full overflow-hidden">
+                                <div class="bg-[#2E7D5B] h-full" style="width: 5%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-1">
+                                <span class="flex items-center gap-1.5"><i class="fa-solid fa-truck text-stone-500"></i> Poids lourds & bus</span>
+                                <span>2 %</span>
+                            </div>
+                            <div class="w-full bg-stone-200 h-3 rounded-full overflow-hidden">
+                                <div class="bg-stone-400 h-full" style="width: 2%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-stone-200 text-xs text-stone-600">
+                        <i class="fa-solid fa-trophy text-amber-600 mr-1"></i> <strong>Le champion du vélo :</strong> La <strong>Rue du Tilleul</strong> atteint un record de <strong>11,4 % de vélos</strong> et <strong>10,9 % de piétons</strong>, soit plus de 22 % de mobilités actives.
+                    </div>
+                </div>
+
+                <!-- Le choc saisonnier : Hiver vs Printemps -->
+                <div class="bg-[#FBFBFA] border border-stone-300 rounded-lg p-5 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-serif text-lg font-bold text-stone-900 mb-1">La métamorphose printanière</h3>
+                        <p class="text-xs text-stone-500 mb-4">Comparatif des passages mensuels de cyclistes à Rixensart.</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 my-6 text-center">
+                            <div class="p-4 bg-stone-100 rounded border border-stone-200">
+                                <span class="text-xs uppercase text-stone-500 font-medium block">Janvier (Hiver)</span>
+                                <span class="text-2xl sm:text-3xl font-serif font-bold text-stone-700 block mt-1">20 574</span>
+                                <span class="text-xs text-stone-500">vélos / mois</span>
+                            </div>
+                            <div class="p-4 bg-emerald-50 rounded border border-emerald-200">
+                                <span class="text-xs uppercase text-emerald-800 font-semibold block">Mai (Printemps)</span>
+                                <span class="text-2xl sm:text-3xl font-serif font-bold text-emerald-700 block mt-1">60 501</span>
+                                <span class="text-xs font-bold text-emerald-800">+194 % d'augmentation</span>
+                            </div>
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                            Le volume de vélos est <strong>triplé</strong> dès le retour des beaux jours. Cette pulsation prouve que l'appétence pour le vélo est là, mais reste freinée une partie de l'année par le manque d'aménagements sécurisés et abrités.
+                        </p>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-stone-200 text-xs text-stone-500">
+                        Source : Mesures comparatives globales Telraam S2 (Janvier vs Mai).
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ========================================================== -->
+        <!-- TABLEAU 3 : La Zone de Danger (Croisement Vitesse x Vélos) -->
+        <!-- ========================================================== -->
+        <section id="tableau-3" class="scroll-mt-16 border-b border-stone-300 pb-14">
+            <div class="mb-6">
+                <span class="text-xs uppercase tracking-widest font-semibold text-red-800">Chapitre 3</span>
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-950 mt-1 mb-3">
+                    Le croisement critique : où se situent les véritables points noirs ?
+                </h2>
+                <p class="text-stone-700 leading-relaxed max-w-3xl">
+                    Une rue où les voitures roulent à 50 km/h n'est pas nécessairement dangereuse si les flux sont séparés. Le risque critique apparaît lorsque deux facteurs se conjuguent : <strong>une vitesse automobile excessive</strong> et <strong>une présence significative de piétons ou cyclistes sur la chaussée</strong>.
+                </p>
+            </div>
+
+            <!-- Les 3 Points Noirs Prioritaires -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
+                
+                <!-- Point noir 1 : Rue de la Gare -->
+                <div class="bg-[#FBFBFA] border-t-4 border-t-red-600 border border-stone-300 rounded-b-lg p-5 shadow-sm">
+                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2">
+                        <span class="font-semibold text-red-700 uppercase">Priorité n°1</span>
+                        <span>Zone 30 officielle</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Rue de la Gare</h3>
+                    <div class="space-y-2 text-xs text-stone-700 mb-4">
+                        <div class="flex justify-between border-b border-stone-100 pb-1">
+                            <span>Vitesse V85 réelle :</span>
+                            <span class="font-bold text-red-700">44,5 km/h (+14,5)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-stone-100 pb-1">
+                            <span>Part mobilités actives :</span>
+                            <span class="font-bold text-emerald-800">17,1 %</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Trafic vélos quotidien :</span>
+                            <span class="font-bold text-stone-900">154 cyclistes / jour</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        Axe stratégique d'accès au RER où se croisent navetteurs à vélo, écoliers à pied et flux de transit pressé. L'écart à la Zone 30 y est le plus préoccupant.
+                    </p>
+                </div>
+
+                <!-- Point noir 2 : Rue du Tilleul -->
+                <div class="bg-[#FBFBFA] border-t-4 border-t-amber-600 border border-stone-300 rounded-b-lg p-5 shadow-sm">
+                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2">
+                        <span class="font-semibold text-amber-700 uppercase">Priorité n°2</span>
+                        <span>Zone 30 résidentielle</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Rue du Tilleul</h3>
+                    <div class="space-y-2 text-xs text-stone-700 mb-4">
+                        <div class="flex justify-between border-b border-stone-100 pb-1">
+                            <span>Vitesse V85 réelle :</span>
+                            <span class="font-bold text-amber-700">37,2 km/h (+7,2)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-stone-100 pb-1">
+                            <span>Part mobilités actives :</span>
+                            <span class="font-bold text-emerald-800">22,3 % (Record)</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Fréquentation vélo :</span>
+                            <span class="font-bold text-stone-900">11,4 %</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        Un cycliste sur neuf usagers. C'est l'artère la plus cyclable de la commune, mais la vitesse automobile y dépasse encore systématiquement les 30 km/h.
+                    </p>
+                </div>
+
+                <!-- Point noir 3 : Boulogne-Billancourt -->
+                <div class="bg-[#FBFBFA] border-t-4 border-t-red-600 border border-stone-300 rounded-b-lg p-5 shadow-sm">
+                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2">
+                        <span class="font-semibold text-red-700 uppercase">Priorité n°3</span>
+                        <span>Axe de report de travaux</span>
+                    </div>
+                    <h3 class="font-serif text-xl font-bold text-stone-900 mb-2">Av. Boulogne-Billancourt</h3>
+                    <div class="space-y-2 text-xs text-stone-700 mb-4">
+                        <div class="flex justify-between border-b border-stone-100 pb-1">
+                            <span>Vitesse V85 réelle :</span>
+                            <span class="font-bold text-red-700">59,2 km/h (Pointes 61)</span>
+                        </div>
+                        <div class="flex justify-between border-b border-stone-100 pb-1">
+                            <span>Part mobilités actives :</span>
+                            <span class="font-bold text-stone-800">8,0 %</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Évolution du transit :</span>
+                            <span class="font-bold text-red-700">+71 % de trafic</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        La fermeture prolongée de l'Avenue Royale y a reporté un trafic lourd. Les véhicules y circulent à près de 60 km/h au détriment des riverains.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="bg-[#FBFBFA] border border-stone-300 rounded p-4 text-xs text-stone-600">
+                <i class="fa-solid fa-circle-info text-stone-400 mr-1.5"></i>
+                <strong>Méthode de ciblage :</strong> Les priorités sont calculées à partir de l'écart à la limitation pondéré par la densité d'usagers actifs vulnérables (piétons et cyclistes), excluant tout ressenti subjectif.
+            </div>
+        </section>
+
+
+        <!-- ========================================================== -->
+        <!-- TABLEAU 4 : Le Diagnostic Citoyen & Décideurs             -->
+        <!-- ========================================================== -->
+        <section id="tableau-4" class="scroll-mt-16">
+            <div class="mb-6">
+                <span class="text-xs uppercase tracking-widest font-semibold text-stone-800">Outil d'Action</span>
+                <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-950 mt-1 mb-3">
+                    Diagnostic d'action rue par rue
+                </h2>
+                <p class="text-stone-700 leading-relaxed max-w-3xl">
+                    Sélectionnez une voirie pour obtenir instantanément son diagnostic objectif, son statut d'apaisement et les aménagements préconisés à soumettre aux services communaux.
+                </p>
+            </div>
+
+            <!-- Sélecteur de rue interactif -->
+            <div class="bg-[#FBFBFA] border border-stone-300 rounded-t-lg p-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3 flex-1">
+                    <label for="street-select" class="text-xs uppercase font-bold text-stone-600 whitespace-nowrap">Choisir une rue :</label>
+                    <select id="street-select" class="w-full bg-white border border-stone-300 text-stone-900 text-sm rounded px-3 py-2 focus:ring-2 focus:ring-stone-400 outline-none font-medium">
+                        <!-- Options générées en JS -->
+                    </select>
+                </div>
+                <button onclick="window.print()" class="no-print inline-flex items-center justify-center gap-2 px-4 py-2 bg-stone-900 text-stone-100 rounded text-xs font-semibold hover:bg-stone-800 transition">
+                    <i class="fa-solid fa-print"></i>
+                    <span>Imprimer / Exporter la fiche</span>
+                </button>
+            </div>
+
+            <!-- Fiche d'identité et recommandations d'aménagement -->
+            <div id="diagnostic-action-card" class="bg-[#FBFBFA] border border-t-0 border-stone-300 rounded-b-lg p-6 sm:p-8 shadow-sm">
+                
+                <!-- En-tête de fiche : Nom de rue + Badge statut -->
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-200 pb-5 mb-6 gap-3">
+                    <div>
+                        <div class="text-xs uppercase tracking-wider text-stone-500 font-medium" id="card-locality">Commune de Rixensart</div>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-stone-950" id="card-street-name">Rue de la Gare</h3>
+                        <p class="text-xs text-stone-600 mt-1" id="card-role">Axe de transit et desserte RER</p>
+                    </div>
+                    <div id="card-status-badge" class="self-start sm:self-center px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 text-red-800 border border-red-200">
+                        Action Prioritaire Requise
+                    </div>
+                </div>
+
+                <!-- Grille des 4 indicateurs fondamentaux -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                    <div class="p-3.5 bg-stone-100/80 rounded border border-stone-200">
+                        <span class="text-xs text-stone-500 block">Vitesse V85 réelle</span>
+                        <span class="text-xl sm:text-2xl font-serif font-bold text-stone-900 block mt-0.5" id="card-v85">44.5 km/h</span>
+                        <span class="text-[11px] font-medium" id="card-limit-comparison">vs 30 km/h (+14.5)</span>
+                    </div>
+
+                    <div class="p-3.5 bg-stone-100/80 rounded border border-stone-200">
+                        <span class="text-xs text-stone-500 block">Trafic journalier</span>
+                        <span class="text-xl sm:text-2xl font-serif font-bold text-stone-900 block mt-0.5" id="card-daily-total">2 172</span>
+                        <span class="text-[11px] text-stone-500">véhicules / jour</span>
+                    </div>
+
+                    <div class="p-3.5 bg-stone-100/80 rounded border border-stone-200">
+                        <span class="text-xs text-stone-500 block">Part des cyclistes</span>
+                        <span class="text-xl sm:text-2xl font-serif font-bold text-emerald-700 block mt-0.5" id="card-bike-pct">7.1 %</span>
+                        <span class="text-[11px] text-stone-500" id="card-daily-bikes">154 vélos / jour</span>
+                    </div>
+
+                    <div class="p-3.5 bg-stone-100/80 rounded border border-stone-200">
+                        <span class="text-xs text-stone-500 block">Part des piétons</span>
+                        <span class="text-xl sm:text-2xl font-serif font-bold text-stone-900 block mt-0.5" id="card-ped-pct">10.0 %</span>
+                        <span class="text-[11px] text-stone-500">trottoirs empruntés</span>
+                    </div>
+                </div>
+
+                <!-- Diagnostic éditorial & Recommandations d'aménagement physiques -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Colonne Diagnostic -->
+                    <div class="md:col-span-6 bg-stone-50 p-4 rounded border border-stone-200">
+                        <h4 class="font-serif text-base font-bold text-stone-900 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-clipboard-check text-stone-500"></i>
+                            <span>Diagnostic objectif</span>
+                        </h4>
+                        <p class="text-xs sm:text-sm text-stone-700 leading-relaxed" id="card-diagnostic-text">
+                            Chargement du diagnostic...
+                        </p>
+                    </div>
+
+                    <!-- Colonne Aménagements Préconisés -->
+                    <div class="md:col-span-6 bg-stone-50 p-4 rounded border border-stone-200">
+                        <h4 class="font-serif text-base font-bold text-stone-900 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-road text-amber-700"></i>
+                            <span>Pistes d'aménagements préconisées</span>
+                        </h4>
+                        <ul class="space-y-2 text-xs sm:text-sm text-stone-700" id="card-recommendations-list">
+                            <!-- Rempli en JS -->
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- Note de bas de fiche pour impression -->
+                <div class="mt-8 pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between text-[11px] text-stone-500 gap-2">
+                    <span>Fiche générée depuis l'Observatoire Citoyen de la Mobilité de Rixensart</span>
+                    <span>Données de référence : capteurs citoyens Telraam S2 (2024-2026)</span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pied de page officiel de grand quotidien -->
+    <footer class="border-t border-stone-300 bg-[#FBFBFA] py-8 px-4 sm:px-8 mt-16 text-stone-600 text-xs">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <p class="font-serif font-bold text-stone-900 text-sm">Observatoire Citoyen de la Mobilité — Rixensart</p>
+                <p class="text-stone-500 mt-0.5">Données ouvertes collectées par les capteurs citoyens Telraam S2 hébergés par les riverains.</p>
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+                <a href="docs/METHODOLOGIE.md" target="_blank" class="underline hover:text-stone-900 font-semibold"><i class="fa-solid fa-book-bookmark mr-1 text-stone-500"></i>Méthodologie</a>
+                <span>•</span>
+                <a href="data/rixensart_summary.json" target="_blank" class="underline hover:text-stone-900">Données JSON</a>
+                <span>•</span>
+                <a href="data/rixensart_summary.csv" target="_blank" class="underline hover:text-stone-900">Données CSV</a>
+                <span>•</span>
+                <a href="https://telraam.net" target="_blank" class="underline hover:text-stone-900">Réseau Telraam</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de logique & data visualisation -->
+    <script>
+        let mapInstance = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const data = window.TELRAAM_RIXENSART || [];
+            if (!data.length) {
+                console.error("Données Telraam introuvables.");
+                return;
+            }
+
+            // 1. Initialiser le Thermomètre des vitesses (Tableau 1)
+            initSpeedBars(data);
+
+            // 2. Initialiser la Carte Leaflet des vitesses (Tableau 1)
+            initSpeedMap(data);
+
+            // 3. Initialiser le Sélecteur et la Fiche d'Action (Tableau 4)
+            initActionCard(data);
+        });
+
+        // -------------------------------------------------------------
+        // TABLEAU 1 : Thermomètre des vitesses (barres comparatives)
+        // -------------------------------------------------------------
+        function initSpeedBars(data) {
+            const container = document.getElementById('speed-bars-container');
+            if (!container) return;
+
+            // Filtrer et trier par écart à la limitation décroissant
+            const sorted = [...data]
+                .filter(s => s.nov2024 && s.nov2024.speed && s.nov2024.speed.avg_v85)
+                .sort((a, b) => {
+                    const deltaA = (a.nov2024.speed.avg_v85 || 0) - (a.speed_limit || 50);
+                    const deltaB = (b.nov2024.speed.avg_v85 || 0) - (b.speed_limit || 50);
+                    return deltaB - deltaA;
+                });
+
+            container.innerHTML = sorted.map(s => {
+                const v85 = s.nov2024.speed.avg_v85;
+                const limit = s.speed_limit || 50;
+                const delta = v85 - limit;
+                
+                // Calcul du pourcentage sur une échelle max de 70 km/h
+                const pct = Math.min(100, Math.round((v85 / 70) * 100));
+                const limitPct = Math.round((30 / 70) * 100); // Repère 30 km/h
+
+                let barColor = 'bg-[#2E7D5B]'; // vert
+                let deltaText = '';
+                if (v85 > 40) {
+                    barColor = 'bg-[#C0392B]'; // rouge
+                    deltaText = `<span class="text-red-700 font-semibold">+${delta.toFixed(1)}</span>`;
+                } else if (v85 > 30) {
+                    barColor = 'bg-[#D97706]'; // ambre
+                    deltaText = `<span class="text-amber-700 font-semibold">+${delta.toFixed(1)}</span>`;
+                } else {
+                    deltaText = `<span class="text-emerald-700 font-semibold">${delta.toFixed(1)}</span>`;
+                }
+
+                return `
+                    <div class="text-xs group hover:bg-stone-100 p-1.5 rounded transition">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-medium text-stone-900 truncate max-w-[180px] sm:max-w-[220px]" title="${s.street}">
+                                ${s.street}
+                                <span class="text-[10px] text-stone-500 font-normal">(${limit} km/h)</span>
+                            </span>
+                            <span class="text-stone-800 font-mono">
+                                <strong>${v85.toFixed(1)} km/h</strong> (${deltaText})
+                            </span>
+                        </div>
+                        <div class="relative w-full bg-stone-200 h-2.5 rounded-full overflow-hidden">
+                            <!-- Barre de vitesse -->
+                            <div class="${barColor} h-full transition-all duration-500" style="width: ${pct}%"></div>
+                            <!-- Repère vertical 30 km/h -->
+                            <div class="absolute top-0 bottom-0 w-0.5 bg-red-600/80 z-10" style="left: ${limitPct}%" title="Limite 30 km/h"></div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // -------------------------------------------------------------
+        // TABLEAU 1 : Carte Leaflet claire des vitesses
+        // -------------------------------------------------------------
+        function initSpeedMap(data) {
+            const mapEl = document.getElementById('vitesse-map');
+            if (!mapEl) return;
+
+            // Coordonnées centrées sur Rixensart / Genval
+            mapInstance = L.map('vitesse-map', {
+                scrollWheelZoom: false,
+                attributionControl: false
+            }).setView([50.720, 4.522], 13);
+
+            // Fond de carte CartoDB Positron très épuré (clair)
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                maxZoom: 19,
+                subdomains: 'abcd'
+            }).addTo(mapInstance);
+
+            // Tracé des capteurs / voiries
+            data.forEach(s => {
+                if (!s.lat || !s.lon) return;
+
+                const v85 = s.nov2024 && s.nov2024.speed ? s.nov2024.speed.avg_v85 : null;
+                const limit = s.speed_limit || 50;
+
+                let color = '#2E7D5B'; // vert apaisé
+                if (!v85) {
+                    color = '#A8A29E'; // gris si pas de données
+                } else if (v85 > 40) {
+                    color = '#C0392B'; // rouge
+                } else if (v85 > 30) {
+                    color = '#D97706'; // ambre
+                }
+
+                // Marqueur circulaire épuré
+                const circle = L.circleMarker([s.lat, s.lon], {
+                    radius: 7,
+                    fillColor: color,
+                    color: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                }).addTo(mapInstance);
+
+                const popupContent = `
+                    <div style="font-family: 'Inter', sans-serif; font-size: 12px; line-height: 1.4;">
+                        <strong style="font-size: 13px; color: #1c1917;">${s.street}</strong><br>
+                        <span style="color: #64748b;">Limite : ${limit} km/h</span><br>
+                        ${v85 ? `<span style="font-weight: bold; color: ${color};">V85 réel : ${v85.toFixed(1)} km/h</span>` : '<em>Données de vitesse en cours de collecte</em>'}<br>
+                        <span style="font-size: 11px; color: #475569;">Vélos : ${s.nov2024 ? s.nov2024.bike_pct : 0} %</span>
+                    </div>
+                `;
+                circle.bindPopup(popupContent);
+
+                circle.on('click', () => {
+                    const select = document.getElementById('street-select');
+                    if (select) {
+                        select.value = s.id;
+                        select.dispatchEvent(new Event('change'));
+                        const target = document.getElementById('tableau-4');
+                        if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        }
+
+        // -------------------------------------------------------------
+        // TABLEAU 4 : Fiche d'action & Recommandations
+        // -------------------------------------------------------------
+        function initActionCard(data) {
+            const select = document.getElementById('street-select');
+            if (!select) return;
+
+            // Remplir la liste déroulante
+            select.innerHTML = data.map(s => `
+                <option value="${s.id}">${s.street} (${s.locality || 'Rixensart'})</option>
+            `).join('');
+
+            // Définir la rue par défaut (Rue de la Gare ou premier)
+            const defaultSegment = data.find(s => s.street === "Rue de la Gare") || data[0];
+            if (defaultSegment) {
+                select.value = defaultSegment.id;
+                renderStreetCard(defaultSegment);
+            }
+
+            select.addEventListener('change', (e) => {
+                const chosen = data.find(s => s.id == e.target.value);
+                if (chosen) renderStreetCard(chosen);
+            });
+        }
+
+        function renderStreetCard(s) {
+            const nov = s.nov2024 || {};
+            const speed = nov.speed || {};
+            const v85 = speed.avg_v85 || null;
+            const limit = s.speed_limit || 50;
+            const delta = v85 ? (v85 - limit) : 0;
+            const bikePct = nov.bike_pct || 0;
+            const pedPct = nov.ped_pct || 0;
+            const dailyTotal = nov.daily_total || 0;
+            const dailyBikes = nov.daily_bikes || 0;
+
+            document.getElementById('card-street-name').textContent = s.street;
+            document.getElementById('card-locality').textContent = `${s.locality || 'Commune de Rixensart'} • Capteur Telraam #${s.id}`;
+            document.getElementById('card-role').textContent = s.role || `Voirie communale (${s.network_type || 'Réseau local'})`;
+
+            // Métriques fondamentales
+            document.getElementById('card-v85').textContent = v85 ? `${v85.toFixed(1)} km/h` : 'N/D';
+            
+            const limitCompEl = document.getElementById('card-limit-comparison');
+            if (v85) {
+                const sign = delta > 0 ? '+' : '';
+                const deltaColor = delta > 5 ? 'text-red-700' : (delta > 0 ? 'text-amber-700' : 'text-emerald-700');
+                limitCompEl.innerHTML = `vs ${limit} km/h (<span class="${deltaColor} font-bold">${sign}${delta.toFixed(1)}</span>)`;
+            } else {
+                limitCompEl.textContent = `Limite affichée : ${limit} km/h`;
+            }
+
+            document.getElementById('card-daily-total').textContent = dailyTotal ? dailyTotal.toLocaleString('fr-FR') : 'N/D';
+            document.getElementById('card-bike-pct').textContent = `${bikePct.toFixed(1)} %`;
+            document.getElementById('card-daily-bikes').textContent = `${dailyBikes} vélos / jour`;
+            document.getElementById('card-ped-pct').textContent = `${pedPct.toFixed(1)} %`;
+
+            // Détermination du Statut, Diagnostic & Recommandations
+            const badgeEl = document.getElementById('card-status-badge');
+            const diagTextEl = document.getElementById('card-diagnostic-text');
+            const recListEl = document.getElementById('card-recommendations-list');
+
+            let badgeClass = '';
+            let badgeText = '';
+            let diagnostic = '';
+            let recommendations = [];
+
+            if (limit === 30 && v85 && v85 >= 38) {
+                // Point noir Zone 30
+                badgeClass = 'bg-red-100 text-red-800 border-red-300';
+                badgeText = 'Action Prioritaire Requise';
+                diagnostic = `Cette voirie affiche une limitation formelle à 30 km/h, mais le comportement réel (V85 à <strong>${v85.toFixed(1)} km/h</strong>) s'apparente à une zone 50. Avec ${bikePct.toFixed(1)} % de vélos et ${pedPct.toFixed(1)} % de piétons sur la chaussée, la cohabitation actuelle crée une insécurité objective pour les modes actifs.`;
+                recommendations = [
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-triangle-exclamation text-red-600 mt-1"></i><span><strong>Modération physique :</strong> Installation de coussins berlinois ou d'une chicane végétale pour casser mécaniquement l'élan avant les passages piétons.</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-radar text-stone-600 mt-1"></i><span><strong>Contrôle de vitesse :</strong> Placement prioritaire d'un radar pédagogique préventif avec affichage de la vitesse pour conscientiser les conducteurs.</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-bicycle text-emerald-700 mt-1"></i><span><strong>Sécurisation vélo :</strong> Matérialisation de chevrons cyclables au sol (pictogrammes vélo) pour légitimer la présence des cyclistes au milieu de la voie.</span></li>`
+                ];
+            } else if (v85 && v85 >= 55) {
+                // Vitesse excessive sur axe 50
+                badgeClass = 'bg-red-100 text-red-800 border-red-300';
+                badgeText = 'Vigilance Vitesse Élevée';
+                diagnostic = `Vitesse excessive constatée (V85 à <strong>${v85.toFixed(1)} km/h</strong> pour une limite à ${limit} km/h). La ligne droite ou la configuration large incite à l'accélération, rendant la traversée piétonne et l'insertion des riverains périlleuses.`;
+                recommendations = [
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-road text-stone-600 mt-1"></i><span><strong>Réduction de la largeur perçue :</strong> Aménagement d'îlots refuges centraux ou marquage de bordures végétalisées pour inciter à ralentir.</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-shield-halved text-red-700 mt-1"></i><span><strong>Contrôle sanction :</strong> Programmation de contrôles mobiles par la police locale aux heures de pointe.</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-person-walking text-amber-700 mt-1"></i><span><strong>Traversées sécurisées :</strong> Surélévation des passages pour piétons avec éclairage contrasté renforcé.</span></li>`
+                ];
+            } else if (bikePct >= 8.0) {
+                // Axe fort cyclable
+                badgeClass = 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                badgeText = 'Corridor Vélo Majeur';
+                diagnostic = `Avec <strong>${bikePct.toFixed(1)} %</strong> de trafic vélo (${dailyBikes} passages/jour), cette rue constitue l'un des piliers du réseau de mobilités douces de la commune. La sécurité des cyclistes y est la priorité absolue.`;
+                recommendations = [
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-bicycle text-emerald-700 mt-1"></i><span><strong>Statut Vélorue :</strong> Envisager le classement officiel en « Rue Cyclable » (Zone où les vélos ont la priorité et où le dépassement est interdit).</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-paint-roller text-emerald-700 mt-1"></i><span><strong>Revêtement qualitatif :</strong> Réfection du tapis de roulement latéral pour éliminer nids-de-poule et bordures saillantes dangereux à vélo.</span></li>`
+                ];
+            } else if (v85 && v85 <= 30) {
+                // Rue sereine apaisée
+                badgeClass = 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                badgeText = 'Voirie Apaisée (Modèle)';
+                diagnostic = `Voirie exemplaire respectant pleinement les objectifs d'apaisement avec un V85 à <strong>${v85.toFixed(1)} km/h</strong>. La vie de quartier et la circulation douce s'y déroulent dans d'excellentes conditions.`;
+                recommendations = [
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-star text-emerald-700 mt-1"></i><span><strong>Pérennisation :</strong> Maintenir le schéma de circulation actuel qui a prouvé son efficacité.</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-seedling text-emerald-700 mt-1"></i><span><strong>Valorisation cadre de vie :</strong> Opportunité de végétalisation complémentaire des trottoirs et création de bancs publics.</span></li>`
+                ];
+            } else {
+                // Situation modérée
+                badgeClass = 'bg-amber-100 text-amber-800 border-amber-300';
+                badgeText = 'Vigilance Modérée';
+                diagnostic = `Circulation globalement conforme avec des écarts ponctuels (V85 à <strong>${v85 ? v85.toFixed(1) : limit} km/h</strong>). Nécessite une surveillance pour éviter les reports de trafic liés aux chantiers voisins.`;
+                recommendations = [
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-eye text-amber-700 mt-1"></i><span><strong>Suivi préventif :</strong> Analyse continue des variations mensuelles de vitesse lors des fermetures d'axes secondaires.</span></li>`,
+                    `<li class="flex items-start gap-2"><i class="fa-solid fa-arrows-split-up-and-left text-stone-600 mt-1"></i><span><strong>Signalétique :</strong> Rappel visuel régulier de la vitesse limite par marquage au sol.</span></li>`
+                ];
+            }
+
+            badgeEl.className = `self-start sm:self-center px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border ${badgeClass}`;
+            badgeEl.textContent = badgeText;
+            diagTextEl.innerHTML = diagnostic;
+            recListEl.innerHTML = recommendations.join('');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,2308 @@
+{
+  "description": "Référentiel exhaustif des chantiers, travaux de voirie, aménagements de mobilité et arrêtés de police à Rixensart (2024-2026) issus du site communal rixensart.be et des opérateurs partenaires",
+  "generated_at": "2026-09-04",
+  "period_covered": "2024 - 2026",
+  "source_domain": "https://www.rixensart.be",
+  "chantiers": [
+    {
+      "id": "chantier-avenue-royale",
+      "title": "Chantier Majeur de l'Avenue Royale & Déviation de Transit",
+      "category": "Voirie & Égouttage",
+      "status": "En cours (2026)",
+      "period": {
+        "start": "2026-02-16",
+        "end": "2026-11-30",
+        "duration": "200 jours ouvrables",
+        "year": 2026,
+        "season": "Printemps - Automne"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "in BW",
+        "Société TRBA",
+        "Zone de Police La Mazerine",
+        "Opérateur TEC"
+      ],
+      "coordinates": [
+        50.7128,
+        4.5425
+      ],
+      "detour_polyline": [
+        [
+          50.712552,
+          4.549658
+        ],
+        [
+          50.712457,
+          4.549713
+        ],
+        [
+          50.712368,
+          4.549793
+        ],
+        [
+          50.711711,
+          4.550623
+        ],
+        [
+          50.71105,
+          4.551458
+        ],
+        [
+          50.710896,
+          4.551713
+        ],
+        [
+          50.71039,
+          4.552336
+        ],
+        [
+          50.709889,
+          4.552961
+        ],
+        [
+          50.709667,
+          4.553223
+        ],
+        [
+          50.709485,
+          4.553425
+        ],
+        [
+          50.709312,
+          4.553602
+        ],
+        [
+          50.709224,
+          4.553691
+        ],
+        [
+          50.709146,
+          4.553761
+        ],
+        [
+          50.709065,
+          4.553828
+        ],
+        [
+          50.708604,
+          4.554232
+        ],
+        [
+          50.708414,
+          4.554385
+        ],
+        [
+          50.708273,
+          4.5545
+        ],
+        [
+          50.70818,
+          4.554574
+        ],
+        [
+          50.70816,
+          4.554593
+        ],
+        [
+          50.708051,
+          4.554715
+        ],
+        [
+          50.707875,
+          4.554855
+        ],
+        [
+          50.70771,
+          4.554993
+        ],
+        [
+          50.70758,
+          4.555093
+        ],
+        [
+          50.707422,
+          4.555212
+        ],
+        [
+          50.707289,
+          4.555299
+        ],
+        [
+          50.707132,
+          4.555414
+        ],
+        [
+          50.706554,
+          4.555872
+        ],
+        [
+          50.706238,
+          4.556105
+        ],
+        [
+          50.70596,
+          4.556273
+        ],
+        [
+          50.705729,
+          4.556392
+        ],
+        [
+          50.705679,
+          4.556417
+        ],
+        [
+          50.705337,
+          4.556569
+        ],
+        [
+          50.70499,
+          4.556677
+        ],
+        [
+          50.704713,
+          4.556742
+        ],
+        [
+          50.704482,
+          4.556786
+        ],
+        [
+          50.704541,
+          4.556631
+        ],
+        [
+          50.704583,
+          4.556518
+        ],
+        [
+          50.704907,
+          4.55564
+        ],
+        [
+          50.705048,
+          4.555119
+        ],
+        [
+          50.705061,
+          4.555066
+        ],
+        [
+          50.705131,
+          4.554775
+        ],
+        [
+          50.705182,
+          4.554536
+        ],
+        [
+          50.705199,
+          4.554433
+        ],
+        [
+          50.705261,
+          4.554037
+        ],
+        [
+          50.705306,
+          4.553643
+        ],
+        [
+          50.705339,
+          4.553237
+        ],
+        [
+          50.705344,
+          4.553038
+        ],
+        [
+          50.705329,
+          4.552929
+        ],
+        [
+          50.705321,
+          4.552881
+        ],
+        [
+          50.705302,
+          4.552815
+        ],
+        [
+          50.705147,
+          4.552291
+        ],
+        [
+          50.705096,
+          4.552027
+        ],
+        [
+          50.70505,
+          4.551625
+        ],
+        [
+          50.70502,
+          4.551449
+        ],
+        [
+          50.704987,
+          4.551275
+        ],
+        [
+          50.704698,
+          4.549936
+        ],
+        [
+          50.704521,
+          4.549133
+        ],
+        [
+          50.704236,
+          4.548035
+        ],
+        [
+          50.704112,
+          4.547574
+        ],
+        [
+          50.704026,
+          4.547273
+        ],
+        [
+          50.703815,
+          4.546539
+        ],
+        [
+          50.703728,
+          4.54624
+        ],
+        [
+          50.703564,
+          4.545679
+        ],
+        [
+          50.703536,
+          4.545557
+        ],
+        [
+          50.703507,
+          4.54542
+        ],
+        [
+          50.703483,
+          4.545284
+        ],
+        [
+          50.703465,
+          4.545177
+        ],
+        [
+          50.703411,
+          4.544839
+        ],
+        [
+          50.703385,
+          4.544673
+        ],
+        [
+          50.703293,
+          4.544093
+        ],
+        [
+          50.703269,
+          4.543865
+        ],
+        [
+          50.703257,
+          4.54365
+        ],
+        [
+          50.703244,
+          4.543433
+        ],
+        [
+          50.703221,
+          4.543306
+        ],
+        [
+          50.703202,
+          4.543127
+        ],
+        [
+          50.703178,
+          4.543023
+        ],
+        [
+          50.70309,
+          4.542654
+        ],
+        [
+          50.702909,
+          4.541904
+        ],
+        [
+          50.702695,
+          4.541049
+        ],
+        [
+          50.702479,
+          4.540162
+        ],
+        [
+          50.702434,
+          4.539972
+        ],
+        [
+          50.701498,
+          4.537524
+        ],
+        [
+          50.701318,
+          4.536963
+        ],
+        [
+          50.701206,
+          4.536728
+        ],
+        [
+          50.701056,
+          4.5365
+        ],
+        [
+          50.700925,
+          4.536359
+        ],
+        [
+          50.70072,
+          4.536126
+        ],
+        [
+          50.700677,
+          4.536063
+        ],
+        [
+          50.700659,
+          4.536037
+        ],
+        [
+          50.700613,
+          4.535941
+        ],
+        [
+          50.700634,
+          4.535823
+        ],
+        [
+          50.700648,
+          4.535694
+        ],
+        [
+          50.70067,
+          4.534325
+        ],
+        [
+          50.700705,
+          4.533679
+        ],
+        [
+          50.700791,
+          4.532777
+        ],
+        [
+          50.700806,
+          4.532634
+        ],
+        [
+          50.70083,
+          4.532365
+        ],
+        [
+          50.700833,
+          4.532324
+        ],
+        [
+          50.700839,
+          4.53226
+        ],
+        [
+          50.700849,
+          4.532152
+        ],
+        [
+          50.700874,
+          4.531878
+        ],
+        [
+          50.70089,
+          4.531716
+        ],
+        [
+          50.700919,
+          4.53141
+        ],
+        [
+          50.700943,
+          4.531114
+        ],
+        [
+          50.700969,
+          4.530826
+        ],
+        [
+          50.700999,
+          4.530487
+        ],
+        [
+          50.70102,
+          4.530274
+        ],
+        [
+          50.701022,
+          4.530203
+        ],
+        [
+          50.701044,
+          4.530035
+        ],
+        [
+          50.701099,
+          4.529656
+        ],
+        [
+          50.701131,
+          4.52949
+        ],
+        [
+          50.701175,
+          4.529294
+        ],
+        [
+          50.70129,
+          4.528816
+        ],
+        [
+          50.701323,
+          4.528692
+        ],
+        [
+          50.701265,
+          4.528505
+        ],
+        [
+          50.701242,
+          4.528462
+        ],
+        [
+          50.701246,
+          4.528402
+        ],
+        [
+          50.701263,
+          4.528359
+        ],
+        [
+          50.701285,
+          4.528321
+        ],
+        [
+          50.701309,
+          4.528306
+        ],
+        [
+          50.701333,
+          4.528304
+        ],
+        [
+          50.70135,
+          4.528304
+        ],
+        [
+          50.701473,
+          4.528124
+        ],
+        [
+          50.701622,
+          4.527523
+        ],
+        [
+          50.701668,
+          4.527335
+        ],
+        [
+          50.70181,
+          4.526763
+        ],
+        [
+          50.702002,
+          4.525796
+        ],
+        [
+          50.702037,
+          4.525643
+        ],
+        [
+          50.702101,
+          4.525397
+        ],
+        [
+          50.702222,
+          4.525028
+        ],
+        [
+          50.702328,
+          4.524685
+        ],
+        [
+          50.702823,
+          4.523275
+        ],
+        [
+          50.702862,
+          4.523163
+        ],
+        [
+          50.702866,
+          4.523154
+        ],
+        [
+          50.702877,
+          4.523121
+        ],
+        [
+          50.702907,
+          4.523022
+        ],
+        [
+          50.702996,
+          4.523075
+        ],
+        [
+          50.703181,
+          4.523179
+        ],
+        [
+          50.703409,
+          4.523267
+        ],
+        [
+          50.703684,
+          4.523351
+        ],
+        [
+          50.704071,
+          4.523459
+        ],
+        [
+          50.704248,
+          4.523509
+        ],
+        [
+          50.704492,
+          4.523565
+        ],
+        [
+          50.704708,
+          4.523558
+        ],
+        [
+          50.704842,
+          4.523528
+        ],
+        [
+          50.704876,
+          4.523519
+        ],
+        [
+          50.705074,
+          4.523456
+        ],
+        [
+          50.705227,
+          4.523376
+        ],
+        [
+          50.705436,
+          4.523234
+        ],
+        [
+          50.705637,
+          4.523061
+        ],
+        [
+          50.705828,
+          4.522895
+        ],
+        [
+          50.706669,
+          4.522176
+        ],
+        [
+          50.70715,
+          4.521698
+        ],
+        [
+          50.707243,
+          4.521612
+        ],
+        [
+          50.707284,
+          4.521582
+        ],
+        [
+          50.707396,
+          4.521496
+        ],
+        [
+          50.707515,
+          4.521432
+        ],
+        [
+          50.707716,
+          4.521358
+        ],
+        [
+          50.707883,
+          4.521311
+        ],
+        [
+          50.708022,
+          4.521301
+        ],
+        [
+          50.710377,
+          4.521188
+        ],
+        [
+          50.710626,
+          4.521152
+        ],
+        [
+          50.710757,
+          4.52112
+        ],
+        [
+          50.71086,
+          4.521083
+        ],
+        [
+          50.71098,
+          4.521022
+        ],
+        [
+          50.711278,
+          4.520875
+        ],
+        [
+          50.711332,
+          4.520847
+        ],
+        [
+          50.711419,
+          4.520804
+        ],
+        [
+          50.711495,
+          4.520932
+        ],
+        [
+          50.711576,
+          4.521153
+        ],
+        [
+          50.711638,
+          4.521406
+        ],
+        [
+          50.711667,
+          4.521609
+        ],
+        [
+          50.711677,
+          4.521745
+        ],
+        [
+          50.711681,
+          4.521898
+        ],
+        [
+          50.711685,
+          4.522181
+        ],
+        [
+          50.711688,
+          4.522309
+        ],
+        [
+          50.711699,
+          4.522558
+        ],
+        [
+          50.711741,
+          4.523103
+        ],
+        [
+          50.711757,
+          4.523284
+        ],
+        [
+          50.711931,
+          4.525572
+        ],
+        [
+          50.711956,
+          4.525786
+        ],
+        [
+          50.711991,
+          4.525984
+        ],
+        [
+          50.712067,
+          4.52633
+        ],
+        [
+          50.71207,
+          4.526408
+        ],
+        [
+          50.712098,
+          4.526599
+        ],
+        [
+          50.712111,
+          4.526684
+        ],
+        [
+          50.712135,
+          4.526847
+        ],
+        [
+          50.712147,
+          4.526941
+        ],
+        [
+          50.712147,
+          4.527025
+        ],
+        [
+          50.712186,
+          4.527384
+        ],
+        [
+          50.712203,
+          4.527519
+        ],
+        [
+          50.712214,
+          4.527685
+        ],
+        [
+          50.712237,
+          4.52781
+        ],
+        [
+          50.712258,
+          4.527958
+        ],
+        [
+          50.712263,
+          4.528015
+        ],
+        [
+          50.712278,
+          4.528049
+        ],
+        [
+          50.712284,
+          4.528137
+        ],
+        [
+          50.712361,
+          4.528798
+        ],
+        [
+          50.712399,
+          4.529245
+        ],
+        [
+          50.712444,
+          4.529714
+        ],
+        [
+          50.712466,
+          4.529971
+        ],
+        [
+          50.712474,
+          4.530048
+        ],
+        [
+          50.712513,
+          4.530076
+        ],
+        [
+          50.712527,
+          4.530095
+        ],
+        [
+          50.712659,
+          4.530094
+        ],
+        [
+          50.712789,
+          4.530064
+        ],
+        [
+          50.712841,
+          4.530056
+        ],
+        [
+          50.712906,
+          4.530055
+        ],
+        [
+          50.712931,
+          4.530035
+        ],
+        [
+          50.713604,
+          4.530149
+        ],
+        [
+          50.713449,
+          4.530095
+        ],
+        [
+          50.713295,
+          4.530067
+        ],
+        [
+          50.713151,
+          4.530056
+        ],
+        [
+          50.71296,
+          4.530044
+        ],
+        [
+          50.712931,
+          4.530035
+        ],
+        [
+          50.713658,
+          4.530169
+        ],
+        [
+          50.713712,
+          4.530195
+        ],
+        [
+          50.71334,
+          4.531362
+        ],
+        [
+          50.713275,
+          4.531437
+        ],
+        [
+          50.712951,
+          4.531802
+        ],
+        [
+          50.71256,
+          4.532249
+        ],
+        [
+          50.71229,
+          4.532592
+        ],
+        [
+          50.712149,
+          4.532813
+        ],
+        [
+          50.712042,
+          4.532992
+        ],
+        [
+          50.712036,
+          4.533008
+        ],
+        [
+          50.712023,
+          4.533048
+        ],
+        [
+          50.71199,
+          4.533148
+        ]
+      ],
+      "location_label": "Avenue Royale (entre les numéros 1 et 65, Rixensart / Wavre)",
+      "description": "Transformation lourde et complète de l'artère principale d'accès à Rixensart depuis Wavre dans le cadre de l'assainissement de la vallée de la Dyle et du Plan d'investissement communal : rénovation intégrale du réseau d'égouttage, réfection totale de la chaussée, aménagement de pistes cyclables et nouveaux trottoirs. Fermeture totale à la circulation en deux phases (Phase 1 : piste d'athlétisme jusqu'à la place du Beau Site / pharmacie de Froidmont ; Phase 2 : place du Beau Site jusqu'à la limite Wavre n°65 dès mi-août 2026).",
+      "traffic_measures": "Fermeture totale de l'axe à la circulation dans les deux sens. Déviation officielle obligatoire pour tous les véhicules et lignes de bus TEC via : Route de Rixensart (Wavre), avenue de Nivelles, rue des Bleuets, Avenue de Boulogne-Billancourt, Avenue John Fitzgerald Kennedy, Avenue de Merode, Rue Robert Boisacq et Rue de la Gare. Mise en sens unique des avenues Léopold et du Beau Champ le 2 mars 2026 (interdiction aux véhicules > 3,5t) pour bloquer les raccourcis de quartier.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007534,
+          "street": "Avenue de Boulogne-Billancourt",
+          "impact_type": "Report massif officiel de transit",
+          "observed_variation": "+70.7% trafic motorisé en mai 2026 (de 1 292 à 2 206 véh/j), +184% vélos (de 31 à 88 vélos/j)",
+          "correlation_note": "L'Avenue de Boulogne-Billancourt constitue l'artère centrale de l'itinéraire officiel de déviation. L'explosion observée est 100% corrélée au chantier et disparaîtra à la réouverture de l'Avenue Royale."
+        },
+        {
+          "sensor_id": 9000007578,
+          "street": "Rue de la Gare",
+          "impact_type": "Report vers le pôle gare via r. Robert Boisacq",
+          "observed_variation": "+58.9% trafic motorisé en mai 2026 (de 903 à 1 435 véh/j)",
+          "correlation_note": "Le flux dévié depuis l'Avenue de Merode et la Rue Robert Boisacq converge directement vers l'axe de la gare pour rejoindre les axes vers Genval et La Hulpe."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/avenue-royale-un-lifting-complet-des-le-16-fevrier",
+      "work_zone_polyline": [
+        [
+          50.712552,
+          4.549658
+        ],
+        [
+          50.712384,
+          4.548865
+        ],
+        [
+          50.71232,
+          4.548567
+        ],
+        [
+          50.712272,
+          4.548304
+        ],
+        [
+          50.712214,
+          4.547978
+        ],
+        [
+          50.71217,
+          4.547582
+        ],
+        [
+          50.712147,
+          4.547279
+        ],
+        [
+          50.712142,
+          4.547054
+        ],
+        [
+          50.71214,
+          4.54692
+        ],
+        [
+          50.71211,
+          4.545767
+        ],
+        [
+          50.712104,
+          4.545587
+        ],
+        [
+          50.712094,
+          4.545381
+        ],
+        [
+          50.712088,
+          4.544941
+        ],
+        [
+          50.712079,
+          4.544673
+        ],
+        [
+          50.712076,
+          4.544584
+        ],
+        [
+          50.71204,
+          4.543188
+        ],
+        [
+          50.712012,
+          4.541928
+        ],
+        [
+          50.712,
+          4.541562
+        ],
+        [
+          50.711995,
+          4.541379
+        ],
+        [
+          50.71197,
+          4.540386
+        ],
+        [
+          50.711967,
+          4.540299
+        ],
+        [
+          50.71197,
+          4.540141
+        ],
+        [
+          50.711969,
+          4.540075
+        ],
+        [
+          50.711994,
+          4.539943
+        ],
+        [
+          50.71204,
+          4.539698
+        ],
+        [
+          50.71207,
+          4.539596
+        ],
+        [
+          50.712145,
+          4.539405
+        ],
+        [
+          50.712222,
+          4.53925
+        ],
+        [
+          50.712259,
+          4.539197
+        ],
+        [
+          50.712367,
+          4.539058
+        ],
+        [
+          50.712464,
+          4.538958
+        ],
+        [
+          50.712606,
+          4.538855
+        ],
+        [
+          50.71296,
+          4.538689
+        ],
+        [
+          50.713541,
+          4.538431
+        ],
+        [
+          50.71366,
+          4.538369
+        ],
+        [
+          50.713769,
+          4.538291
+        ],
+        [
+          50.713901,
+          4.538158
+        ],
+        [
+          50.714034,
+          4.537989
+        ],
+        [
+          50.714161,
+          4.537755
+        ],
+        [
+          50.714257,
+          4.53753
+        ],
+        [
+          50.714337,
+          4.537288
+        ],
+        [
+          50.714492,
+          4.536779
+        ],
+        [
+          50.714576,
+          4.536491
+        ],
+        [
+          50.714595,
+          4.536419
+        ],
+        [
+          50.714662,
+          4.536199
+        ],
+        [
+          50.714684,
+          4.53613
+        ],
+        [
+          50.714711,
+          4.536041
+        ]
+      ]
+    },
+    {
+      "id": "chantier-place-communale",
+      "title": "Apaisement de la Place Communale & Extension Zone Résidentielle 20 km/h",
+      "category": "Apaisement & Zone 20",
+      "status": "Achevé (fin 2025 - début 2026)",
+      "period": {
+        "start": "2025-09-01",
+        "end": "2026-03-31",
+        "duration": "7 mois",
+        "year": 2025,
+        "season": "Automne 2025 - Hiver 2026"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "Service Voirie et Espaces Verts"
+      ],
+      "coordinates": [
+        50.7166,
+        4.4985
+      ],
+      "location_label": "Place Communale & Rue Jean-Baptiste Stouffs (Genval)",
+      "description": "Programme communal d'apaisement du cœur de Genval : réfection complète et élargissement des trottoirs, réorganisation du stationnement avec introduction d'une zone bleue (n°17 à 21), rétrécissement de la voie carrossable, végétalisation et plantation d'arbres à chaque extrémité des emplacements de stationnement. Extension officielle de la zone résidentielle (20 km/h avec priorité piétonne sur toute la largeur de la voie) englobant la Place Communale (n°29 à rue J.-B. Stouffs) et la rue Jean-Baptiste Stouffs.",
+      "traffic_measures": "Vitesse abaissée à 20 km/h, priorité absolue accordée aux modes actifs (piétons, vélos), stationnement en zone bleue, rétrécissement optique et physique de voirie pour casser le transit opportuniste.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007530,
+          "street": "Place Communale",
+          "impact_type": "Évaporation massive du trafic de transit",
+          "observed_variation": "-66.9% au printemps 2026 (chute de 1 200 à 397 véh/j) ; -20.6% en automne 2025",
+          "correlation_note": "La chute de deux tiers du trafic motorisé illustre parfaitement l'effet d'évaporation de trafic ('traffic evaporation') provoqué par l'aménagement en zone 20 et le réaménagement qualitatif de l'espace public."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/travaux-en-cours-et-a-venir",
+      "work_zone_polyline": [
+        [
+          50.713875,
+          4.498149
+        ],
+        [
+          50.714052,
+          4.498332
+        ],
+        [
+          50.714115,
+          4.498362
+        ],
+        [
+          50.714167,
+          4.498379
+        ],
+        [
+          50.71452,
+          4.498426
+        ],
+        [
+          50.714911,
+          4.498478
+        ],
+        [
+          50.715538,
+          4.499354
+        ],
+        [
+          50.715625,
+          4.499282
+        ],
+        [
+          50.71577,
+          4.499165
+        ],
+        [
+          50.715839,
+          4.499121
+        ],
+        [
+          50.715948,
+          4.499059
+        ],
+        [
+          50.715998,
+          4.499165
+        ],
+        [
+          50.716136,
+          4.499362
+        ],
+        [
+          50.716271,
+          4.499442
+        ],
+        [
+          50.71638,
+          4.499497
+        ],
+        [
+          50.716396,
+          4.499335
+        ],
+        [
+          50.716437,
+          4.499106
+        ],
+        [
+          50.716462,
+          4.499001
+        ],
+        [
+          50.716512,
+          4.498788
+        ],
+        [
+          50.716532,
+          4.498724
+        ],
+        [
+          50.716551,
+          4.498664
+        ],
+        [
+          50.71679,
+          4.498246
+        ],
+        [
+          50.716956,
+          4.497909
+        ],
+        [
+          50.717014,
+          4.497793
+        ],
+        [
+          50.717075,
+          4.497564
+        ],
+        [
+          50.717098,
+          4.497443
+        ],
+        [
+          50.71714,
+          4.497301
+        ],
+        [
+          50.717157,
+          4.497262
+        ],
+        [
+          50.717185,
+          4.497196
+        ]
+      ]
+    },
+    {
+      "id": "chantier-gare-rixensart",
+      "title": "Pôle Multimodal de la Gare de Rixensart & Ligne RER 161",
+      "category": "RER & Pôle Multimodal",
+      "status": "Inauguré fin nov. 2024 (travaux résiduels 2025)",
+      "period": {
+        "start": "2024-11-28",
+        "end": "2025-09-30",
+        "duration": "2 ans de chantier global",
+        "year": 2024,
+        "season": "Automne 2024 - 2025"
+      },
+      "actors": [
+        "SNCB",
+        "Infrabel",
+        "Commune de Rixensart",
+        "Région Wallonne"
+      ],
+      "coordinates": [
+        50.7132,
+        4.5315
+      ],
+      "location_label": "Esplanade de la Gare, Rue de la Gare, Place Cardinal Mercier",
+      "description": "Inauguration le 28 novembre 2024 du tout nouveau bâtiment voyageur écoresponsable (560 m², ossature bois, toiture végétale) après deux ans de travaux lourds. Réaménagement intégral des espaces publics : création d'une esplanade piétonne, d'un rond-point, d'une gare des bus moderne, d'un dépose-minute ('kiss & ride') et d'un abri vélo sécurisé de 66 places. Travaux d'infrastructure ferroviaire Infrabel pour le passage à 4 voies de la ligne 161 (RER Ottignies - Bruxelles) et renouvellement des voies en août-septembre 2025.",
+      "traffic_measures": "Restructuration de l'esplanade et des sens de circulation aux abords de la gare. Les flux de navetteurs et de dépose-minute ont été totalement réorganisés, facilitant l'intermodalité.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007578,
+          "street": "Rue de la Gare",
+          "impact_type": "Reprise d'attractivité post-chantier et flux dépose-minute",
+          "observed_variation": "+58.9% au printemps 2026 (1 435 véh/j contre 903 en 2025 lors du creux de chantier)",
+          "correlation_note": "En novembre 2024, la fin imminente du chantier limitait les accès. Dès 2025-2026, l'ouverture de la nouvelle gare et de la gare des bus a restauré et amplifié le flux naturel d'accès à la gare."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/la-nouvelle-gare-de-rixensart-est-en-service",
+      "work_zone_polyline": [
+        [
+          50.713949,
+          4.530498
+        ],
+        [
+          50.713955,
+          4.530547
+        ],
+        [
+          50.713957,
+          4.530613
+        ],
+        [
+          50.713938,
+          4.530695
+        ],
+        [
+          50.713814,
+          4.530831
+        ],
+        [
+          50.71334,
+          4.531362
+        ],
+        [
+          50.713275,
+          4.531437
+        ],
+        [
+          50.712951,
+          4.531802
+        ],
+        [
+          50.71256,
+          4.532249
+        ],
+        [
+          50.71229,
+          4.532592
+        ],
+        [
+          50.712149,
+          4.532813
+        ],
+        [
+          50.712042,
+          4.532992
+        ],
+        [
+          50.712036,
+          4.533008
+        ],
+        [
+          50.712023,
+          4.533048
+        ],
+        [
+          50.71199,
+          4.533148
+        ]
+      ]
+    },
+    {
+      "id": "chantier-rue-rosieres",
+      "title": "Réaménagement de la Rue de Rosières (Phases 1 & 2)",
+      "category": "Voirie & Zone 30",
+      "status": "Achevé (2024 - 2025)",
+      "period": {
+        "start": "2024-08-01",
+        "end": "2025-06-30",
+        "duration": "11 mois (2 phases)",
+        "year": 2024,
+        "season": "Août 2024 - Juin 2025"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "Service des Travaux",
+        "Zone de Police La Mazerine"
+      ],
+      "coordinates": [
+        50.7255,
+        4.521
+      ],
+      "location_label": "Rue de Rosières (entre rue de Limalsart et rond-point Peyo)",
+      "description": "Métamorphose en deux phases de l'un des principaux axes de pénétration de la commune : Phase 1 lancée en août 2024 (entre rue de Limalsart et avenue Normande) ; Phase 2 réalisée au printemps 2025. Objectif : passage à 30 km/h, sécurisation et création de trottoirs confortables pour les piétons, maintien du stationnement régulé.",
+      "traffic_measures": "Fermetures temporaires par tronçons. Déviation générale de transit mise en place par le centre de Rixensart via la Rue de l'Institut, l'Avenue de Merode et l'Avenue Franklin Roosevelt. Mise en sens unique de la rue de Limalsart vers la rue de l'Institut.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007509,
+          "street": "Rue de l'Institut",
+          "impact_type": "Itinéraire officiel de déviation par le centre",
+          "observed_variation": "+13.2% au printemps 2026 (1 199 véh/j contre 1 059 en 2025)",
+          "correlation_note": "Axe directement sollicité lors des déviations du réaménagement de Rosières."
+        },
+        {
+          "sensor_id": 9000007497,
+          "street": "Avenue Franklin Roosevelt",
+          "impact_type": "Canal de transit alternatif",
+          "observed_variation": "-7.1% au printemps 2026 (-9.9% en automne 2025)",
+          "correlation_note": "Après l'achèvement de la phase 2 au printemps 2025, le trafic de report s'est résorbé, permettant une décrue continue et un apaisement de l'avenue."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/travaux-de-reamenagement-de-la-rue-de-rosieres",
+      "work_zone_polyline": [
+        [
+          50.724603,
+          4.516888
+        ],
+        [
+          50.724612,
+          4.516975
+        ],
+        [
+          50.724632,
+          4.517153
+        ],
+        [
+          50.724632,
+          4.517255
+        ],
+        [
+          50.724637,
+          4.517494
+        ],
+        [
+          50.724657,
+          4.517755
+        ],
+        [
+          50.724687,
+          4.517926
+        ],
+        [
+          50.724737,
+          4.518194
+        ],
+        [
+          50.724739,
+          4.518218
+        ],
+        [
+          50.724937,
+          4.519038
+        ],
+        [
+          50.724966,
+          4.519132
+        ],
+        [
+          50.725027,
+          4.519462
+        ],
+        [
+          50.725239,
+          4.520511
+        ],
+        [
+          50.725287,
+          4.520674
+        ],
+        [
+          50.725375,
+          4.52087
+        ],
+        [
+          50.725582,
+          4.521225
+        ],
+        [
+          50.725813,
+          4.521602
+        ],
+        [
+          50.726063,
+          4.522039
+        ],
+        [
+          50.726152,
+          4.522183
+        ],
+        [
+          50.726442,
+          4.522689
+        ],
+        [
+          50.726529,
+          4.522839
+        ],
+        [
+          50.727119,
+          4.523841
+        ],
+        [
+          50.727231,
+          4.524028
+        ],
+        [
+          50.727275,
+          4.524101
+        ],
+        [
+          50.727317,
+          4.524178
+        ]
+      ]
+    },
+    {
+      "id": "chantier-e411-rosieres",
+      "title": "Chantier SOFICO / SPW : Écrans Antibruit & Cyclostrade E411 à Rosières",
+      "category": "Autoroute & Cyclostrade",
+      "status": "En cours (2025 - 2026)",
+      "period": {
+        "start": "2024-09-01",
+        "end": "2026-08-31",
+        "duration": "2 ans",
+        "year": 2025,
+        "season": "Automne 2024 - Été 2026"
+      },
+      "actors": [
+        "SOFICO (Wallonie Infrastructures)",
+        "SPW Mobilité et Infrastructures",
+        "Société TRBA",
+        "Union Européenne (PNRR)"
+      ],
+      "coordinates": [
+        50.733,
+        4.552
+      ],
+      "location_label": "Échangeur n°4 « Rosières » et E411 (sur 2,66 km vers Namur)",
+      "description": "Double grand chantier autoroutier et cyclable : 1) Réalisation de la cyclostrade Wavre - Overijse de 5 km (budget 5,26 M€ financé par l'UE et la Wallonie) ; 2) Installation de 17.600 m² d'écrans antibruit en béton absorbant (3,2 m à 11 m de haut, budget 6,33 M€ HTVA) de la sortie 4 Rosières à la sortie 5 Bierges/Rixensart. Travaux préparatoires en septembre 2024 et janvier 2026, puis basculement de voies et fermetures d'accès.",
+      "traffic_measures": "Fermetures alternées et répétées de la sortie n°4 « Rosières » et de l'accès n°4 vers Namur. Vitesse réduite à 70 km/h sur l'E411. Déviations autoroutières obligatoires par la sortie 5bis (Wavre Nord) et par la Rue de Genval / Rue de Rosières pour rejoindre l'échangeur n°5 Bierges-Rixensart.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007492,
+          "street": "Chaussée de La Hulpe",
+          "impact_type": "Fermeture et contournement de l'échangeur n°4",
+          "observed_variation": "-22.3% en automne 2025 (de 2 249 à 1 748 véh/j), capteur arrêté fin 2025",
+          "correlation_note": "Les fermetures à répétition de la sortie n°4 et les déviations en amont sur l'E411 ont détourné les flux de navetteurs transitant habituellement par la Chaussée de La Hulpe à Rosières."
+        },
+        {
+          "sensor_id": 9000007490,
+          "street": "Rue de Genval",
+          "impact_type": "Itinéraire de substitution des accès autoroutiers",
+          "observed_variation": "Rebond de +28.9% au printemps 2026 (de 620 à 799 véh/j) après une forte baisse en 2025",
+          "correlation_note": "La rue de Genval a servi de déviation officielle lors de la fermeture de l'accès 4 vers le complexe de Bierges."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/travaux-installation-de-panneaux-antibruit-le-long",
+      "work_zone_polyline": [
+        [
+          50.732381,
+          4.550292
+        ],
+        [
+          50.732713,
+          4.550987
+        ],
+        [
+          50.732928,
+          4.551449
+        ],
+        [
+          50.733182,
+          4.551977
+        ],
+        [
+          50.733235,
+          4.552038
+        ],
+        [
+          50.733277,
+          4.552096
+        ],
+        [
+          50.733345,
+          4.552226
+        ],
+        [
+          50.733421,
+          4.552363
+        ],
+        [
+          50.733531,
+          4.552575
+        ],
+        [
+          50.733579,
+          4.552689
+        ],
+        [
+          50.733618,
+          4.552792
+        ],
+        [
+          50.73366,
+          4.552871
+        ],
+        [
+          50.733755,
+          4.553052
+        ]
+      ]
+    },
+    {
+      "id": "chantier-sul-peyo-gare",
+      "title": "Nouveau Sens Unique Limité (SUL) Peyo – Gare de Genval & Place des Martyrs",
+      "category": "Plan de Circulation & Apaisement",
+      "status": "Test pérennisé (2025 - 2026)",
+      "period": {
+        "start": "2025-03-03",
+        "end": "2026-04-03",
+        "duration": "13 mois à l'essai",
+        "year": 2025,
+        "season": "Printemps 2025 - Printemps 2026"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "Service Mobilité",
+        "SPW Mobilité (gestion des feux)"
+      ],
+      "coordinates": [
+        50.7253,
+        4.516
+      ],
+      "location_label": "Entre rond-point Peyo et Gare de Genval / Place des Martyrs",
+      "description": "Aménagement innovant d'une voirie en sens unique limité (SUL) pour véhicules de moins de 3,5 tonnes et moins de 2,50 m de haut, permettant de relier directement le rond-point Peyo à la gare de Genval en évitant le carrefour à feux de Maubroux. Les cyclistes peuvent remonter en double sens cyclable. En parallèle, mise à double sens de la place des Martyrs et de la place Raymond Becquevort dès mars 2025.",
+      "traffic_measures": "Décongestion du carrefour à feux Avenue Albert 1er / Rue de Rosières. Réasphaltage complet de l'entrée de la rue, création d'un parking de délestage rue du Cerf.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007533,
+          "street": "Avenue Albert 1er",
+          "impact_type": "Désengorgement des carrefours à feux",
+          "observed_variation": "Baisse continue de -5.8% au printemps 2026 (-10.4% en automne 2025) ; cyclistes en hausse structurelle",
+          "correlation_note": "L'évitement des feux de Maubroux et la réorganisation des accès à la gare de Genval ont efficacement apaisé l'Avenue Albert 1er."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/nouvelle-voirie-en-sens-unique-limite-a-genval",
+      "work_zone_polyline": [
+        [
+          50.72466,
+          4.5167
+        ],
+        [
+          50.724718,
+          4.516637
+        ],
+        [
+          50.724795,
+          4.516548
+        ],
+        [
+          50.724829,
+          4.516509
+        ],
+        [
+          50.724924,
+          4.516401
+        ],
+        [
+          50.725098,
+          4.516163
+        ],
+        [
+          50.725214,
+          4.516017
+        ],
+        [
+          50.725331,
+          4.515991
+        ],
+        [
+          50.725353,
+          4.516014
+        ],
+        [
+          50.725377,
+          4.516023
+        ],
+        [
+          50.725413,
+          4.516043
+        ],
+        [
+          50.725474,
+          4.51609
+        ]
+      ]
+    },
+    {
+      "id": "chantier-rue-vallon",
+      "title": "Réaménagement de la Rue du Vallon : Piste Cyclo-Piétonne & Voirie",
+      "category": "Aménagement Cyclo-Piéton",
+      "status": "Achevé (septembre 2025)",
+      "period": {
+        "start": "2025-06-01",
+        "end": "2025-09-30",
+        "duration": "4 mois",
+        "year": 2025,
+        "season": "Été - Automne 2025"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "Société ViaBuild",
+        "Service Voirie"
+      ],
+      "coordinates": [
+        50.7215,
+        4.506
+      ],
+      "location_label": "Rue du Vallon (Rixensart)",
+      "description": "Réfection intégrale de la voirie (asphaltage et réfection du joint central par ViaBuild), création d'un trottoir cyclo-piétons sécurisé avec séparation nette par ligne blanche entre la zone piétonne (côté habitations) et la zone cyclable (côté chaussée). Marquages au sol spécifiques, nouveaux piquets et replantation d'arbres sur les poches de stationnement début 2026.",
+      "traffic_measures": "Fermetures et déviations durant l'été 2025, réouverture définitive à double sens fin août 2025 avec signalisation et marquages définitifs en septembre 2025.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007523,
+          "street": "Rue Haute",
+          "impact_type": "Sécurisation et réduction des transits parasites",
+          "observed_variation": "-16.9% au printemps 2026 (-8.0% en automne 2025)",
+          "correlation_note": "L'apaisement du secteur du Vallon contribue à la baisse globale du trafic sur les voiries du centre historique de Rixensart."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/fin-des-travaux-de-la-rue-du-vallon",
+      "work_zone_polyline": [
+        [
+          50.717014,
+          4.497793
+        ],
+        [
+          50.717084,
+          4.497973
+        ],
+        [
+          50.717213,
+          4.498334
+        ],
+        [
+          50.717367,
+          4.4987
+        ],
+        [
+          50.71753,
+          4.499028
+        ],
+        [
+          50.717802,
+          4.499505
+        ],
+        [
+          50.717897,
+          4.499673
+        ],
+        [
+          50.718196,
+          4.500124
+        ],
+        [
+          50.718307,
+          4.500248
+        ],
+        [
+          50.718452,
+          4.500392
+        ],
+        [
+          50.718736,
+          4.500627
+        ],
+        [
+          50.719146,
+          4.501002
+        ],
+        [
+          50.719372,
+          4.501234
+        ],
+        [
+          50.719552,
+          4.501446
+        ],
+        [
+          50.719702,
+          4.501672
+        ],
+        [
+          50.719848,
+          4.501934
+        ],
+        [
+          50.720108,
+          4.502479
+        ],
+        [
+          50.720168,
+          4.502575
+        ],
+        [
+          50.7203,
+          4.502825
+        ],
+        [
+          50.720339,
+          4.502894
+        ],
+        [
+          50.720371,
+          4.502962
+        ],
+        [
+          50.720484,
+          4.503157
+        ],
+        [
+          50.720858,
+          4.503902
+        ],
+        [
+          50.720953,
+          4.504138
+        ],
+        [
+          50.721008,
+          4.504283
+        ],
+        [
+          50.721171,
+          4.504644
+        ],
+        [
+          50.721277,
+          4.504853
+        ],
+        [
+          50.72137,
+          4.505089
+        ],
+        [
+          50.721473,
+          4.505355
+        ],
+        [
+          50.721575,
+          4.505674
+        ],
+        [
+          50.721752,
+          4.506172
+        ],
+        [
+          50.721873,
+          4.506445
+        ],
+        [
+          50.722055,
+          4.506943
+        ],
+        [
+          50.722116,
+          4.50715
+        ],
+        [
+          50.72221,
+          4.507428
+        ],
+        [
+          50.722321,
+          4.50772
+        ],
+        [
+          50.722448,
+          4.508015
+        ],
+        [
+          50.722505,
+          4.508171
+        ],
+        [
+          50.722624,
+          4.508504
+        ],
+        [
+          50.722682,
+          4.508701
+        ],
+        [
+          50.722689,
+          4.508725
+        ],
+        [
+          50.722754,
+          4.508967
+        ],
+        [
+          50.722883,
+          4.509378
+        ],
+        [
+          50.722976,
+          4.509737
+        ],
+        [
+          50.723067,
+          4.510182
+        ],
+        [
+          50.723127,
+          4.5105
+        ],
+        [
+          50.723255,
+          4.511408
+        ],
+        [
+          50.723274,
+          4.511556
+        ],
+        [
+          50.723334,
+          4.511948
+        ],
+        [
+          50.723389,
+          4.512266
+        ],
+        [
+          50.723454,
+          4.51245
+        ],
+        [
+          50.723463,
+          4.512489
+        ]
+      ]
+    },
+    {
+      "id": "chantier-rue-cerf-tasniere",
+      "title": "Travaux de Soutènement Rue du Cerf & Régulation Carrefour Tasnière",
+      "category": "Génie Civil & Voirie",
+      "status": "Achevé (début 2026)",
+      "period": {
+        "start": "2026-01-10",
+        "end": "2026-03-15",
+        "duration": "2 mois",
+        "year": 2026,
+        "season": "Hiver 2026"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "Zone de Police La Mazerine"
+      ],
+      "coordinates": [
+        50.7297,
+        4.5079
+      ],
+      "location_label": "Rue du Cerf (tronçon depuis la rue de la Tasnière, Genval)",
+      "description": "Travaux de confortement et de soutènement d'accotements sur la rue du Cerf, nécessitant la mise en place d'une circulation alternée par feux tricolores temporaires. Aménagement de sécurité au carrefour avec la rue Joseph Desmet et passage piéton.",
+      "traffic_measures": "Circulation alternée par feux lumineux temporaires, forts ralentissements aux heures de pointe incitant le trafic à éviter le quartier de la Tasnière.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007512,
+          "street": "Rue de la Tasnière",
+          "impact_type": "Forte dissuasion du transit d'évitement",
+          "observed_variation": "-26.0% au printemps 2026 (de 832 à 616 véh/j) ; -20.1% en automne 2025",
+          "correlation_note": "Les feux de circulation alternée en amont sur la rue du Cerf ont détourné durablement les navetteurs de transit qui utilisaient la rue de la Tasnière comme raccourci vers Overijse."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/travaux-en-cours-et-a-venir",
+      "work_zone_polyline": [
+        [
+          50.730577,
+          4.507163
+        ],
+        [
+          50.73004,
+          4.507997
+        ],
+        [
+          50.730005,
+          4.508052
+        ],
+        [
+          50.729979,
+          4.508074
+        ],
+        [
+          50.72992,
+          4.508121
+        ],
+        [
+          50.7297,
+          4.507903
+        ],
+        [
+          50.729086,
+          4.50729
+        ],
+        [
+          50.728815,
+          4.50702
+        ]
+      ]
+    },
+    {
+      "id": "chantier-papeteries-genval",
+      "title": "Parc Urbain Inondable des Papeteries de Genval & Renaturalisation de la Lasne",
+      "category": "Environnement & Résilience Crues",
+      "status": "Achevé (novembre 2025)",
+      "period": {
+        "start": "2025-05-19",
+        "end": "2025-11-30",
+        "duration": "6 mois",
+        "year": 2025,
+        "season": "Printemps - Automne 2025"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "Région Wallonne (Appel à projets Parcs urbains)",
+        "Département Nature et Forêts (DNF)"
+      ],
+      "coordinates": [
+        50.7214,
+        4.5148
+      ],
+      "location_label": "Site des anciennes Papeteries de Genval, berges de la Lasne",
+      "description": "Projet pilote de renaturalisation des berges de la rivière la Lasne pour la création d'un parc urbain inondable capable de tamponner les crues tout en créant une liaison douce et verte pour les riverains. Fermeture du site au public, circulation d'engins de terrassement.",
+      "traffic_measures": "Fermeture des cheminements piétons et cyclables le long de la Lasne pendant les travaux, report partiel des piétons sur les trottoirs des rues avoisinantes.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007530,
+          "street": "Place Communale",
+          "impact_type": "Report piétonnier local",
+          "observed_variation": "Maintien d'un flux piéton régulier malgré la fermeture des berges",
+          "correlation_note": "Interactions avec les chantiers de trottoirs de la Place Communale."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/parc-inondable-aux-papeteries-de-genval-debut-des",
+      "work_zone_polyline": [
+        [
+          50.721252,
+          4.514264
+        ],
+        [
+          50.721138,
+          4.514481
+        ],
+        [
+          50.721021,
+          4.514703
+        ],
+        [
+          50.721092,
+          4.514806
+        ],
+        [
+          50.721148,
+          4.514869
+        ],
+        [
+          50.721256,
+          4.515014
+        ],
+        [
+          50.721331,
+          4.515114
+        ],
+        [
+          50.721368,
+          4.515164
+        ],
+        [
+          50.721481,
+          4.515307
+        ],
+        [
+          50.721599,
+          4.515466
+        ],
+        [
+          50.721686,
+          4.515301
+        ],
+        [
+          50.721715,
+          4.515248
+        ],
+        [
+          50.721746,
+          4.515191
+        ],
+        [
+          50.721831,
+          4.515027
+        ]
+      ]
+    },
+    {
+      "id": "chantier-cardinal-mercier",
+      "title": "Rénovation Réseaux, Égouttage & Asphaltage Place Cardinal Mercier / Rue du Baillois",
+      "category": "Égouttage & Réseaux Concessionnaires",
+      "status": "Achevé / En phase de finition (2025 - 2026)",
+      "period": {
+        "start": "2025-08-01",
+        "end": "2026-06-30",
+        "duration": "10 mois",
+        "year": 2025,
+        "season": "Automne 2025 - Printemps 2026"
+      },
+      "actors": [
+        "Commune de Rixensart",
+        "in BW",
+        "SWDE (eau)",
+        "ORES (gaz et électricité)"
+      ],
+      "coordinates": [
+        50.7101,
+        4.5075
+      ],
+      "location_label": "Place Cardinal Mercier, Rue du Baillois et sentier du Baillois",
+      "description": "Travaux conjoints d'égouttage et d'asphaltage achevés derrière l'église, puis remplacement complet des conduites de distribution d'eau potable (SWDE) et du réseau de gaz naturel (ORES) dans la rue du Baillois et le sentier du Baillois. Avant-projet de réaménagement global de la place présenté aux riverains en octobre 2025.",
+      "traffic_measures": "Entraves partielles, mise en cul-de-sac temporaire de tronçons de la rue du Baillois et déviations locales.",
+      "impacted_sensors": [
+        {
+          "sensor_id": 9000007523,
+          "street": "Rue Haute",
+          "impact_type": "Perturbations de proximité dans le quartier de Bourgeois",
+          "observed_variation": "Stabilisation et apaisement de la vitesse",
+          "correlation_note": "Les riverains ont évité les trajets courts par le centre au profit des axes périphériques."
+        }
+      ],
+      "source_url": "https://www.rixensart.be/actualites/reamenagement-de-la-place-cardinal-mercier",
+      "work_zone_polyline": [
+        [
+          50.708773,
+          4.50516
+        ],
+        [
+          50.708867,
+          4.505213
+        ],
+        [
+          50.709234,
+          4.505457
+        ],
+        [
+          50.709517,
+          4.505639
+        ],
+        [
+          50.709764,
+          4.505761
+        ],
+        [
+          50.709829,
+          4.505809
+        ],
+        [
+          50.70989,
+          4.505883
+        ],
+        [
+          50.710005,
+          4.506056
+        ],
+        [
+          50.710016,
+          4.506079
+        ],
+        [
+          50.710087,
+          4.506275
+        ],
+        [
+          50.710115,
+          4.506345
+        ],
+        [
+          50.710133,
+          4.506376
+        ],
+        [
+          50.710148,
+          4.506419
+        ],
+        [
+          50.710198,
+          4.506652
+        ],
+        [
+          50.710243,
+          4.506923
+        ],
+        [
+          50.710307,
+          4.507283
+        ],
+        [
+          50.710336,
+          4.507491
+        ],
+        [
+          50.710332,
+          4.507627
+        ],
+        [
+          50.710299,
+          4.507812
+        ],
+        [
+          50.710255,
+          4.507962
+        ],
+        [
+          50.710235,
+          4.508017
+        ],
+        [
+          50.710214,
+          4.50806
+        ],
+        [
+          50.710134,
+          4.508248
+        ],
+        [
+          50.710111,
+          4.5083
+        ],
+        [
+          50.710094,
+          4.508333
+        ],
+        [
+          50.710026,
+          4.508515
+        ],
+        [
+          50.709976,
+          4.508637
+        ],
+        [
+          50.709854,
+          4.50886
+        ],
+        [
+          50.70959,
+          4.509362
+        ],
+        [
+          50.709511,
+          4.509512
+        ],
+        [
+          50.709488,
+          4.509557
+        ],
+        [
+          50.709465,
+          4.50964
+        ],
+        [
+          50.709496,
+          4.509734
+        ],
+        [
+          50.709508,
+          4.509844
+        ]
+      ]
+    }
+  ]
+}
