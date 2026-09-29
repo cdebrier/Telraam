@@ -1,0 +1,253 @@
+{
+  "streets": [
+    {
+      "id": 9000007490,
+      "street": "Rue de Genval",
+      "limit": 50,
+      "v85": 53.1,
+      "delta": 3.1,
+      "status": "warn",
+      "dailyTotal": 1427,
+      "dailyBikes": 52,
+      "bikePct": 3.64,
+      "pedPct": 2.29,
+      "activePct": 5.9
+    },
+    {
+      "id": 9000007492,
+      "street": "Chaussée de La Hulpe",
+      "limit": 50,
+      "v85": 39.7,
+      "delta": -10.3,
+      "status": "ok",
+      "dailyTotal": 5673,
+      "dailyBikes": 53,
+      "bikePct": 0.93,
+      "pedPct": 4.79,
+      "activePct": 5.7
+    },
+    {
+      "id": 9000007497,
+      "street": "Avenue Franklin Roosevelt",
+      "limit": 50,
+      "v85": 49.1,
+      "delta": -0.9,
+      "status": "ok",
+      "dailyTotal": 7538,
+      "dailyBikes": 99,
+      "bikePct": 1.31,
+      "pedPct": 0.72,
+      "activePct": 2
+    },
+    {
+      "id": 9000007509,
+      "street": "Rue de l'Institut",
+      "limit": 50,
+      "v85": 53.1,
+      "delta": 3.1,
+      "status": "warn",
+      "dailyTotal": 2674,
+      "dailyBikes": 36,
+      "bikePct": 1.34,
+      "pedPct": 1.15,
+      "activePct": 2.5
+    },
+    {
+      "id": 9000007512,
+      "street": "Rue de la Tasnière",
+      "limit": 30,
+      "v85": 41.6,
+      "delta": 11.6,
+      "status": "high",
+      "dailyTotal": 1958,
+      "dailyBikes": 64,
+      "bikePct": 3.29,
+      "pedPct": 1.92,
+      "activePct": 5.2
+    },
+    {
+      "id": 9000007523,
+      "street": "Rue Haute",
+      "limit": 50,
+      "v85": 47.3,
+      "delta": -2.7,
+      "status": "ok",
+      "dailyTotal": 4939,
+      "dailyBikes": 151,
+      "bikePct": 3.06,
+      "pedPct": 1.5,
+      "activePct": 4.6
+    },
+    {
+      "id": 9000007530,
+      "street": "Place Communale",
+      "limit": 30,
+      "v85": 41.8,
+      "delta": 11.8,
+      "status": "high",
+      "dailyTotal": 1389,
+      "dailyBikes": 32,
+      "bikePct": 2.28,
+      "pedPct": 8.1,
+      "activePct": 10.4
+    },
+    {
+      "id": 9000007533,
+      "street": "Avenue Albert 1er",
+      "limit": 50,
+      "v85": 62,
+      "delta": 12,
+      "status": "high",
+      "dailyTotal": 6424,
+      "dailyBikes": 66,
+      "bikePct": 1.03,
+      "pedPct": 1.61,
+      "activePct": 2.6
+    },
+    {
+      "id": 9000007534,
+      "street": "Avenue de Boulogne-Billancourt",
+      "limit": 50,
+      "v85": 59.2,
+      "delta": 9.2,
+      "status": "high",
+      "dailyTotal": 1323,
+      "dailyBikes": 44,
+      "bikePct": 3.3,
+      "pedPct": 4.73,
+      "activePct": 8
+    },
+    {
+      "id": 9000007578,
+      "street": "Rue de la Gare",
+      "limit": 30,
+      "v85": 44.5,
+      "delta": 14.5,
+      "status": "high",
+      "dailyTotal": 2172,
+      "dailyBikes": 154,
+      "bikePct": 7.09,
+      "pedPct": 10.01,
+      "activePct": 17.1
+    },
+    {
+      "id": 9000007261,
+      "street": "Rue Mahiermont",
+      "limit": 50,
+      "v85": 24.2,
+      "delta": -25.8,
+      "status": "ok",
+      "dailyTotal": 672,
+      "dailyBikes": 15,
+      "bikePct": 2.24,
+      "pedPct": 5.29,
+      "activePct": 7.5
+    },
+    {
+      "id": 9000006402,
+      "street": "Rue du Tilleul",
+      "limit": 30,
+      "v85": 37.2,
+      "delta": 7.2,
+      "status": "high",
+      "dailyTotal": 673,
+      "dailyBikes": 77,
+      "bikePct": 11.39,
+      "pedPct": 10.88,
+      "activePct": 22.3
+    },
+    {
+      "id": 9000009405,
+      "street": "Rue des Bergères",
+      "limit": 30,
+      "v85": null,
+      "delta": null,
+      "status": "none",
+      "dailyTotal": 0,
+      "dailyBikes": 0,
+      "bikePct": 0,
+      "pedPct": 0,
+      "activePct": 0
+    }
+  ],
+  "hero": {
+    "worst": "Rue de la Gare",
+    "v85": 44.5,
+    "over5": 4,
+    "of": 4
+  },
+  "seasonal": {
+    "autumn": {
+      "label": "Automne (Nov 2024 vs Nov 2025)",
+      "sensors": 10,
+      "totals": {
+        "total": {
+          "base": 1065539,
+          "target": 910531,
+          "diff": -155008,
+          "pct": -14.5
+        },
+        "cars": {
+          "base": 944233,
+          "target": 815644,
+          "diff": -128589,
+          "pct": -13.6
+        },
+        "heavy": {
+          "base": 68884,
+          "target": 48780,
+          "diff": -20104,
+          "pct": -29.2
+        },
+        "bikes": {
+          "base": 22500,
+          "target": 24299,
+          "diff": 1799,
+          "pct": 8
+        },
+        "pedestrians": {
+          "base": 29922,
+          "target": 21808,
+          "diff": -8114,
+          "pct": -27.1
+        }
+      }
+    },
+    "spring": {
+      "label": "Printemps (Mai 2025 vs Mai 2026)",
+      "sensors": 9,
+      "totals": {
+        "total": {
+          "base": 1333852,
+          "target": 1281622,
+          "diff": -52230,
+          "pct": -3.9
+        },
+        "cars": {
+          "base": 1165642,
+          "target": 1121628,
+          "diff": -44014,
+          "pct": -3.8
+        },
+        "heavy": {
+          "base": 71785,
+          "target": 64235,
+          "diff": -7550,
+          "pct": -10.5
+        },
+        "bikes": {
+          "base": 55976,
+          "target": 57527,
+          "diff": 1551,
+          "pct": 2.8
+        },
+        "pedestrians": {
+          "base": 40449,
+          "target": 38232,
+          "diff": -2217,
+          "pct": -5.5
+        }
+      }
+    }
+  }
+}

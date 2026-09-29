@@ -1,0 +1,99 @@
+// Contrôle des chiffres du dashboard.
+//   node tools/check_aggregates.mjs            -> affiche les agrégats et recoupe les chiffres écrits en dur
+//   node tools/check_aggregates.mjs --write    -> régénère tools/reference_aggregates.json
+//   node tools/check_aggregates.mjs --check    -> échoue si les agrégats diffèrent de la référence
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import vm from 'node:vm';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const ctx = { window: {} };
+vm.createContext(ctx);
+vm.runInContext(readFileSync(path.join(root, 'data/rixensart_data.js'), 'utf8'), ctx);
+const data = ctx.window.TELRAAM_RIXENSART;
+const hist = ctx.window.TELRAAM_HISTORY;
+
+// --- Même logique que l'index.html actuel (speedStatus) ---
+const speedStatus = (v85, limit) => {
+  if (!v85) return 'none';
+  const d = v85 - limit;
+  return d > 5 ? 'high' : d > 2 ? 'warn' : 'ok';
+};
+const r1 = n => (n == null ? null : Math.round(n * 10) / 10);
+
+// --- Agrégats de référence (tableaux 1 et 4, calculés en JS dans la page) ---
+const streets = data.map(s => {
+  const nov = s.nov2024 || {};
+  const v85 = (nov.speed || {}).avg_v85 || null;
+  const limit = s.speed_limit || 50;
+  return {
+    id: s.id, street: s.street, limit, v85,
+    delta: v85 ? r1(v85 - limit) : null,
+    status: speedStatus(v85, limit),
+    dailyTotal: nov.daily_total || 0,
+    dailyBikes: nov.daily_bikes || 0,
+    bikePct: nov.bike_pct || 0,
+    pedPct: nov.ped_pct || 0,
+    activePct: nov.active_pct ?? null,
+  };
+});
+const zone30 = streets.filter(s => s.limit === 30 && s.v85);
+const worst = zone30.reduce((a, b) => (b.v85 > a.v85 ? b : a));
+const hero = { worst: worst.street, v85: worst.v85, over5: zone30.filter(z => z.v85 - 30 > 5).length, of: zone30.length };
+
+// Comparaison saisonnière issue de yoy_analysis
+const yoy = hist.yoy_analysis;
+const pick = k => ({ label: yoy[k].label, sensors: yoy[k].constant_sensors_count ?? null, totals: yoy[k].totals });
+const seasonal = { autumn: pick('autumn'), spring: pick('spring') };
+
+const reference = { streets, hero, seasonal };
+const refPath = path.join(root, 'tools/reference_aggregates.json');
+const arg = process.argv[2];
+
+if (arg === '--write') {
+  writeFileSync(refPath, JSON.stringify(reference, null, 2) + '\n');
+  console.log('Référence écrite :', refPath);
+  process.exit(0);
+}
+if (arg === '--check') {
+  const expected = JSON.parse(readFileSync(refPath, 'utf8'));
+  const same = JSON.stringify(expected) === JSON.stringify(JSON.parse(JSON.stringify(reference)));
+  console.log(same ? 'OK : aucun écart avec la référence.' : 'ÉCART avec tools/reference_aggregates.json');
+  process.exit(same ? 0 : 1);
+}
+
+// --- Recoupement des chiffres écrits en dur (tableaux 2 et 3 de l'index.html actuel) ---
+const by = name => data.find(s => s.street.startsWith(name));
+const sum = (period, key) => data.reduce((t, s) => t + ((s.history_periods || {})[period]?.[key] || 0), 0);
+const rows = [];
+const claim = (label, written, computed, note = '') => rows.push({ label, écrit: written, calculé: computed, note });
+
+const tot = k => ['cars', 'pedestrians', 'bikes', 'heavy'].reduce((t, m) => t + sum(k, m), 0);
+for (const p of ['nov2024', 'jan2025', 'may2025', 'nov2025', 'may2026']) {
+  const t = tot(p);
+  console.log(`Répartition ${p} (tous capteurs, ${t.toLocaleString('fr-FR')} passages) :`,
+    ['cars', 'pedestrians', 'bikes', 'heavy'].map(m => `${m} ${(100 * sum(p, m) / t).toFixed(1)}%`).join(' · '));
+}
+const jan = sum('jan2025', 'bikes'), may = sum('may2025', 'bikes');
+claim('Vélos janvier 2025 (tous capteurs)', 20574, jan);
+claim('Vélos mai 2025 (tous capteurs)', 60501, may);
+claim('Hausse jan→mai', '+194 %', `${r1(100 * (may - jan) / jan)} %`);
+
+const gare = by('Rue de la Gare'), til = by('Rue du Tilleul'), bou = by('Avenue de Boulogne');
+const g = gare.nov2024, t = til.nov2024, b = bou.nov2024;
+claim('Gare V85', 44.5, g.speed.avg_v85);
+claim('Gare écart à 30', '+14,5', r1(g.speed.avg_v85 - 30));
+claim('Gare mobilités actives', '17,1 %', g.active_pct + ' %');
+claim('Gare vélos / jour', 154, g.daily_bikes);
+claim('Tilleul V85', 37.2, t.speed.avg_v85);
+claim('Tilleul écart à 30', '+7,2', r1(t.speed.avg_v85 - 30));
+claim('Tilleul mobilités actives', '22,3 %', t.active_pct + ' %');
+claim('Tilleul part vélos', '11,4 %', t.bike_pct + ' %');
+claim('Tilleul part piétons', '10,9 %', t.ped_pct + ' %');
+claim('Boulogne V85', 59.2, b.speed.avg_v85);
+claim('Boulogne pointes (max V85)', 61, b.speed.max_v85);
+claim('Boulogne mobilités actives', '8,0 %', b.active_pct + ' %');
+console.table(rows);
+console.log('Hero :', hero);
+console.log('Saisonnier :', JSON.stringify(seasonal.spring.totals));
