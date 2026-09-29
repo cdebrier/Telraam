@@ -2,7 +2,7 @@
 
 Ce projet est un observatoire citoyen et un outil d'aide à la décision basé sur les données de comptage multimodal et de vitesse des capteurs **Telraam S2** installés chez les riverains de la commune de **Rixensart** (Rixensart, Genval, Rosières).
 
-La page présente près de **27 millions de détections** enregistrées entre 2024 et 2026 sous forme de parcours défilant (scrollytelling) : profils horaires, vitesses V85 par rue, répartition par mode, effet des saisons, études de cas, puis une fiche imprimable par rue.
+La page présente près de **27 millions de détections** enregistrées entre 2024 et 2026 sous forme de parcours défilant (scrollytelling) : profils horaires, vitesses V85 par rue, répartition par mode, effet des saisons, études de cas, une section sur les chantiers, une carte de l'évolution date par date (écart de chaque rue à la tendance communale), puis une fiche imprimable par rue.
 
 ---
 
@@ -27,7 +27,7 @@ Ce document détaille :
 ## 🗂️ Structure du Projet
 
 ```text
-├── index.html                           # Page unique : parcours scrollytelling, fiche par rue, méthode
+├── index.html                           # Page unique : parcours scrollytelling, chantiers, carte d'évolution, fiche par rue, méthode
 ├── README.md                            # Présentation générale du projet
 ├── docs/
 │   ├── METHODOLOGIE.md                  # Référentiel méthodologique et scientifique complet

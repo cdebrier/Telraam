@@ -148,6 +148,15 @@ Où :
 * $M_{\text{actifs}}(s)$ est le nombre effectif de mois d'émission sur les 23 mois de la période 2024–2026 (ex. 14 mois pour Rosières, 23 mois pour les autres axes).
 * $\kappa_{\text{nuit}}(s)$ est le ratio moyen de trafic nocturne constaté sur le segment ($0{,}15 \le \kappa_{\text{nuit}} \le 0{,}40$).
 
+### 5.4 Écart à la tendance communale (carte d'évolution)
+La carte « Rue par rue, date par date » compare chaque rue à l'évolution du reste de la commune, pour neutraliser la saison (en mai presque toutes les rues montent, en novembre elles baissent) :
+
+* **Indice de la rue** à la date $t$ : total du mois divisé par le total de nov. 2024 (première date, seule à réunir les 10 capteurs).
+* **Tendance communale** à la date $t$ : médiane des indices des rues mesurées à cette date. La médiane est robuste aux valeurs extrêmes.
+* **Écart** : $	ext{indice}_{	ext{rue}}(t) \div \text{tendance}(t) - 1$. La valeur 0 signifie « comme la commune ».
+
+Limites : la référence (nov. 2024) est un mois unique, et peut être atypique ; un capteur arrêté n'est pas compté comme une baisse ; un écart supérieur à +100 % sur une seule date (voisines sous +100 %) est signalé comme mesure isolée (par exemple Place Communale en mai 2025). Les valeurs de contrôle sont dans `tools/reference_timeline.json`.
+
 ---
 
 ## 6. Matrice de Vigilance : Croisement Vitesse $\times$ Usagers Vulnérables
@@ -186,12 +195,12 @@ Grâce à cette matrice, l'observatoire identifie de manière incontestable les 
 L'interprétation des variations de flux à Rixensart entre 2024 et 2026 intègre l'ensemble des arrêtés communaux et des chantiers régionaux référencés dans le registre `rixensart_travaux.json`.
 
 ### 7.1 Principaux Chantiers Corrélés
-1. **Chantier de l'Avenue Royale (février – novembre 2026, 200 jours ouvrables)** : fermeture complète pour travaux d'égouttage et de voirie avec déviation officielle de transit. Ce chantier a provoqué un report direct et massif vers l'**Avenue de Boulogne-Billancourt (+70,7 % de trafic)** et la **Rue de la Gare (+58,9 %)**.
-2. **Chantier SOFICO E411 (2024–2026)** : pose de 17 600 m² de murs antibruit et création de la cyclostrade E411 avec fermetures alternées de l'échangeur n°4 (Rosières). Cela a entraîné des reports de transit sur la Chaussée de La Hulpe et la Rue de Genval.
-3. **Réaménagement de la Rue de Rosières et carrefour Desmet** : apaisement et mise en zone 30 incitant à l'évitement de certains flux de transit vers la Rue de la Tasnière (-26 %).
+1. **Chantier de l'Avenue Royale (février – novembre 2026, 200 jours ouvrables)** : fermeture complète pour travaux d'égouttage et de voirie avec déviation officielle de transit. Il coïncide avec une forte hausse sur l'**Avenue de Boulogne-Billancourt (+70,7 % de mai à mai)**, mais celle-ci était déjà engagée avant la fermeture (écart à la tendance communale de +43 % en mai 2025 et +73 % en nov. 2025, puis +172 % en mai 2026). Le lien avec la **Rue de la Gare (+58,9 %)** est plus fragile : l'écart à la tendance retombe à 0 en août 2026 alors que l'Avenue Royale reste fermée.
+2. **Chantier SOFICO E411 (2024–2026)** : pose de 17 600 m² de murs antibruit et création de la cyclostrade E411 avec fermetures alternées de l'échangeur n°4 (Rosières). Les variations de la Chaussée de La Hulpe et de la Rue de Genval sont compatibles avec des reports de transit, mais restent proches de la tendance générale ou instables d'une date à l'autre.
+3. **Réaménagement de la Rue de Rosières et carrefour Desmet** : apaisement et mise en zone 30. Le lien avec la baisse de la Rue de la Tasnière (-26 %) est faible : la mesure de mai suit la fin des travaux de la rue du Cerf et un écart comparable existait avant les travaux.
 
 ### 7.2 Théorie de l'Évaporation du Trafic (*Disappearing Traffic*)
-Les comptages pluriannuels de Rixensart confirment les conclusions fondamentales des travaux de recherche de **Cairns, Hass-Klau & Goodwin (1998, 2002)** :
+Les comptages pluriannuels de Rixensart sont compatibles avec les conclusions fondamentales des travaux de recherche de **Cairns, Hass-Klau & Goodwin (1998, 2002)** :
 * Lorsqu'une voirie est fermée ou ralentie, les véhicules ne se reportent pas à 100 % sur les voiries parallèles avoisinantes.
 * Une fraction significative des déplacements (souvent entre 10 % et 25 %) **« s'évapore »** par adaptation des usagers :
   - Report vers les transports en commun (renforcé par la mise en service du **pôle multimodal RER de Rixensart** fin 2024 sur la ligne 161).
