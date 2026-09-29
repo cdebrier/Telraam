@@ -4,10 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mobilité à Rixensart · Comptages Telraam 2024–2026</title>
+<link rel="icon" href="data:,">
 <meta name="description" content="Vitesses et fréquentation mesurées par 13 capteurs Telraam à Rixensart, Genval et Rosières, de 2024 à 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Cartographie et graphiques (chargés uniquement pour les scènes qui en ont besoin) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js" defer></script>
 
 <!-- Données Telraam (window.TELRAAM_RIXENSART, TELRAAM_HISTORY, ...) -->
 <script src="data/rixensart_data.js"></script>
@@ -29,7 +35,7 @@
   --bike: #5AA9FF;
   --focus: #FFD166;
   --bar-h: 44px;           /* hauteur de la barre de progression */
-  --stage-h-mobile: 46svh; /* hauteur du cadre épinglé sur mobile */
+  --stage-h-mobile: 50svh; /* hauteur du cadre épinglé sur mobile */
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -106,6 +112,54 @@ a { color: inherit; }
 .placeholder strong { display: block; color: var(--text); font-size: 16px; margin-bottom: 4px; }
 .msg { color: var(--warn); font-size: 15px; text-align: center; max-width: 420px; }
 
+/* Scènes avec visuel plein cadre */
+.scene__body.fill { display: flex; flex-direction: column; place-items: stretch; justify-content: flex-start; gap: 8px; min-height: 0; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; align-self: flex-start; flex: none; }
+.seg button {
+  background: transparent; color: var(--muted); border: 0; padding: 6px 12px; min-height: 32px;
+  font: 600 13px/1 'Inter', system-ui, sans-serif; cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--panel-2); color: var(--text); }
+.viz-title { font-size: 13px; color: var(--muted); margin: 0; flex: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); flex: none; align-items: center; }
+.legend span { display: inline-flex; align-items: center; gap: 5px; }
+.legend svg { display: block; }
+
+/* Ridgeplot */
+.ridge { flex: 1; min-height: 0; width: 100%; max-width: 640px; }
+.ridge text { fill: var(--muted); font-size: 10.5px; font-family: inherit; }
+.ridge .val { fill: var(--text); }
+.ridge .grid { stroke: var(--line); stroke-width: 1; }
+
+/* Carte */
+.map { flex: 1; min-height: 0; border-radius: 10px; border: 1px solid var(--line); background: #0f141b; }
+.leaflet-container { font-family: inherit; background: #0f141b; }
+/* Fond OpenStreetMap assombri (les marqueurs et popups ne sont pas touchés) */
+.map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9) saturate(.5); }
+.leaflet-control-attribution { background: rgba(11,15,20,.75) !important; color: var(--muted) !important; font-size: 10px; }
+.leaflet-control-attribution a { color: var(--muted) !important; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--text); box-shadow: 0 4px 16px rgba(0,0,0,.5); }
+.leaflet-popup-content { font-size: 13px; line-height: 1.45; margin: 10px 14px; }
+.leaflet-popup-content strong { font-size: 14px; }
+.street-marker { background: none; border: 0; }
+.street-marker svg { display: block; margin: 0 auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,.7)); }
+.mk-label { display: block; text-align: center; font: 700 11px/1 'Inter', sans-serif; color: #fff; text-shadow: 0 1px 2px #000, 0 0 3px #000; margin-top: 1px; white-space: nowrap; }
+
+/* Thermomètre */
+.thermo { display: flex; flex-direction: column; gap: 3px; flex: 1; min-height: 0; justify-content: center; }
+.tr { display: grid; grid-template-columns: 118px 1fr 70px; align-items: center; gap: 8px; font-size: 12px; }
+.tr .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tr .name em { color: var(--muted); font-style: normal; }
+.tr .val { text-align: right; font-variant-numeric: tabular-nums; display: inline-flex; gap: 5px; align-items: center; justify-content: flex-end; }
+.track { position: relative; height: 18px; }
+.bar { position: absolute; left: 0; top: 3px; height: 12px; border-radius: 2px; width: 0; transition: width .7s cubic-bezier(.2,.7,.2,1); }
+.unc { position: absolute; top: 8px; height: 2px; background: rgba(231,236,242,.6); }
+.unc::before, .unc::after { content: ""; position: absolute; top: -3px; width: 2px; height: 8px; background: rgba(231,236,242,.6); }
+.unc::before { left: 0; } .unc::after { right: 0; }
+.lim { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); }
+@media (min-width: 900px) { .thermo { gap: clamp(6px, 1.8vh, 14px); } .tr { grid-template-columns: 140px 1fr 78px; font-size: 13px; } }
+@media (prefers-reduced-motion: reduce) { .bar { transition: none; } }
+
 /* Scène 0 : carte des capteurs */
 .sensors-svg { width: 100%; height: 100%; max-height: 100%; }
 .sensors-svg circle { transition: r .3s; }
@@ -137,7 +191,7 @@ a { color: inherit; }
 .is-stacked .step { min-height: 0; display: block; padding: 24px 0; }
 .is-stacked .scene {
   position: relative; inset: auto; opacity: 1; visibility: visible; transition: none;
-  height: 320px; margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel);
+  height: 400px; margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--panel);
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -190,8 +244,8 @@ html:not(.js) .step { min-height: 0; display: block; }
       <div class="step__card">
         <p class="step__kicker">Journée type</p>
         <h2>Deux pics : le matin et le soir</h2>
-        <p>Profil horaire du trafic par rue, en semaine.</p>
-        <p class="src">Étape 2 : ridgeplot 24 h.</p>
+        <p data-fill="peaks">Profil horaire du trafic par rue, en semaine.</p>
+        <p class="src">Nov. 2024, heures de jour · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
       </div>
     </section>
 
@@ -200,7 +254,8 @@ html:not(.js) .step { min-height: 0; display: block; }
         <p class="step__kicker">Vitesse mesurée</p>
         <h2>V85 par rue, sur la carte</h2>
         <p>La V85 est la vitesse que 85 % des véhicules ne dépassent pas.</p>
-        <p class="src">Étape 2 : carte des vitesses.</p>
+        <p data-fill="speedcount"></p>
+        <p class="src">Nov. 2024, heures de jour · incertitude ±10 % · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
       </div>
     </section>
 
@@ -209,7 +264,8 @@ html:not(.js) .step { min-height: 0; display: block; }
         <p class="step__kicker">Écart à la limite</p>
         <h2>Classement des rues</h2>
         <p>V85 comparée à la limite légale de chaque rue, avec la marge d'incertitude de ±10 %.</p>
-        <p class="src">Étape 2 : barres de vitesse.</p>
+        <p data-fill="thermo"></p>
+        <p class="src">Nov. 2024, heures de jour · <a href="docs/METHODOLOGIE.md">Méthode</a></p>
       </div>
     </section>
 
@@ -271,6 +327,30 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isDesktop = () => window.matchMedia('(min-width: 900px)').matches;
 
+const fmtDelta = d => (d > 0 ? '+' : d < 0 ? '−' : '') + fmt1(Math.abs(d));
+// Noms courts pour les libellés de graphiques
+const shortName = n => n.replace('Boulogne-Billancourt', 'Boulogne').replace(/^Avenue de /, 'Av. ').replace(/^Avenue /, 'Av. ')
+  .replace(/^Chaussée de /, 'Ch. ').replace('Franklin Roosevelt', 'F. Roosevelt');
+
+// Forme du marqueur = statut (lisible sans distinguer les couleurs)
+function markerSvg(st, size = 28) {
+  const c = `fill:${st.color}`, stroke = 'stroke:#0B0F14;stroke-width:2';
+  const open = `<svg width="${size}" height="${size}" viewBox="0 0 28 28" aria-hidden="true">`;
+  if (st.key === 'high') return `${open}<polygon points="14,3 26,25 2,25" style="${c};${stroke}"/></svg>`;
+  if (st.key === 'warn') return `${open}<rect x="5" y="5" width="18" height="18" rx="2" style="${c};${stroke}"/></svg>`;
+  if (st.key === 'ok') return `${open}<circle cx="14" cy="14" r="10" style="${c};${stroke}"/></svg>`;
+  return `${open}<circle cx="14" cy="14" r="8" style="fill:none;stroke:#9AA7B6;stroke-width:2.5"/></svg>`;
+}
+
+// Textes de étapes calculés depuis les données (data-fill="...")
+const fills = {
+  peaks: D => D.hourly.am.hour
+    ? `Le pic du matin tombe à ${D.hourly.am.hour.replace('-', '–')} dans ${D.hourly.am.n} rues sur ${D.hourly.rows.length} ; celui du soir à ${D.hourly.pm.hour.replace('-', '–')} dans ${D.hourly.pm.n}.`
+    : null,
+  speedcount: D => `${D.speed.high} rues sur ${D.speed.measured.length} dépassent leur limite de plus de 5 km/h, ${D.speed.warn} de 2 à 5 km/h, ${D.speed.ok} de moins de 2 km/h.`,
+  thermo: D => { const w = D.speed.measured[0]; return `Écart le plus fort : ${w.street}, ${fmtDelta(w.delta)} km/h.`; },
+};
+
 // Statut selon l'écart entre V85 et la limite PROPRE de la rue (règle de l'ancienne page)
 function speedStatus(v85, limit) {
   if (!v85) return { key: 'none', color: '#78716C', label: 'Pas de mesure' };
@@ -300,8 +380,38 @@ function derive() {
     };
   });
 
+  // Profils horaires (nov. 2024, semaine, heures de jour)
+  const sum = a => (a || []).reduce((t, v) => t + v, 0);
+  const hourlyRows = streets
+    .filter(s => s.raw.nov2024 && s.raw.nov2024.hourly && sum(s.raw.nov2024.hourly.cars_weekday) > 0)
+    .sort((a, b) => sum(b.raw.nov2024.hourly.cars_weekday) - sum(a.raw.nov2024.hourly.cars_weekday));
+  let first = 24, last = 0;
+  hourlyRows.forEach(s => ['cars_weekday', 'bikes_weekday', 'peds_weekday'].forEach(k =>
+    (s.raw.nov2024.hourly[k] || []).slice(0, 24).forEach((v, i) => { if (v > 0) { first = Math.min(first, i); last = Math.max(last, i); } })));
+  const mostCommon = key => {
+    const n = {};
+    hourlyRows.forEach(s => { const h = (s.raw.nov2024.hourly[key] || {}).hour; if (h) n[h] = (n[h] || 0) + 1; });
+    const [hour, count] = Object.entries(n).sort((a, b) => b[1] - a[1])[0] || [null, 0];
+    return { hour, n: count };
+  };
+  const hourly = {
+    rows: hourlyRows,
+    x0: Math.max(0, first - 1), x1: Math.min(24, last + 2),
+    am: mostCommon('am_peak'), pm: mostCommon('pm_peak'),
+    missing: streets.filter(s => !hourlyRows.includes(s)),
+  };
+
+  // Vitesse : rues mesurées, triées par écart décroissant
+  const measured = streets.filter(s => s.v85).sort((a, b) => b.delta - a.delta);
+  const count = key => measured.filter(s => s.status.key === key).length;
+  const speed = {
+    measured, unmeasured: streets.filter(s => !s.v85),
+    high: count('high'), warn: count('warn'), ok: count('ok'),
+    scaleMax: Math.ceil(Math.max(...measured.map(s => s.v85 * 1.1)) / 10) * 10,
+  };
+
   return {
-    streets,
+    streets, hourly, speed,
     sensorCount: streets.length,
     totalDetections: hist && hist.network_total_cumulative ? hist.network_total_cumulative : null,
     hist,
@@ -360,9 +470,167 @@ scenes.intro = {
     requestAnimationFrame(tick);
   },
 };
-scenes.journee     = { render: placeholder('Journée type', 'Ridgeplot 24 h : étape 2.') };
-scenes.vitesse     = { render: placeholder('Vitesse mesurée', 'Carte des V85 : étape 2.') };
-scenes.thermometre = { render: placeholder('Écart à la limite', 'Barres de vitesse : étape 2.') };
+
+// Scène 1 : ridgeplot 24 h (D3), une crête par rue, chacune à sa propre échelle
+const MODES = {
+  cars:  { label: 'Voitures', key: 'cars_weekday',  color: '#C9D3E0' },
+  bikes: { label: 'Vélos',    key: 'bikes_weekday', color: '#5AA9FF' },
+  peds:  { label: 'Piétons',  key: 'peds_weekday',  color: '#6FD3B8' },
+};
+const hoursSum = a => (a || []).slice(0, 24).reduce((t, v) => t + v, 0);
+
+function peaksTable(D) {
+  const rows = D.hourly.rows.map(s => {
+    const h = s.raw.nov2024.hourly;
+    return `<tr><td>${esc(s.street)}</td><td>${fmt0(hoursSum(h.cars_weekday))}</td><td>${esc(h.am_peak.hour)}</td><td>${esc(h.pm_peak.hour)}</td></tr>`;
+  }).join('');
+  return `<div class="sr-only"><table><caption>Voitures par jour de semaine, heures de jour, nov. 2024, avec pics du matin et du soir</caption>
+    <thead><tr><th>Rue</th><th>Voitures par jour</th><th>Pic du matin</th><th>Pic du soir</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+scenes.journee = {
+  note: D => `Jours de semaine, heures de jour · nov. 2024 · ${D.hourly.rows.length} capteurs`,
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill');
+    const rows = D.hourly.rows;
+    if (typeof d3 === 'undefined') {
+      // Repli : tableau visible si D3 n'a pas pu se charger
+      body.innerHTML = peaksTable(D).replace('class="sr-only"', 'style="font-size:13px;overflow:auto"');
+      return;
+    }
+    body.innerHTML = `
+      <div class="seg" role="group" aria-label="Mode de déplacement">
+        ${Object.entries(MODES).map(([k, m]) => `<button type="button" data-mode="${k}" aria-pressed="${k === 'cars'}">${m.label}</button>`).join('')}
+      </div>
+      <p class="viz-title">Passages par heure, en semaine. Chaque rue à sa propre échelle.</p>
+      <svg class="ridge" role="img" aria-label="Profil horaire du trafic en semaine pour ${rows.length} rues. ${esc(fills.peaks(D) || '')}"></svg>
+      ${peaksTable(D)}`;
+
+    const W = 360, rowH = 17, ridgeH = 27, top = 4, left = 112, right = 46, bottom = 18;
+    const H = top + ridgeH + (rows.length - 1) * rowH + bottom;
+    const svg = d3.select(body.querySelector('.ridge')).attr('viewBox', `0 0 ${W} ${H}`).attr('preserveAspectRatio', 'xMidYMid meet');
+    const { x0, x1 } = D.hourly;
+    const x = d3.scaleLinear().domain([x0, x1]).range([left, W - right]);
+    const base = i => top + ridgeH + i * rowH;
+    const ticks = [6, 8, 10, 12, 14, 16, 18, 20].filter(h => h >= x0 && h <= x1);
+    svg.append('g').selectAll('line').data(ticks).join('line').attr('class', 'grid')
+      .attr('x1', h => x(h)).attr('x2', h => x(h)).attr('y1', top).attr('y2', H - bottom + 2);
+    svg.append('g').selectAll('text').data(ticks).join('text').attr('x', h => x(h)).attr('y', H - 6)
+      .attr('text-anchor', 'middle').text(h => h + ' h');
+
+    const gRow = svg.append('g').selectAll('g').data(rows).join('g');
+    const paths = gRow.append('path').attr('stroke-width', 1.4).attr('stroke-linejoin', 'round');
+    gRow.append('text').attr('x', 0).attr('y', (s, i) => base(i) - 3).text(s => shortName(s.street));
+    const totals = gRow.append('text').attr('class', 'val').attr('x', W).attr('text-anchor', 'end').attr('y', (s, i) => base(i) - 3);
+
+    const area = d3.area().curve(d3.curveMonotoneX).x(d => x(d[0]));
+    function draw(mode, animate) {
+      const m = MODES[mode];
+      paths.each(function (s, i) {
+        const arr = (s.raw.nov2024.hourly[m.key] || []).slice(0, 24);
+        const max = Math.max(...arr, 0);
+        const pts = arr.map((v, h) => [h + 0.5, v]).filter(p => p[0] >= x0 - 0.5 && p[0] <= x1 + 0.5);
+        const b = base(i);
+        const d = area.y0(b).y1(p => b - (max ? (p[1] / max) * ridgeH : 0))(pts);
+        const sel = d3.select(this).style('stroke', m.color).style('fill', `color-mix(in srgb, ${m.color} 30%, #0B0F14)`);
+        (animate && !reduceMotion ? sel.transition().duration(450) : sel).attr('d', d);
+      });
+      totals.text(s => fmt0(hoursSum(s.raw.nov2024.hourly[m.key])) + ' /j');
+    }
+    draw('cars', false);
+    body.querySelectorAll('.seg button').forEach(btn => btn.addEventListener('click', () => {
+      body.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      draw(btn.dataset.mode, true);
+    }));
+  },
+};
+
+// Scène 2 : carte des V85 (Leaflet, fond sombre)
+scenes.vitesse = {
+  note: D => `V85 nov. 2024, heures de jour · ${D.speed.measured.length} capteurs avec mesure · incertitude ±10 %`,
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill');
+    if (typeof L === 'undefined') {
+      body.innerHTML = thermoHtml(D, false);   // repli : la même information en barres
+      this.fallback = true;
+      return;
+    }
+    const legend = ['ok', 'warn', 'high', 'none'].map(k => {
+      const st = { ok: speedStatus(24, 50), warn: speedStatus(53, 50), high: speedStatus(60, 50), none: speedStatus(0, 50) }[k];
+      const txt = { ok: 'Moins de 2 km/h au-dessus de la limite', warn: '2 à 5 km/h au-dessus', high: 'Plus de 5 km/h au-dessus', none: 'Pas de mesure' }[k];
+      return `<span>${markerSvg(st, 14)}${txt}</span>`;
+    }).join('');
+    body.innerHTML = `<div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div>`;
+
+    const map = L.map(body.querySelector('.map'), {
+      scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, attributionControl: true,
+    });
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© contributeurs OpenStreetMap', maxZoom: 19,
+    }).addTo(map);
+    const pts = [];
+    D.streets.forEach(s => {
+      const label = s.v85 ? fmt0(s.v85) : '';
+      const icon = L.divIcon({
+        className: 'street-marker', iconSize: [40, 40], iconAnchor: [20, 14],
+        html: markerSvg(s.status) + `<span class="mk-label">${label}</span>`,
+      });
+      const detail = s.v85
+        ? `V85 <strong>${fmt1(s.v85)} km/h</strong> (±${fmt1(s.raw.nov2024.speed.v85_uncertainty)}) pour une limite de ${s.limit} km/h : ${fmtDelta(s.delta)} km/h.<br>${esc(s.status.label)}.`
+        : `Pas de mesure de vitesse. Limite : ${s.limit} km/h.`;
+      L.marker([s.lat, s.lon], { icon, title: s.street, alt: s.street })
+        .bindPopup(`<strong>${esc(s.street)}</strong><br>${esc(s.locality)}<br>${detail}${s.inactive ? '<br><em>Capteur arrêté.</em>' : ''}`)
+        .addTo(map);
+      pts.push([s.lat, s.lon]);
+    });
+    this.map = map; this.bounds = L.latLngBounds(pts);
+    map.fitBounds(this.bounds, { padding: [34, 34] });
+  },
+  enter(el) {
+    if (!this.map) return;
+    this.map.invalidateSize();
+    this.map.fitBounds(this.bounds, { padding: [34, 34], animate: false });
+  },
+};
+
+// Scène 3 : thermomètre (V85 et limite légale, incertitude ±10 %)
+function thermoHtml(D, animated = true) {
+  const max = D.speed.scaleMax, pc = v => (v / max * 100).toFixed(2) + '%';
+  const rows = D.speed.measured.map(s => {
+    const u = s.raw.nov2024.speed.v85_uncertainty || s.v85 * 0.1;
+    return `<div class="tr">
+      <span class="name" title="${esc(s.street)}">${esc(shortName(s.street))}</span>
+      <span class="track">
+        <span class="bar" data-w="${pc(s.v85)}" style="background:${s.status.color}${animated ? '' : ';width:' + pc(s.v85)}"></span>
+        <span class="unc" style="left:${pc(s.v85 - u)};width:${(2 * u / max * 100).toFixed(2)}%"></span>
+        <span class="lim" style="left:${pc(s.limit)}" title="Limite ${s.limit} km/h"></span>
+      </span>
+      <span class="val">${markerSvg(s.status, 13)}${fmtDelta(s.delta)}</span>
+    </div>`;
+  }).join('');
+  const table = D.speed.measured.map(s =>
+    `<tr><td>${esc(s.street)}</td><td>${s.limit}</td><td>${fmt1(s.v85)}</td><td>${fmtDelta(s.delta)}</td></tr>`).join('');
+  const un = D.speed.unmeasured.length
+    ? `<p class="viz-title">Sans mesure de vitesse : ${D.speed.unmeasured.map(s => esc(s.street)).join(', ')}.</p>` : '';
+  return `<p class="viz-title">V85 (barre), ±10 % (trait fin), limite (trait blanc). Valeur : écart en km/h.</p>
+    <div class="thermo" role="img" aria-label="Écart entre la vitesse V85 et la limite légale, pour ${D.speed.measured.length} rues">${rows}</div>${un}
+    <div class="sr-only"><table><caption>V85 et limite par rue, nov. 2024</caption><thead><tr><th>Rue</th><th>Limite (km/h)</th><th>V85 (km/h)</th><th>Écart (km/h)</th></tr></thead><tbody>${table}</tbody></table></div>`;
+}
+scenes.thermometre = {
+  note: D => `V85 nov. 2024, heures de jour · ${D.speed.measured.length} capteurs avec mesure · échelle 0–${D.speed.scaleMax} km/h`,
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill');
+    body.innerHTML = thermoHtml(D, true);
+  },
+  enter(el) {
+    const bars = el.querySelectorAll('.bar');
+    if (reduceMotion) { bars.forEach(b => { b.style.width = b.dataset.w; }); return; }
+    requestAnimationFrame(() => requestAnimationFrame(() => bars.forEach(b => { b.style.width = b.dataset.w; })));
+  },
+};
 scenes.usagers     = { render: placeholder('Sur 100 passages', 'Répartition par mode : étape 3.') };
 scenes.printemps   = { render: placeholder('Le vélo au printemps', 'Comparaison mai 2025 / mai 2026 : étape 3.') };
 scenes.rues        = { render: placeholder('Trois rues', 'Mini-fiches : étape 3.') };
@@ -382,6 +650,12 @@ function initStory() {
     return;
   }
 
+  // Textes d'étape calculés depuis les données
+  document.querySelectorAll('[data-fill]').forEach(n => {
+    const f = fills[n.dataset.fill], t = f && f(D);
+    if (t) n.textContent = t;
+  });
+
   // Navigation : un segment par étape
   progress.innerHTML = steps.map((s, i) =>
     `<a href="#step-${i}" data-i="${i}" aria-label="Étape ${i + 1} : ${esc(s.dataset.title)}"></a>`).join('');
@@ -396,9 +670,9 @@ function initStory() {
     const el = document.createElement('div');
     el.className = 'scene';
     el.dataset.scene = id;
+    const note = def.note ? def.note(D) : `Comptages Telraam · ${D.sensorCount} capteurs · nov. 2024 – 2026`;
     el.innerHTML = `<div class="scene__body"></div>
-      <div class="scene__foot">Comptages Telraam · ${D.sensorCount} capteurs · nov. 2024 – 2026 ·
-      <a href="docs/METHODOLOGIE.md">Méthode</a></div>`;
+      <div class="scene__foot">${note} · <a href="docs/METHODOLOGIE.md">Méthode</a></div>`;
     try { def.render(el, D); }
     catch (e) { console.error('Scène', id, e); el.querySelector('.scene__body').innerHTML = '<p class="msg">Ce visuel n\'a pas pu être affiché.</p>'; }
     els[id] = el;
