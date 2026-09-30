@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Meta Data -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Meta Data for CSRF Token -->
+    <meta name="csrf-token" content="I1OlN2LX2jgUeBJM1SokEUufMZgMluS8Fb3pg1lP">
+
+    <!-- Jquery -->
+    
+    <link href="https://telraam.net/js/datepicker/dist/datepicker.min.css" rel="stylesheet">
+    
+
+    <!-- Scripts -->
+    
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Same style inclused both for dashboard as web -->
+    <link href="https://telraam.net/css/app.css?v=504" rel="stylesheet">
+
+    <!-- leaflet -->
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    />
+    
+    
+    
+    
+    
+    
+    
+
+    <!-- leaflet search -->
+    <link rel="stylesheet" href="https://telraam.net/css/Control.Geocoder.css" />
+    
+
+    
+    <!-- leaflet-touch-helper for mobile use -->
+    
+
+    <!-- Chart JS -->
+            <!-- Dave 24/02/2025 still needed? -->
+        
+        
+    
+    <!-- extra libraries: moment -->
+    
+    
+
+    <!-- extra libraries: livewire, for now only traffic-scout -->
+    
+    <!-- editor -->
+    <link href="https://telraam.net/js/trumbowyg/ui/trumbowyg.min.css" rel="stylesheet" type="text/css">
+    
+    
+    
+
+    <!-- fancybox -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.6/dist/jquery.fancybox.min.css"/>
+    
+
+                            
+    <!-- SEO TITLES -->
+    <title>
+        Telraam
+                    - Smart traffic counters for all transport modes - indoor and outdoor models.
+            </title>
+    <meta property="og:title" content="Telraam - Smart traffic counters for all transport modes - indoor and outdoor models. "/>
+    <meta property="og:description" content="AI-powered, privacy-friendly traffic counters for pedestrians, cyclists, cars, and heavy vehicles — available in both indoor and outdoor models. Includes an intuitive dashboard and an open API for easy integration."/>
+    <meta name="title" content="Telraam - Smart traffic counters for all transport modes - indoor and outdoor models.  "/>
+    <meta name="description" content="AI-powered, privacy-friendly traffic counters for pedestrians, cyclists, cars, and heavy vehicles — available in both indoor and outdoor models. Includes an intuitive dashboard and an open API for easy integration."/>
+    <meta name="keywords" content="Traffic Counter, Citizens, Mobility, Bike, Car, Pedestrian, Trucks, Device, Platform, Api, Verkeersteller, Burgers, Open data">
+
+                <meta property="og:image" content="https://telraam.net/images/common/og-image-s2data.jpg"/>
+        <meta property="og:image:width" content="1200"/>
+        <meta property="og:image:height" content="630"/>
+    
+</head>
+<body id="body"
+      class="website
+                      web.locationstreetProfile
+                                     "
+      data-locale="en">
+
+<!-- TOPBAR -->
+<header class="header">
+    <!-- TOPBAR #1 -->
+    <nav class="small-top-nav show-on-desktop-only">
+        <div class="nav__container">
+            <div class="side-head-left">
+                            </div> <!-- side head -->
+            <div class="side-head">
+                <ul>
+                    <li>
+            <a href="https://faq.telraam.net/" target="_blank">Faq &amp; Support</a>
+    </li>
+
+<li class=" ">
+            <a href="https://telraam.net/en/references-and-projects">References &amp; Projects</a>
+    </li>
+
+
+<li class=" ">
+            <a href="https://telraam.net/en/partners">Partners</a>
+    </li>
+
+
+<li>
+    <a href="https://talks.telraam.net" target="_blank">Telraam Talks</a>
+</li>
+
+<li class="      ">
+            <a href="https://telraam.net/en/blog">Blog</a>
+    </li>
+
+
+<li class="  ">
+    <a href="https://telraam.net/en/jobs">Jobs</a>
+</li>
+
+
+
+<li class="  ">
+            <a href="https://telraam.net/en/about-us">About Us</a>
+    </li>
+
+<li class="  ">
+            <a href="https://telraam.net/en/contact-us">Contact Us</a>
+    </li>
+
+
+<li>
+<div class="dropdown languages">
+    <button class="button-web-nav-link">
+                    EN
+            </button>
+    <div class="dropdown-content">
+        <a href="#" class="js-lang-switch" data-lang="nl">NL</a>
+        <a href="#" class="js-lang-switch" data-lang="en">EN</a>
+        <a href="#" class="js-lang-switch" data-lang="fr">FR</a>
+        <a href="#" class="js-lang-switch" data-lang="de">DE</a>
+        <a href="#" class="js-lang-switch" data-lang="es">ES</a>
+    </div>
+</div>
+</li>
+                </ul>
+            </div> <!-- side head -->
+        </div> <!-- nav container -->
+    </nav>
+    <!-- TOPBAR #2 BIG -->
+    <nav class="main-nav">
+        <div class="nav__container">
+            <div class="side-head">
+                <div class="brand-logo-svg-container">
+                    <div class="brand-logo-svg small"><a href="https://telraam.net" class=""></a></div>
+                </div>
+                <ul>
+                    <li class="   ">
+        <a href="https://telraam.net/en">Map</a>
+    </li>
+
+    <li class=" ">
+                    <a href="https://telraam.net/en/our-traffic-counter">What is Telraam</a>
+
+        
+    </li>
+    <li class="separator-left ">
+        <a href="https://telraam.net/en/S2">Device</a>
+    </li>
+    <li class=" ">
+        <a href="https://telraam.net/en/data-subscription">Data</a>
+    </li>
+    <li class="separator-right                                        ">
+        <a href="https://telraam.net/en/network">Network</a>
+    </li>
+    <li class="">
+        <a href="https://telraam.net/en/pricing">Pricing</a>
+    </li>
+<ul class="smaller-main-nav show-on-mobile-only">
+    <li>
+            <a href="https://faq.telraam.net/" target="_blank">Faq &amp; Support</a>
+    </li>
+
+<li class=" ">
+            <a href="https://telraam.net/en/references-and-projects">References &amp; Projects</a>
+    </li>
+
+
+<li class=" ">
+            <a href="https://telraam.net/en/partners">Partners</a>
+    </li>
+
+
+<li>
+    <a href="https://talks.telraam.net" target="_blank">Telraam Talks</a>
+</li>
+
+<li class="      ">
+            <a href="https://telraam.net/en/blog">Blog</a>
+    </li>
+
+
+<li class="  ">
+    <a href="https://telraam.net/en/jobs">Jobs</a>
+</li>
+
+
+
+<li class="  ">
+            <a href="https://telraam.net/en/about-us">About Us</a>
+    </li>
+
+<li class="  ">
+            <a href="https://telraam.net/en/contact-us">Contact Us</a>
+    </li>
+
+
+<li>
+<div class="dropdown languages">
+    <button class="button-web-nav-link">
+                    EN
+            </button>
+    <div class="dropdown-content">
+        <a href="#" class="js-lang-switch" data-lang="nl">NL</a>
+        <a href="#" class="js-lang-switch" data-lang="en">EN</a>
+        <a href="#" class="js-lang-switch" data-lang="fr">FR</a>
+        <a href="#" class="js-lang-switch" data-lang="de">DE</a>
+        <a href="#" class="js-lang-switch" data-lang="es">ES</a>
+    </div>
+</div>
+</li>
+</ul>
+
+<!-- Authentication Links -->
+    <li class="">
+                    <a class="" href="https://telraam.net/en/login">Login</a>
+            </li>
+    <li class="button-container"  style="padding-left: 10px;">
+                    <a class="button" href="https://telraam.net/en/register">Register</a>
+            </li>
+
+
+                </ul>
+
+            </div> <!-- side head -->
+        </div> <!-- nav container -->
+    </nav>
+</header>
+<div class="header-mobile show-on-mobile-only">
+    <div class="brand-logo-svg-container">
+        <div class="brand-logo-svg small"><a href="https://telraam.net" class=""></a></div>
+    </div>
+</div>
+
+<div class="m-menu">
+    <button class="mm"></button>
+</div>
+
+
+<!-- ERROR AND SUCCESS MESSAGES -->
+
+
+<div class="container  no-top-margin ">
+    
+<div class="content admin">
+
+    <div class="full-width-block no-padding">
+        <!-- HEADER -->
+        
+
+
+<div class="headerpic home location-detail-pic"
+     >
+    <div class="headerpic-text-block">
+                    <h1>Rue de l&#039;Institut</h1>
+            <h4>Rixensart, België / Belgique</h4>
+                            <a href="https://telraam.net/en/network/rixensart" class="network-name ">Rixensart</a>
+                        </div>
+
+    <div class="page-sub-nav tabular-style">
+        <ul>
+            <li class="tab  item "><a
+                    href="https://telraam.net/en/location/9000007509"
+                    class="active item">Data</a></li>
+                            <li class="tab  item"> <a href="https://telraam.net/en/location-live/9000007509" class="item">Live</a></li>
+                        <li class="tab  item"> <a href="https://telraam.net/en/location-ranking/9000007509"
+                                                                         class="item">Ranking</a></li>
+            <li class="tab  active  item"> <a href="https://telraam.net/en/location-profile/9000007509"
+                                                                         class="item">Street Profile</a></li>
+
+        </ul>
+    </div>
+
+</div>
+    </div>
+
+    <div class="header-map-container">
+    <div id="mapCameraPosition" style="position: relative; z-index: 0; width: 100%; min-height: 200px; height:100%; "></div>
+</div>
+
+
+
+
+        
+       <div class="features block center">
+           <div class="box normal-content">
+               <div class="header">
+                   <h2>
+                       What does this road look like?
+                    </h2>
+                </div>
+
+                <div class="grid grid-with-row-margin ">
+                    <div class="dwarsprofiel">
+    <div class="air-bg">
+
+    </div>
+    <div class="ground-bg">
+
+    </div>
+
+
+    <div class="block house house-a" id="house_a_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">House
+           
+        </div>
+    </div>
+    <div class="block voetpad voetpad-a" id="footpath_a_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Footpath  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block fietspad fietspad-a" id="bikecycle_a_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Cycle path  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block parkeerstrook parkeerstrook-a" id="parking_a_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Parking  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block road road-a road-1" id="roadway_a_1_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+    <div class="block road road-a road-2" id="roadway_a_2_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+    <div class="block road road-a road-3" id="roadway_a_3_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+    <div class="block road road-a road-4" id="roadway_a_4_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block middenberm" id="central_reservation_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block road road-b road-4" id="roadway_b_4_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+    <div class="block road road-b road-3" id="roadway_b_3_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+    <div class="block road road-b road-2" id="roadway_b_2_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+    <div class="block road road-b road-1" id="roadway_b_1_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Road  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block parkeerstrook parkeerstrook-b" id="parking_b_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Parking  <div class="text-meters"></div></div>
+    </div>
+
+    <div class="block fietspad fietspad-b" id="bikecycle_b_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Cycle path  <div class="text-meters"></div></div>
+    </div>
+    <div class="block voetpad voetpad-b" id="footpath_b_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">Footpath  <div class="text-meters"></div></div>
+    </div>
+    <div class="block house house-b" id="house_b_m">
+        <div class="image"></div>
+        <div class="surface"></div>
+        <div class="text">House </div>
+    </div>
+
+
+</div>
+
+
+
+                </div>
+                <div class="grid grid-with-row-margin ">
+                    <!-- ROAD WIDTH -->
+<div class="col-desk-5 text-left">
+    <strong>How wide is the <strong>road</strong>, from kerb to kerb?</strong>
+</div>
+<div class="col-desk-7 text-left">
+        5.0 m
+</div>
+
+<div class="col-desk-5 text-left">
+    <strong>Is there a division of different <strong>lanes</strong> with white markings?</strong>
+</div>
+<div class="col-desk-7 text-left">
+     No separate lanes                 </div>
+
+
+<!-- bycycle lane -->
+<div class="col-desk-5 text-left">
+    <strong>Is there infrastructure for cyclists?</strong>
+</div>
+<div class="col-desk-7 text-left">
+     There is no bicycle lane                 </div>
+
+
+
+<!-- VOETPAD -->
+<div class="col-desk-5 text-left">
+    <strong>width <strong>footpath</strong> including kerb </strong>
+</div>
+<div class="col-desk-7 text-left">
+    one side: 1.4 m<br>
+    other side: 1.4 m
+</div>
+
+
+<div class="col-desk-5 text-left">
+    <strong>Is there a <strong>central verge</strong> available?</strong>
+</div>
+<div class="col-desk-7 text-left">
+                There is no central verge        </div>
+
+<!-- ROAD DIRECTION -->
+
+<div class="col-desk-5 text-left">
+    <strong>Is it a <strong>one-way street</strong>?</strong>
+</div>
+<div class="col-desk-7 text-left">
+     No, regular two-way street     </div>
+
+                </div>
+                <div class="footer"></div>
+
+
+            </div> <!-- end box -->
+        </div>  <!-- end block -->
+
+        <div class="features block center">
+            <div class="box normal-content">
+
+                <div class="header">
+                    <h2>
+                        Facilities &amp; information about the road layout
+                    </h2>
+                </div>
+
+                <div class="grid grid-with-row-margin">
+                    <!-- bus -->
+<div class="col-desk-5  text-left">
+    <strong>Is there a <strong>bus line</strong> in this street? </strong>
+</div>
+<div class="col-desk-7 text-left">
+            No bus line </div>
+
+
+<div class="col-desk-5 text-left">
+    <strong>Is there a <strong>parking lane</strong> or possibility to park?</strong>
+</div>
+<div class="col-desk-7 text-left">
+     No parking lane or possibility available         </div>
+
+
+
+
+<!-- ROAD TYPE -->
+<div class="col-desk-5 text-left">
+    <strong>Which description fits best for the <strong>function</strong> that fills your street?</strong>
+</div>
+<div class="col-desk-7 text-left">
+         A local connecting road <br><span class="tiny">The road has as main function to connect well defined areas</span>                         <br>
+        </div>
+
+<!-- SPEED --->
+<div class="col-desk-5 text-left">
+    <strong><strong>Maximum permitted speed</strong></strong>
+</div>
+<div class="col-desk-7 text-left">
+         30 km/h                                                     </div>
+                </div>
+
+
+                <div class="footer"></div>
+
+            </div> <!-- end box -->
+       </div>  <!-- end block -->
+
+        <div class="features block center">
+            <div class="box normal-content">
+
+
+                    <div class="header">
+                                <h2>
+                                    Facilities &amp; information about the road layout
+                                </h2>
+                    </div>
+
+                    <div class="grid grid-with-row-margin">
+                                <!-- SLUIPVERKEER QUESTION -->
+<div class="col-desk-5  text-left">
+    <strong>According to you, what is the percentage of congestion in your street?</strong>
+</div>
+<div class="col-desk-7   text-left">
+    0 %
+</div>
+
+<!-- SAFE QUESTION -->
+<div class="col-desk-5  text-left">
+    <strong>How <strong>safe</strong> do you experience the street?</strong>
+</div>
+<div class="col-desk-7    text-left">
+    3 / 10
+</div>
+
+
+<!-- LEEFBAARHEID QUESTION -->
+<div class="col-desk-5  text-left">
+    <strong>How do you rate the <strong>quality of life</strong> in your street?</strong>
+</div>
+<div class="col-desk-7   text-left">
+    7 / 10
+</div>
+
+<!-- remark -->
+
+
+                    </div>
+
+                    <div class="footer"></div>
+                </div>
+
+            </div> <!-- end box -->
+      </div>  <!-- end block -->
+
+
+
+
+
+        
+
+</div> <!-- end content -->
+
+
+
+</div>
+
+
+<!-- Analytics -->
+
+
+<!-- extra scripts: livewire, for now only traffic-scout -->
+
+<footer class="site-footer  " >
+    <div class="block">
+
+        <div class="grid stackable">
+
+            <div class="col-desk-4 col-tab-3">
+
+                <h2 class="footer-accent">Telraam</h2>
+                Vital Decosterstraat 67A bus 1010, 3000 Leuven - Belgium<br>
+                <br>
+                <strong>AI-powered, privacy-friendly traffic counters for pedestrians, cyclists, cars, and heavy vehicles — available in both indoor and outdoor models. Includes an intuitive dashboard and an open API for easy integration.</strong><br>
+                <br>
+                <strong>General questions</strong>:  <a href="mailto:info@telraam.net">info@telraam.net</a><br>
+                <strong>Technical questions</strong>:  <a href="mailto:support@telraam.net">support@telraam.net</a><br>
+                <br>
+                Telraam is fully owned and maintained by Rear Window BV (BE0762.549.266)<br>
+                <br>
+
+                <img src="https://telraam.net/images/common/eit-urban-mobility.svg" style="max-width: 200px">
+                <p style="font-size: 0.7em; line-height: 1.3em; margin-top: 0.5em;">This project is supported by EIT Urban Mobility, an initiative of the European Institute of Innovation and Technology (EIT), a body of the European Union</p>
+
+            </div>
+
+            <div class="col-desk-3 col-tab-3">
+
+                <h2 class="footer-accent">Sitemap</h2>
+                <ul>
+                    <li>
+                        <a href="https://telraam.net/en/" class="">Map</a>
+                    </li>
+                    <li class=" ">
+                        <a href="https://telraam.net/en/what-is-telraam">What is Telraam</a>
+                    </li>
+                    <li class="separator-left ">
+                        <a href="https://telraam.net/en/S2">Device</a>
+                    </li>
+                    <li class=" ">
+                        <a href="https://telraam.net/en/data-subscription">Data</a>
+                    </li>
+                    <li class="separator-right   ">
+                        <a href="https://telraam.net/en/network">Network</a>
+                    </li>
+                    <li class="">
+                        <a href="https://telraam.net/en/shop">Pricing</a>
+                    </li>
+                    <li>
+                                                    <a href="https://faq.telraam.net/" target="_blank">Faq &amp; Support</a>
+                                            </li>
+                    <li>
+                        <a href="https://telraam.net/en/blog">Blog</a>
+                    </li>
+                    <li>
+                                                    <a href="https://press-kit.helpspace-docs.io/article/227/press-kit-english" target="_blank">Press Kit</a>
+                                            </li>
+                    <li>
+                        <a href="https://telraam-api.net/" class="">Telraam API</a>
+                    </li>
+                </ul>
+                <br>
+                <ul>
+                    <li>
+                        <a href="https://telraam.net/en/privacy-policy" class="">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="https://telraam.net/en/cookie-policy" class="">Cookie Policy</a>
+                    </li>
+                    <li>
+                        <a href="https://telraam.net/en/terms-of-use" class="">Terms of Use</a>
+                    </li>
+                    <li>
+                                                    <a href="https://telraam.net/downloads/RearWindow-BusinessTerms-EN.pdf" class="">Business Terms</a>
+                        
+                    </li>
+                </ul>
+                <br><br>
+            </div>
+
+
+
+            <div class="col-desk-5 col-tab-6">
+
+                <h2 class="footer-accent">Sign up for our mailing list:</h2>
+
+                <form
+                    action="https://telraam.mailcoach.app/subscribe/4d28db41-86c4-45e6-bdf8-f75dcefc8010"
+                    method="post"
+                >
+                    <div class="grid grid-with-row-margin email-form stackable" style="margin-bottom: 15px;">
+                        <div class="col-desk-3 col" style="">
+                            <input type="text" name="first_name" placeholder="First Name" required >
+                        </div>
+                        <div class="col-desk-4 col"  style="">
+                            <input type="text" name="last_name" placeholder="Surname" required >
+                        </div>
+                        <div class="col-desk-5 col">
+                            <input type="email" value="" name="email" class="required email"  placeholder="Email" required>
+                        </div>
+
+                        <div class="col-desk-3" style="margin-top: 0">
+                            <input type="radio" id="citizen" name="list" value="4d28db41-86c4-45e6-bdf8-f75dcefc8010" checked />
+                            <label for="citizen">Citizen</label>
+                        </div>
+                        <div class="col-desk-6" style="margin-top: 0">
+                            <input type="radio" id="org" name="list" value="a40961d5-3ad8-4ce7-be64-2b6f0f24b7ea" />
+                            <label for="org">Organisation / Professional</label>
+                        </div>
+                        <div class="col-desk-3" style="margin-top: 0">
+                            <input type="radio" id="org" name="list" value="6d160603-f6a2-466b-99b3-09669acdaa8d" />
+                            <label for="org">Press</label>
+
+                        </div>
+                        <div class="col-desk-12" style="margin-top: 0">
+                            <input type="hidden" name="tags" value="web-form" />
+                            <input type="hidden" name="attributes[language]" value="" />
+                            <input type="submit" value="Register">
+                        </div>
+                    </div>
+
+                </form>
+                
+
+                <br>
+                <h2 class="footer-accent">Follow us</h2>
+
+                <a href="https://www.facebook.com/Telraam/" class="social">
+                    <span class="screen-reader-text">Facebook</span>
+                    
+                </a>
+
+                <a href="https://bsky.app/profile/telraam.bsky.social" class="social">
+                    <span class="screen-reader-text">Bluesky</span>
+                    
+                </a>
+
+                <a href="https://www.linkedin.com/company/telraam/" class="social" style="position: relative; top: -2px;">
+                    <span class="screen-reader-text">Linkedin</span>
+                    
+                </a>
+            </div>
+
+
+
+        </div>
+
+
+    </div> <!-- block -->
+
+    
+
+</footer>
+
+</body>
+</html>
