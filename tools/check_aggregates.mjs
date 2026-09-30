@@ -78,17 +78,46 @@ const pick = k => ({ label: yoy[k].label, sensors: yoy[k].constant_sensors_count
 const seasonal = { autumn: pick('autumn'), spring: pick('spring') };
 
 const reference = { streets, hero, seasonal };
+
+// --- Année glissante : change à chaque mise à jour, donc contrôlée avec des tolérances, pas à l'identique ---
+const yearNow = Object.fromEntries(data.filter(s => s.year).map(s => [s.id, {
+  street: s.street, v85: s.year.v85 ?? null, coverage: s.year.coverage ?? 0, vehicles: (s.year.per_day || {}).vehicles ?? null,
+}]));
+const yearRefPath = path.join(root, 'tools/reference_year.json');
+const YEAR_TOL = { v85: 6, vehiclesPct: 35 };   // km/h ; % d'écart tolérés entre deux mises à jour
+function checkYear() {
+  const errs = [];
+  const n = Object.keys(yearNow).length;
+  if (n < 10) errs.push(`année glissante présente pour ${n} capteurs seulement (attendu : 10 au moins)`);
+  for (const [id, y] of Object.entries(yearNow)) {
+    if (y.v85 != null && (y.v85 < 10 || y.v85 > 120)) errs.push(`${y.street} : V85 annuelle invraisemblable (${y.v85})`);
+    if (y.coverage < 0 || y.coverage > 1) errs.push(`${y.street} : couverture hors 0-1 (${y.coverage})`);
+  }
+  if (existsSync(yearRefPath)) {
+    const ref = JSON.parse(readFileSync(yearRefPath, 'utf8'));
+    for (const [id, r] of Object.entries(ref)) {
+      const y = yearNow[id];
+      if (!y) { errs.push(`${r.street} : année glissante absente`); continue; }
+      if (r.v85 != null && y.v85 != null && Math.abs(y.v85 - r.v85) > YEAR_TOL.v85) errs.push(`${r.street} : V85 annuelle ${y.v85} (référence ${r.v85})`);
+      if (r.vehicles && y.vehicles && Math.abs(y.vehicles - r.vehicles) / r.vehicles * 100 > YEAR_TOL.vehiclesPct) errs.push(`${r.street} : ${y.vehicles} véh./j (référence ${r.vehicles})`);
+    }
+  }
+  return errs;
+}
 const refPath = path.join(root, 'tools/reference_aggregates.json');
 const arg = process.argv[2];
 
 if (arg === '--write') {
   writeFileSync(refPath, JSON.stringify(reference, null, 2) + '\n');
+  writeFileSync(yearRefPath, JSON.stringify(yearNow, null, 2) + '\n');
   console.log('Référence écrite :', refPath);
   process.exit(0);
 }
 if (arg === '--check') {
   const tlErrs = checkTimeline();
   if (tlErrs.length) { console.log('ÉCART écarts à la tendance :\n - ' + tlErrs.join('\n - ')); process.exit(1); }
+  const yErrs = checkYear();
+  if (yErrs.length) { console.log('ÉCART année glissante :\n - ' + yErrs.join('\n - ')); process.exit(1); }
   const expected = JSON.parse(readFileSync(refPath, 'utf8'));
   const same = JSON.stringify(expected) === JSON.stringify(JSON.parse(JSON.stringify(reference)));
   console.log(same ? 'OK : aucun écart avec la référence.' : 'ÉCART avec tools/reference_aggregates.json');

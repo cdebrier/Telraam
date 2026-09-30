@@ -1,0 +1,80 @@
+{
+  "9000007490": {
+    "street": "Rue de Genval",
+    "v85": 53.3,
+    "coverage": 1,
+    "vehicles": 2070
+  },
+  "9000007492": {
+    "street": "Chaussée de La Hulpe",
+    "v85": 39.9,
+    "coverage": 0.22,
+    "vehicles": 4565
+  },
+  "9000007497": {
+    "street": "Avenue Franklin Roosevelt",
+    "v85": 50.4,
+    "coverage": 1,
+    "vehicles": 8054
+  },
+  "9000007509": {
+    "street": "Rue de l'Institut",
+    "v85": 56.4,
+    "coverage": 1,
+    "vehicles": 3077
+  },
+  "9000007512": {
+    "street": "Rue de la Tasnière",
+    "v85": 54.7,
+    "coverage": 1,
+    "vehicles": 1560
+  },
+  "9000007523": {
+    "street": "Rue Haute",
+    "v85": 50.5,
+    "coverage": 1,
+    "vehicles": 4727
+  },
+  "9000007530": {
+    "street": "Place Communale",
+    "v85": 46.3,
+    "coverage": 1,
+    "vehicles": 1157
+  },
+  "9000007533": {
+    "street": "Avenue Albert 1er",
+    "v85": 49.3,
+    "coverage": 1,
+    "vehicles": 6514
+  },
+  "9000007534": {
+    "street": "Avenue de Boulogne-Billancourt",
+    "v85": 58.7,
+    "coverage": 1,
+    "vehicles": 2818
+  },
+  "9000007578": {
+    "street": "Rue de la Gare",
+    "v85": 44,
+    "coverage": 0.89,
+    "vehicles": 2382
+  },
+  "9000007261": {
+    "street": "Rue Mahiermont",
+    "v85": 26.8,
+    "coverage": 1,
+    "vehicles": 699
+  },
+  "9000006402": {
+    "street": "Rue du Tilleul",
+    "v85": 41,
+    "coverage": 0.99,
+    "vehicles": 688
+  },
+  "9000009405": {
+    "street": "Rue des Bergères",
+    "v85": 31.1,
+    "coverage": 0.99,
+    "vehicles": 258
+  }
+}

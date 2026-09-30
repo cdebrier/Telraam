@@ -2,6 +2,8 @@ import json
 import os
 import csv
 
+ROOT = os.path.dirname(os.path.abspath(__file__))
+
 def compute_yoy_analysis(full_history_obj):
     if not full_history_obj or "sensors_history" not in full_history_obj:
         return {}
@@ -440,7 +442,7 @@ SOURCES_METADATA = [
 ]
 
 def process_and_generate():
-    input_file = "/Users/charlesdebrier/Development/Telraam/data/rixensart_telraam_full_data.json"
+    input_file = os.path.join(ROOT, "data/rixensart_telraam_full_data.json")
     if not os.path.exists(input_file):
         print(f"File not found: {input_file}")
         return None
@@ -449,7 +451,7 @@ def process_and_generate():
         raw_data = json.load(f)
         
     # Load roadworks and chantiers data
-    travaux_file = "/Users/charlesdebrier/Development/Telraam/data/rixensart_travaux.json"
+    travaux_file = os.path.join(ROOT, "data/rixensart_travaux.json")
     travaux_obj = {}
     chantiers_list = []
     if os.path.exists(travaux_file):
@@ -460,6 +462,16 @@ def process_and_generate():
         except Exception as te:
             print(f"Error loading travaux data: {te}")
         
+    # Année glissante et profil de rue (extract_year.py, extract_profile.py) : facultatifs
+    def load_json(name):
+        path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", name)
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as jf:
+                return json.load(jf)
+        return {}
+    year_obj = load_json("rixensart_year.json")
+    profile_obj = load_json("rixensart_profile.json")
+
     sensors_summary = []
     
     for s in raw_data.get("sensors", []):
@@ -556,7 +568,7 @@ def process_and_generate():
             coords = [[[4.5325, 50.7320], [4.5345, 50.7330]]]
 
         # Load historical data if present
-        hist_file = "/Users/charlesdebrier/Development/Telraam/data/rixensart_history.json"
+        hist_file = os.path.join(ROOT, "data/rixensart_history.json")
         hist_data = {}
         if os.path.exists(hist_file):
             try:
@@ -662,6 +674,13 @@ def process_and_generate():
             }
         }
         
+        yr = (year_obj.get("sensors") or {}).get(str(sid))
+        if yr:
+            sensor_summary["year"] = dict(yr, start=year_obj.get("start"), end=year_obj.get("end"))
+        pf = (profile_obj.get("sensors") or {}).get(str(sid))
+        if pf:
+            sensor_summary["profile"] = dict(pf, fetched_at=profile_obj.get("fetched_at"))
+
         # Match travaux for this sensor
         sensor_travaux = []
         for ch in chantiers_list:
@@ -682,13 +701,13 @@ def process_and_generate():
         sensors_summary.append(sensor_summary)
         
     # Write summary JSON
-    summary_json_path = "/Users/charlesdebrier/Development/Telraam/data/rixensart_summary.json"
+    summary_json_path = os.path.join(ROOT, "data/rixensart_summary.json")
     with open(summary_json_path, "w", encoding="utf-8") as f:
         json.dump(sensors_summary, f, ensure_ascii=False, indent=2)
         
     # Load global history for JS export
     full_history_obj = {}
-    hist_file = "/Users/charlesdebrier/Development/Telraam/data/rixensart_history.json"
+    hist_file = os.path.join(ROOT, "data/rixensart_history.json")
     if os.path.exists(hist_file):
         with open(hist_file, "r", encoding="utf-8") as hf:
             full_history_obj = json.load(hf)
@@ -704,7 +723,7 @@ def process_and_generate():
     full_history_obj["sources_metadata"] = SOURCES_METADATA
 
     # Write JS file for direct HTML inclusion
-    js_data_path = "/Users/charlesdebrier/Development/Telraam/data/rixensart_data.js"
+    js_data_path = os.path.join(ROOT, "data/rixensart_data.js")
     with open(js_data_path, "w", encoding="utf-8") as f:
         f.write("window.TELRAAM_RIXENSART = " + json.dumps(sensors_summary, ensure_ascii=False, indent=2) + ";\n")
         f.write("window.TELRAAM_HISTORY = " + json.dumps(full_history_obj, ensure_ascii=False, indent=2) + ";\n")
@@ -718,7 +737,7 @@ def process_and_generate():
         f.write("window.TELRAAM_SOURCES = " + json.dumps(SOURCES_METADATA, ensure_ascii=False, indent=2) + ";\n")
         
     # Write CSV with standard library
-    csv_path = "/Users/charlesdebrier/Development/Telraam/data/rixensart_summary.csv"
+    csv_path = os.path.join(ROOT, "data/rixensart_summary.csv")
     fields = [
         "ID", "Rue", "Entite", "Statut", "Reseau", "Role", "Limite_Vitesse_kmh",
         "Cumul_2ans_Diurne_Estime", "Cumul_2ans_24h_Estime",
