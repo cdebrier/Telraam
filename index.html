@@ -144,7 +144,7 @@ a { color: inherit; }
 .cmp-legend { transition: opacity .45s; }
 .cmp-legend b { color: var(--text); font-variant-numeric: tabular-nums; }
 /* Mode empilé : le visuel n'existe qu'une fois, les onglets donnent accès aux autres modes */
-.is-stacked .step[data-scene="journee"]:not([data-focus="cars"]) { display: none; }
+.is-stacked .step[data-scene="journee"]:not([data-focus="cars"]), .is-stacked .step[data-scene="vitesse"]:not([data-focus="speed"]) { display: none; }
 @media (prefers-reduced-motion: reduce) { .jstack > svg, .cmp-legend { transition: none; } }
 
 /* Carte */
@@ -482,13 +482,31 @@ select, .fiche__controls button {
       </div>
     </section>
 
-    <section class="step" data-scene="vitesse" data-title="Vitesse mesurée" tabindex="0">
+    <section class="step" data-scene="vitesse" data-focus="speed" data-title="Vitesse mesurée" tabindex="0">
       <div class="step__card">
         <p class="step__kicker">Vitesse mesurée</p>
         <h2>V85 par rue, sur la carte</h2>
         <p>La V85 est la vitesse que 85 % des véhicules ne dépassent pas.</p>
         <p data-fill="speedcount"></p>
         <p class="src">12 derniers mois (V85 pondérée par les voitures) · incertitude ±10 % · <a href="#methode">Méthode</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="vitesse" data-focus="traffic" data-title="Vitesse mesurée : trafic" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker">Trafic</p>
+        <h2>Où passent le plus de véhicules</h2>
+        <p data-fill="trafficMap"></p>
+        <p class="src">Véhicules motorisés par jour, 12 derniers mois · <a href="#methode">Méthode</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="vitesse" data-focus="active" data-title="Vitesse mesurée : mobilité active" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker">Mobilité active</p>
+        <h2>Où l'on marche et roule à vélo</h2>
+        <p data-fill="activeMap"></p>
+        <p class="src">Part des vélos et des piétons dans les passages, 12 derniers mois · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -697,6 +715,9 @@ function modeDayText(D, key, noun) {
 }
 
 // Textes de étapes calculés depuis les données (data-fill="...")
+// Trafic motorisé par jour et part de mobilité active d'une rue (année glissante, sinon nov. 2024)
+const mapTraffic = s => { const y = s.year, n = s.raw.nov2024 || {}; return y && y.per_day ? y.per_day.vehicles : n.daily_motorized; };
+const mapActive = s => { const y = s.year, n = s.raw.nov2024 || {}; return y && y.active_pct != null ? y.active_pct : n.active_pct; };
 const fills = {
   peaks: D => D.hourly.am.hour
     ? `Le pic du matin tombe à ${D.hourly.am.hour.replace('-', '–')} dans ${D.hourly.am.n} rues sur ${D.hourly.rows.length} ; celui du soir à ${D.hourly.pm.hour.replace('-', '–')} dans ${D.hourly.pm.n}.`
@@ -707,6 +728,18 @@ const fills = {
     const c = netTotal(D, 'cars_weekday'), b = netTotal(D, 'bikes_weekday'), p = netTotal(D, 'peds_weekday');
     if (!b || !p) return null;
     return `Sur la même échelle, les vélos et les piétons disparaissent : pour 1 vélo, ${fmt0(c / b)} voitures ; pour 1 piéton, ${fmt0(c / p)}. Ce sont des passages comptés, pas des personnes : une voiture peut en transporter plusieurs.`;
+  },
+  trafficMap: D => {
+    const r = D.streets.map(s => ({ s, v: mapTraffic(s) })).filter(x => x.v).sort((a, b) => b.v - a.v);
+    if (r.length < 2) return null;
+    const hi = r[0], lo = r[r.length - 1];
+    return `${hi.s.street} est la rue la plus fréquentée (${fmt0(hi.v)} véhicules par jour), ${lo.s.street} la moins fréquentée (${fmt0(lo.v)}). La forme et la couleur du marqueur restent celles de la vitesse.`;
+  },
+  activeMap: D => {
+    const r = D.streets.map(s => ({ s, v: mapActive(s) })).filter(x => x.v != null).sort((a, b) => b.v - a.v);
+    if (r.length < 2) return null;
+    const hi = r[0], lo = r[r.length - 1];
+    return `${hi.s.street} compte ${fmt1(hi.v)} % de vélos et de piétons, contre ${fmt1(lo.v)} % pour ${lo.s.street}. La forme et la couleur du marqueur restent celles de la vitesse.`;
   },
   speedcount: D => { const c = D.speed.cur; return `${c.high} rues sur ${c.n} dépassent leur limite de plus de 5 km/h, ${c.warn} de 2 à 5 km/h, ${c.ok} de moins de 2 km/h.`; },
   profilcount: D => {
@@ -1125,10 +1158,9 @@ scenes.vitesse = {
     const pts = [], markers = [];
     // Texte sous le marqueur selon le mode choisi ; vide si la donnée manque
     const labelOf = (s, mode) => {
-      const y = s.year, n = s.raw.nov2024 || {};
       if (mode === 'speed') return s.cur ? `${fmt0(s.cur.v85)} km/h` : '';
-      if (mode === 'traffic') { const v = y && y.per_day ? y.per_day.vehicles : n.daily_motorized; return v ? `${fmt0(v)} véh./j` : ''; }
-      const a = y && y.active_pct != null ? y.active_pct : n.active_pct; return a != null ? `${fmt0(a)} %` : '';
+      if (mode === 'traffic') { const v = mapTraffic(s); return v ? `${fmt0(v)} véh./j` : ''; }
+      const a = mapActive(s); return a != null ? `${fmt0(a)} %` : '';
     };
     const iconOf = (s, mode) => L.divIcon({
       className: 'street-marker', iconSize: [80, 40], iconAnchor: [40, 14],
@@ -1166,12 +1198,16 @@ scenes.vitesse = {
       if (/Institut/i.test(s.street)) this.defaultMarker = m;
       pts.push([s.lat, s.lon]);
     });
+    // Mode affiché : boutons ou défilement (une étape par mode, voir focus())
+    const setMode = mode => {
+      body.querySelectorAll('.map-tools button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.mode === mode)));
+      markers.forEach(({ s, m }) => m.setIcon(iconOf(s, mode)));
+    };
     body.querySelector('.map-tools').addEventListener('click', e => {
       const b = e.target.closest('button[data-mode]');
-      if (!b) return;
-      body.querySelectorAll('.map-tools button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-      markers.forEach(({ s, m }) => m.setIcon(iconOf(s, b.dataset.mode)));
+      if (b) setMode(b.dataset.mode);
     });
+    el._vitesse = { setMode };
     // Lien « Fiche de la rue » : choisit la rue dans la fiche puis y défile
     map.on('popupopen', ev => {
       const a = ev.popup.getElement().querySelector('.pop__link');
@@ -1190,6 +1226,10 @@ scenes.vitesse = {
     this.map.fitBounds(this.bounds, { padding: [34, 34], animate: false });
     // Popup ouverte une seule fois au départ pour montrer que les points sont cliquables
     if (this.defaultMarker && !this.popupShown) { this.popupShown = true; this.defaultMarker.openPopup(); }
+  },
+  // Piloté par le défilement : une étape par mode (data-focus)
+  focus(el, D, key) {
+    if (el._vitesse && key) el._vitesse.setMode(key);
   },
 };
 
