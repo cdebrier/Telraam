@@ -42,6 +42,11 @@ Ce document détaille :
 ├── tools/
 │   ├── check_aggregates.mjs             # Recoupe les chiffres avec la référence (node tools/check_aggregates.mjs --check)
 │   └── reference_aggregates.json        # Chiffres de référence (V85, statuts, comparaisons saisonnières)
+├── update.py                            # Met à jour année glissante + profils, régénère les données, contrôle les chiffres
+├── extract_year.py                      # Année glissante par capteur (4 tranches de 91 jours)
+├── extract_profile.py                   # Profil déclaré de chaque rue (telraam.net/en/location-profile)
+├── tests/                               # Tests unitaires de l'agrégation annuelle et de l'analyse des profils
+├── .github/workflows/update.yml         # Option : mise à jour hebdomadaire sur GitHub Actions
 ├── generate_dashboard.py                # Consolide les données brutes en data/rixensart_data.js, rixensart_summary.json et l'historique
 ├── extract_data.py                      # Extraction des métadonnées et segments via l'API Telraam
 ├── extract_history.py                   # Extraction des séries temporelles historiques
@@ -49,6 +54,14 @@ Ce document détaille :
 ```
 
 ---
+
+## 🔄 Mise à jour des données
+
+```bash
+python3 update.py
+```
+
+Récupère l'année glissante (environ 5 minutes, appels en parallèle) et les profils de rue, régénère `data/rixensart_data.js` et vérifie les chiffres. Si une étape échoue, les fichiers de données reviennent à leur état précédent. Pour une exécution hebdomadaire automatique, planifier cette commande (`cron`, ou le workflow `.github/workflows/update.yml` si le dépôt est sur GitHub). Tests : `python3 -m unittest tests.test_year`.
 
 ## 🚀 Utilisation Locale
 

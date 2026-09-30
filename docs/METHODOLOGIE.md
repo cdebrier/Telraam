@@ -116,6 +116,22 @@ Il représente la **vitesse en-dessous de laquelle roulent 85 % des conducteurs*
 
 ---
 
+### 4.4 V85 sur l'année glissante et profil déclaré de la rue
+
+**Période.** L'année glissante va de J−364 à la veille du dernier relevé (dates affichées sur la page). Elle est assemblée par 4 tranches contiguës de 91 jours : l'API Telraam renvoie des zéros, sans message d'erreur, dès que la plage dépasse environ 90 jours.
+
+**Trafic.** Les comptages par mode sont sommés sur les tranches. Les passages par jour divisent par le nombre de jours où le capteur a compté au moins une voiture (et non par 364), pour ne pas sous-estimer un capteur qui a eu des arrêts. La couverture (part des jours avec données) est conservée.
+
+**V85 annuelle (approximation).** Pour chaque tranche, on prend les V85 horaires des heures dont la fiabilité (opacité) atteint 0,5, pondérées par les voitures de l'heure correspondante ; la V85 annuelle est la moyenne pondérée sur les quatre tranches. Une V85 est un percentile : elle ne s'additionne pas, la moyenne pondérée n'est donc qu'une approximation. Sur la rue de l'Institut, 4 tranches de 91 jours et 12 tranches de 30 jours donnent respectivement 56,4 et 56,7 km/h. La référence de nov. 2024 (`avg_v85`) est une moyenne simple des mêmes V85 horaires : l'écart entre les deux est à lire avec prudence.
+
+**Couverture minimale.** Sous la moitié des jours mesurés, la V85 annuelle n'est pas retenue et la page affiche nov. 2024.
+
+**Retraitement par Telraam.** Telraam retraite ses données passées : la V85 horaire de nov. 2024 lue aujourd'hui diffère de celle extraite en septembre (jusqu'à 5 km/h par heure, 51,2 contre 53,1 km/h en moyenne pour la rue de l'Institut). Les valeurs de nov. 2024 de la page restent celles de l'extraction d'origine ; pour cette raison, les tranches ne sont pas mises en cache.
+
+**Profil de rue.** Il vient de la page `location-profile` de chaque capteur : largeur de chaussée, trottoirs, marquage, piste cyclable, sens unique, bus, stationnement, fonction de la rue, vitesse maximale et trois ressentis du riverain. Ces valeurs sont **déclaratives et non vérifiées**. La vitesse maximale déclarée diffère de la limite retenue par le projet pour trois rues (Rue de l'Institut, Chaussée de La Hulpe, Rue Mahiermont : 30 km/h déclarés, 50 km/h retenus) ; la limite du projet fait foi pour les statuts. Trois capteurs n'ont pas de profil renseigné.
+
+**Mise à jour.** `python3 update.py` enchaîne l'extraction, le profil, la fusion et le contrôle des chiffres ; en cas d'échec, les fichiers de données reviennent à leur état précédent.
+
 ## 5. Méthode d'Analyse Temporelle & Évolution Interannuelle (YoY) sans Biais
 
 Comparer l'évolution de la mobilité dans le temps impose une rigueur mathématique stricte afin de ne pas confondre de véritables reports d'itinéraires avec des défaillances de capteurs ou des artefacts météorologiques.
