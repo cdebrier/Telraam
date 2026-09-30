@@ -165,6 +165,28 @@ a { color: inherit; }
 .pop__row b { font-size: 15px; }
 .pop__row small { min-width: 34px; text-align: right; font-size: 12px; }
 .pop__hint { margin-top: 4px; font-size: 11px; color: var(--muted, #9AA7B6); }
+.map-tools { display: flex; gap: 6px; flex: none; }
+.map-tools button { font: inherit; font-size: 12px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; cursor: pointer; }
+.map-tools button[aria-pressed="true"] { color: var(--text); border-color: var(--muted); background: rgba(255,255,255,.07); }
+.map-tools button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.pop__row.is-muted b { font-size: 13px; font-weight: 600; opacity: .8; }
+.pop__modes { margin-top: 6px; }
+.pop__modes small, .pop__profile small { display: block; color: var(--muted, #9AA7B6); font-size: 11px; }
+.mbar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
+.mbar i { display: block; }
+.pop__profile { margin-top: 6px; font-size: 12px; }
+@media (max-width: 719px) { .pop__modes, .pop__profile { display: none; } }
+.pop__link { display: inline-block; margin-top: 6px; font-size: 12px; color: var(--muted, #9AA7B6); }
+.prof { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; margin: 6px 0; font-size: 13px; }
+.prof div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); padding: 2px 0; }
+.prof dt { color: var(--muted); }
+.prof dd { margin: 0; }
+.profile { margin: 12px 0; }
+.pr-row { display: grid; grid-template-columns: 118px 1fr; gap: 8px; align-items: center; font-size: 12px; }
+.pr-row .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pr-row .chips { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.pr-row .chip { border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); }
+.pr-row .chip.is-alert { color: var(--text); border-color: var(--high); }
 .street-marker { background: none; border: 0; }
 .street-marker svg { display: block; margin: 0 auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,.7)); }
 .mk-label { display: block; text-align: center; font: 700 11px/1 'Inter', sans-serif; color: #fff; text-shadow: 0 1px 2px #000, 0 0 3px #000; margin-top: 1px; white-space: nowrap; }
@@ -465,7 +487,7 @@ select, .fiche__controls button {
         <h2>V85 par rue, sur la carte</h2>
         <p>La V85 est la vitesse que 85 % des véhicules ne dépassent pas.</p>
         <p data-fill="speedcount"></p>
-        <p class="src">Nov. 2024, heures de jour · incertitude ±10 % · <a href="#methode">Méthode</a></p>
+        <p class="src">12 derniers mois (V85 pondérée par les voitures) · incertitude ±10 % · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -473,9 +495,9 @@ select, .fiche__controls button {
       <div class="step__card">
         <p class="step__kicker">Écart à la limite</p>
         <h2>Classement des rues</h2>
-        <p>V85 comparée à la limite légale de chaque rue, en nov. 2024 puis en fin d'été 2026.</p>
+        <p>V85 comparée à la limite légale de chaque rue, sur les douze derniers mois puis en nov. 2024.</p>
         <p data-fill="thermo"></p>
-        <p class="src">Nov. 2024 (30 jours) et 21 août – 4 sept. 2026 (14 jours), heures de jour · <a href="#methode">Méthode</a></p>
+        <p class="src">12 derniers mois et nov. 2024 (30 jours), V85 moyenne pondérée par les voitures · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -486,6 +508,15 @@ select, .fiche__controls button {
         <p data-fill="usagers">Répartition par mode, tous capteurs et toutes périodes confondus.</p>
         <p data-fill="active"></p>
         <p class="src">Toutes périodes de mesure · <a href="#methode">Méthode</a></p>
+      </div>
+    </section>
+
+    <section class="step" data-scene="profil" data-title="Ce que la rue permet" tabindex="0">
+      <div class="step__card">
+        <p class="step__kicker">Ce que la rue permet</p>
+        <h2>Vitesse et équipements</h2>
+        <p data-fill="profilcount">Croisement de la vitesse mesurée et du profil déclaré de chaque rue.</p>
+        <p class="src">V85 sur 12 mois · profil déclaré sur Telraam par les propriétaires des capteurs · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -605,7 +636,8 @@ select, .fiche__controls button {
       <div><dt>Mesure</dt><dd>Capteurs Telraam S2 posés aux fenêtres. Le comptage se fait par vision embarquée, aucune image n'est conservée. Précision indicative : 90–95 % pour le trafic motorisé, 80–85 % pour les vélos et les piétons.</dd></div>
       <div><dt>V85</dt><dd>Vitesse que 85 % des véhicules ne dépassent pas. Incertitude de ±10 %, soit environ ±5 km/h pour une V85 de 50 km/h. Les seuils de couleur (2 et 5 km/h au-dessus de la limite) sont des repères de lecture, pas des seuils réglementaires.</dd></div>
       <div><dt>Heures de jour</dt><dd>La classification par mode n'est fiable que de jour. Les profils horaires et les vitesses de nov. 2024 couvrent donc les heures de jour uniquement.</dd></div>
-      <div><dt>V85 récente</dt><dd>Elle couvre 14 jours (21 août – 4 sept. 2026, fin d'été), contre un mois entier en nov. 2024, avec plus d'heures de jour en été. Elle se calcule de la même façon (moyenne des V85 horaires) mais à saison et durée différentes : à lire comme un repère, pas comme une tendance.</dd></div>
+      <div><dt>V85 sur l'année glissante</dt><dd>Elle couvre les douze derniers mois, assemblés par tranches de 91 jours, et se met à jour chaque semaine. La V85 annuelle est la moyenne des V85 horaires pondérée par le nombre de voitures de chaque heure : c'est une approximation, une V85 ne s'additionne pas. Un capteur qui a mesuré moins de la moitié des jours n'a pas de valeur annuelle : on affiche alors nov. 2024. Telraam retraite parfois ses données passées, donc les valeurs de nov. 2024 et de l'année ne sont pas parfaitement comparables.</dd></div>
+      <div><dt>Profil de la rue</dt><dd>Largeur, piste cyclable, bus et ressentis sont déclarés sur Telraam par le propriétaire du capteur. Ils ne sont pas vérifiés. Les trois rues sans profil sont marquées « non renseigné ».</dd></div>
       <div><dt>Comparaisons</dt><dd>D'une année à l'autre, on compare le même mois sur les seuls capteurs présents aux deux périodes. Un capteur arrêté est exclu, pas compté comme une baisse.</dd></div>
       <div id="vigilance"><dt>Indice de vigilance</dt><dd>(part de mobilités actives ÷ 10) × excès de V85 sur la limite × log₁₀ du trafic de jour. Il classe les rues, il ne mesure pas un risque d'accident.</dd></div>
       <div><dt>Limites</dt><dd>Chaque capteur voit une seule rue. Le rapprochement avec les chantiers montre une coïncidence dans le temps, il ne prouve pas une cause.</dd></div>
@@ -675,7 +707,15 @@ const fills = {
     if (!b || !p) return null;
     return `Sur la même échelle, les vélos et les piétons disparaissent : pour 1 vélo, ${fmt0(c / b)} voitures ; pour 1 piéton, ${fmt0(c / p)}. Ce sont des passages comptés, pas des personnes : une voiture peut en transporter plusieurs.`;
   },
-  speedcount: D => `${D.speed.high} rues sur ${D.speed.measured.length} dépassent leur limite de plus de 5 km/h, ${D.speed.warn} de 2 à 5 km/h, ${D.speed.ok} de moins de 2 km/h.`,
+  speedcount: D => { const c = D.speed.cur; return `${c.high} rues sur ${c.n} dépassent leur limite de plus de 5 km/h, ${c.warn} de 2 à 5 km/h, ${c.ok} de moins de 2 km/h.`; },
+  profilcount: D => {
+    const P = D.profil;
+    if (!P.n) return null;
+    const names = P.overNoBike.map(s => s.street).join(', ');
+    return P.overNoBike.length
+      ? `${P.overNoBike.length} rues sur ${P.n} dépassent leur limite de plus de 2 km/h sans piste cyclable : ${names}.`
+      : `Aucune des ${P.n} rues au profil renseigné ne dépasse sa limite de plus de 2 km/h sans piste cyclable.`;
+  },
   usagers: D => {
     const u = D.usagers, n = Object.fromEntries(u.order.map((m, i) => [m, u.per100[i]]));
     return `${n.cars} voitures, ${n.heavy} poids lourds, ${n.bikes} vélos et ${n.pedestrians} piétons.`;
@@ -723,9 +763,11 @@ function speedStatus(v85, limit) {
   return { key: 'ok', color: 'var(--ok)', label: 'Limite respectée' };
 }
 
-/* Période « récente » : 14 jours extraits par extract_data.py (du 2026-08-21 au 2026-09-04).
-   Elle n'est pas décrite dans le fichier de données, d'où cette constante. */
-const RECENT = { label: '21 août – 4 sept. 2026', short: 'Fin d\'été 2026' };
+/* Période « récente » = année glissante extraite par extract_year.py (dates lues dans les données). */
+const RECENT = { label: 'année glissante', short: 'Année glissante' };
+const fmtDay = iso => new Date(iso + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+// Une année glissante n'est retenue que si le capteur a mesuré au moins la moitié des jours
+const YEAR_MIN_COVERAGE = 0.5;
 
 /* ---------- 2. derive() : tout ce que les scènes lisent ---------- */
 function derive() {
@@ -737,19 +779,29 @@ function derive() {
     const nov = s.nov2024 || {};
     const v85 = (nov.speed || {}).avg_v85 || null;
     const limit = s.speed_limit || 50;
-    const rec = s.recent2026 || {}, rv = rec.avg_v85 || null;
+    const yr = s.year || null, yOk = !!(yr && yr.v85 && (yr.coverage || 0) >= YEAR_MIN_COVERAGE);
+    const rv = yOk ? yr.v85 : null;
     return {
       id: s.id, street: s.street, locality: s.locality || 'Rixensart',
       lat: s.lat, lon: s.lon, limit, v85,
       delta: v85 ? v85 - limit : null,
-      // V85 récente (14 jours, fin d'été 2026) : null si le capteur n'a rien mesuré
-      recent: rv ? { v85: rv, unc: (rec.speed && rec.speed.v85_uncertainty) || rv * 0.1, delta: rv - limit, status: speedStatus(rv, limit) } : null,
+      // V85 de l'année glissante : null si le capteur a trop peu mesuré
+      recent: rv ? { v85: rv, unc: rv * 0.1, delta: rv - limit, status: speedStatus(rv, limit) } : null,
+      // Référence affichée sur la carte : année glissante, sinon nov. 2024
+      cur: rv ? { v85: rv, delta: rv - limit, status: speedStatus(rv, limit), src: 'year' }
+        : (v85 ? { v85, delta: v85 - limit, status: speedStatus(v85, limit), src: 'nov' } : null),
+      year: yOk ? yr : null,
+      yearPartial: yr && yr.v85 && !yOk ? yr : null,
+      profile: s.profile || null,
       shift: rv && v85 ? rv - v85 : null,
       status: speedStatus(v85, limit),
       inactive: /inactif|déconnect/i.test(s.status || ''),
       raw: s,
     };
   });
+
+  const y0 = raw.find(x => x.year && x.year.end);
+  if (y0) { RECENT.label = `${fmtDay(y0.year.start)} – ${fmtDay(y0.year.end)}`; }
 
   // Profils horaires (nov. 2024, semaine, heures de jour)
   const sum = a => (a || []).reduce((t, v) => t + v, 0);
@@ -789,6 +841,14 @@ function derive() {
     up: shifts[0] || null, down: shifts[shifts.length - 1] || null,
     scaleMax: Math.ceil(Math.max(...withSpeed.flatMap(s => [s.v85 && s.v85 * 1.1, s.recent && s.recent.v85 * 1.1].filter(Boolean))) / 10) * 10,
   };
+
+  const curList = streets.filter(s => s.cur);
+  const curCount = k => curList.filter(s => s.cur.status.key === k).length;
+  speed.cur = { n: curList.length, high: curCount('high'), warn: curCount('warn'), ok: curCount('ok') };
+  // Croisement vitesse × profil déclaré (jamais sur un profil absent)
+  const profiled = curList.filter(s => s.profile);
+  const overNoBike = profiled.filter(s => s.cur.delta > 2 && s.profile.bike_lane === false).sort((a, b) => b.cur.delta - a.cur.delta);
+  const profil = { rows: profiled.sort((a, b) => b.cur.delta - a.cur.delta), overNoBike, n: profiled.length };
 
   // Indice de vigilance (docs/METHODOLOGIE.md §6.1) : (part active / 10) x excès de V85 x log10(trafic jour)
   measured.forEach(s => {
@@ -841,7 +901,7 @@ function derive() {
   } : null;
 
   return {
-    streets, hourly, speed, ranked, cases, springById, usagers, champion, season, yoySpring,
+    streets, hourly, speed, profil, ranked, cases, springById, usagers, champion, season, yoySpring,
     sensorCount: streets.length,
     totalDetections: hist && hist.network_total_cumulative ? hist.network_total_cumulative : null,
     hist,
@@ -1033,7 +1093,7 @@ function addBaseLayers(map) {
 
 // Scène 2 : carte des V85 (Leaflet, fond sombre)
 scenes.vitesse = {
-  note: D => `V85 nov. 2024, heures de jour · ${D.speed.measured.length} capteurs avec mesure · incertitude ±10 %`,
+  note: D => `V85 sur ${RECENT.label} · ${D.speed.cur.n} capteurs avec mesure · incertitude ±10 %`,
   render(el, D) {
     const body = el.querySelector('.scene__body');
     body.classList.add('fill');
@@ -1047,30 +1107,67 @@ scenes.vitesse = {
       const txt = { ok: 'Moins de 2 km/h au-dessus de la limite', warn: '2 à 5 km/h au-dessus', high: 'Plus de 5 km/h au-dessus', none: 'Pas de mesure' }[k];
       return `<span>${markerSvg(st, 14)}${txt}</span>`;
     }).join('');
-    body.innerHTML = `<div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div>`;
+    const MODES = [['speed', 'Vitesse'], ['traffic', 'Trafic'], ['active', 'Mobilité active']];
+    body.innerHTML = `<div class="map-tools" role="group" aria-label="Valeur affichée sous les marqueurs">${MODES.map(([k, t], i) =>
+      `<button type="button" data-mode="${k}" aria-pressed="${i === 0}">${t}</button>`).join('')}</div>
+      <div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div>`;
 
     const map = L.map(body.querySelector('.map'), {
       scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, attributionControl: true, maxZoom: 16,
     });
     addBaseLayers(map);
-    const pts = [];
-    D.streets.forEach(s => {
-      const label = s.v85 ? `${fmt0(s.v85)} km/h` : '';
-      const icon = L.divIcon({
-        className: 'street-marker', iconSize: [60, 40], iconAnchor: [30, 14],
-        html: markerSvg(s.status) + `<span class="mk-label">${label}</span>`,
-      });
-      const line = (lbl, v, d, st) => `<div class="pop__row"><span>${lbl}</span><b style="color:${st.color}">${fmt0(v)} km/h</b><small>${fmtDelta(d)}</small></div>`;
-      const rows = s.v85 ? line('Nov. 2024', s.v85, s.delta, s.status) : '<div class="pop__row"><span>Nov. 2024</span><small>pas de mesure</small></div>';
-      const rec = s.recent ? line(RECENT.short, s.recent.v85, s.recent.delta, s.recent.status) : '';
-      const html = `<div class="pop"><div class="pop__head"><span class="limit-sign" role="img" aria-label="Limite ${s.limit} km/h">${s.limit}</span>
+    const pts = [], markers = [];
+    // Texte sous le marqueur selon le mode choisi ; vide si la donnée manque
+    const labelOf = (s, mode) => {
+      const y = s.year, n = s.raw.nov2024 || {};
+      if (mode === 'speed') return s.cur ? `${fmt0(s.cur.v85)} km/h` : '';
+      if (mode === 'traffic') { const v = y && y.per_day ? y.per_day.vehicles : n.daily_motorized; return v ? `${fmt0(v)} véh./j` : ''; }
+      const a = y && y.active_pct != null ? y.active_pct : n.active_pct; return a != null ? `${fmt0(a)} %` : '';
+    };
+    const iconOf = (s, mode) => L.divIcon({
+      className: 'street-marker', iconSize: [80, 40], iconAnchor: [40, 14],
+      html: markerSvg(s.cur ? s.cur.status : speedStatus(0, s.limit)) + `<span class="mk-label">${labelOf(s, mode)}</span>`,
+    });
+    const line = (lbl, c, muted) => `<div class="pop__row${muted ? ' is-muted' : ''}"><span>${lbl}</span><b style="color:${c.status.color}">${fmt0(c.v85)} km/h</b><small>${fmtDelta(c.delta)}</small></div>`;
+    const popupOf = s => {
+      const n = s.raw.nov2024 || {}, y = s.year;
+      const novC = s.v85 ? { v85: s.v85, delta: s.delta, status: s.status } : null;
+      let rows;
+      if (s.cur && s.cur.src === 'year') rows = line(RECENT.short, s.cur) + (novC ? line('Nov. 2024', novC, true) : '');
+      else if (novC) rows = line('Nov. 2024', novC) + (s.yearPartial ? `<div class="pop__hint">Pas assez de mesures sur l'année (${fmt0(s.yearPartial.coverage * 100)} % des jours).</div>` : '');
+      else rows = '<div class="pop__row"><span>Vitesse</span><small>pas de mesure</small></div>';
+      const pct = y && y.mode_pct ? y.mode_pct : { car: n.car_pct, heavy: n.heavy_pct, bike: n.bike_pct, pedestrian: n.ped_pct };
+      const perDay = y && y.per_day ? y.per_day.vehicles : n.daily_motorized;
+      const bar = ['car', 'heavy', 'bike', 'pedestrian'].map((k, i) => `<i title="${MODE_LABEL[['cars', 'heavy', 'bikes', 'pedestrians'][i]]} ${fmt1(pct[k] || 0)} %" style="width:${pct[k] || 0}%;background:${MODE_COLOR[['cars', 'heavy', 'bikes', 'pedestrians'][i]]}"></i>`).join('');
+      const modes = perDay ? `<div class="pop__modes"><div class="mbar">${bar}</div><small>${fmt0(perDay)} véh./j · ${fmt1((pct.bike || 0) + (pct.pedestrian || 0))} % vélos et piétons</small></div>` : '';
+      const prof = profileParts(s.profile);
+      const profile = prof.length ? `<div class="pop__profile">${esc(prof.join(' · '))}<small>déclaré par le riverain</small></div>` : '';
+      return `<div class="pop"><div class="pop__head"><span class="limit-sign" role="img" aria-label="Limite ${s.limit} km/h">${s.limit}</span>
         <div><strong>${esc(s.street)}</strong><span class="pop__loc">${esc(s.locality)}${s.inactive ? ' · capteur arrêté' : ''}</span></div></div>
-        ${rows}${rec}<div class="pop__hint">V85, écart à la limite en km/h</div></div>`;
-      const m = L.marker([s.lat, s.lon], { icon, title: s.street, alt: s.street })
-        .bindPopup(html, { minWidth: 210 })
+        ${rows}${modes}${profile}<a class="pop__link" href="#fiche" data-fiche="${esc(s.id)}">Fiche de la rue</a></div>`;
+    };
+    D.streets.forEach(s => {
+      const m = L.marker([s.lat, s.lon], { icon: iconOf(s, 'speed'), title: s.street, alt: s.street })
+        .bindPopup(popupOf(s), { minWidth: 220 })
         .addTo(map);
+      markers.push({ s, m });
       if (/Institut/i.test(s.street)) this.defaultMarker = m;
       pts.push([s.lat, s.lon]);
+    });
+    body.querySelector('.map-tools').addEventListener('click', e => {
+      const b = e.target.closest('button[data-mode]');
+      if (!b) return;
+      body.querySelectorAll('.map-tools button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+      markers.forEach(({ s, m }) => m.setIcon(iconOf(s, b.dataset.mode)));
+    });
+    // Lien « Fiche de la rue » : choisit la rue dans la fiche puis y défile
+    map.on('popupopen', ev => {
+      const a = ev.popup.getElement().querySelector('.pop__link');
+      if (!a) return;
+      a.addEventListener('click', () => {
+        const sel = document.getElementById('street-select');
+        if (sel) { sel.value = a.dataset.fiche; sel.dispatchEvent(new Event('change')); }
+      });
     });
     this.map = map; this.bounds = L.latLngBounds(pts);
     map.fitBounds(this.bounds, { padding: [34, 34] });
@@ -1108,12 +1205,12 @@ function thermoHtml(D, animated = true) {
     `<tr><td>${esc(s.street)}</td><td>${s.limit}</td><td>${cell(s.v85)}</td><td>${cell(s.recent && s.recent.v85)}</td><td>${s.recent ? fmtDelta(s.recent.delta) : 'N/D'}</td></tr>`).join('');
   const un = D.speed.unmeasured.length
     ? `<p class="viz-title">Sans mesure de vitesse : ${D.speed.unmeasured.map(s => esc(s.street)).join(', ')}.</p>` : '';
-  return `<p class="viz-title">Barre haute : nov. 2024. Barre basse : ${RECENT.label}. Trait blanc : limite. Trait fin : ±10 %. Valeur : écart à la limite (mesure récente, sinon nov. 2024).</p>
-    <div class="thermo" role="img" aria-label="V85 de nov. 2024 et de fin d'été 2026 par rapport à la limite légale, pour ${D.speed.withSpeed.length} rues">${rows}</div>${un}
-    <div class="sr-only"><table><caption>V85 et limite par rue, nov. 2024 et ${RECENT.label}</caption><thead><tr><th>Rue</th><th>Limite (km/h)</th><th>V85 nov. 2024 (km/h)</th><th>V85 récente (km/h)</th><th>Écart récent à la limite (km/h)</th></tr></thead><tbody>${table}</tbody></table></div>`;
+  return `<p class="viz-title">Barre haute : nov. 2024. Barre basse : ${RECENT.label}. Trait blanc : limite. Trait fin : ±10 %. Valeur : écart à la limite (année glissante, sinon nov. 2024).</p>
+    <div class="thermo" role="img" aria-label="V85 de nov. 2024 et de l'année glissante par rapport à la limite légale, pour ${D.speed.withSpeed.length} rues">${rows}</div>${un}
+    <div class="sr-only"><table><caption>V85 et limite par rue, nov. 2024 et ${RECENT.label}</caption><thead><tr><th>Rue</th><th>Limite (km/h)</th><th>V85 nov. 2024 (km/h)</th><th>V85 année glissante (km/h)</th><th>Écart à la limite (km/h)</th></tr></thead><tbody>${table}</tbody></table></div>`;
 }
 scenes.thermometre = {
-  note: D => `V85 : moyenne des heures de jour · nov. 2024 (30 j) et ${RECENT.label} (14 j) · échelle 0–${D.speed.scaleMax} km/h`,
+  note: D => `V85 : moyenne pondérée des heures · nov. 2024 (30 j) et ${RECENT.label} (12 mois) · échelle 0–${D.speed.scaleMax} km/h`,
   render(el, D) {
     const body = el.querySelector('.scene__body');
     body.classList.add('fill');
@@ -1154,6 +1251,28 @@ scenes.usagers = {
     if (!svg) return;
     if (reduceMotion) { svg.classList.add('is-in'); return; }
     requestAnimationFrame(() => requestAnimationFrame(() => svg.classList.add('is-in')));
+  },
+};
+
+// Scène « profil » : vitesse de l'année glissante croisée avec les équipements déclarés
+scenes.profil = {
+  note: D => `V85 sur ${RECENT.label} · profil déclaré sur Telraam (non vérifié) · ${D.profil.n} rues au profil renseigné`,
+  render(el, D) {
+    const body = el.querySelector('.scene__body');
+    body.classList.add('fill');
+    if (!D.profil.n) { body.innerHTML = '<p class="msg">Profils de rue indisponibles.</p>'; return; }
+    const rows = D.profil.rows.map(s => {
+      const p = s.profile, alert = s.cur.delta > 2 && p.bike_lane === false;
+      const chips = [
+        `<span class="chip">${markerSvg(s.cur.status, 11)} ${fmtDelta(s.cur.delta)} km/h</span>`,
+        p.bike_lane != null ? `<span class="chip${alert ? ' is-alert' : ''}">${p.bike_lane ? 'piste cyclable' : 'sans piste cyclable'}</span>` : '',
+        p.road_width_m ? `<span class="chip">chaussée ${fmt1(p.road_width_m).replace(',0', '')} m</span>` : '',
+        p.bus ? '<span class="chip">bus</span>' : '',
+      ].join('');
+      return `<div class="pr-row"><span class="name" title="${esc(s.street)}">${esc(shortName(s.street))}</span><span class="chips">${chips}</span></div>`;
+    }).join('');
+    body.innerHTML = `<p class="viz-title">Écart de la V85 à la limite, puis équipements déclarés. Contour clair : dépasse de plus de 2 km/h sans piste cyclable.</p>
+      <div class="thermo">${rows}</div>`;
   },
 };
 
@@ -1257,9 +1376,48 @@ function ficheContent(s) {
 }
 
 function recentSentence(s) {
-  if (!s.recent) return `<p>Pas de mesure de vitesse récente (${RECENT.label}).</p>`;
+  if (!s.recent) return `<p>Pas assez de mesures sur l'année glissante (${RECENT.label}).</p>`;
   const vs = s.shift != null ? `, soit ${fmtDelta(s.shift)} km/h par rapport à nov. 2024` : '';
-  return `<p>Mesure récente (${RECENT.label}, 14 jours) : V85 à <strong>${fmt1(s.recent.v85)} km/h</strong> pour une limite de ${s.limit} km/h (${fmtDelta(s.recent.delta)} km/h${vs}). ${esc(s.recent.status.label)}.</p>`;
+  return `<p>Année glissante (${RECENT.label}) : V85 à <strong>${fmt1(s.recent.v85)} km/h</strong> pour une limite de ${s.limit} km/h (${fmtDelta(s.recent.delta)} km/h${vs}). ${esc(s.recent.status.label)}.</p>`;
+}
+
+// Profil déclaré (voirie et équipements) : formulations françaises courtes
+const FUNCTION_FR = { 'Local area access road': 'desserte locale', 'A local connecting road': 'liaison locale',
+  'A national or regional connecting road': 'axe national ou régional', 'A road with some local destination traffic': 'desserte avec trafic local' };
+const yn = (v, yes, no) => (v === true ? yes : v === false ? no : null);
+function profileParts(p) {
+  if (!p) return [];
+  const fp = (p.footpath_m || []).filter(v => v != null);
+  return [
+    p.road_width_m ? `chaussée ${fmt1(p.road_width_m).replace(',0', '')} m` : null,
+    yn(p.bike_lane, 'piste cyclable', 'sans piste cyclable'),
+    p.bus === true ? 'ligne de bus' : null,
+    p.function ? (FUNCTION_FR[p.function] || null) : null,
+  ].filter(Boolean);
+}
+function profileBlock(s) {
+  const p = s.profile;
+  if (!p) return `<div class="panel profile"><h4>Profil de la rue</h4><p>Non renseigné sur Telraam.</p></div>`;
+  const fp = (p.footpath_m || []).filter(v => v != null);
+  const rows = [
+    ['Chaussée', p.road_width_m ? `${fmt1(p.road_width_m).replace(',0', '')} m` : null],
+    ['Trottoirs', fp.length ? fp.map(v => fmt1(v).replace(',0', '')).join(' + ') + ' m' : null],
+    ['Marquage des voies', yn(p.lane_markings, 'oui', 'aucune séparation')],
+    ['Piste cyclable', yn(p.bike_lane, 'oui', 'non')],
+    ['Sens unique', yn(p.one_way, 'oui', 'non')],
+    ['Ligne de bus', yn(p.bus, 'oui', 'non')],
+    ['Stationnement', yn(p.parking, 'oui', 'non')],
+    ['Fonction', p.function ? (FUNCTION_FR[p.function] || p.function) : null],
+  ].filter(r => r[1] != null);
+  const feel = [
+    p.congestion_pct != null ? `congestion ${fmt0(p.congestion_pct)} %` : null,
+    p.safety_10 != null ? `sécurité ${fmt0(p.safety_10)}/10` : null,
+    p.quality_10 != null ? `qualité de vie ${fmt0(p.quality_10)}/10` : null,
+  ].filter(Boolean);
+  return `<div class="panel profile"><h4>Profil de la rue</h4>
+    <dl class="prof">${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
+    ${feel.length ? `<p class="hint">Ressenti du riverain : ${feel.join(' · ')}.</p>` : ''}
+    <p class="hint">Déclaré sur Telraam par le propriétaire du capteur${p.fetched_at ? ` (relevé du ${fmtDay(p.fetched_at)})` : ''}${p.stale ? ', donnée ancienne' : ''}.</p></div>`;
 }
 
 function renderFiche(s) {
@@ -1274,11 +1432,12 @@ function renderFiche(s) {
     </div>
     <div class="metrics">
       <div class="metric"><span>Vitesse V85 (nov. 2024)</span><b>${s.v85 ? fmt1(s.v85) + ' km/h' : 'N/D'}</b><span>${esc(vLine)}</span></div>
-      <div class="metric"><span>V85 récente (${RECENT.label})</span><b>${s.recent ? fmt1(s.recent.v85) + ' km/h' : 'N/D'}</b><span>${s.recent ? esc(fmtDelta(s.recent.delta) + ' km/h par rapport à la limite') : 'pas de mesure récente'}</span></div>
+      <div class="metric"><span>V85 année glissante</span><b>${s.recent ? fmt1(s.recent.v85) + ' km/h' : 'N/D'}</b><span>${s.recent ? esc(fmtDelta(s.recent.delta) + ' km/h par rapport à la limite') : 'pas assez de mesures sur l\'année'}</span></div>
       <div class="metric"><span>Passages par jour</span><b>${n.daily_total ? fmt0(n.daily_total) : 'N/D'}</b><span>heures de jour</span></div>
       <div class="metric"><span>Part des vélos</span><b>${fmt1(n.bike_pct || 0)} %</b><span>${fmt0(n.daily_bikes || 0)} par jour</span></div>
       <div class="metric"><span>Part des piétons</span><b>${fmt1(n.ped_pct || 0)} %</b><span>${fmt0(n.daily_peds || 0)} par jour</span></div>
     </div>
+    ${profileBlock(s)}
     <div class="two">
       <div class="panel"><h4>Diagnostic</h4><p>${c.diag}</p>${recentSentence(s)}</div>
       <div class="panel"><h4>Pistes à étudier</h4><ul>${c.recos.map(([t, x]) => `<li><strong>${esc(t)} :</strong> ${esc(x)}</li>`).join('')}</ul>
