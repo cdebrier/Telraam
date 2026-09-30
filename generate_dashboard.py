@@ -1,8 +1,28 @@
+import math
 import json
 import os
 import csv
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+
+def midpoint_on_line(coords):
+    """(lat, lon) du point situé à mi-longueur d'un MultiLineString [[lon, lat], ...]. (None, None) sans tracé."""
+    lines = [l for l in coords if len(l) > 1] if coords else []
+    if not lines:
+        return None, None
+    def dist(a, b):
+        return math.hypot((b[0] - a[0]) * math.cos(math.radians(a[1])), b[1] - a[1])
+    half = sum(dist(a, b) for l in lines for a, b in zip(l, l[1:])) / 2
+    for l in lines:
+        for a, b in zip(l, l[1:]):
+            d = dist(a, b)
+            if half <= d:
+                f = half / d if d else 0
+                return round(a[1] + f * (b[1] - a[1]), 5), round(a[0] + f * (b[0] - a[0]), 5)
+            half -= d
+    last = lines[-1][-1]
+    return round(last[1], 5), round(last[0], 5)
+
 
 def compute_yoy_analysis(full_history_obj):
     if not full_history_obj or "sensors_history" not in full_history_obj:
@@ -471,6 +491,7 @@ def process_and_generate():
         return {}
     year_obj = load_json("rixensart_year.json")
     profile_obj = load_json("rixensart_profile.json")
+    geometry_obj = load_json("rixensart_geometry.json")
 
     sensors_summary = []
     
@@ -549,23 +570,9 @@ def process_and_generate():
         valid_rec_v85 = [v for v in rec_v85_data if v > 0]
         rec_avg_v85 = round(sum(valid_rec_v85) / len(valid_rec_v85), 1) if valid_rec_v85 else None
 
-        # Coordinates
-        geom = s.get("geometry", {})
-        coords = geom.get("coordinates", []) if geom else []
-        def get_pts(c):
-            if not c: return []
-            if isinstance(c[0], (int, float)): return [c]
-            r = []
-            for sc in c: r.extend(get_pts(sc))
-            return r
-        pts = get_pts(coords)
-        lat = round(sum(p[1] for p in pts) / len(pts), 5) if pts else None
-        lon = round(sum(p[0] for p in pts) / len(pts), 5) if pts else None
-
-        if lat is None and sid == 9000007490:
-            lat = 50.73258
-            lon = 4.53353
-            coords = [[[4.5325, 50.7320], [4.5345, 50.7330]]]
+        # Position : point au milieu du tracé officiel Telraam (jamais hors de la rue). Le boîtier lui-même n'est pas publié.
+        coords = geometry_obj.get(str(sid)) or (s.get("geometry") or {}).get("coordinates", [])
+        lat, lon = midpoint_on_line(coords)
 
         # Load historical data if present
         hist_file = os.path.join(ROOT, "data/rixensart_history.json")

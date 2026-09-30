@@ -13,12 +13,12 @@
     "coordinates": [
       [
         [
-          4.5325,
-          50.732
+          4.533574596,
+          50.732672203
         ],
         [
-          4.5345,
-          50.733
+          4.533478296,
+          50.732493503
         ]
       ]
     ],
@@ -372,8 +372,8 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.73328,
-    "lon": 4.55211,
+    "lat": 50.73305,
+    "lon": 4.5517,
     "coordinates": [
       [
         [
@@ -780,8 +780,8 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.71404,
-    "lon": 4.51427,
+    "lat": 50.71411,
+    "lon": 4.51411,
     "coordinates": [
       [
         [
@@ -1148,8 +1148,8 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.71966,
-    "lon": 4.52859,
+    "lat": 50.71961,
+    "lon": 4.52864,
     "coordinates": [
       [
         [
@@ -1888,8 +1888,8 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.71032,
-    "lon": 4.51433,
+    "lat": 50.70992,
+    "lon": 4.51399,
     "coordinates": [
       [
         [
@@ -2295,7 +2295,7 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.71676,
+    "lat": 50.71678,
     "lon": 4.49827,
     "coordinates": [
       [
@@ -2664,8 +2664,8 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.72656,
-    "lon": 4.50629,
+    "lat": 50.72662,
+    "lon": 4.50625,
     "coordinates": [
       [
         [
@@ -3023,7 +3023,7 @@
     "network_type": "Officiel Municipal",
     "special_highlight": "",
     "lat": 50.70099,
-    "lon": 4.53087,
+    "lon": 4.53054,
     "coordinates": [
       [
         [
@@ -3406,8 +3406,8 @@
     "is_official": true,
     "network_type": "Officiel Municipal",
     "special_highlight": "",
-    "lat": 50.7124,
-    "lon": 4.53251,
+    "lat": 50.71245,
+    "lon": 4.53239,
     "coordinates": [
       [
         [
@@ -4080,8 +4080,8 @@
     "is_official": false,
     "network_type": "Citoyen Indépendant",
     "special_highlight": "Record communal part active (22.7%) & Zone 30 à surveiller",
-    "lat": 50.72197,
-    "lon": 4.49904,
+    "lat": 50.722,
+    "lon": 4.49891,
     "coordinates": [
       [
         [
@@ -4371,8 +4371,8 @@
     "is_official": false,
     "network_type": "Projet Scolaire « L'école compte »",
     "special_highlight": "Zone 30 scolaire modèle (V85: 31 km/h) & seule vigie active à Rosières",
-    "lat": 50.73002,
-    "lon": 4.53928,
+    "lat": 50.73,
+    "lon": 4.53922,
     "coordinates": [
       [
         [

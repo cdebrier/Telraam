@@ -125,6 +125,7 @@ a { color: inherit; }
 .legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); flex: none; align-items: center; }
 .legend span { display: inline-flex; align-items: center; gap: 5px; }
 .legend svg { display: block; }
+.map-note { flex: none; margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
 
 /* Ridgeplot */
 .ridge { flex: 1; min-height: 0; width: 100%; max-width: 640px; }
@@ -755,6 +756,11 @@ const fills = {
 };
 
 // Statut selon l'écart entre V85 et la limite PROPRE de la rue (règle de l'ancienne page)
+// Résout « var(--x) » en couleur réelle (les attributs SVG de Leaflet n'acceptent pas var())
+function cssColor(c) {
+  const m = /^var\((--[\w-]+)\)$/.exec(c);
+  return m ? getComputedStyle(document.documentElement).getPropertyValue(m[1]).trim() || '#888' : c;
+}
 function speedStatus(v85, limit) {
   if (!v85) return { key: 'none', color: '#78716C', label: 'Pas de mesure' };
   const d = v85 - limit;
@@ -1110,7 +1116,7 @@ scenes.vitesse = {
     const MODES = [['speed', 'Vitesse'], ['traffic', 'Trafic'], ['active', 'Mobilité active']];
     body.innerHTML = `<div class="map-tools" role="group" aria-label="Valeur affichée sous les marqueurs">${MODES.map(([k, t], i) =>
       `<button type="button" data-mode="${k}" aria-pressed="${i === 0}">${t}</button>`).join('')}</div>
-      <div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div>`;
+      <div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div><p class="map-note">Le trait est le tronçon de rue surveillé par chaque capteur (tracé Telraam). Le marqueur est posé au milieu du tronçon : Telraam ne publie pas l'emplacement exact du boîtier.</p>`;
 
     const map = L.map(body.querySelector('.map'), {
       scrollWheelZoom: false, dragging: !L.Browser.mobile, touchZoom: false, zoomSnap: 0.25, attributionControl: true, maxZoom: 16,
@@ -1147,6 +1153,12 @@ scenes.vitesse = {
         ${rows}${modes}${profile}<a class="pop__link" href="#fiche" data-fiche="${esc(s.id)}">Fiche de la rue</a></div>`;
     };
     D.streets.forEach(s => {
+      // Tronçon surveillé, tel que Telraam le trace ; le marqueur est posé au milieu (le boîtier n'est pas localisé précisément)
+      if (s.raw.coordinates && s.raw.coordinates.length) {
+        L.polyline(s.raw.coordinates.map(l => l.map(([lo, la]) => [la, lo])), {
+          color: cssColor((s.cur ? s.cur.status : speedStatus(0, s.limit)).color), weight: 5, opacity: .85, lineCap: 'round', interactive: false,
+        }).addTo(map);
+      }
       const m = L.marker([s.lat, s.lon], { icon: iconOf(s, 'speed'), title: s.street, alt: s.street })
         .bindPopup(popupOf(s), { minWidth: 220 })
         .addTo(map);
@@ -1680,6 +1692,9 @@ function initEvolution() {
       if (!r || r.lat == null) return;
       const pos = EVO_POS[st.street] || 'r';
       const icon = L.divIcon({ className: 'evo-icon', iconSize: [0, 0], html: '<div class="evo-mk pos-' + pos + '"></div>' });
+      if (r.coordinates && r.coordinates.length) {
+        L.polyline(r.coordinates.map(l => l.map(([lo, la]) => [la, lo])), { color: '#8b95a3', weight: 4, opacity: .6, lineCap: 'round', interactive: false }).addTo(map);
+      }
       const m = L.marker([r.lat, r.lon], { icon, title: st.street, alt: st.street, keyboard: true }).addTo(map);
       m.bindPopup(() => {
         const v = st.values[cur], w = T.dates[cur];

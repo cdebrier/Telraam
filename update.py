@@ -3,7 +3,7 @@
 
     python3 update.py
 
-Étapes : extract_year.py, extract_profile.py, generate_dashboard.py, puis contrôle des chiffres.
+Étapes : extract_geometry.py, extract_year.py, extract_profile.py, generate_dashboard.py, puis contrôle des chiffres.
 Si une étape échoue, les fichiers de données reviennent à leur état d'avant : jamais de page à moitié à jour.
 """
 import os
@@ -14,8 +14,9 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DATA_FILES = ["rixensart_year.json", "rixensart_profile.json", "rixensart_data.js", "rixensart_summary.json",
-              "rixensart_summary.csv", "rixensart_history.json"]
+              "rixensart_summary.csv", "rixensart_history.json", "rixensart_geometry.json"]
 STEPS = [
+    ("Tracés des segments", [sys.executable, "extract_geometry.py"]),
     ("Année glissante", [sys.executable, "extract_year.py"]),
     ("Profils de rue", [sys.executable, "extract_profile.py"]),
     ("Fusion des données", [sys.executable, "generate_dashboard.py"]),

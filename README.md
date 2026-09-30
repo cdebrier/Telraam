@@ -43,6 +43,7 @@ Ce document détaille :
 │   ├── check_aggregates.mjs             # Recoupe les chiffres avec la référence (node tools/check_aggregates.mjs --check)
 │   └── reference_aggregates.json        # Chiffres de référence (V85, statuts, comparaisons saisonnières)
 ├── update.py                            # Met à jour année glissante + profils, régénère les données, contrôle les chiffres
+├── extract_geometry.py                  # Tracés officiels des segments Telraam (position des marqueurs)
 ├── extract_year.py                      # Année glissante par capteur (4 tranches de 91 jours)
 ├── extract_profile.py                   # Profil déclaré de chaque rue (telraam.net/en/location-profile)
 ├── tests/                               # Tests unitaires de l'agrégation annuelle et de l'analyse des profils
