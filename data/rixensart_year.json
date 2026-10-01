@@ -1,24 +1,24 @@
 {
-  "start": "2025-09-30",
-  "end": "2026-09-28",
+  "start": "2025-10-01",
+  "end": "2026-09-29",
   "days": 364,
-  "fetched_at": "2026-09-29",
+  "fetched_at": "2026-09-30",
   "sensors": {
     "9000007490": {
       "modes": {
-        "car": 713715,
-        "heavy": 39881,
-        "bike": 37444,
-        "pedestrian": 13164,
-        "night": 152617
+        "car": 715036,
+        "heavy": 40014,
+        "bike": 37481,
+        "pedestrian": 13149,
+        "night": 152578
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 53.3,
       "v85_hours": 64,
       "per_day": {
-        "vehicles": 2070,
-        "cars": 1961,
+        "vehicles": 2074,
+        "cars": 1964,
         "heavy": 110,
         "bikes": 103,
         "pedestrians": 36,
@@ -34,25 +34,25 @@
     },
     "9000007492": {
       "modes": {
-        "car": 349516,
-        "heavy": 20211,
-        "bike": 3423,
-        "pedestrian": 13065,
-        "night": 183978
+        "car": 340812,
+        "heavy": 19657,
+        "bike": 3266,
+        "pedestrian": 12727,
+        "night": 182513
       },
-      "days_with_data": 81,
+      "days_with_data": 80,
       "coverage": 0.22,
       "v85": 39.9,
       "v85_hours": 13,
       "per_day": {
-        "vehicles": 4565,
-        "cars": 4315,
-        "heavy": 250,
-        "bikes": 42,
-        "pedestrians": 161,
-        "night": 2271
+        "vehicles": 4506,
+        "cars": 4260,
+        "heavy": 246,
+        "bikes": 41,
+        "pedestrians": 159,
+        "night": 2281
       },
-      "active_pct": 4.3,
+      "active_pct": 4.2,
       "mode_pct": {
         "car": 90.5,
         "heavy": 5.2,
@@ -62,23 +62,23 @@
     },
     "9000007497": {
       "modes": {
-        "car": 2696685,
-        "heavy": 234931,
-        "bike": 72864,
-        "pedestrian": 26422,
-        "night": 282024
+        "car": 2697002,
+        "heavy": 235205,
+        "bike": 73035,
+        "pedestrian": 26417,
+        "night": 282711
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 50.4,
+      "v85": 50.3,
       "v85_hours": 64,
       "per_day": {
-        "vehicles": 8054,
-        "cars": 7408,
-        "heavy": 645,
-        "bikes": 200,
+        "vehicles": 8056,
+        "cars": 7409,
+        "heavy": 646,
+        "bikes": 201,
         "pedestrians": 73,
-        "night": 775
+        "night": 777
       },
       "active_pct": 3.3,
       "mode_pct": {
@@ -90,18 +90,18 @@
     },
     "9000007509": {
       "modes": {
-        "car": 1060178,
-        "heavy": 59923,
-        "bike": 24875,
-        "pedestrian": 13331,
-        "night": 167918
+        "car": 1060391,
+        "heavy": 59883,
+        "bike": 24879,
+        "pedestrian": 13305,
+        "night": 167926
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 56.4,
       "v85_hours": 64,
       "per_day": {
-        "vehicles": 3077,
+        "vehicles": 3078,
         "cars": 2913,
         "heavy": 165,
         "bikes": 68,
@@ -113,24 +113,24 @@
         "car": 91.5,
         "heavy": 5.2,
         "bike": 2.1,
-        "pedestrian": 1.2
+        "pedestrian": 1.1
       }
     },
     "9000007512": {
       "modes": {
-        "car": 543838,
-        "heavy": 23903,
-        "bike": 21248,
-        "pedestrian": 19324,
-        "night": 108049
+        "car": 542817,
+        "heavy": 23933,
+        "bike": 21191,
+        "pedestrian": 19322,
+        "night": 107967
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 54.7,
+      "v85": 54.8,
       "v85_hours": 63,
       "per_day": {
-        "vehicles": 1560,
-        "cars": 1494,
+        "vehicles": 1557,
+        "cars": 1491,
         "heavy": 66,
         "bikes": 58,
         "pedestrians": 53,
@@ -146,23 +146,23 @@
     },
     "9000007523": {
       "modes": {
-        "car": 1620843,
-        "heavy": 99844,
-        "bike": 60991,
-        "pedestrian": 33952,
-        "night": 341723
+        "car": 1619198,
+        "heavy": 100024,
+        "bike": 61056,
+        "pedestrian": 33947,
+        "night": 341583
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 50.5,
       "v85_hours": 64,
       "per_day": {
-        "vehicles": 4727,
-        "cars": 4453,
-        "heavy": 274,
+        "vehicles": 4723,
+        "cars": 4448,
+        "heavy": 275,
         "bikes": 168,
         "pedestrians": 93,
-        "night": 939
+        "night": 938
       },
       "active_pct": 5.2,
       "mode_pct": {
@@ -174,19 +174,19 @@
     },
     "9000007530": {
       "modes": {
-        "car": 374704,
-        "heavy": 46606,
-        "bike": 16306,
-        "pedestrian": 35039,
-        "night": 103016
+        "car": 373975,
+        "heavy": 46492,
+        "bike": 16300,
+        "pedestrian": 35074,
+        "night": 102937
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 46.3,
-      "v85_hours": 62,
+      "v85_hours": 63,
       "per_day": {
-        "vehicles": 1157,
-        "cars": 1029,
+        "vehicles": 1155,
+        "cars": 1027,
         "heavy": 128,
         "bikes": 45,
         "pedestrians": 96,
@@ -196,29 +196,29 @@
       "mode_pct": {
         "car": 79.3,
         "heavy": 9.9,
-        "bike": 3.4,
+        "bike": 3.5,
         "pedestrian": 7.4
       }
     },
     "9000007533": {
       "modes": {
-        "car": 2281260,
-        "heavy": 89710,
-        "bike": 82196,
-        "pedestrian": 49742,
-        "night": 424654
+        "car": 2281159,
+        "heavy": 89663,
+        "bike": 82161,
+        "pedestrian": 49726,
+        "night": 424551
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 49.3,
       "v85_hours": 64,
       "per_day": {
-        "vehicles": 6514,
+        "vehicles": 6513,
         "cars": 6267,
         "heavy": 246,
         "bikes": 226,
         "pedestrians": 137,
-        "night": 1167
+        "night": 1166
       },
       "active_pct": 5.3,
       "mode_pct": {
@@ -230,23 +230,23 @@
     },
     "9000007534": {
       "modes": {
-        "car": 986298,
-        "heavy": 39584,
-        "bike": 71683,
-        "pedestrian": 41135,
-        "night": 146133
+        "car": 987561,
+        "heavy": 39703,
+        "bike": 71894,
+        "pedestrian": 41203,
+        "night": 146378
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 58.7,
+      "v85": 58.6,
       "v85_hours": 64,
       "per_day": {
-        "vehicles": 2818,
-        "cars": 2710,
+        "vehicles": 2822,
+        "cars": 2713,
         "heavy": 109,
-        "bikes": 197,
+        "bikes": 198,
         "pedestrians": 113,
-        "night": 401
+        "night": 402
       },
       "active_pct": 9.9,
       "mode_pct": {
@@ -258,27 +258,27 @@
     },
     "9000007578": {
       "modes": {
-        "car": 740745,
-        "heavy": 28644,
-        "bike": 79713,
-        "pedestrian": 54843,
-        "night": 181169
+        "car": 742540,
+        "heavy": 28742,
+        "bike": 79855,
+        "pedestrian": 54904,
+        "night": 182053
       },
-      "days_with_data": 323,
+      "days_with_data": 324,
       "coverage": 0.89,
-      "v85": 44.0,
+      "v85": 43.9,
       "v85_hours": 62,
       "per_day": {
-        "vehicles": 2382,
-        "cars": 2293,
+        "vehicles": 2380,
+        "cars": 2292,
         "heavy": 89,
-        "bikes": 247,
-        "pedestrians": 170,
-        "night": 561
+        "bikes": 246,
+        "pedestrians": 169,
+        "night": 562
       },
       "active_pct": 14.9,
       "mode_pct": {
-        "car": 81.9,
+        "car": 82.0,
         "heavy": 3.2,
         "bike": 8.8,
         "pedestrian": 6.1
@@ -286,18 +286,18 @@
     },
     "9000007261": {
       "modes": {
-        "car": 207735,
-        "heavy": 46542,
-        "bike": 2625,
-        "pedestrian": 8246,
-        "night": 53020
+        "car": 207699,
+        "heavy": 46472,
+        "bike": 2608,
+        "pedestrian": 8205,
+        "night": 53043
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 26.8,
       "v85_hours": 62,
       "per_day": {
-        "vehicles": 699,
+        "vehicles": 698,
         "cars": 571,
         "heavy": 128,
         "bikes": 7,
@@ -306,29 +306,29 @@
       },
       "active_pct": 4.1,
       "mode_pct": {
-        "car": 78.3,
-        "heavy": 17.6,
+        "car": 78.4,
+        "heavy": 17.5,
         "bike": 1.0,
         "pedestrian": 3.1
       }
     },
     "9000006402": {
       "modes": {
-        "car": 234270,
-        "heavy": 14178,
-        "bike": 33665,
-        "pedestrian": 45198,
-        "night": 28769
+        "car": 235256,
+        "heavy": 14211,
+        "bike": 33852,
+        "pedestrian": 45377,
+        "night": 28967
       },
-      "days_with_data": 361,
+      "days_with_data": 362,
       "coverage": 0.99,
       "v85": 41.0,
-      "v85_hours": 60,
+      "v85_hours": 61,
       "per_day": {
-        "vehicles": 688,
-        "cars": 649,
+        "vehicles": 689,
+        "cars": 650,
         "heavy": 39,
-        "bikes": 93,
+        "bikes": 94,
         "pedestrians": 125,
         "night": 80
       },
@@ -342,18 +342,18 @@
     },
     "9000009405": {
       "modes": {
-        "car": 84587,
-        "heavy": 8371,
-        "bike": 4653,
-        "pedestrian": 7572,
-        "night": 12616
+        "car": 84520,
+        "heavy": 8375,
+        "bike": 4654,
+        "pedestrian": 7565,
+        "night": 12607
       },
       "days_with_data": 361,
       "coverage": 0.99,
       "v85": 31.1,
       "v85_hours": 58,
       "per_day": {
-        "vehicles": 258,
+        "vehicles": 257,
         "cars": 234,
         "heavy": 23,
         "bikes": 13,
