@@ -20,7 +20,7 @@
 
 <style>
 /* ------------------------------------------------------------------
-   Thème sombre. Une seule police (Inter), trois couleurs de statut.
+   Thème sombre par défaut & thème clair. Une seule police (Inter).
    ------------------------------------------------------------------ */
 :root {
   --bg: #0B0F14;
@@ -28,15 +28,46 @@
   --panel-2: #18202b;
   --line: #243040;
   --text: #E7ECF2;
-  --muted: #9AA7B6;       /* contraste 7:1 sur --bg */
+  --muted: #A3B3C2;       /* contraste renforcé : >7.5:1 sur --bg */
   --ok: #3FB68B;
   --warn: #F0A030;
   --high: #EF5B4E;
   --bike: #5AA9FF;
   --focus: #FFD166;
-  --bar-h: 44px;           /* hauteur de la barre de progression */
+  --bar-h: 46px;           /* hauteur de la barre de navigation */
   --stage-h-mobile: 50svh; /* hauteur du cadre épinglé sur mobile */
 }
+
+/* Thème clair accessible pour les seniors et la consultation diurne */
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --panel: #FFFFFF;
+  --panel-2: #F1F5F9;
+  --line: #CBD5E1;
+  --text: #0F172A;
+  --muted: #475569;
+  --ok: #0D9488;
+  --warn: #D97706;
+  --high: #DC2626;
+  --bike: #2563EB;
+  --focus: #F59E0B;
+}
+[data-theme="light"] .map { background: #E2E8F0; }
+[data-theme="light"] .leaflet-container { background: #E2E8F0; }
+[data-theme="light"] .map .leaflet-tile-pane { filter: none; }
+[data-theme="light"] .leaflet-control-attribution { background: rgba(255,255,255,.88) !important; color: #475569 !important; }
+[data-theme="light"] .leaflet-control-attribution a { color: #475569 !important; }
+[data-theme="light"] .leaflet-popup-content-wrapper,
+[data-theme="light"] .leaflet-popup-tip { background: #FFFFFF; color: #0F172A; box-shadow: 0 4px 20px rgba(0,0,0,.15); }
+[data-theme="light"] .pop__row { border-top-color: #E2E8F0; }
+[data-theme="light"] .limit-sign { border-color: #DC2626; color: #0F172A; background: #FFFFFF; }
+[data-theme="light"] .evo-spark { background: rgba(255,255,255,.94); border-color: #CBD5E1; }
+[data-theme="light"] .evo-spark b { color: #0F172A; }
+[data-theme="light"] .evo-dot { border-color: #F8FAFC; }
+[data-theme="light"] .mk-label { color: #0F172A; text-shadow: 0 1px 2px #fff, 0 0 3px #fff; }
+[data-theme="light"] .step.is-active .step__card { border-color: #94A3B8; }
+[data-theme="light"] .case.is-focus { border-color: #94A3B8; }
+
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -51,16 +82,32 @@ a { color: inherit; }
 /* ---------- Barre de progression / navigation ---------- */
 .bar {
   position: fixed; inset: 0 0 auto 0; height: var(--bar-h); z-index: 50;
-  display: flex; align-items: center; gap: 10px; padding: 0 12px;
+  display: flex; align-items: center; gap: 8px; padding: 0 12px;
   background: color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
 }
 .bar__title { font-weight: 700; font-size: 14px; white-space: nowrap; }
 .bar__title .sm-hide { display: none; }
 .bar__sub { color: var(--muted); font-size: 13px; white-space: nowrap; display: none; }
-.progress { display: flex; gap: 0; margin-left: auto; }
+.bar__nav { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.nav-btn {
+  font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+  text-decoration: none; border: 1px solid var(--line); background: var(--panel-2);
+  color: var(--text); white-space: nowrap; transition: all .2s;
+}
+.nav-btn:hover { border-color: var(--muted); }
+.nav-btn--accent { background: var(--focus); color: #0F172A; border-color: transparent; font-weight: 700; }
+.nav-btn--accent:hover { filter: brightness(1.1); }
+.theme-btn {
+  min-height: 32px; padding: 0 8px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--panel-2); color: var(--text); font: 600 13px/1 'Inter', system-ui, sans-serif;
+  cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all .2s;
+}
+.theme-btn:hover { border-color: var(--muted); }
+.theme-icon { font-size: 14px; }
+.progress { display: flex; gap: 0; }
 .progress a {
-  display: block; width: 20px; height: 28px; position: relative; text-decoration: none;
+  display: block; width: 16px; height: 28px; position: relative; text-decoration: none;
 }
 .progress a::after { /* segment visible, zone de clic de 28 px */
   content: ""; position: absolute; left: 2px; right: 2px; top: 12px; height: 4px;
@@ -68,6 +115,12 @@ a { color: inherit; }
 }
 .progress a[aria-current="step"]::after { background: var(--text); }
 .progress a.is-done::after { background: var(--muted); }
+
+@media (max-width: 719px) {
+  .nav-btn:not(.nav-btn--accent) { display: none; }
+  .bar__sub { display: none !important; }
+  .progress { display: none; }
+}
 
 /* ---------- Mise en page : texte + cadre épinglé ---------- */
 .story { padding-top: var(--bar-h); }
@@ -84,7 +137,7 @@ a { color: inherit; }
 }
 .scene.is-active { opacity: 1; visibility: visible; transition: opacity .35s ease; }
 .scene__body { flex: 1; min-height: 0; display: grid; place-items: center; }
-.scene__foot { color: var(--muted); font-size: 12px; padding-top: 6px; }
+.scene__foot { color: var(--muted); font-size: 13px; padding-top: 6px; }
 .scene__foot a { color: var(--muted); }
 
 .steps { position: relative; padding: 0 16px 40vh; }
@@ -101,10 +154,27 @@ a { color: inherit; }
 .step__card .step__kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
 .step h2 { font-size: 22px; line-height: 1.2; margin: 0 0 8px; font-weight: 700; }
 .step__card p { margin: 0 0 8px; color: var(--text); font-size: 16px; }
-.step__card .src { color: var(--muted); font-size: 13px; margin-top: 10px; }
+.step__card .src { color: var(--muted); font-size: 13.5px; margin-top: 10px; line-height: 1.45; }
 .step__card .src a { color: var(--muted); }
 .big { font-size: clamp(40px, 9vw, 64px); font-weight: 800; line-height: 1; letter-spacing: -.02em; }
 .big small { font-size: .38em; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 6px; }
+
+/* Accès rapide rue dès l'accueil */
+.hero-quick {
+  margin: 14px 0 12px; padding: 12px 14px; border-radius: 10px;
+  background: var(--panel-2); border: 1px solid var(--line);
+}
+.hero-quick__label {
+  display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--text);
+}
+.hero-quick__row { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-quick select { flex: 1 1 180px; min-height: 38px; font-size: 14px; }
+.hero-quick__btn {
+  display: inline-flex; align-items: center; justify-content: center; padding: 0 14px;
+  min-height: 38px; background: var(--focus); color: #0F172A; font-weight: 700;
+  font-size: 13px; text-decoration: none; border-radius: 8px; white-space: nowrap; transition: filter .2s;
+}
+.hero-quick__btn:hover { filter: brightness(1.1); }
 
 .placeholder {
   border: 1px dashed var(--line); border-radius: 12px; padding: 20px; text-align: center;
@@ -122,14 +192,18 @@ a { color: inherit; }
 }
 .seg button[aria-pressed="true"] { background: var(--panel-2); color: var(--text); }
 .viz-title { font-size: 13px; color: var(--muted); margin: 0; flex: none; }
-.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--muted); flex: none; align-items: center; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 13px; color: var(--muted); flex: none; align-items: center; }
 .legend span { display: inline-flex; align-items: center; gap: 5px; }
 .legend svg { display: block; }
-.map-note { flex: none; margin: 0; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
+.map-note { flex: none; margin: 0; font-size: 13px; line-height: 1.45; color: var(--muted); }
+.map-mode-hint {
+  font-size: 12.5px; color: var(--text); background: color-mix(in srgb, var(--panel-2) 80%, transparent);
+  border: 1px solid var(--line); padding: 5px 10px; border-radius: 6px; margin: 0; flex: none; line-height: 1.4;
+}
 
 /* Ridgeplot */
 .ridge { flex: 1; min-height: 0; width: 100%; max-width: 640px; }
-.ridge text { fill: var(--muted); font-size: 10.5px; font-family: inherit; }
+.ridge text { fill: var(--muted); font-size: 11px; font-family: inherit; }
 .ridge .val { fill: var(--text); }
 .ridge .grid { stroke: var(--line); stroke-width: 1; }
 /* Ridgeplot et comparatif empilés dans la même case, fondu de l'un à l'autre */
@@ -138,10 +212,10 @@ a { color: inherit; }
 .jstack > .cmp { flex: 1; min-height: 0; width: 100%; max-width: 640px; opacity: 0; pointer-events: none; }
 .jstack.is-cmp > .cmp { opacity: 1; }
 .jstack.is-cmp > .ridge { opacity: 0; }
-.cmp text { fill: var(--muted); font-size: 10.5px; font-family: inherit; }
+.cmp text { fill: var(--muted); font-size: 11px; font-family: inherit; }
 .cmp .grid { stroke: var(--line); stroke-width: 1; }
 .cmp .lbl { font-weight: 600; }
-.cmp-legend { transition: opacity .45s; }
+.cmp-legend { transition: opacity .45s; font-size: 13px; }
 .cmp-legend b { color: var(--text); font-variant-numeric: tabular-nums; }
 /* Mode empilé : le visuel n'existe qu'une fois, les onglets donnent accès aux autres modes */
 .is-stacked .step[data-scene="journee"]:not([data-focus="cars"]), .is-stacked .step[data-scene="vitesse"]:not([data-focus="speed"]) { display: none; }
@@ -152,49 +226,49 @@ a { color: inherit; }
 .leaflet-container { font-family: inherit; background: #0f141b; }
 /* Fond Esri un peu assombri pour se fondre dans la page (marqueurs et popups non touchés) */
 .map .leaflet-tile-pane { filter: brightness(.62) contrast(1.15); }
-.leaflet-control-attribution { background: rgba(11,15,20,.75) !important; color: var(--muted) !important; font-size: 10px; }
+.leaflet-control-attribution { background: rgba(11,15,20,.75) !important; color: var(--muted) !important; font-size: 11px; }
 .leaflet-control-attribution a { color: var(--muted) !important; }
 .leaflet-popup-content-wrapper, .leaflet-popup-tip { background: var(--panel); color: var(--text); box-shadow: 0 4px 16px rgba(0,0,0,.5); }
-.leaflet-popup-content { font-size: 13px; line-height: 1.45; margin: 10px 14px; }
-.leaflet-popup-content strong { font-size: 14px; }
+.leaflet-popup-content { font-size: 13.5px; line-height: 1.45; margin: 10px 14px; }
+.leaflet-popup-content strong { font-size: 14.5px; }
 .pop__head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
 .pop__head strong { display: block; }
-.pop__loc { display: block; color: var(--muted, #9AA7B6); font-size: 12px; }
+.pop__loc { display: block; color: var(--muted); font-size: 13px; }
 .limit-sign { flex: none; width: 38px; height: 38px; box-sizing: border-box; border-radius: 50%; background: #fff; border: 4px solid #D93025; color: #111; font: 800 15px/30px 'Inter', sans-serif; text-align: center; }
 .pop__row { display: flex; align-items: baseline; gap: 8px; padding: 3px 0; border-top: 1px solid rgba(255,255,255,.08); }
-.pop__row span { flex: 1; color: var(--muted, #9AA7B6); font-size: 12px; }
+.pop__row span { flex: 1; color: var(--muted); font-size: 13px; }
 .pop__row b { font-size: 15px; }
-.pop__row small { min-width: 34px; text-align: right; font-size: 12px; }
-.pop__hint { margin-top: 4px; font-size: 11px; color: var(--muted, #9AA7B6); }
+.pop__row small { min-width: 34px; text-align: right; font-size: 12.5px; }
+.pop__hint { margin-top: 4px; font-size: 12.5px; color: var(--muted); }
 .map-tools { display: flex; gap: 6px; flex: none; }
-.map-tools button { font: inherit; font-size: 12px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; cursor: pointer; }
+.map-tools button { font: inherit; font-size: 13px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 4px 13px; cursor: pointer; }
 .map-tools button[aria-pressed="true"] { color: var(--text); border-color: var(--muted); background: rgba(255,255,255,.07); }
 .map-tools button:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .pop__row.is-muted b { font-size: 13px; font-weight: 600; opacity: .8; }
 .pop__modes { margin-top: 6px; }
-.pop__modes small, .pop__profile small { display: block; color: var(--muted, #9AA7B6); font-size: 11px; }
+.pop__modes small, .pop__profile small { display: block; color: var(--muted); font-size: 12px; }
 .mbar { display: flex; height: 6px; border-radius: 3px; overflow: hidden; margin-bottom: 3px; }
 .mbar i { display: block; }
-.pop__profile { margin-top: 6px; font-size: 12px; }
+.pop__profile { margin-top: 6px; font-size: 13px; }
 @media (max-width: 719px) { .pop__modes, .pop__profile { display: none; } }
-.pop__link { display: inline-block; margin-top: 6px; font-size: 12px; color: var(--muted, #9AA7B6); }
-.prof { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; margin: 6px 0; font-size: 13px; }
+.pop__link { display: inline-block; margin-top: 6px; font-size: 13px; font-weight: 600; color: var(--focus); }
+.prof { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 16px; margin: 6px 0; font-size: 13.5px; }
 .prof div { display: flex; justify-content: space-between; gap: 8px; border-bottom: 1px solid var(--line); padding: 2px 0; }
 .prof dt { color: var(--muted); }
 .prof dd { margin: 0; }
 .profile { margin: 12px 0; }
-.pr-row { display: grid; grid-template-columns: 118px 1fr; gap: 8px; align-items: center; font-size: 12px; }
+.pr-row { display: grid; grid-template-columns: 124px 1fr; gap: 8px; align-items: center; font-size: 13px; }
 .pr-row .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pr-row .chips { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
-.pr-row .chip { border: 1px solid var(--line); border-radius: 999px; padding: 1px 8px; color: var(--muted); }
+.pr-row .chip { border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; color: var(--muted); font-size: 12.5px; }
 .pr-row .chip.is-alert { color: var(--text); border-color: var(--high); }
 .street-marker { background: none; border: 0; }
 .street-marker svg { display: block; margin: 0 auto; filter: drop-shadow(0 1px 2px rgba(0,0,0,.7)); }
-.mk-label { display: block; text-align: center; font: 700 11px/1 'Inter', sans-serif; color: #fff; text-shadow: 0 1px 2px #000, 0 0 3px #000; margin-top: 1px; white-space: nowrap; }
+.mk-label { display: block; text-align: center; font: 700 12px/1 'Inter', sans-serif; color: #fff; text-shadow: 0 1px 2px #000, 0 0 3px #000; margin-top: 1px; white-space: nowrap; }
 
 /* Thermomètre */
 .thermo { display: flex; flex-direction: column; gap: 3px; flex: 1; min-height: 0; justify-content: center; }
-.tr { display: grid; grid-template-columns: 118px 1fr 70px; align-items: center; gap: 8px; font-size: 12px; }
+.tr { display: grid; grid-template-columns: 124px 1fr 70px; align-items: center; gap: 8px; font-size: 13px; }
 .tr .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tr .name em { color: var(--muted); font-style: normal; }
 .tr .val { text-align: right; font-variant-numeric: tabular-nums; display: inline-flex; gap: 5px; align-items: center; justify-content: flex-end; }
@@ -202,9 +276,9 @@ a { color: inherit; }
 .bar { position: absolute; left: 0; border-radius: 2px; width: 0; transition: width .7s cubic-bezier(.2,.7,.2,1); }
 .bar.nov { top: 1px; height: 5px; opacity: .5; }
 .bar.rec { top: 8px; height: 6px; }
-.tr .val small { display: none; color: var(--muted); font-size: 11px; }
-.unc { position: absolute; top: 10px; height: 2px; background: rgba(231,236,242,.6); }
-.unc::before, .unc::after { content: ""; position: absolute; top: -3px; width: 2px; height: 8px; background: rgba(231,236,242,.6); }
+.tr .val small { display: none; color: var(--muted); font-size: 12px; }
+.unc { position: absolute; top: 10px; height: 2px; background: color-mix(in srgb, var(--text) 55%, transparent); }
+.unc::before, .unc::after { content: ""; position: absolute; top: -3px; width: 2px; height: 8px; background: color-mix(in srgb, var(--text) 55%, transparent); }
 .unc::before { left: 0; } .unc::after { right: 0; }
 .lim { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--text); }
 @media (min-width: 900px) { .thermo { gap: clamp(6px, 1.4vh, 12px); } .tr { grid-template-columns: 140px 1fr 200px; font-size: 13px; } .track { height: 24px; } .bar.nov { top: 2px; height: 7px; } .bar.rec { top: 12px; height: 9px; } .unc { top: 15px; } .tr .val small { display: inline; margin-left: 6px; } }
@@ -222,17 +296,17 @@ a { color: inherit; }
 .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
 
 /* Barres horizontales (saisons) */
-.hb { display: grid; grid-template-columns: 100px 1fr 76px; align-items: center; gap: 8px; font-size: 12px; }
+.hb { display: grid; grid-template-columns: 100px 1fr 76px; align-items: center; gap: 8px; font-size: 13px; }
 .hb .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hb .val { text-align: right; font-variant-numeric: tabular-nums; }
-.hb .val small { display: none; color: var(--muted); font-size: 11px; }
+.hb .val small { display: none; color: var(--muted); font-size: 12px; }
 .hbtrack { position: relative; height: 16px; }
 .hbbar { position: absolute; top: 2px; height: 12px; border-radius: 2px; }
 .hbtrack.div::before { content: ""; position: absolute; left: 50%; top: -2px; bottom: -2px; width: 1px; background: var(--muted); }
 .block { display: flex; flex-direction: column; gap: 5px; }
 .block + .block { margin-top: 10px; }
-.block h3 { font-size: 13px; font-weight: 600; margin: 0 0 2px; }
-.note { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
+.block h3 { font-size: 14px; font-weight: 600; margin: 0 0 2px; }
+.note { font-size: 13px; color: var(--muted); margin: 2px 0 0; }
 @media (min-width: 900px) { .hb { grid-template-columns: 110px 1fr 210px; font-size: 13px; } .hb .val { white-space: nowrap; } .hb .val small { display: inline; margin-left: 8px; } }
 .scene__body.center { justify-content: center; }
 
@@ -240,16 +314,16 @@ a { color: inherit; }
 .cases { flex: 1; min-height: 0; display: grid; grid-template-columns: 1fr; gap: 10px; align-content: start; }
 .case { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--panel); transition: opacity .3s, border-color .3s; }
 .case.is-focus { border-color: #4a5d75; }
-.case__tag { color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.case__tag { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
 .case__name { font-size: 16px; font-weight: 700; margin: 2px 0 0; }
-.case__role { color: var(--muted); font-size: 12px; margin: 0 0 6px; }
+.case__role { color: var(--muted); font-size: 13px; margin: 0 0 6px; }
 .case__v85 { display: flex; align-items: baseline; gap: 6px; }
 .case__v85 b { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
-.case__v85 span { color: var(--muted); font-size: 12px; }
-.case__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin: 8px 0 0; font-size: 12px; }
+.case__v85 span { color: var(--muted); font-size: 13px; }
+.case__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin: 8px 0 0; font-size: 13px; }
 .case__stats div { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--line); padding-top: 4px; }
 .case__stats dt { color: var(--muted); } .case__stats dd { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.case__ctx { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+.case__ctx { color: var(--muted); font-size: 13px; margin: 8px 0 0; line-height: 1.45; }
 @media (max-width: 899px) { .cases[data-focus] .case:not(.is-focus) { display: none; } }
 @media (min-width: 900px) {
   .cases { grid-template-columns: 1fr 1fr; align-content: center; gap: 14px; }
@@ -267,8 +341,8 @@ a { color: inherit; }
 /* Deux colonnes dès 720 px (tablette portrait) ; les composants larges restent à 900 px */
 @media (min-width: 720px) {
   :root { --stage-h-mobile: 0px; }
-  .bar { padding: 0 32px; gap: 16px; }
-  .progress a { width: 26px; }
+  .bar { padding: 0 24px; gap: 14px; }
+  .progress a { width: 22px; }
   .bar__title .sm-hide { display: inline; }
   .bar__sub { display: block; }
   .story { display: grid; grid-template-columns: minmax(340px, 38%) 1fr; }
@@ -306,24 +380,24 @@ html:not(.js) .story { display: block; }
 html:not(.js) .step { min-height: 0; display: block; }
 
 /* ---------- Pied de page ---------- */
-.foot { padding: 32px 16px 48px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); }
+.foot { padding: 32px 16px 48px; color: var(--muted); font-size: 13.5px; border-top: 1px solid var(--line); }
 .foot p { max-width: 720px; margin: 0 0 8px; }
 @media (min-width: 900px) { .foot { padding: 32px; } }
 
 /* ---------- Fiche par rue et méthode ---------- */
 .chantiers { border-top: 1px solid var(--line); }
-.chantiers .kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.chantiers .kicker { color: var(--muted); font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
 .chantiers h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
-.chantiers h3 { font-size: 16px; margin: 22px 0 4px; }
+.chantiers h3 { font-size: 17px; margin: 22px 0 4px; }
 .chantiers .facts b { font-weight: 800; white-space: nowrap; }
 
 .skip { position: absolute; left: -999px; top: 0; background: var(--focus); color: #000; padding: 8px 12px; z-index: 100; font-weight: 600; }
 .skip:focus { left: 8px; top: 8px; }
 .wrap { max-width: 960px; margin: 0 auto; padding: 56px 16px; }
 .fiche, .methode { border-top: 1px solid var(--line); }
-.fiche .kicker, .methode .kicker { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
+.fiche .kicker, .methode .kicker { color: var(--muted); font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0 0 6px; }
 .fiche h2, .methode h2 { font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
-.lead { color: var(--muted); margin: 0 0 20px; }
+.lead { color: var(--muted); margin: 0 0 20px; font-size: 15.5px; line-height: 1.6; }
 .fiche__controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
 .fiche__controls label { font-weight: 600; }
 select, .fiche__controls button {
@@ -334,28 +408,31 @@ select, .fiche__controls button {
 .fiche__controls select { min-width: 240px; max-width: 100%; }
 .fiche-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
 .fiche-head { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid var(--line); padding-bottom: 14px; margin-bottom: 16px; }
-.fiche-head .loc { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; margin: 0; }
+.fiche-head .loc { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; margin: 0; }
 .fiche-head h3 { font-size: 24px; margin: 2px 0; }
 .fiche-head .role { color: var(--muted); margin: 0; font-size: 14px; }
+.limit-note { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.limit-note strong { color: var(--text); }
 .badge { border: 1.5px solid currentColor; border-radius: 999px; padding: 5px 12px; font-size: 13px; font-weight: 700; }
 .tone-high { color: var(--high); } .tone-warn { color: var(--warn); } .tone-ok { color: var(--ok); } .tone-none { color: var(--muted); }
 .metrics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
 @media (max-width: 899px) { .metric:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 .metric { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--panel-2); }
-.metric span { display: block; font-size: 12px; color: var(--muted); }
+.metric span { display: block; font-size: 13px; color: var(--muted); font-weight: 500; }
 .metric b { display: block; font-size: 24px; font-weight: 800; line-height: 1.2; margin: 2px 0; }
+.metric-unc { display: block; font-size: 11.5px; color: var(--muted); margin-top: 3px; opacity: .9; }
 .two { display: grid; gap: 12px; }
 .panel { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
-.panel h4 { font-size: 14px; margin: 0 0 6px; }
-.panel p, .panel li { font-size: 14px; line-height: 1.55; margin: 0 0 6px; }
+.panel h4 { font-size: 15px; margin: 0 0 6px; }
+.panel p, .panel li { font-size: 14.5px; line-height: 1.55; margin: 0 0 6px; }
 .panel ul { margin: 0; padding-left: 18px; }
-.panel .hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
-.fiche-foot { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; }
+.panel .hint { color: var(--muted); font-size: 13px; margin-top: 8px; line-height: 1.5; }
+.fiche-foot { margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; }
 .facts { display: grid; gap: 0; margin: 12px 0 18px; }
 .facts div { border-top: 1px solid var(--line); padding: 10px 0; display: grid; gap: 4px; }
-.facts dt { font-weight: 700; } .facts dd { margin: 0; color: var(--muted); }
+.facts dt { font-weight: 700; font-size: 14.5px; } .facts dd { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 .methode a, .methode summary { color: var(--text); }
-.methode details { margin-top: 12px; } .methode summary { cursor: pointer; font-weight: 600; min-height: 32px; }
+.methode details { margin-top: 12px; } .methode summary { cursor: pointer; font-weight: 600; min-height: 32px; font-size: 14.5px; }
 .methode ul { padding-left: 18px; color: var(--muted); font-size: 14px; }
 @media (min-width: 900px) {
   .wrap { padding: 72px 32px; }
@@ -416,7 +493,18 @@ select, .fiche__controls button {
   .metrics { grid-template-columns: repeat(5, 1fr); } .two { grid-template-columns: 1fr 1fr; }
 }
 </style>
-<script>document.documentElement.classList.add('js');</script>
+<script>
+  (function() {
+    try {
+      const saved = localStorage.getItem('telraam_theme');
+      const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (saved === 'light' || (!saved && prefersLight)) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch (e) {}
+    document.documentElement.classList.add('js');
+  })();
+</script>
 </head>
 <body>
 <a class="skip" href="#story">Aller au parcours</a> <a class="skip" href="#fiche">Aller à la fiche par rue</a>
@@ -425,6 +513,15 @@ select, .fiche__controls button {
 <header class="bar">
   <span class="bar__title">Mobilité<span class="sm-hide"> à Rixensart</span></span>
   <span class="bar__sub">Comptages Telraam, 2024–2026</span>
+  <nav class="bar__nav" aria-label="Accès direct">
+    <a href="#step-0" class="nav-btn" title="Début du parcours">Parcours</a>
+    <a href="#step-5" class="nav-btn" title="Carte interactive">Carte</a>
+    <a href="#fiche" class="nav-btn nav-btn--accent" title="Accéder directement à la fiche détaillée d'une rue">📍 Ma rue</a>
+    <a href="#methode" class="nav-btn" title="Méthodologie et limites">Méthode</a>
+  </nav>
+  <button type="button" id="theme-toggle" class="theme-btn" aria-label="Basculer le thème" title="Basculer entre thème clair et sombre">
+    <span class="theme-icon" aria-hidden="true">🌓</span><span class="theme-label sm-hide">Thème</span>
+  </button>
   <nav class="progress" id="progress" aria-label="Étapes du parcours"></nav>
 </header>
 
@@ -439,10 +536,17 @@ select, .fiche__controls button {
 
     <section class="step" data-scene="intro" data-title="Le réseau" tabindex="0">
       <div class="step__card">
-        <p class="step__kicker">Le réseau</p>
+        <p class="step__kicker">Observatoire citoyen</p>
         <h2>13 capteurs, 3 localités</h2>
-        <p>Des capteurs Telraam S2 comptent voitures, poids lourds, vélos et piétons, et estiment la vitesse, à Rixensart, Genval et Rosières.</p>
-        <p class="src">Période : nov. 2024 – 2026 · <a href="#methode">Méthode</a></p>
+        <p>Des capteurs Telraam S2 mesurent en continu les passages de voitures, poids lourds, vélos et piétons, ainsi que la vitesse réelle pratiquée à Rixensart, Genval et Rosières.</p>
+        <div class="hero-quick">
+          <label for="hero-select" class="hero-quick__label">Accéder directement à la fiche de votre rue :</label>
+          <div class="hero-quick__row">
+            <select id="hero-select" aria-label="Sélectionner une rue pour voir sa fiche"></select>
+            <a href="#fiche" class="hero-quick__btn" id="hero-btn">Consulter la fiche →</a>
+          </div>
+        </div>
+        <p class="src">Période : nov. 2024 – 2026 (axes pilotes) · <a href="#methode">Comprendre la méthode et ses limites</a></p>
       </div>
     </section>
 
@@ -484,11 +588,11 @@ select, .fiche__controls button {
 
     <section class="step" data-scene="vitesse" data-focus="speed" data-title="Vitesse mesurée" tabindex="0">
       <div class="step__card">
-        <p class="step__kicker">Vitesse mesurée</p>
+        <p class="step__kicker">Vitesse réelle mesurée</p>
         <h2>V85 par rue, sur la carte</h2>
-        <p>La V85 est la vitesse que 85 % des véhicules ne dépassent pas.</p>
+        <p><strong>En clair :</strong> si 100 véhicules passent dans la rue, 85 roulent en-dessous de cette vitesse, et les 15 plus pressés roulent au-dessus. C'est l'indicateur standard de référence utilisé par les experts et la police pour évaluer la vitesse réelle spontanée autorisée par la voirie.</p>
         <p data-fill="speedcount"></p>
-        <p class="src">12 derniers mois (V85 pondérée par les voitures) · incertitude ±10 % · <a href="#methode">Méthode</a></p>
+        <p class="src">Moyenne pondérée sur 12 mois (heures de jour) · incertitude indicative de ±10 % (soit environ ±5 km/h à 50 km/h) · <a href="#methode">Méthode</a></p>
       </div>
     </section>
 
@@ -650,19 +754,21 @@ select, .fiche__controls button {
 <section class="methode" id="methode" aria-labelledby="methode-h">
   <div class="wrap">
     <p class="kicker">Méthode et limites</p>
-    <h2 id="methode-h">Comment lire ces chiffres</h2>
+    <h2 id="methode-h">Comment lire ces chiffres en toute rigueur</h2>
     <dl class="facts">
-      <div><dt>Mesure</dt><dd>Capteurs Telraam S2 posés aux fenêtres. Le comptage se fait par vision embarquée, aucune image n'est conservée. Précision indicative : 90–95 % pour le trafic motorisé, 80–85 % pour les vélos et les piétons.</dd></div>
-      <div><dt>V85</dt><dd>Vitesse que 85 % des véhicules ne dépassent pas. Incertitude de ±10 %, soit environ ±5 km/h pour une V85 de 50 km/h. Les seuils de couleur (2 et 5 km/h au-dessus de la limite) sont des repères de lecture, pas des seuils réglementaires.</dd></div>
-      <div><dt>Heures de jour</dt><dd>La classification par mode n'est fiable que de jour. Les profils horaires et les vitesses de nov. 2024 couvrent donc les heures de jour uniquement.</dd></div>
-      <div><dt>V85 sur l'année glissante</dt><dd>Elle couvre les douze derniers mois, assemblés par tranches de 91 jours, et se met à jour chaque semaine. La V85 annuelle est la moyenne des V85 horaires pondérée par le nombre de voitures de chaque heure : c'est une approximation, une V85 ne s'additionne pas. Un capteur qui a mesuré moins de la moitié des jours n'a pas de valeur annuelle : on affiche alors nov. 2024. Telraam retraite parfois ses données passées, donc les valeurs de nov. 2024 et de l'année ne sont pas parfaitement comparables.</dd></div>
-      <div><dt>Profil de la rue</dt><dd>Largeur, piste cyclable, bus et ressentis sont déclarés sur Telraam par le propriétaire du capteur. Ils ne sont pas vérifiés. Les trois rues sans profil sont marquées « non renseigné ».</dd></div>
-      <div><dt>Comparaisons</dt><dd>D'une année à l'autre, on compare le même mois sur les seuls capteurs présents aux deux périodes. Un capteur arrêté est exclu, pas compté comme une baisse.</dd></div>
-      <div id="vigilance"><dt>Indice de vigilance</dt><dd>(part de mobilités actives ÷ 10) × excès de V85 sur la limite × log₁₀ du trafic de jour. Il classe les rues, il ne mesure pas un risque d'accident.</dd></div>
-      <div><dt>Limites</dt><dd>Chaque capteur voit une seule rue. Le rapprochement avec les chantiers montre une coïncidence dans le temps, il ne prouve pas une cause.</dd></div>
+      <div><dt>Représentativité</dt><dd>Le réseau compte 13 capteurs (10 municipaux et 3 vigies citoyennes). Il s'agit d'un observatoire d'axes pilotes représentatifs des grands flux de transit et de desserte, et non d'un recensement exhaustif de l'intégralité des 150 km de voiries de la commune.</dd></div>
+      <div><dt>Mesure optique Edge AI</dt><dd>Capteurs Telraam S2 posés aux fenêtres des riverains. Le traitement s'effectue en mémoire vive locale (processeur neuronal Hailo-8), aucune image ni plaque d'immatriculation n'est enregistrée ni transmise (conformité RGPD intégrale). Précision indicative : 90–95 % pour le trafic motorisé, 80–85 % pour les vélos et les piétons.</dd></div>
+      <div><dt>Comprendre la V85</dt><dd>La V85 est le standard international de référence (police, Région, Cerema, VIAS) : sur 100 véhicules observés, 85 roulent en-dessous de cette vitesse, et les 15 plus pressés roulent au-dessus. Elle mesure la vitesse spontanée permise par l'aménagement de la voirie, sans être faussée par un chauffard isolé ni par un bouchon. Incertitude indicative : ±10 % (soit environ ±5 km/h pour 50 km/h). Les seuils de couleur (+2 et +5 km/h au-dessus de la limite) sont des repères visuels d'analyse, pas des seuils d'infraction légale.</dd></div>
+      <div><dt>Réglementation officielle</dt><dd>La limitation de vitesse affichée correspond au règlement communal officiel de police en vigueur. En cas de divergence avec la vitesse indicative saisie par un riverain sur la plateforme Telraam, seule la réglementation officielle fait foi.</dd></div>
+      <div><dt>Heures de jour et photopériode</dt><dd>La classification des silhouettes par mode n'est possible qu'à la lumière naturelle. De nuit, les passages sont enregistrés via les phares (flux motorisé nocturne). En hiver, une part des trajets pendulaires s'effectue dans l'obscurité, ce qui explique pourquoi toute comparaison pluriannuelle est réalisée strictement en méthode iso-période (même mois) pour neutraliser ce cycle d'ensoleillement.</dd></div>
+      <div><dt>V85 sur l'année glissante</dt><dd>Elle couvre les douze derniers mois, assemblés par tranches de 91 jours, et se met à jour chaque semaine. La V85 annuelle est une approximation robuste calculée comme la moyenne des V85 horaires pondérée par le volume de voitures de chaque heure (un percentile ne s'additionnant pas directement). Sous 50 % de jours mesurés, la valeur annuelle est suspendue.</dd></div>
+      <div><dt>Profil et ressenti des rues</dt><dd>Les données de voirie (largeur, piste cyclable, ressenti de sécurité) sont déclarées sur Telraam par les habitants accueillant les capteurs. Elles sont fournies à titre indicatif et citoyen, sans certification par un géomètre ni par la commune.</dd></div>
+      <div><dt>Comparaisons interannuelles</dt><dd>D'une année à l'autre (ex. mai 2025 vers mai 2026), l'analyse s'effectue à périmètre constant sur les seuls capteurs actifs aux deux périodes. Un capteur en panne ou arrêté n'est jamais interprété comme une baisse de circulation.</dd></div>
+      <div id="vigilance"><dt>Indice de vigilance</dt><dd>(part de mobilités actives ÷ 10) × excès de V85 sur la limite × log₁₀ du trafic de jour. Cet indice classe les rues pour hiérarchiser les priorités d'aménagements physiques, il ne constitue pas une modélisation du risque d'accidentologie grave.</dd></div>
+      <div><dt>Chantiers et déviations</dt><dd>Le rapprochement avec les arrêtés communaux de travaux identifie des coïncidences temporelles et des tendances de report plausibles, mais ne constitue pas une preuve de causalité exclusive.</dd></div>
     </dl>
-    <p>Données : <a href="data/rixensart_summary.csv">synthèse CSV</a>, <a href="data/rixensart_summary.json">JSON</a>, <a href="data/rixensart_history.json">historique</a>, <a href="data/rixensart_travaux.json">chantiers</a></p>
-    <details id="sources"><summary>Sources</summary><ul id="sources-list"></ul></details>
+    <p>Données brutes et ouvertes : <a href="data/rixensart_summary.csv">synthèse CSV</a>, <a href="data/rixensart_summary.json">JSON</a>, <a href="data/rixensart_history.json">historique</a>, <a href="data/rixensart_travaux.json">registre des chantiers</a></p>
+    <details id="sources"><summary>Sources documentaires et méthodologiques</summary><ul id="sources-list"></ul></details>
   </div>
 </section>
 
@@ -1067,7 +1173,7 @@ scenes.journee = {
         const pts = arr.map((v, h) => [h + 0.5, v]).filter(p => p[0] >= x0 - 0.5 && p[0] <= x1 + 0.5);
         const b = base(i);
         const d = area.y0(b).y1(p => b - (max ? (p[1] / max) * ridgeH : 0))(pts);
-        const sel = d3.select(this).style('stroke', m.color).style('fill', `color-mix(in srgb, ${m.color} 30%, #0B0F14)`);
+        const sel = d3.select(this).style('stroke', m.color).style('fill', `color-mix(in srgb, ${m.color} 30%, var(--bg))`);
         (animate && !reduceMotion ? sel.transition().duration(450) : sel).attr('d', d);
       });
       totals.text(s => fmt0(hoursSum(s.raw.nov2024.hourly[m.key])) + ' /j');
@@ -1088,7 +1194,7 @@ scenes.journee = {
     Object.entries(MODES).forEach(([k, m]) => {
       const pts = net[k].map((v, h) => [h + 0.5, v]).filter(p => p[0] >= x0 - 0.5 && p[0] <= x1 + 0.5);
       cmp.append('path').attr('d', carea(pts)).attr('stroke-width', 1.6).attr('stroke-linejoin', 'round')
-        .style('stroke', m.color).style('fill', `color-mix(in srgb, ${m.color} ${k === 'cars' ? 30 : 55}%, #0B0F14)`);
+        .style('stroke', m.color).style('fill', `color-mix(in srgb, ${m.color} ${k === 'cars' ? 30 : 55}%, var(--bg))`);
     });
     const legendEl = body.querySelector('.cmp-legend');
     legendEl.innerHTML = ['cars', 'bikes', 'peds'].map(k =>
@@ -1119,18 +1225,36 @@ scenes.journee = {
   },
 };
 
-// Fond gris sombre Esri (gratuit, sans clé) + couche de noms de lieux ; zoom maximal 16
+// Fond Esri adaptatif (sombre ou clair) + couche de noms de lieux ; zoom maximal 16
 function addBaseLayers(map) {
   const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
-  L.tileLayer(esri + 'World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  const prefix = isLight ? 'World_Light_Gray_' : 'World_Dark_Gray_';
+  const base = L.tileLayer(esri + prefix + 'Base/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Fond : Esri, HERE, Garmin, © contributeurs OpenStreetMap', maxZoom: 16,
   }).addTo(map);
   map.createPane('labels');                       // noms de lieux au-dessus du fond, sans le filtre d'assombrissement
   map.getPane('labels').style.zIndex = 250; map.getPane('labels').style.pointerEvents = 'none';
-  L.tileLayer(esri + 'World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { pane: 'labels', maxZoom: 16 }).addTo(map);
+  const labels = L.tileLayer(esri + prefix + 'Reference/MapServer/tile/{z}/{y}/{x}', { pane: 'labels', maxZoom: 16 }).addTo(map);
+  map._themeLayers = { base, labels };
+  if (!window._leafletMaps) window._leafletMaps = [];
+  window._leafletMaps.push(map);
 }
 
-// Scène 2 : carte des V85 (Leaflet, fond sombre)
+function syncMapThemes() {
+  if (!window._leafletMaps) return;
+  const esri = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/';
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  const prefix = isLight ? 'World_Light_Gray_' : 'World_Dark_Gray_';
+  window._leafletMaps.forEach(m => {
+    if (m && m._themeLayers) {
+      m._themeLayers.base.setUrl(esri + prefix + 'Base/MapServer/tile/{z}/{y}/{x}');
+      m._themeLayers.labels.setUrl(esri + prefix + 'Reference/MapServer/tile/{z}/{y}/{x}');
+    }
+  });
+}
+
+// Scène 2 : carte des V85 (Leaflet, fond adaptatif)
 scenes.vitesse = {
   note: D => `V85 sur ${RECENT.label} · ${D.speed.cur.n} capteurs avec mesure · incertitude ±10 %`,
   render(el, D) {
@@ -1147,8 +1271,14 @@ scenes.vitesse = {
       return `<span>${markerSvg(st, 14)}${txt}</span>`;
     }).join('');
     const MODES = [['speed', 'Vitesse'], ['traffic', 'Trafic'], ['active', 'Mobilité active']];
+    const HINTS = {
+      speed: 'Affichage : Vitesse V85 (12 derniers mois). La forme et la couleur indiquent le respect ou dépassement de la vitesse autorisée.',
+      traffic: 'Affichage : Volume motorisé moyen par jour. Note : la forme et la couleur des marqueurs indiquent toujours le niveau de vitesse V85.',
+      active: 'Affichage : Part des modes actifs (vélos + piétons). Note : la forme et la couleur des marqueurs indiquent toujours le niveau de vitesse V85.',
+    };
     body.innerHTML = `<div class="map-tools" role="group" aria-label="Valeur affichée sous les marqueurs">${MODES.map(([k, t], i) =>
       `<button type="button" data-mode="${k}" aria-pressed="${i === 0}">${t}</button>`).join('')}</div>
+      <p class="map-mode-hint" id="map-mode-hint">${HINTS.speed}</p>
       <div class="map" role="application" aria-label="Carte des vitesses V85 par rue"></div><div class="legend">${legend}</div><p class="map-note">Le trait est le tronçon de rue surveillé par chaque capteur (tracé Telraam). Le marqueur est posé au milieu du tronçon : Telraam ne publie pas l'emplacement exact du boîtier.</p>`;
 
     const map = L.map(body.querySelector('.map'), {
@@ -1202,6 +1332,8 @@ scenes.vitesse = {
     const setMode = mode => {
       body.querySelectorAll('.map-tools button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.mode === mode)));
       markers.forEach(({ s, m }) => m.setIcon(iconOf(s, mode)));
+      const hint = body.querySelector('#map-mode-hint');
+      if (hint && HINTS[mode]) hint.textContent = HINTS[mode];
     };
     body.querySelector('.map-tools').addEventListener('click', e => {
       const b = e.target.closest('button[data-mode]');
@@ -1449,7 +1581,7 @@ function profileParts(p) {
 }
 function profileBlock(s) {
   const p = s.profile;
-  if (!p) return `<div class="panel profile"><h4>Profil de la rue</h4><p>Non renseigné sur Telraam.</p></div>`;
+  if (!p) return `<div class="panel profile"><h4>Profil de voirie et témoignage local</h4><p>Non renseigné sur Telraam par l'hébergeur du capteur.</p></div>`;
   const fp = (p.footpath_m || []).filter(v => v != null);
   const rows = [
     ['Chaussée', p.road_width_m ? `${fmt1(p.road_width_m).replace(',0', '')} m` : null],
@@ -1462,50 +1594,109 @@ function profileBlock(s) {
     ['Fonction', p.function ? (FUNCTION_FR[p.function] || p.function) : null],
   ].filter(r => r[1] != null);
   const feel = [
-    p.congestion_pct != null ? `congestion ${fmt0(p.congestion_pct)} %` : null,
-    p.safety_10 != null ? `sécurité ${fmt0(p.safety_10)}/10` : null,
-    p.quality_10 != null ? `qualité de vie ${fmt0(p.quality_10)}/10` : null,
+    p.congestion_pct != null ? `congestion perçue : ${fmt0(p.congestion_pct)} %` : null,
+    p.safety_10 != null ? `sentiment de sécurité : ${fmt0(p.safety_10)}/10` : null,
+    p.quality_10 != null ? `qualité de vie : ${fmt0(p.quality_10)}/10` : null,
   ].filter(Boolean);
-  return `<div class="panel profile"><h4>Profil de la rue</h4>
+  return `<div class="panel profile"><h4>Profil de voirie et témoignage local</h4>
+    <p class="hint" style="margin:0 0 8px;">Informations déclarées sur Telraam par le citoyen bénévole accueillant le capteur (données déclaratives indicatives, non certifiées par un géomètre ni par la commune).</p>
     <dl class="prof">${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}</dl>
-    ${feel.length ? `<p class="hint">Ressenti du riverain : ${feel.join(' · ')}.</p>` : ''}
-    <p class="hint">Déclaré sur Telraam par le propriétaire du capteur${p.fetched_at ? ` (relevé du ${fmtDay(p.fetched_at)})` : ''}${p.stale ? ', donnée ancienne' : ''}.</p></div>`;
+    ${feel.length ? `<p class="hint"><strong>Témoignage indicatif de l'hébergeur :</strong> ${feel.join(' · ')}.</p>` : ''}
+    <p class="hint">Relevé sur Telraam${p.fetched_at ? ` du ${fmtDay(p.fetched_at)}` : ''}${p.stale ? ', donnée ancienne' : ''}.</p></div>`;
 }
 
 function renderFiche(s) {
   const card = document.getElementById('fiche-card');
   if (!card) return;
   const n = s.raw.nov2024 || {}, c = ficheContent(s);
-  const vLine = s.v85 ? `${fmtDelta(s.delta)} km/h par rapport à la limite de ${s.limit}` : `Limite : ${s.limit} km/h`;
+  const vLine = s.v85 ? `${fmtDelta(s.delta)} km/h par rapport à la limite de ${s.limit} km/h` : `Limite officielle : ${s.limit} km/h`;
+  const disc = (s.profile && s.profile.speed_limit && s.profile.speed_limit !== s.limit)
+    ? ` <span class="pop__hint">(déclaré à ${s.profile.speed_limit} km/h par le riverain sur Telraam)</span>` : '';
+  const uncText = v => (v ? `fourchette ±10 % : ${fmt1(v * 0.9)} à ${fmt1(v * 1.1)} km/h` : '');
   card.innerHTML = `
     <div class="fiche-head">
-      <div><p class="loc">${esc(s.locality)} · capteur Telraam n°${esc(s.id)}</p><h3>${esc(s.street)}</h3><p class="role">${esc(s.raw.role || '')}</p></div>
+      <div>
+        <p class="loc">${esc(s.locality)} · capteur Telraam n°${esc(s.id)} · ${esc(s.raw.network_type || 'Réseau citoyen')}</p>
+        <h3>${esc(s.street)}</h3>
+        <p class="role">${esc(s.raw.role || '')}</p>
+        <p class="limit-note">Limitation légale officielle : <strong>${s.limit} km/h</strong> (arrêté communal de police)${disc}</p>
+      </div>
       <span class="badge tone-${c.tone}">${esc(c.badge)}</span>
     </div>
     <div class="metrics">
-      <div class="metric"><span>Vitesse V85 (nov. 2024)</span><b>${s.v85 ? fmt1(s.v85) + ' km/h' : 'N/D'}</b><span>${esc(vLine)}</span></div>
-      <div class="metric"><span>V85 année glissante</span><b>${s.recent ? fmt1(s.recent.v85) + ' km/h' : 'N/D'}</b><span>${s.recent ? esc(fmtDelta(s.recent.delta) + ' km/h par rapport à la limite') : 'pas assez de mesures sur l\'année'}</span></div>
-      <div class="metric"><span>Passages par jour</span><b>${n.daily_total ? fmt0(n.daily_total) : 'N/D'}</b><span>heures de jour</span></div>
-      <div class="metric"><span>Part des vélos</span><b>${fmt1(n.bike_pct || 0)} %</b><span>${fmt0(n.daily_bikes || 0)} par jour</span></div>
-      <div class="metric"><span>Part des piétons</span><b>${fmt1(n.ped_pct || 0)} %</b><span>${fmt0(n.daily_peds || 0)} par jour</span></div>
+      <div class="metric">
+        <span>Vitesse V85 (nov. 2024)</span>
+        <b>${s.v85 ? fmt1(s.v85) + ' km/h' : 'N/D'}</b>
+        <span>${esc(vLine)}</span>
+        ${s.v85 ? `<small class="metric-unc">${uncText(s.v85)}</small>` : ''}
+      </div>
+      <div class="metric">
+        <span>V85 année glissante</span>
+        <b>${s.recent ? fmt1(s.recent.v85) + ' km/h' : 'N/D'}</b>
+        <span>${s.recent ? esc(fmtDelta(s.recent.delta) + ' km/h par rapport à la limite') : 'pas assez de mesures sur l\'année'}</span>
+        ${s.recent ? `<small class="metric-unc">${uncText(s.recent.v85)}</small>` : ''}
+      </div>
+      <div class="metric">
+        <span>Passages par jour</span>
+        <b>${n.daily_total ? fmt0(n.daily_total) : 'N/D'}</b>
+        <span>heures de jour (${n.daily_motorized ? fmt0(n.daily_motorized) : 0} motorisés)</span>
+      </div>
+      <div class="metric">
+        <span>Part des vélos</span>
+        <b>${fmt1(n.bike_pct || 0)} %</b>
+        <span>${fmt0(n.daily_bikes || 0)} passages / jour</span>
+      </div>
+      <div class="metric">
+        <span>Part des piétons</span>
+        <b>${fmt1(n.ped_pct || 0)} %</b>
+        <span>${fmt0(n.daily_peds || 0)} passages / jour</span>
+      </div>
     </div>
     ${profileBlock(s)}
     <div class="two">
-      <div class="panel"><h4>Diagnostic</h4><p>${c.diag}</p>${recentSentence(s)}</div>
-      <div class="panel"><h4>Pistes à étudier</h4><ul>${c.recos.map(([t, x]) => `<li><strong>${esc(t)} :</strong> ${esc(x)}</li>`).join('')}</ul>
-        <p class="hint">Pistes générales selon le profil de la rue, à valider par une étude locale.</p></div>
+      <div class="panel">
+        <h4>Diagnostic</h4>
+        <p>${c.diag}</p>
+        ${recentSentence(s)}
+      </div>
+      <div class="panel">
+        <h4>Pistes à étudier</h4>
+        <ul>${c.recos.map(([t, x]) => `<li><strong>${esc(t)} :</strong> ${esc(x)}</li>`).join('')}</ul>
+        <p class="hint">Pistes générales basées sur les ratios de vitesse et de flux, destinées à nourrir la concertation locale (à étudier et valider par les services techniques communaux et la police locale).</p>
+      </div>
     </div>
-    <div class="fiche-foot"><span>Mobilité à Rixensart · comptages Telraam S2, nov. 2024 et ${RECENT.label}, heures de jour</span><span>V85 : incertitude ±10 %</span></div>`;
+    <div class="fiche-foot">
+      <span>Mobilité à Rixensart · comptages citoyens Telraam S2, nov. 2024 et ${RECENT.label}, heures de jour</span>
+      <span>Incertitude indicative des vitesses : ±10 %</span>
+    </div>`;
 }
 
 function initFiche(D) {
   const select = document.getElementById('street-select');
+  const heroSelect = document.getElementById('hero-select');
   if (!select) return;
   if (!D) { document.getElementById('fiche-card').innerHTML = '<p class="msg">Données indisponibles.</p>'; return; }
-  select.innerHTML = D.streets.map(s => `<option value="${esc(s.id)}">${esc(s.street)} (${esc(s.locality)})</option>`).join('');
+  const optionsHtml = D.streets.map(s => `<option value="${esc(s.id)}">${esc(s.street)} (${esc(s.locality)})</option>`).join('');
+  select.innerHTML = optionsHtml;
+  if (heroSelect) {
+    heroSelect.innerHTML = optionsHtml;
+    heroSelect.addEventListener('change', e => {
+      select.value = e.target.value;
+      const s = D.streets.find(x => String(x.id) === e.target.value);
+      if (s) renderFiche(s);
+    });
+  }
   const start = D.streets.find(s => s.street === 'Rue de la Gare') || D.streets[0];
-  select.value = start.id; renderFiche(start);
-  select.addEventListener('change', e => { const s = D.streets.find(x => String(x.id) === e.target.value); if (s) renderFiche(s); });
+  select.value = start.id;
+  if (heroSelect) heroSelect.value = start.id;
+  renderFiche(start);
+  select.addEventListener('change', e => {
+    const s = D.streets.find(x => String(x.id) === e.target.value);
+    if (s) {
+      if (heroSelect && heroSelect.value !== String(s.id)) heroSelect.value = String(s.id);
+      renderFiche(s);
+    }
+  });
   document.getElementById('print-btn').addEventListener('click', () => window.print());
 }
 
@@ -1689,13 +1880,37 @@ function sparkSvg(values, upTo, suspect = []) {
     if (v == null) { pen = false; return; }
     d += (pen ? 'L' : 'M') + px(j).toFixed(1) + ' ' + py(v).toFixed(1); pen = true;
   });
-  const future = values.map((_, j) => j > upTo ? `<circle cx="${px(j).toFixed(1)}" cy="${zero}" r="1.4" fill="#4a5666"/>` : '').join('');
+  const future = values.map((_, j) => j > upTo ? `<circle cx="${px(j).toFixed(1)}" cy="${zero}" r="1.4" fill="var(--muted)"/>` : '').join('');
   const past = values.map((v, j) => j < upTo && v != null && suspect[j]
-    ? `<circle cx="${px(j).toFixed(1)}" cy="${py(v).toFixed(1)}" r="2.2" fill="none" stroke="#fff" stroke-width="1"/>` : '').join('');
+    ? `<circle cx="${px(j).toFixed(1)}" cy="${py(v).toFixed(1)}" r="2.2" fill="none" stroke="var(--text)" stroke-width="1"/>` : '').join('');
   const cur = values[upTo] != null
-    ? `<circle cx="${px(upTo).toFixed(1)}" cy="${py(values[upTo]).toFixed(1)}" r="3.2" fill="${evoColor(values[upTo])}" stroke="#0B0F14" stroke-width="1.2"/>` : '';
-  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${zero}" y2="${zero}" stroke="#52606f" stroke-width="1" stroke-dasharray="2 2"/>`
-    + `<path d="${d}" fill="none" stroke="#E7ECF2" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>${future}${past}${cur}</svg>`;
+    ? `<circle cx="${px(upTo).toFixed(1)}" cy="${py(values[upTo]).toFixed(1)}" r="3.2" fill="${evoColor(values[upTo])}" stroke="var(--bg)" stroke-width="1.2"/>` : '';
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" aria-hidden="true"><line x1="0" x2="${W}" y1="${zero}" y2="${zero}" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 2"/>`
+    + `<path d="${d}" fill="none" stroke="var(--text)" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>${future}${past}${cur}</svg>`;
+}
+
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  const updateBtn = () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    btn.setAttribute('aria-label', isLight ? 'Passer au thème sombre' : 'Passer au thème clair');
+    btn.setAttribute('title', isLight ? 'Passer au thème sombre' : 'Passer au thème clair');
+    btn.innerHTML = `<span class="theme-icon" aria-hidden="true">${isLight ? '🌙' : '☀️'}</span><span class="theme-label sm-hide">${isLight ? 'Sombre' : 'Clair'}</span>`;
+  };
+  updateBtn();
+  btn.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('telraam_theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('telraam_theme', 'light');
+    }
+    updateBtn();
+    syncMapThemes();
+  });
 }
 
 function initEvolution() {
@@ -1796,9 +2011,11 @@ function initEvolution() {
   }
   render();
 }
-document.addEventListener('DOMContentLoaded', () => { try { initEvolution(); } catch (e) { console.error('Évolution', e); } });
-
-document.addEventListener('DOMContentLoaded', initStory);
+document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
+  initStory();
+  try { initEvolution(); } catch (e) { console.error('Évolution', e); }
+});
 </script>
 </body>
 </html>
