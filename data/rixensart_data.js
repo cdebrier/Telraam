@@ -303,23 +303,23 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 750645,
-        "heavy": 42887,
-        "bike": 37879,
-        "pedestrian": 12922,
-        "night": 164605
+        "car": 754628,
+        "heavy": 43187,
+        "bike": 37832,
+        "pedestrian": 12887,
+        "night": 166686
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 53.8,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 2180,
-        "cars": 2062,
-        "heavy": 118,
+        "vehicles": 2192,
+        "cars": 2073,
+        "heavy": 119,
         "bikes": 104,
-        "pedestrians": 36,
-        "night": 452
+        "pedestrians": 35,
+        "night": 458
       },
       "active_pct": 6.0,
       "mode_pct": {
@@ -328,8 +328,8 @@ window.TELRAAM_RIXENSART = [
         "bike": 4.5,
         "pedestrian": 1.5
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 6.0,
@@ -347,7 +347,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": null,
       "safety_10": 4.0,
       "quality_10": 1.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -711,33 +711,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 197487,
-        "heavy": 11288,
-        "bike": 1720,
-        "pedestrian": 7240,
-        "night": 138590
+        "car": 181431,
+        "heavy": 10322,
+        "bike": 1550,
+        "pedestrian": 6239,
+        "night": 129661
       },
-      "days_with_data": 46,
-      "coverage": 0.13,
-      "v85": 39.1,
+      "days_with_data": 43,
+      "coverage": 0.12,
+      "v85": 39.5,
       "v85_hours": 11,
       "per_day": {
-        "vehicles": 4539,
-        "cars": 4293,
-        "heavy": 245,
-        "bikes": 37,
-        "pedestrians": 157,
-        "night": 3013
+        "vehicles": 4459,
+        "cars": 4219,
+        "heavy": 240,
+        "bikes": 36,
+        "pedestrians": 145,
+        "night": 3015
       },
-      "active_pct": 4.1,
+      "active_pct": 3.9,
       "mode_pct": {
-        "car": 90.7,
+        "car": 90.9,
         "heavy": 5.2,
         "bike": 0.8,
-        "pedestrian": 3.3
+        "pedestrian": 3.1
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 10.0,
@@ -755,7 +755,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": 50.0,
       "safety_10": 5.0,
       "quality_10": 5.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -1079,23 +1079,23 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 2716703,
-        "heavy": 238927,
-        "bike": 75413,
-        "pedestrian": 26545,
-        "night": 302904
+        "car": 2717732,
+        "heavy": 238817,
+        "bike": 75258,
+        "pedestrian": 26505,
+        "night": 297820
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 50.4,
+      "v85": 50.3,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 8120,
-        "cars": 7463,
+        "vehicles": 8122,
+        "cars": 7466,
         "heavy": 656,
         "bikes": 207,
         "pedestrians": 73,
-        "night": 832
+        "night": 818
       },
       "active_pct": 3.3,
       "mode_pct": {
@@ -1104,8 +1104,8 @@ window.TELRAAM_RIXENSART = [
         "bike": 2.5,
         "pedestrian": 0.9
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -1123,7 +1123,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": 40.0,
       "safety_10": 1.0,
       "quality_10": 4.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -1455,33 +1455,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 0,
-        "heavy": 0,
-        "bike": 0,
-        "pedestrian": 0,
-        "night": 0
+        "car": 1060053,
+        "heavy": 59777,
+        "bike": 25282,
+        "pedestrian": 13204,
+        "night": 167602
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 56.4,
+      "v85": 56.3,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 0,
-        "cars": 0,
-        "heavy": 0,
-        "bikes": 0,
-        "pedestrians": 0,
-        "night": 0
+        "vehicles": 3076,
+        "cars": 2912,
+        "heavy": 164,
+        "bikes": 69,
+        "pedestrians": 36,
+        "night": 460
       },
-      "active_pct": 0,
+      "active_pct": 3.3,
       "mode_pct": {
-        "car": 0,
-        "heavy": 0,
-        "bike": 0,
-        "pedestrian": 0
+        "car": 91.5,
+        "heavy": 5.2,
+        "bike": 2.2,
+        "pedestrian": 1.1
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 5.0,
@@ -1499,7 +1499,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": 0.0,
       "safety_10": 3.0,
       "quality_10": 7.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -1819,33 +1819,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 518343,
-        "heavy": 23712,
-        "bike": 19596,
-        "pedestrian": 19177,
-        "night": 100701
+        "car": 515650,
+        "heavy": 23553,
+        "bike": 19467,
+        "pedestrian": 19042,
+        "night": 99758
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 57.2,
+      "v85": 57.5,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 1489,
-        "cars": 1424,
+        "vehicles": 1481,
+        "cars": 1417,
         "heavy": 65,
-        "bikes": 54,
-        "pedestrians": 53,
-        "night": 277
+        "bikes": 53,
+        "pedestrians": 52,
+        "night": 274
       },
       "active_pct": 6.7,
       "mode_pct": {
-        "car": 89.2,
+        "car": 89.3,
         "heavy": 4.1,
         "bike": 3.4,
         "pedestrian": 3.3
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -1863,7 +1863,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": null,
       "safety_10": 10.0,
       "quality_10": 10.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -2215,23 +2215,23 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 1560973,
-        "heavy": 102324,
-        "bike": 60841,
-        "pedestrian": 33615,
-        "night": 327033
+        "car": 1558020,
+        "heavy": 102162,
+        "bike": 60729,
+        "pedestrian": 33706,
+        "night": 326374
       },
       "days_with_data": 359,
       "coverage": 0.99,
       "v85": 50.9,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 4633,
-        "cars": 4348,
+        "vehicles": 4624,
+        "cars": 4340,
         "heavy": 285,
         "bikes": 169,
         "pedestrians": 94,
-        "night": 911
+        "night": 909
       },
       "active_pct": 5.4,
       "mode_pct": {
@@ -2240,8 +2240,8 @@ window.TELRAAM_RIXENSART = [
         "bike": 3.5,
         "pedestrian": 1.9
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -2259,7 +2259,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": null,
       "safety_10": 3.0,
       "quality_10": 3.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -2602,33 +2602,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 355070,
-        "heavy": 43879,
-        "bike": 15635,
-        "pedestrian": 32942,
-        "night": 96993
+        "car": 354331,
+        "heavy": 43440,
+        "bike": 15574,
+        "pedestrian": 32725,
+        "night": 96640
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 46.5,
-      "v85_hours": 60,
+      "v85": 46.4,
+      "v85_hours": 61,
       "per_day": {
-        "vehicles": 1096,
-        "cars": 975,
-        "heavy": 121,
+        "vehicles": 1093,
+        "cars": 973,
+        "heavy": 119,
         "bikes": 43,
         "pedestrians": 90,
-        "night": 266
+        "night": 265
       },
-      "active_pct": 10.9,
+      "active_pct": 10.8,
       "mode_pct": {
-        "car": 79.3,
-        "heavy": 9.8,
+        "car": 79.4,
+        "heavy": 9.7,
         "bike": 3.5,
-        "pedestrian": 7.4
+        "pedestrian": 7.3
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "associated_travaux": [
       {
@@ -2971,23 +2971,23 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 2287395,
-        "heavy": 88073,
-        "bike": 83326,
-        "pedestrian": 49629,
-        "night": 423556
+        "car": 2287826,
+        "heavy": 87728,
+        "bike": 83102,
+        "pedestrian": 49601,
+        "night": 424055
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 49.6,
+      "v85": 49.5,
       "v85_hours": 61,
       "per_day": {
         "vehicles": 6526,
-        "cars": 6284,
-        "heavy": 242,
-        "bikes": 229,
+        "cars": 6285,
+        "heavy": 241,
+        "bikes": 228,
         "pedestrians": 136,
-        "night": 1164
+        "night": 1165
       },
       "active_pct": 5.3,
       "mode_pct": {
@@ -2996,8 +2996,8 @@ window.TELRAAM_RIXENSART = [
         "bike": 3.3,
         "pedestrian": 2.0
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "associated_travaux": [
       {
@@ -3337,33 +3337,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 1023922,
-        "heavy": 43299,
-        "bike": 73428,
-        "pedestrian": 41158,
-        "night": 154569
+        "car": 1027210,
+        "heavy": 43485,
+        "bike": 73379,
+        "pedestrian": 41102,
+        "night": 155659
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 58.5,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 2932,
-        "cars": 2813,
+        "vehicles": 2941,
+        "cars": 2822,
         "heavy": 119,
         "bikes": 202,
         "pedestrians": 113,
-        "night": 425
+        "night": 428
       },
       "active_pct": 9.7,
       "mode_pct": {
-        "car": 86.6,
+        "car": 86.7,
         "heavy": 3.7,
         "bike": 6.2,
         "pedestrian": 3.5
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 5.2,
@@ -3381,7 +3381,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": null,
       "safety_10": 6.0,
       "quality_10": 3.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -3721,33 +3721,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 798170,
-        "heavy": 31354,
-        "bike": 84709,
-        "pedestrian": 57633,
-        "night": 205594
+        "car": 798870,
+        "heavy": 31334,
+        "bike": 84405,
+        "pedestrian": 57026,
+        "night": 207069
       },
       "days_with_data": 354,
       "coverage": 0.97,
       "v85": 43.9,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 2343,
-        "cars": 2255,
+        "vehicles": 2345,
+        "cars": 2257,
         "heavy": 89,
-        "bikes": 239,
-        "pedestrians": 163,
-        "night": 581
+        "bikes": 238,
+        "pedestrians": 161,
+        "night": 585
       },
       "active_pct": 14.6,
       "mode_pct": {
-        "car": 82.1,
+        "car": 82.2,
         "heavy": 3.2,
         "bike": 8.7,
         "pedestrian": 5.9
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -3765,7 +3765,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": 20.0,
       "safety_10": 7.0,
       "quality_10": 6.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": [
       {
@@ -4023,33 +4023,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 207671,
-        "heavy": 44898,
-        "bike": 2439,
-        "pedestrian": 7846,
-        "night": 52877
+        "car": 207465,
+        "heavy": 44515,
+        "bike": 2422,
+        "pedestrian": 7799,
+        "night": 52874
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 26.8,
+      "v85": 26.7,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 694,
-        "cars": 571,
-        "heavy": 123,
+        "vehicles": 692,
+        "cars": 570,
+        "heavy": 122,
         "bikes": 7,
-        "pedestrians": 22,
+        "pedestrians": 21,
         "night": 145
       },
       "active_pct": 3.9,
       "mode_pct": {
-        "car": 79.0,
-        "heavy": 17.1,
+        "car": 79.1,
+        "heavy": 17.0,
         "bike": 0.9,
         "pedestrian": 3.0
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -4067,7 +4067,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": 25.0,
       "safety_10": 6.0,
       "quality_10": 8.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": []
   },
@@ -4314,33 +4314,33 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 234484,
-        "heavy": 12003,
-        "bike": 34007,
-        "pedestrian": 46625,
-        "night": 35002
+        "car": 233973,
+        "heavy": 11807,
+        "bike": 33700,
+        "pedestrian": 46677,
+        "night": 36271
       },
       "days_with_data": 363,
       "coverage": 1.0,
       "v85": 41.6,
-      "v85_hours": 59,
+      "v85_hours": 60,
       "per_day": {
-        "vehicles": 679,
-        "cars": 646,
+        "vehicles": 677,
+        "cars": 645,
         "heavy": 33,
-        "bikes": 94,
-        "pedestrians": 128,
-        "night": 96
+        "bikes": 93,
+        "pedestrians": 129,
+        "night": 100
       },
       "active_pct": 24.6,
       "mode_pct": {
         "car": 71.7,
-        "heavy": 3.7,
-        "bike": 10.4,
+        "heavy": 3.6,
+        "bike": 10.3,
         "pedestrian": 14.3
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "profile": {
       "road_width_m": 5.3,
@@ -4358,7 +4358,7 @@ window.TELRAAM_RIXENSART = [
       "congestion_pct": 5.0,
       "safety_10": 4.0,
       "quality_10": 5.0,
-      "fetched_at": "2026-11-03"
+      "fetched_at": "2026-11-06"
     },
     "associated_travaux": []
   },
@@ -4501,16 +4501,16 @@ window.TELRAAM_RIXENSART = [
     },
     "year": {
       "modes": {
-        "car": 84137,
-        "heavy": 8452,
-        "bike": 4740,
-        "pedestrian": 7525,
-        "night": 12360
+        "car": 84108,
+        "heavy": 8461,
+        "bike": 4729,
+        "pedestrian": 7505,
+        "night": 12278
       },
       "days_with_data": 361,
       "coverage": 0.99,
-      "v85": 31.0,
-      "v85_hours": 58,
+      "v85": 31.1,
+      "v85_hours": 56,
       "per_day": {
         "vehicles": 256,
         "cars": 233,
@@ -4521,13 +4521,13 @@ window.TELRAAM_RIXENSART = [
       },
       "active_pct": 11.7,
       "mode_pct": {
-        "car": 80.2,
+        "car": 80.3,
         "heavy": 8.1,
         "bike": 4.5,
         "pedestrian": 7.2
       },
-      "start": "2025-11-04",
-      "end": "2026-11-02"
+      "start": "2025-11-07",
+      "end": "2026-11-05"
     },
     "associated_travaux": []
   }
