@@ -44,18 +44,36 @@ def get(path, retries=3):
             time.sleep(1 + 2 * k)
 
 
-def fetch_tranche(sid, s, e):
+def fetch_tranche(sid, s, e, retries=3, pause=2):
+    """Telraam répond parfois vide (HTTP 200) pour un capteur qui a des données : on redemande, puis on échoue."""
     rng = f"segments/{sid}/{s}/{e}"
-    return {
-        "pie": get(f"measurements-piechart/{rng}"),
-        "v85": get(f"measurements-24-hour-chart-v85/{rng}")["data"],
-        "h24": get(f"measurements-24-hour-chart/{rng}")["data"],
-        "days": get(f"measurements-day-barchart/{rng}")["data"],
-    }
+    for k in range(retries):
+        raw = {
+            "pie": get(f"measurements-piechart/{rng}"),
+            "v85": get(f"measurements-24-hour-chart-v85/{rng}")["data"],
+            "h24": get(f"measurements-24-hour-chart/{rng}")["data"],
+            "days": get(f"measurements-day-barchart/{rng}")["data"],
+        }
+        if tranche_complete(raw):
+            return raw
+        if k < retries - 1:
+            time.sleep(pause * (k + 1))
+    raise ValueError(f"réponses incohérentes ({s} → {e})")
 
 
 def _d(x):
     return x if isinstance(x, dict) else {}      # Telraam renvoie [] pour un capteur sans données
+
+
+def tranche_complete(r):
+    """Les voitures du camembert et des barres journalières doivent concorder, les courbes horaires être présentes."""
+    pie = _d(r["pie"]).get("car") or 0
+    days = sum(c for c in _d(r["days"]).get("car", []) if c)
+    hours = any(_d(r["h24"]).get("car", []))
+    v85 = any(_d(r["v85"]).get("speed_v85", []))
+    if not (pie or days or hours or v85):
+        return True                                 # vraiment aucune donnée sur la période
+    return hours and v85 and abs(pie - days) <= max(10, 0.01 * max(pie, days))
 
 
 def aggregate(raws, total_days):

@@ -92,6 +92,7 @@ function checkYear() {
   for (const [id, y] of Object.entries(yearNow)) {
     if (y.v85 != null && (y.v85 < 10 || y.v85 > 120)) errs.push(`${y.street} : V85 annuelle invraisemblable (${y.v85})`);
     if (y.coverage < 0 || y.coverage > 1) errs.push(`${y.street} : couverture hors 0-1 (${y.coverage})`);
+    if (y.coverage > 0 && !y.vehicles) errs.push(`${y.street} : aucun véhicule malgré une couverture de ${y.coverage}`);
   }
   if (existsSync(yearRefPath)) {
     const ref = JSON.parse(readFileSync(yearRefPath, 'utf8'));

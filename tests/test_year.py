@@ -5,7 +5,7 @@ import unittest
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
-from extract_year import aggregate, tranches   # noqa: E402
+from extract_year import aggregate, tranche_complete, tranches   # noqa: E402
 from extract_profile import parse_profile      # noqa: E402
 
 
@@ -45,6 +45,16 @@ class Year(unittest.TestCase):
         self.assertIsNone(r["v85"])
         self.assertEqual(r["days_with_data"], 0)
         self.assertNotIn("per_day", r)
+
+    def test_tranche_complete(self):
+        ok = raw([50, 51], [50], [1], [100], {"car": 100})     # écart d'arrondi toléré
+        self.assertTrue(tranche_complete(ok))
+        self.assertTrue(tranche_complete({"pie": [], "v85": [], "h24": [], "days": []}))
+
+    def test_reponse_vide_detectee(self):
+        complet = raw([40000, 60000], [50], [1], [100], {"car": 100000})
+        for cle, vide in (("pie", []), ("pie", {"car": 0}), ("days", []), ("h24", []), ("v85", [])):
+            self.assertFalse(tranche_complete(dict(complet, **{cle: vide})), cle)
 
 
 class Profile(unittest.TestCase):
