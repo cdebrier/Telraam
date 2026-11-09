@@ -303,33 +303,33 @@
     },
     "year": {
       "modes": {
-        "car": 754628,
-        "heavy": 43187,
-        "bike": 37832,
-        "pedestrian": 12887,
-        "night": 166686
+        "car": 758790,
+        "heavy": 43438,
+        "bike": 37724,
+        "pedestrian": 12846,
+        "night": 168312
       },
       "days_with_data": 364,
       "coverage": 1.0,
       "v85": 53.8,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 2192,
-        "cars": 2073,
+        "vehicles": 2204,
+        "cars": 2085,
         "heavy": 119,
         "bikes": 104,
         "pedestrians": 35,
-        "night": 458
+        "night": 462
       },
-      "active_pct": 6.0,
+      "active_pct": 5.9,
       "mode_pct": {
-        "car": 88.9,
+        "car": 89.0,
         "heavy": 5.1,
-        "bike": 4.5,
+        "bike": 4.4,
         "pedestrian": 1.5
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 6.0,
@@ -347,7 +347,7 @@
       "congestion_pct": null,
       "safety_10": 4.0,
       "quality_10": 1.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -711,33 +711,33 @@
     },
     "year": {
       "modes": {
-        "car": 181431,
-        "heavy": 10322,
-        "bike": 1550,
-        "pedestrian": 6239,
-        "night": 129661
+        "car": 175117,
+        "heavy": 10101,
+        "bike": 1465,
+        "pedestrian": 5819,
+        "night": 125221
       },
-      "days_with_data": 43,
-      "coverage": 0.12,
-      "v85": 39.5,
+      "days_with_data": 40,
+      "coverage": 0.11,
+      "v85": 39.1,
       "v85_hours": 11,
       "per_day": {
-        "vehicles": 4459,
-        "cars": 4219,
-        "heavy": 240,
-        "bikes": 36,
+        "vehicles": 4630,
+        "cars": 4378,
+        "heavy": 253,
+        "bikes": 37,
         "pedestrians": 145,
-        "night": 3015
+        "night": 3131
       },
-      "active_pct": 3.9,
+      "active_pct": 3.8,
       "mode_pct": {
-        "car": 90.9,
+        "car": 91.0,
         "heavy": 5.2,
         "bike": 0.8,
-        "pedestrian": 3.1
+        "pedestrian": 3.0
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 10.0,
@@ -755,7 +755,7 @@
       "congestion_pct": 50.0,
       "safety_10": 5.0,
       "quality_10": 5.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -1079,11 +1079,11 @@
     },
     "year": {
       "modes": {
-        "car": 2717732,
-        "heavy": 238817,
-        "bike": 75258,
-        "pedestrian": 26505,
-        "night": 297820
+        "car": 2717497,
+        "heavy": 238976,
+        "bike": 75029,
+        "pedestrian": 26476,
+        "night": 296518
       },
       "days_with_data": 364,
       "coverage": 1.0,
@@ -1092,10 +1092,10 @@
       "per_day": {
         "vehicles": 8122,
         "cars": 7466,
-        "heavy": 656,
-        "bikes": 207,
+        "heavy": 657,
+        "bikes": 206,
         "pedestrians": 73,
-        "night": 818
+        "night": 815
       },
       "active_pct": 3.3,
       "mode_pct": {
@@ -1104,8 +1104,8 @@
         "bike": 2.5,
         "pedestrian": 0.9
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -1123,7 +1123,7 @@
       "congestion_pct": 40.0,
       "safety_10": 1.0,
       "quality_10": 4.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -1455,23 +1455,23 @@
     },
     "year": {
       "modes": {
-        "car": 1060053,
-        "heavy": 59777,
-        "bike": 25282,
-        "pedestrian": 13204,
-        "night": 167602
+        "car": 1061920,
+        "heavy": 59994,
+        "bike": 25215,
+        "pedestrian": 13207,
+        "night": 167821
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 56.3,
+      "v85": 56.4,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 3076,
-        "cars": 2912,
-        "heavy": 164,
+        "vehicles": 3082,
+        "cars": 2917,
+        "heavy": 165,
         "bikes": 69,
         "pedestrians": 36,
-        "night": 460
+        "night": 461
       },
       "active_pct": 3.3,
       "mode_pct": {
@@ -1480,8 +1480,8 @@
         "bike": 2.2,
         "pedestrian": 1.1
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 5.0,
@@ -1499,7 +1499,7 @@
       "congestion_pct": 0.0,
       "safety_10": 3.0,
       "quality_10": 7.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -1819,33 +1819,33 @@
     },
     "year": {
       "modes": {
-        "car": 515650,
+        "car": 513631,
         "heavy": 23553,
-        "bike": 19467,
-        "pedestrian": 19042,
-        "night": 99758
+        "bike": 19305,
+        "pedestrian": 18961,
+        "night": 98777
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 57.5,
+      "v85": 57.7,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 1481,
-        "cars": 1417,
+        "vehicles": 1476,
+        "cars": 1411,
         "heavy": 65,
         "bikes": 53,
         "pedestrians": 52,
-        "night": 274
+        "night": 271
       },
-      "active_pct": 6.7,
+      "active_pct": 6.6,
       "mode_pct": {
         "car": 89.3,
         "heavy": 4.1,
         "bike": 3.4,
         "pedestrian": 3.3
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -1863,7 +1863,7 @@
       "congestion_pct": null,
       "safety_10": 10.0,
       "quality_10": 10.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -2215,33 +2215,33 @@
     },
     "year": {
       "modes": {
-        "car": 1558020,
-        "heavy": 102162,
-        "bike": 60729,
-        "pedestrian": 33706,
-        "night": 326374
+        "car": 1557442,
+        "heavy": 102231,
+        "bike": 60499,
+        "pedestrian": 33759,
+        "night": 324889
       },
       "days_with_data": 359,
       "coverage": 0.99,
       "v85": 50.9,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 4624,
-        "cars": 4340,
+        "vehicles": 4623,
+        "cars": 4338,
         "heavy": 285,
         "bikes": 169,
         "pedestrians": 94,
-        "night": 909
+        "night": 905
       },
       "active_pct": 5.4,
       "mode_pct": {
         "car": 88.8,
         "heavy": 5.8,
-        "bike": 3.5,
+        "bike": 3.4,
         "pedestrian": 1.9
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -2259,7 +2259,7 @@
       "congestion_pct": null,
       "safety_10": 3.0,
       "quality_10": 3.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -2602,23 +2602,23 @@
     },
     "year": {
       "modes": {
-        "car": 354331,
-        "heavy": 43440,
-        "bike": 15574,
-        "pedestrian": 32725,
-        "night": 96640
+        "car": 354498,
+        "heavy": 43506,
+        "bike": 15567,
+        "pedestrian": 32673,
+        "night": 96023
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 46.4,
+      "v85": 46.3,
       "v85_hours": 61,
       "per_day": {
         "vehicles": 1093,
-        "cars": 973,
-        "heavy": 119,
+        "cars": 974,
+        "heavy": 120,
         "bikes": 43,
         "pedestrians": 90,
-        "night": 265
+        "night": 264
       },
       "active_pct": 10.8,
       "mode_pct": {
@@ -2627,8 +2627,8 @@
         "bike": 3.5,
         "pedestrian": 7.3
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "associated_travaux": [
       {
@@ -2971,23 +2971,23 @@
     },
     "year": {
       "modes": {
-        "car": 2287826,
-        "heavy": 87728,
-        "bike": 83102,
-        "pedestrian": 49601,
-        "night": 424055
+        "car": 2288441,
+        "heavy": 87834,
+        "bike": 83115,
+        "pedestrian": 49581,
+        "night": 424435
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 49.5,
+      "v85": 49.6,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 6526,
-        "cars": 6285,
+        "vehicles": 6528,
+        "cars": 6287,
         "heavy": 241,
         "bikes": 228,
         "pedestrians": 136,
-        "night": 1165
+        "night": 1166
       },
       "active_pct": 5.3,
       "mode_pct": {
@@ -2996,8 +2996,8 @@
         "bike": 3.3,
         "pedestrian": 2.0
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "associated_travaux": [
       {
@@ -3337,33 +3337,33 @@
     },
     "year": {
       "modes": {
-        "car": 1027210,
-        "heavy": 43485,
-        "bike": 73379,
-        "pedestrian": 41102,
-        "night": 155659
+        "car": 1029788,
+        "heavy": 43679,
+        "bike": 73304,
+        "pedestrian": 41136,
+        "night": 156814
       },
       "days_with_data": 364,
       "coverage": 1.0,
-      "v85": 58.5,
+      "v85": 58.4,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 2941,
-        "cars": 2822,
-        "heavy": 119,
-        "bikes": 202,
+        "vehicles": 2949,
+        "cars": 2829,
+        "heavy": 120,
+        "bikes": 201,
         "pedestrians": 113,
-        "night": 428
+        "night": 431
       },
-      "active_pct": 9.7,
+      "active_pct": 9.6,
       "mode_pct": {
         "car": 86.7,
         "heavy": 3.7,
         "bike": 6.2,
         "pedestrian": 3.5
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 5.2,
@@ -3381,7 +3381,7 @@
       "congestion_pct": null,
       "safety_10": 6.0,
       "quality_10": 3.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -3721,33 +3721,33 @@
     },
     "year": {
       "modes": {
-        "car": 798870,
-        "heavy": 31334,
-        "bike": 84405,
-        "pedestrian": 57026,
-        "night": 207069
+        "car": 800928,
+        "heavy": 31496,
+        "bike": 84396,
+        "pedestrian": 57053,
+        "night": 208726
       },
       "days_with_data": 354,
       "coverage": 0.97,
-      "v85": 43.9,
+      "v85": 44.0,
       "v85_hours": 61,
       "per_day": {
-        "vehicles": 2345,
-        "cars": 2257,
+        "vehicles": 2351,
+        "cars": 2263,
         "heavy": 89,
         "bikes": 238,
         "pedestrians": 161,
-        "night": 585
+        "night": 590
       },
-      "active_pct": 14.6,
+      "active_pct": 14.5,
       "mode_pct": {
         "car": 82.2,
         "heavy": 3.2,
         "bike": 8.7,
         "pedestrian": 5.9
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -3765,7 +3765,7 @@
       "congestion_pct": 20.0,
       "safety_10": 7.0,
       "quality_10": 6.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": [
       {
@@ -4023,11 +4023,11 @@
     },
     "year": {
       "modes": {
-        "car": 207465,
-        "heavy": 44515,
-        "bike": 2422,
-        "pedestrian": 7799,
-        "night": 52874
+        "car": 207810,
+        "heavy": 44238,
+        "bike": 2396,
+        "pedestrian": 7759,
+        "night": 52822
       },
       "days_with_data": 364,
       "coverage": 1.0,
@@ -4035,7 +4035,7 @@
       "v85_hours": 61,
       "per_day": {
         "vehicles": 692,
-        "cars": 570,
+        "cars": 571,
         "heavy": 122,
         "bikes": 7,
         "pedestrians": 21,
@@ -4043,13 +4043,13 @@
       },
       "active_pct": 3.9,
       "mode_pct": {
-        "car": 79.1,
-        "heavy": 17.0,
+        "car": 79.3,
+        "heavy": 16.9,
         "bike": 0.9,
         "pedestrian": 3.0
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 4.0,
@@ -4067,7 +4067,7 @@
       "congestion_pct": 25.0,
       "safety_10": 6.0,
       "quality_10": 8.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": []
   },
@@ -4314,33 +4314,33 @@
     },
     "year": {
       "modes": {
-        "car": 233973,
-        "heavy": 11807,
-        "bike": 33700,
-        "pedestrian": 46677,
-        "night": 36271
+        "car": 233903,
+        "heavy": 11657,
+        "bike": 33342,
+        "pedestrian": 46868,
+        "night": 36984
       },
       "days_with_data": 363,
       "coverage": 1.0,
-      "v85": 41.6,
+      "v85": 41.5,
       "v85_hours": 60,
       "per_day": {
-        "vehicles": 677,
-        "cars": 645,
-        "heavy": 33,
-        "bikes": 93,
+        "vehicles": 676,
+        "cars": 644,
+        "heavy": 32,
+        "bikes": 92,
         "pedestrians": 129,
-        "night": 100
+        "night": 102
       },
       "active_pct": 24.6,
       "mode_pct": {
-        "car": 71.7,
+        "car": 71.8,
         "heavy": 3.6,
-        "bike": 10.3,
-        "pedestrian": 14.3
+        "bike": 10.2,
+        "pedestrian": 14.4
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "profile": {
       "road_width_m": 5.3,
@@ -4358,7 +4358,7 @@
       "congestion_pct": 5.0,
       "safety_10": 4.0,
       "quality_10": 5.0,
-      "fetched_at": "2026-11-06"
+      "fetched_at": "2026-11-09"
     },
     "associated_travaux": []
   },
@@ -4501,11 +4501,11 @@
     },
     "year": {
       "modes": {
-        "car": 84108,
-        "heavy": 8461,
-        "bike": 4729,
-        "pedestrian": 7505,
-        "night": 12278
+        "car": 84055,
+        "heavy": 8505,
+        "bike": 4689,
+        "pedestrian": 7474,
+        "night": 12225
       },
       "days_with_data": 361,
       "coverage": 0.99,
@@ -4514,20 +4514,20 @@
       "per_day": {
         "vehicles": 256,
         "cars": 233,
-        "heavy": 23,
+        "heavy": 24,
         "bikes": 13,
         "pedestrians": 21,
         "night": 34
       },
-      "active_pct": 11.7,
+      "active_pct": 11.6,
       "mode_pct": {
         "car": 80.3,
         "heavy": 8.1,
         "bike": 4.5,
-        "pedestrian": 7.2
+        "pedestrian": 7.1
       },
-      "start": "2025-11-07",
-      "end": "2026-11-05"
+      "start": "2025-11-10",
+      "end": "2026-11-08"
     },
     "associated_travaux": []
   }

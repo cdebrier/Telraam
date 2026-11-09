@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-11-06",
+  "fetched_at": "2026-11-09",
   "sensors": {
     "9000007490": {
       "road_width_m": 6.0,
@@ -18,22 +18,22 @@
       "safety_10": 4.0,
       "quality_10": 1.0
     },
-    "9000007497": {
-      "road_width_m": 4.0,
-      "lane_markings": true,
-      "bike_lane": true,
+    "9000007509": {
+      "road_width_m": 5.0,
+      "lane_markings": false,
+      "bike_lane": false,
       "footpath_m": [
-        1.5,
-        1.5
+        1.4,
+        1.4
       ],
       "one_way": false,
-      "bus": true,
-      "parking": true,
-      "function": "A national or regional connecting road",
-      "max_speed": 50.0,
-      "congestion_pct": 40.0,
-      "safety_10": 1.0,
-      "quality_10": 4.0
+      "bus": false,
+      "parking": false,
+      "function": "A local connecting road",
+      "max_speed": 30.0,
+      "congestion_pct": 0.0,
+      "safety_10": 3.0,
+      "quality_10": 7.0
     },
     "9000007492": {
       "road_width_m": 10.0,
@@ -52,22 +52,22 @@
       "safety_10": 5.0,
       "quality_10": 5.0
     },
-    "9000007509": {
-      "road_width_m": 5.0,
-      "lane_markings": false,
-      "bike_lane": false,
+    "9000007497": {
+      "road_width_m": 4.0,
+      "lane_markings": true,
+      "bike_lane": true,
       "footpath_m": [
-        1.4,
-        1.4
+        1.5,
+        1.5
       ],
       "one_way": false,
-      "bus": false,
-      "parking": false,
-      "function": "A local connecting road",
-      "max_speed": 30.0,
-      "congestion_pct": 0.0,
-      "safety_10": 3.0,
-      "quality_10": 7.0
+      "bus": true,
+      "parking": true,
+      "function": "A national or regional connecting road",
+      "max_speed": 50.0,
+      "congestion_pct": 40.0,
+      "safety_10": 1.0,
+      "quality_10": 4.0
     },
     "9000007512": {
       "road_width_m": 4.0,
@@ -103,23 +103,6 @@
       "safety_10": 3.0,
       "quality_10": 3.0
     },
-    "9000007534": {
-      "road_width_m": 5.2,
-      "lane_markings": true,
-      "bike_lane": true,
-      "footpath_m": [
-        1.0,
-        0.0
-      ],
-      "one_way": false,
-      "bus": true,
-      "parking": false,
-      "function": "A national or regional connecting road",
-      "max_speed": 50.0,
-      "congestion_pct": null,
-      "safety_10": 6.0,
-      "quality_10": 3.0
-    },
     "9000007578": {
       "road_width_m": 4.0,
       "lane_markings": false,
@@ -136,6 +119,23 @@
       "congestion_pct": 20.0,
       "safety_10": 7.0,
       "quality_10": 6.0
+    },
+    "9000007534": {
+      "road_width_m": 5.2,
+      "lane_markings": true,
+      "bike_lane": true,
+      "footpath_m": [
+        1.0,
+        0.0
+      ],
+      "one_way": false,
+      "bus": true,
+      "parking": false,
+      "function": "A national or regional connecting road",
+      "max_speed": 50.0,
+      "congestion_pct": null,
+      "safety_10": 6.0,
+      "quality_10": 3.0
     },
     "9000007261": {
       "road_width_m": 4.0,
